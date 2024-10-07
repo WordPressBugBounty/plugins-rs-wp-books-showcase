@@ -1,0 +1,776 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2023-03-08 19:56+0600\n"
+"PO-Revision-Date: 2023-03-08 19:56+0600\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.2.2\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-KeywordsList: esc_html;esc_html_e;esc_html_x;esc_attr;esc_attr__;"
+"esc_attr_e;esc_html__;__\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: admin/register-cmb.php:23
+msgid "Book Information"
+msgstr ""
+
+#: admin/register-cmb.php:39
+msgid "Pro"
+msgstr ""
+
+#: admin/register-cmb.php:111
+msgid "Original Book Name"
+msgstr ""
+
+#: admin/register-cmb.php:117 admin/register-cpt.php:161
+msgid "Book Name"
+msgstr ""
+
+#: admin/register-cmb.php:123
+msgid "Publish Date"
+msgstr ""
+
+#: admin/register-cmb.php:130
+msgid "Publisher Name"
+msgstr ""
+
+#: admin/register-cmb.php:136
+msgid "Book Short Description"
+msgstr ""
+
+#: admin/register-cmb.php:142
+msgid "Country"
+msgstr ""
+
+#: admin/register-cmb.php:148
+msgid "Book language"
+msgstr ""
+
+#: admin/register-cmb.php:154
+msgid "Book Format"
+msgstr ""
+
+#: admin/register-cmb.php:160
+msgid "Book Pages"
+msgstr ""
+
+#: admin/register-cmb.php:166
+msgid "ISBN"
+msgstr ""
+
+#: admin/register-cmb.php:172
+msgid "ISBN-10"
+msgstr ""
+
+#: admin/register-cmb.php:178
+msgid "ISBN-13"
+msgstr ""
+
+#: admin/register-cmb.php:184
+msgid "Translator Name"
+msgstr ""
+
+#: admin/register-cmb.php:190
+msgid "Dimension"
+msgstr ""
+
+#: admin/register-cmb.php:196
+msgid "Weight"
+msgstr ""
+
+#: admin/register-cmb.php:202
+msgid "File size (If Ebook)"
+msgstr ""
+
+#: admin/register-cmb.php:208
+msgid "Simultaneous device usage"
+msgstr ""
+
+#: admin/register-cmb.php:217
+msgid "File Format (If Ebook)"
+msgstr ""
+
+#: admin/register-cmb.php:223
+msgid "ASIN"
+msgstr ""
+
+#: admin/register-cmb.php:232
+msgid "Text-To-Speech"
+msgstr ""
+
+#: admin/register-cmb.php:235 admin/register-cmb.php:254
+#: admin/register-cmb.php:273 admin/register-cmb.php:292
+#: admin/register-cmb.php:311 admin/register-cmb.php:349
+msgid "Choose an option"
+msgstr ""
+
+#: admin/register-cmb.php:238 admin/register-cmb.php:276
+#: admin/register-cmb.php:295 admin/register-cmb.php:314
+#: includes/functions.php:77 includes/functions.php:94
+#: includes/functions.php:111 includes/functions.php:128
+#: includes/functions.php:145
+msgid "Enabled"
+msgstr ""
+
+#: admin/register-cmb.php:241 admin/register-cmb.php:279
+#: admin/register-cmb.php:298 admin/register-cmb.php:317
+#: includes/functions.php:79 includes/functions.php:96
+#: includes/functions.php:113 includes/functions.php:130
+#: includes/functions.php:147
+msgid "Not Enabled"
+msgstr ""
+
+#: admin/register-cmb.php:251
+msgid "Screen Reader"
+msgstr ""
+
+#: admin/register-cmb.php:257
+msgid "Supported"
+msgstr ""
+
+#: admin/register-cmb.php:260
+msgid "Unsupported"
+msgstr ""
+
+#: admin/register-cmb.php:270
+msgid "Enhanced typesetting"
+msgstr ""
+
+#: admin/register-cmb.php:289
+msgid "X-Ray"
+msgstr ""
+
+#: admin/register-cmb.php:308
+msgid "Word Wise"
+msgstr ""
+
+#: admin/register-cmb.php:327
+msgid "Sticky Notes"
+msgstr ""
+
+#: admin/register-cmb.php:336
+msgid "Print length"
+msgstr ""
+
+#: admin/register-cmb.php:346
+msgid "Book Availability Status"
+msgstr ""
+
+#: admin/register-cmb.php:352
+msgid "Available"
+msgstr ""
+
+#: admin/register-cmb.php:355
+msgid "Upcoming"
+msgstr ""
+
+#: admin/register-cmb.php:362
+msgid "Average Book Rating"
+msgstr ""
+
+#: admin/register-cmb.php:365
+msgid "5 Star"
+msgstr ""
+
+#: admin/register-cmb.php:368
+msgid "4.5 Star"
+msgstr ""
+
+#: admin/register-cmb.php:371
+msgid "4 Star"
+msgstr ""
+
+#: admin/register-cmb.php:374
+msgid "3.5 Star"
+msgstr ""
+
+#: admin/register-cmb.php:377
+msgid "3 Star"
+msgstr ""
+
+#: admin/register-cmb.php:380
+msgid "2.5 Star"
+msgstr ""
+
+#: admin/register-cmb.php:383
+msgid "2 Star"
+msgstr ""
+
+#: admin/register-cmb.php:386
+msgid "1.5 Star"
+msgstr ""
+
+#: admin/register-cmb.php:389
+msgid "1 Star"
+msgstr ""
+
+#: admin/register-cmb.php:396
+msgid "Total Book Ratings"
+msgstr ""
+
+#: admin/register-cmb.php:402
+msgid "Book Rating Links"
+msgstr ""
+
+#: admin/register-cmb.php:414
+msgid "Book Price"
+msgstr ""
+
+#: admin/register-cmb.php:435
+msgid "Buy Button Text"
+msgstr ""
+
+#: admin/register-cmb.php:439
+msgid "Buy Button Link"
+msgstr ""
+
+#: admin/register-cpt.php:20 admin/register-cpt.php:21
+msgid "RS WP Books Showcase"
+msgstr ""
+
+#: admin/register-cpt.php:22
+msgid "Book Archives"
+msgstr ""
+
+#: admin/register-cpt.php:23
+msgid "Book Attributes"
+msgstr ""
+
+#: admin/register-cpt.php:24
+msgid "Parent Book:"
+msgstr ""
+
+#: admin/register-cpt.php:25
+msgid "All Books"
+msgstr ""
+
+#: admin/register-cpt.php:26 admin/register-cpt.php:27
+msgid "Add New Book"
+msgstr ""
+
+#: admin/register-cpt.php:28
+msgid "New Book"
+msgstr ""
+
+#: admin/register-cpt.php:29
+msgid "Edit Book"
+msgstr ""
+
+#: admin/register-cpt.php:30
+msgid "Update Book"
+msgstr ""
+
+#: admin/register-cpt.php:31 includes/widgets/books-list.php:54
+msgid "View Book"
+msgstr ""
+
+#: admin/register-cpt.php:32
+msgid "View Books"
+msgstr ""
+
+#: admin/register-cpt.php:33
+msgid "Search Book"
+msgstr ""
+
+#: admin/register-cpt.php:34
+msgid "Not found"
+msgstr ""
+
+#: admin/register-cpt.php:35
+msgid "Not found in Trash"
+msgstr ""
+
+#: admin/register-cpt.php:36
+msgid "Book Front Cover"
+msgstr ""
+
+#: admin/register-cpt.php:37
+msgid "Set Book Front Cover"
+msgstr ""
+
+#: admin/register-cpt.php:38
+msgid "Remove featured image"
+msgstr ""
+
+#: admin/register-cpt.php:39
+msgid "Use as featured image"
+msgstr ""
+
+#: admin/register-cpt.php:40
+msgid "Insert into item"
+msgstr ""
+
+#: admin/register-cpt.php:41
+msgid "Uploaded to this item"
+msgstr ""
+
+#: admin/register-cpt.php:42 admin/register-cpt.php:93
+#: admin/register-cpt.php:133
+msgid "Items list"
+msgstr ""
+
+#: admin/register-cpt.php:43 admin/register-cpt.php:94
+#: admin/register-cpt.php:134
+msgid "Items list navigation"
+msgstr ""
+
+#: admin/register-cpt.php:44
+msgid "Filter items list"
+msgstr ""
+
+#: admin/register-cpt.php:47
+msgid "Books Showcase"
+msgstr ""
+
+#: admin/register-cpt.php:48
+msgid "Click on any book cover to learn more."
+msgstr ""
+
+#: admin/register-cpt.php:77 admin/register-cpt.php:164
+msgid "Book Categories"
+msgstr ""
+
+#: admin/register-cpt.php:78
+msgid "All Book Categories"
+msgstr ""
+
+#: admin/register-cpt.php:79
+msgid "Parent Item"
+msgstr ""
+
+#: admin/register-cpt.php:80
+msgid "Parent Item:"
+msgstr ""
+
+#: admin/register-cpt.php:81
+msgid "New Item Name"
+msgstr ""
+
+#: admin/register-cpt.php:82
+msgid "Add New Item"
+msgstr ""
+
+#: admin/register-cpt.php:83
+msgid "Edit Item"
+msgstr ""
+
+#: admin/register-cpt.php:84
+msgid "Update Item"
+msgstr ""
+
+#: admin/register-cpt.php:85
+msgid "View Item"
+msgstr ""
+
+#: admin/register-cpt.php:86 admin/register-cpt.php:126
+msgid "Separate items with commas"
+msgstr ""
+
+#: admin/register-cpt.php:87 admin/register-cpt.php:127
+msgid "Add or remove items"
+msgstr ""
+
+#: admin/register-cpt.php:88 admin/register-cpt.php:128
+msgid "Choose from the most used"
+msgstr ""
+
+#: admin/register-cpt.php:89
+msgid "Popular Items"
+msgstr ""
+
+#: admin/register-cpt.php:90 admin/register-cpt.php:130
+msgid "Search Items"
+msgstr ""
+
+#: admin/register-cpt.php:91 admin/register-cpt.php:131
+msgid "Not Found"
+msgstr ""
+
+#: admin/register-cpt.php:92 admin/register-cpt.php:132
+msgid "No items"
+msgstr ""
+
+#: admin/register-cpt.php:117
+msgid "Book Authors"
+msgstr ""
+
+#: admin/register-cpt.php:118
+msgid "All Book Authors"
+msgstr ""
+
+#: admin/register-cpt.php:119
+msgid "Parent Book Author"
+msgstr ""
+
+#: admin/register-cpt.php:120
+msgid "Parent Book Author:"
+msgstr ""
+
+#: admin/register-cpt.php:121
+msgid "New Book Author Name"
+msgstr ""
+
+#: admin/register-cpt.php:122
+msgid "Add New Book Author"
+msgstr ""
+
+#: admin/register-cpt.php:123
+msgid "Edit Book Author"
+msgstr ""
+
+#: admin/register-cpt.php:124
+msgid "Update Book Author"
+msgstr ""
+
+#: admin/register-cpt.php:125
+msgid "View Book Author"
+msgstr ""
+
+#: admin/register-cpt.php:129
+msgid "Popular Book Authors"
+msgstr ""
+
+#: admin/register-cpt.php:162
+msgid "Book Author"
+msgstr ""
+
+#: admin/register-cpt.php:166
+msgid "Date"
+msgstr ""
+
+#: admin/tutorial.php:32
+msgid "Book Gallery Shortcode"
+msgstr ""
+
+#: admin/tutorial.php:33
+msgid "Copy this shortcode and past it in your books page."
+msgstr ""
+
+#: admin/tutorial.php:41
+msgid "How to Use This Shortcode."
+msgstr ""
+
+#: admin/tutorial.php:42
+msgid ""
+"By the end of this video, you'll learn how to easily add books to your "
+"website using the backend and then showcase them in a variety of layouts on "
+"your WordPress website using shortcodes. If you're not familiar with "
+"shortcodes, don't worry - we have you covered with our Gutenberg block and "
+"Elementor widget. To take advantage of these powerful features, upgrade to "
+"RS WP BOOK SHOWCASE Pro today"
+msgstr ""
+
+#: admin/tutorial.php:50
+msgid "Book Slider Shortcode"
+msgstr ""
+
+#: admin/tutorial.php:51
+msgid ""
+"Copy this shortcode and past it anywhere of the page/post where you want to "
+"show book slider."
+msgstr ""
+
+#: admin/tutorial.php:52
+msgid ""
+"Please watch above video to learn how to use shortcodes. if you are not "
+"familiar with shortcodes. do not worry - we also have book slider Gutenberg "
+"Block and elementor widget. To take advantage of these features, upgrade to "
+"RS WP BOOK SHOWCASE pro today."
+msgstr ""
+
+#: admin/tutorial.php:66
+msgid "Upgrade To Pro"
+msgstr ""
+
+#: admin/tutorial.php:73
+msgid "Book Gallery and Book Slider Gutenberg Block ( Pro )."
+msgstr ""
+
+#: admin/tutorial.php:74
+msgid "This Block Is Available In The Pro Version Only."
+msgstr ""
+
+#: admin/tutorial.php:77
+msgid "How to Use Gutenberg Block."
+msgstr ""
+
+#: admin/tutorial.php:85
+msgid "Display Books Using Elementor Page Builder ( Pro )."
+msgstr ""
+
+#: admin/tutorial.php:86
+msgid "This Widget is Available In The Pro Version Only."
+msgstr ""
+
+#: admin/tutorial.php:89
+msgid "Design a Stunning Book Gallery with Elementor: A Step-by-Step Guide"
+msgstr ""
+
+#: frontend/shortcodes/book-advanced-search-shortcode.php:61
+msgid "All Authors"
+msgstr ""
+
+#: frontend/shortcodes/book-advanced-search-shortcode.php:73
+msgid "All Categories"
+msgstr ""
+
+#: frontend/shortcodes/book-advanced-search-shortcode.php:85
+msgid "All Formats"
+msgstr ""
+
+#: frontend/shortcodes/book-advanced-search-shortcode.php:97
+msgid "All Publishers"
+msgstr ""
+
+#: frontend/shortcodes/book-advanced-search-shortcode.php:109
+msgid "All Years"
+msgstr ""
+
+#: frontend/shortcodes/book-grid-shortcode.php:127
+#: frontend/shortcodes/book-slider-shortcode.php:233
+#: includes/template-hook.php:209 includes/widgets/books-list.php:69
+#: includes/widgets/featured-book.php:59
+msgid "By "
+msgstr ""
+
+#: includes/functions.php:426
+msgid " ratings"
+msgstr ""
+
+#: includes/functions.php:484
+msgid "Next"
+msgstr ""
+
+#: includes/functions.php:485
+msgid "Prev"
+msgstr ""
+
+#: includes/functions.php:558
+msgid "Default Sorting"
+msgstr ""
+
+#: includes/functions.php:559
+msgid "Price (Low to High)"
+msgstr ""
+
+#: includes/functions.php:560
+msgid "Price (High to Low)"
+msgstr ""
+
+#: includes/functions.php:561
+msgid "Title (A-Z)"
+msgstr ""
+
+#: includes/functions.php:562
+msgid "Title (Z-A)"
+msgstr ""
+
+#: includes/functions.php:563
+msgid "Date (Oldest to Newest)"
+msgstr ""
+
+#: includes/functions.php:564
+msgid "Date (Newest to Oldest)"
+msgstr ""
+
+#: includes/widgets/books-list.php:10
+msgid "[ RS WP THEMES ] Books List"
+msgstr ""
+
+#: includes/widgets/books-list.php:89
+msgid "Book List"
+msgstr ""
+
+#: includes/widgets/books-list.php:102
+msgid "Books Posts Per Page:"
+msgstr ""
+
+#: includes/widgets/featured-book.php:10
+msgid "[ RS WP THEMES ] Featured Books"
+msgstr ""
+
+#: includes/widgets/featured-book.php:104
+msgid "Title:"
+msgstr ""
+
+#: review-system/review-cmb.php:31
+msgid "This Review Was Submited in: "
+msgstr ""
+
+#: review-system/review-cmb.php:42
+msgid "Full Name:"
+msgstr ""
+
+#: review-system/review-cmb.php:48
+msgid "Email Address:"
+msgstr ""
+
+#: review-system/review-cmb.php:54
+msgid "Rating:"
+msgstr ""
+
+#: review-system/review-form.php:14
+msgid "Submit Your Review"
+msgstr ""
+
+#: review-system/review-form.php:18
+msgid "You are not allowed to submit review. please"
+msgstr ""
+
+#: review-system/review-form.php:19
+msgid "Log In"
+msgstr ""
+
+#: review-system/review-form.php:33
+msgid "Review Title: "
+msgstr ""
+
+#: review-system/review-form.php:37
+msgid "Full Name: "
+msgstr ""
+
+#: review-system/review-form.php:41
+msgid "Email Address: "
+msgstr ""
+
+#: review-system/review-form.php:45
+msgid "Rating: "
+msgstr ""
+
+#: review-system/review-form.php:56
+msgid "Review: "
+msgstr ""
+
+#: review-system/reviews-list.php:23
+msgid "Readers Feedback"
+msgstr ""
+
+#: rs-wp-books-showcase.php:157
+msgid "Book Gallery Upgrade to Pro"
+msgstr ""
+
+#: rs-wp-books-showcase.php:158
+msgid "Settings"
+msgstr ""
+
+#: rsbs-templates/single-book.php:28
+msgid "By: "
+msgstr ""
+
+#: rsbs-templates/single-book.php:50
+msgid "Price: "
+msgstr ""
+
+#: rsbs-templates/single-book.php:82
+msgid "Availability: "
+msgstr ""
+
+#: rsbs-templates/single-book.php:93
+msgid "Original Title: "
+msgstr ""
+
+#: rsbs-templates/single-book.php:104
+msgid "Categories: "
+msgstr ""
+
+#: rsbs-templates/single-book.php:119
+msgid "Publish Date: "
+msgstr ""
+
+#: rsbs-templates/single-book.php:130
+msgid "Published Year: "
+msgstr ""
+
+#: rsbs-templates/single-book.php:141
+msgid "Publisher Name: "
+msgstr ""
+
+#: rsbs-templates/single-book.php:152
+msgid "Total Pages: "
+msgstr ""
+
+#: rsbs-templates/single-book.php:163
+msgid "ISBN: "
+msgstr ""
+
+#: rsbs-templates/single-book.php:174
+msgid "ISBN 10: "
+msgstr ""
+
+#: rsbs-templates/single-book.php:185
+msgid "ISBN 13: "
+msgstr ""
+
+#: rsbs-templates/single-book.php:196
+msgid "ASIN: "
+msgstr ""
+
+#: rsbs-templates/single-book.php:207
+msgid "Format: "
+msgstr ""
+
+#: rsbs-templates/single-book.php:218
+msgid "Translator: "
+msgstr ""
+
+#: rsbs-templates/single-book.php:229
+msgid "File Size: "
+msgstr ""
+
+#: rsbs-templates/single-book.php:240
+msgid "Dimension: "
+msgstr ""
+
+#: rsbs-templates/single-book.php:251
+msgid "Weight: "
+msgstr ""
+
+#: rsbs-templates/single-book.php:262
+msgid "File Format: "
+msgstr ""
+
+#: rsbs-templates/single-book.php:273
+msgid "Simultaneous Device Usage: "
+msgstr ""
+
+#: rsbs-templates/single-book.php:284
+msgid "Text-to-Speech: "
+msgstr ""
+
+#: rsbs-templates/single-book.php:295
+msgid "Screen Reader: "
+msgstr ""
+
+#: rsbs-templates/single-book.php:306
+msgid "Enhanced typesetting: "
+msgstr ""
+
+#: rsbs-templates/single-book.php:317
+msgid "X-Ray: "
+msgstr ""
+
+#: rsbs-templates/single-book.php:328
+msgid "Word Wise: "
+msgstr ""
+
+#: rsbs-templates/single-book.php:339
+msgid "Sticky notes: "
+msgstr ""
+
+#: rsbs-templates/single-book.php:350
+msgid "Print length: "
+msgstr ""
+
+#: rsbs-templates/single-book.php:361
+msgid "Avarage Ratings: "
+msgstr ""
+
+#: rsbs-templates/taxonomy-book-author.php:13
+msgid "Books"
+msgstr ""

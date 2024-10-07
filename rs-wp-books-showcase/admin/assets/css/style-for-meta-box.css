@@ -1,0 +1,149 @@
+.d-none{
+    display: none !important;
+}
+.d-block{
+    display: block !important;
+}
+.w-100{
+    width: 100% !important;
+}
+.mb-20{
+    margin-bottom: 20px !important;
+}
+.mt-10{
+    margin-top: 10px !important;
+}
+.text-right{
+    text-align: right !important;
+}
+.book-information-wrapper label {
+    margin-bottom: 5px;
+    display: block;
+}
+.book-field-container {
+    border: 1px solid #ddd;
+    padding: 7px 10px 10px 10px;
+    position: relative;
+}
+
+.book-field-container div.currency-sign {
+    width: 20px;
+    height: 30px;
+    background: #ddd;
+    position: absolute;
+    left: 16px;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #000;
+    font-weight: 700;
+    border: 1px solid #fc8f94;
+    border-radius: 4px;
+}
+
+.book-field-container input#book-sale-price, .book-field-container input#book-price {
+    padding-left: 30px;
+}
+.book-field-container label {
+    font-weight: 700;
+}
+
+.rswpthemes-image-container {
+    height: 345px;
+    width: 100%;
+    background-color: #ddd;
+    margin-bottom: 10px;
+    background-size: contain;
+    background-repeat: no-repeat
+}
+.taxonomy-area.image-upload-wrapper .rswpthemes-image-container{
+    width: 200px;
+    height: 200px;
+}
+h2.meta-field-title{
+   padding: 10px 0 !important;
+   font-weight: 600 !important;
+   margin-bottom: 20px !important;
+   border-bottom: 1px solid #ddd !important;
+}
+.external-website-list-item {
+    padding: 5px;
+    border: 1px solid #8c8f94;
+    margin-bottom: 5px;
+    position: relative;
+}
+.external-website-list-item .remove-row {
+    position: absolute;
+    right: 0;
+    top: 0;
+    opacity: 0;
+    transition: .4s;
+}
+.rswpbs-row.external-website-list-item:hover #remove-row {
+    opacity: 1;
+}
+.external-website-list-item .remove-row button {
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+
+/*pro tag*/
+.set_overlay_for_pro_field {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 5;
+    background: rgb(0 0 0 / 40%);
+}
+
+.set_overlay_for_pro_field .pro_tag_text a {
+    color: #fff;
+    font-weight: 900;
+    text-align: right;
+    background: #f41212;
+    display: inline-block;
+    padding: 5px 15px;
+}
+.set_overlay_for_pro_field .pro_tag_text {
+    text-align: right;
+}
+.book-field-container.no-border {
+    padding: 0;
+    border: 0;
+}
+
+.book-field-container.no-border img {
+    max-width: 100%;
+}
+
+.pro-item-spacer{
+    margin-bottom: 30px;
+}
+
+.rswpbs-review-cmb-field input, .rswpbs-review-cmb-field select {
+    width: 100%;
+    display: block;
+    height: 40px;
+}
+
+.rswpbs-review-cmb-field h4 {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.rswpbs-review-cmb-field label {
+    display: block;
+    font-weight: 700;
+    color: #444;
+}
+
+.rswpbs-review-cmb-field {
+    padding: 20px 10px;
+    border: 1px solid #f1f1f1;
+}
