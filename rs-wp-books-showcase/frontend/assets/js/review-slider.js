@@ -71,7 +71,7 @@ jQuery(document).ready(function($) {
     };
 
     if (typeof elementorFrontend !== 'undefined' && typeof elementor !== 'undefined') {
-        elementorFrontend.hooks.addAction('frontend/element_ready/extra_addon_book_reviews.default', BookReview);
+        elementorFrontend.hooks.addAction('frontend/element_ready/extra_addon_book_reviews_slider.default', BookReview);
         elementorFrontend.hooks.addAction('frontend/element_ready/text-editor.default', BookReview);
     } else {
         var $scope = jQuery('.review_slider_active');

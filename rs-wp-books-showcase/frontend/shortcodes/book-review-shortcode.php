@@ -19,6 +19,7 @@ function rswpbs_books_review_shortcode( $atts ) {
 			'large_screen' => '3',
 			'medium_screen' => '2',
 			'small_screen' => '1',
+			'container' => 'rswpbs-container',
 		), $atts
 	);
 
@@ -54,7 +55,7 @@ function rswpbs_books_review_shortcode( $atts ) {
 	if ($reviewQuery->have_posts()) :
 	?>
 	<div class="rswpbs-customer-review-wrapper">
-		<div class="rswpbs-container">
+		<div class="<?php echo esc_attr($atts['container']); ?>">
 			<?php
 			if ('true' == $atts['show_section_title'] || 'true' == $atts['show_slider_nagivation']) :
 			?>

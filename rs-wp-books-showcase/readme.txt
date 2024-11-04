@@ -3,7 +3,7 @@ Contributors: rswpthemes
 Tags: wordpress books gallery plugin, wordpress book library plugin, book showcase plugin, online books gallery plugin wordpress, WordPress book review plugin
 Requires at least: 5.2
 Tested up to: 6.6
-Stable tag: 6.6.9
+Stable tag: 6.6.10
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -521,3 +521,6 @@ Install RS WP Book Showcase as a regular WordPress plugin. Here are different wa
 = 6.6.9 - Sep 22, 2024 ==
 * Improved Book List Widget
 * Improved Book Featured Widget
+
+= 6.6.10 - Nov 04, 2024 ==
+* Improved Book List Widget Style for book author template footer layout.

@@ -1260,6 +1260,24 @@ span.rswpthemes-arrow-down {
     opacity: 1;
 }
 
+body.theme-book-author-template section.footer-content.footer-top-area .footer-sidebar.widget .rswpthemes-book-list-widget-area-inner .book-name h2 a {
+    color: #000 !important;
+}
+
+body.theme-book-author-template section.footer-content.footer-top-area .footer-sidebar.widget .rswpthemes-book-list-widget-area-inner .book-author a {
+    color: #000;
+}
+
+body.theme-book-author-template section.footer-content.footer-top-area .footer-sidebar.widget .rswpthemes-book-list-widget-area-inner .book-price strong {
+    color: #000;
+}
+
+body.theme-book-author-template section.footer-content.footer-top-area .footer-sidebar.widget .rswpthemes-book-list-widget-area-inner .book-image .book-view-button a {color: #000;}
+
+body.theme-book-author-template section.footer-content.footer-top-area .footer-sidebar.widget .rswpthemes-book-list-widget-area-inner .book-image .book-view-button a:hover {
+    color: #fff;
+}
+
 /* Comment Form Rating */
 /* Style the rating field */
 .rswpbs-review-form-wrapper {
@@ -1636,7 +1654,16 @@ body.custom-background .rswpbs-book-reviews-area .section-title-area .section-ti
 .rswpbs-book-slider__slider-wrapper-row.book-slider-activate .slick-arrow.slick-prev {
     left: -70px;
 }
+.rswpbs-book-slider__slider-wrapper-row.book-slider-activate .slick-arrow {
+    opacity: 0;
+    visibility: hidden;
+    transition: .4s;
+}
 
+.eafe-book-slider-section-wrapper:hover .rswpbs-book-slider__slider-wrapper-row.book-slider-activate .slick-arrow {
+    visibility: visible;
+    opacity: 1;
+}
 @media (max-width: 1200px) {
     .rswpbs-book-slider__slider-wrapper-row.book-slider-activate .slick-arrow.slick-next {
         right: -20px;
