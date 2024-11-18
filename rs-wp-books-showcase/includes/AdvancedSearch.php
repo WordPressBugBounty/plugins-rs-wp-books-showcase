@@ -28,6 +28,11 @@ function rswpbs_search_fields(){
         $taxPageSlug = $taxPageObj->slug;
         $search_fields['category'] = $taxPageSlug;
     }
+    if (is_tax('book-series')) {
+        $taxPageObj = get_queried_object();
+        $taxPageSlug = $taxPageObj->slug;
+        $search_fields['series'] = $taxPageSlug;
+    }
 
 	return $search_fields;
 }

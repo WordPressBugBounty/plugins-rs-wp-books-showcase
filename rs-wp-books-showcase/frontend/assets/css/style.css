@@ -162,6 +162,7 @@ body.single-post.both-sidebar .book-grid-layout h2.book-title a {
     border: none;
     font-weight: 400;
     font-size: 15px;
+    align-self: center;
 }
 
 .rswpthemes-book-loop-content-wrapper .book-buy-btn a.rswpthemes-book-buy-now-button:hover {
@@ -877,7 +878,7 @@ span.rswpthemes-arrow-down {
     width: 100%;
     height: 40px;
     padding: 0 10px !important;
-    text-transform: capitalize;
+    text-transform: math-auto;
     border: 1px solid #f1f1f1;
     background: #fff;
 }
@@ -971,11 +972,11 @@ span.rswpthemes-arrow-down {
     position: relative;
     padding: 0px 10px;
     line-height: 40px;
-    text-transform: capitalize;
+    text-transform: math-auto;
 }
 
 .selectize-dropdown .option {
-    text-transform: capitalize;
+    text-transform: math-auto;
 }
 
 /********* Featured Book Widget ***********/

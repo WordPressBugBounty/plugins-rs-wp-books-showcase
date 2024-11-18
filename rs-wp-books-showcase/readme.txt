@@ -2,8 +2,8 @@
 Contributors: rswpthemes
 Tags: wordpress books gallery plugin, wordpress book library plugin, book showcase plugin, online books gallery plugin wordpress, WordPress book review plugin
 Requires at least: 5.2
-Tested up to: 6.6
-Stable tag: 6.6.10
+Tested up to: 6.7
+Stable tag: 6.7.2
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -32,7 +32,7 @@ RS WP Book Showcase offers an intuitive user interface, seamless compatibility w
  - [How To Add Multiple Purchase Links To A Book Page](https://rswpthemes.com/how-to-add-multiple-purchase-links-to-a-book-page-in-wordpress-using-rs-wp-books-showcase-plugin/)
 
 = How To Add Book To Your WordPress WebSite and Shortcodes Using Guide =
-[youtube https://www.youtube.com/watch?v=efF130jkcS8]
+[youtube https://www.youtube.com/watch?v=fI23SU26cSs&t=4s]
 
 ## How to Add Books Gallery To Your WordPress Website?
 
@@ -524,3 +524,9 @@ Install RS WP Book Showcase as a regular WordPress plugin. Here are different wa
 
 = 6.6.10 - Nov 04, 2024 ==
 * Improved Book List Widget Style for book author template footer layout.
+
+= 6.7.2 - Nov 18, 2024 ==
+* Added Latest Book Gallery Adding Video.
+* Added Page Background, Container, Book Info colors changing options
+* Added Series Include and Exclude Shortcode Options
+* Solved Capital text issue in book search form

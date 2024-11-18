@@ -12,6 +12,8 @@ function rswpbs_books_showcase_grid_layout( $atts ) {
 	        'categories_exclude' => '',
 	        'authors_include' => '',
 	        'authors_exclude' => '',
+	        'series_include' => '',
+	        'series_exclude' => '',
 	        'exclude_books' => '',
 	        'book_offset' => '',
 	        'order' => '',
@@ -89,7 +91,21 @@ function rswpbs_books_showcase_grid_layout( $atts ) {
 	        ),
 	    );
 	}
-	if (true === $includeCategory && true === $includeAuthors) {
+	$includeSeries = false;
+	if (!empty($atts['series_include']) && $atts['series_include'] !== 'false' && $atts['series_include'] !== 'true') {
+		$includeSeries = true;
+	}
+	if (true === $includeSeries) {
+		$includeBookSeries = array_map('intval', explode(',' , $atts['series_include']));
+		$bookQueryArgs['tax_query'] = array(
+	        array(
+	            'taxonomy' => 'book-series',
+	            'field'    => 'term_id',
+	            'terms'    => $includeBookSeries,
+	        ),
+	    );
+	}
+	if (true === $includeCategory && true === $includeAuthors && true === $includeSeries) {
 		$bookQueryArgs['tax_query'] = array(
         	'relation' => 'AND',
 	        array(
@@ -102,6 +118,11 @@ function rswpbs_books_showcase_grid_layout( $atts ) {
 	            'field'    => 'term_id',
 	            'terms'    => $includeBookCategories,
 	        ),
+	        array(
+	            'taxonomy' => 'book-series',
+	            'field'    => 'term_id',
+	            'terms'    => $includeBookSeries,
+	        ),
     	);
 	}
 	$excludeCategories = false;
@@ -112,9 +133,14 @@ function rswpbs_books_showcase_grid_layout( $atts ) {
 	if (!empty($atts['authors_exclude']) && $atts['authors_exclude'] !== 'false' && $atts['authors_exclude'] !== 'true') {
 		$excludeAuthors = true;
 	}
-	if (true === $excludeCategories || true === $excludeAuthors) {
+	$excludeSeries = false;
+	if (!empty($atts['series_exclude']) && $atts['series_exclude'] !== 'false' && $atts['series_exclude'] !== 'true') {
+		$excludeSeries = true;
+	}
+	if (true === $excludeCategories || true === $excludeAuthors || true === $excludeSeries) {
 		$excludeBookCategories = array_map('intval', explode(',' , $atts['categories_exclude']));
 		$excludeBookAuthors = array_map('intval', explode(',' , $atts['authors_exclude']));
+		$excludeBookSeries = array_map('intval', explode(',' , $atts['series_exclude']));
  		$exclude_tax_query = array();
  		if (true === $excludeAuthors) {
 	        $exclude_tax_query[] = array(
@@ -129,6 +155,14 @@ function rswpbs_books_showcase_grid_layout( $atts ) {
 	            'taxonomy' => 'book-category',
 	            'field'    => 'term_id',
 	            'terms'    => $excludeBookCategories,
+	            'operator' => 'NOT IN',
+	        );
+	    }
+	    if (true === $excludeSeries) {
+	        $exclude_tax_query[] = array(
+	            'taxonomy' => 'book-series',
+	            'field'    => 'term_id',
+	            'terms'    => $excludeBookSeries,
 	            'operator' => 'NOT IN',
 	        );
 	    }

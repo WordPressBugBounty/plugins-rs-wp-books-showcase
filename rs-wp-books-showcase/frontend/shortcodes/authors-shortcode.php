@@ -15,7 +15,7 @@ function rswpbs_author_shortcode_output($atts){
 	ob_start();
 
 	$authorsPerRow = $atts['authors_per_row'];
-	$bookColumnClases = 'rswpbs-col-lg-3 rswpbs-col-md-4 author-single-column';
+	$authorColumnClases = 'rswpbs-col-lg-3 rswpbs-col-md-4 author-single-column';
 	if ('1' == $authorsPerRow) {
 		$authorColumnClases = 'rswpbs-col-lg-12 author-single-column';
 	}elseif('2' == $authorsPerRow){
@@ -51,7 +51,7 @@ function rswpbs_author_shortcode_output($atts){
 					}
 
 					?>
-					<div class="<?php echo esc_attr($bookColumnClases);?> rswpbs-author-col">
+					<div class="<?php echo esc_attr($authorColumnClases);?> rswpbs-author-col">
 						<div class="rswpbs-single-author-wrapper">
 							<?php
 							if (true === $isRswpbsPro) :
