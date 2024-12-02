@@ -36,7 +36,7 @@ class Rswpbs_Cmb_For_Book
 			?>
 			<div class="set_overlay_for_pro_field">
 				<div class="pro_tag_text">
-					<a target="_blank" href="<?php echo esc_url('https://rswpthemes.com/cart/?add-to-cart=2040'); ?>" class="pro_badge"><?php esc_html_e('Buy Now', 'rswpbs'); ?></a>
+					<a target="_blank" href="<?php echo esc_url('https://rswpthemes.com/rs-wp-book-showcase-wordpress-plugin/'); ?>" class="pro_badge"><?php esc_html_e('Upgrade To Pro', 'rswpbs'); ?></a>
 				</div>
 			</div>
 			<?php
@@ -264,7 +264,7 @@ class Rswpbs_Cmb_For_Book
 										<?php esc_html_e( 'Not Enabled', RSWPBS_TEXT_DOMAIN );?>
 									</option>
 								</select>
-							</div>
+							</div>v
 						</div>
 						<div class="rswpbs-col-lg-4 mb-20">
 							<div class="book-field-container">
@@ -513,18 +513,6 @@ class Rswpbs_Cmb_For_Book
 						?>
 						<div class="book-field-wrapper">
 							<img src="<?php echo esc_url( RSWPBS_PLUGIN_URL . '/includes/assets/img/book-formates.png');?>" alt="">
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row pro-item-spacer">
-				<div class="rswpbs-col-md-12">
-					<div class="book-field-container no-border">
-						<?php
-						echo $this->book_pro_field();
-						?>
-						<div class="book-field-wrapper">
-							<img src="<?php echo esc_url( RSWPBS_PLUGIN_URL . '/includes/assets/img/readers-feedback.png');?>" alt="">
 						</div>
 					</div>
 				</div>

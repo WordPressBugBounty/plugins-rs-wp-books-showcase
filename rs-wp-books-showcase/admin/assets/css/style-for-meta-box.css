@@ -147,3 +147,20 @@ h2.meta-field-title{
     padding: 20px 10px;
     border: 1px solid #f1f1f1;
 }
+.downloadable_files tfoot tr th {
+    text-align: right !important;
+}
+.downloadable_files tr td {vertical-align: middle;}
+.downloadable_files tr td.sort{
+    text-align: right;
+}
+.book-field-container.downloadable_files {
+    border: 0;
+    padding: 0;
+}
+
+.book-field-container.downloadable_files label {
+    margin-bottom: 5px;
+    display: block;
+    font-weight: 700;
+}

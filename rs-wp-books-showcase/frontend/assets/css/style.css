@@ -66,7 +66,9 @@ body.rswp-book-showcase-page .rswpthemes-books-showcase-book-loop-container img 
     border: 1px solid #f1f1f1;
     margin-bottom: 30px;
 }
-
+.align-self-stretch .rswpthemes-book-container {
+    background: #fff;
+}
 .rswpthemes-books-showcase-book-loop-container {
     margin-top: 40px;
 }
@@ -1255,7 +1257,9 @@ span.rswpthemes-arrow-down {
     background: #f9464a;
     color: #fff;
 }
-
+.footer-sidebar.widget .rswpthemes-book-list-widget-area-inner .book-view-button a, .footer-sidebar.widget .rswpthemes-book-list-widget-area-inner .book-name a, .footer-sidebar.widget .rswpthemes-book-list-widget-area-inner .book-author a, .footer-sidebar.widget .rswpthemes-book-list-widget-area-inner .book-price .regular-price, .footer-sidebar.widget .rswpthemes-book-list-widget-area-inner .book-price .sale-price  {
+    color: #000;
+}
 .rswpthemes-book-list-widget-area-inner:hover .book-image .book-view-button a {
     visibility: visible;
     opacity: 1;
@@ -1867,6 +1871,18 @@ body.left-sidebar .carousel-slider .book-list-layout .rswpthemes-book-loop-conte
     font-weight: 400;
     text-transform: capitalize;
 }
+.rswpbs-book-buttons-wrapper .book-add-to-cart-btn {
+    margin-bottom: 5px !important;
+}
+
+.rswpbs-book-buttons-wrapper .book-add-to-cart-btn button {
+    border-radius: 0 !important;
+    padding: 9px 25px !important;
+    line-height: inherit;
+    display: block;
+    width: auto;
+    height: auto !important;
+}
 
 body.right-sidebar .carousel-slider .book-list-layout .rswpthemes-book-loop-content-wrapper .book-author,
 body.left-sidebar .carousel-slider .book-list-layout .rswpthemes-book-loop-content-wrapper .book-author {
@@ -2136,4 +2152,116 @@ body.both-sidebar .book-gallery-list-layout-1-col .book-list-layout{
 }
 body.both-sidebar .rswpthemes-book-container.book-list-layout.thumbnail-position-left .rswpthemes-book-loop-image {
     padding-right: 10px !important;
+}
+
+.cart-popup-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 15px 25px;
+    border-radius: 5px;
+    z-index: 10000;
+    font-size: 16px;
+}
+
+.single_add_to_cart_button.disabled,
+.loop_add_to_cart_button.disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+    opacity: 0.7;
+    border-color: #cccccc;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+button.loop_add_to_cart_button.button.alt {
+    position: relative;
+}
+button.loop_add_to_cart_button.button.alt.disabled{
+    border-color: #00000094;
+}
+button.loop_add_to_cart_button.button.alt.disabled:before {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    content: "";
+    background: #00000094;
+    left: 0;
+    top: 0;
+}
+
+button.loop_add_to_cart_button.button.alt.disabled:after {
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    content: '';
+    border: 3px dashed #fff;
+    border-radius: 50%;
+    -webkit-animation: spin 800ms linear infinite;
+        animation: spin 800ms linear infinite;
+}
+
+/* Book Single Page Cart Button */
+
+.book-single-page-buttons-wrapper {
+    display: flex;
+}
+
+body.single-book div.product .rswpbs-container form.cart {
+    margin-bottom: 0;
+}
+body.single-book div.product .rswpbs-container form.cart input::-webkit-outer-spin-button,
+body.single-book div.product .rswpbs-container form.cart input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+body.single-book div.product .rswpbs-container form.cart input[type=number] {
+    -moz-appearance: textfield;
+}
+
+body.single-book div.product .rswpbs-container form.cart .author-portfolio-pro-quantity-wrapper {
+    width: 115px;
+    border: 1px solid #f1f1f1;
+    text-align: center;
+    padding: 10px 6px;
+    display: flex;
+    align-items: center;
+}
+
+body.single-book div.product .rswpbs-container form.cart .author-portfolio-pro-quantity-wrapper span.quantity-text {
+    margin-right: 10px;
+    color: rgb(0 0 0 / 60%);
+    font-size: 11px;
+}
+body.single-book div.product .rswpbs-container form.cart .single_add_to_cart_button{
+    height: auto;
+}
+body.single-book div.product .rswpbs-container div.quantity{
+    float: none;
+}
+
+body.single-book div.product .rswpbs-container form.cart .author-portfolio-pro-quantity-wrapper input[type="number"] {
+    width: 32px !important;
+    padding: 0 !important;
+    border: none;
+    font-weight: 400;
+    color: #000;
+    height: auto;
+    min-width: 32px !important;
+}
+
+body.single-book div.product .rswpbs-container form.cart .author-portfolio-pro-quantity-wrapper span.fa-solid {
+    cursor: pointer;
+    width: 10px;
+    height: 100%;
+    display: inline-block;
+    font-weight: 700;
+    color: rgba(0, 0, 0, .6);
 }

@@ -166,8 +166,11 @@ a.rswpbs-pal-link-ugtp {
     color: #ff0000;
 }
 
-body:not(.rswpbs-pro-active) li#menu-posts-book ul.wp-submenu.wp-submenu-wrap li:nth-child(10) a {
-    color: #f52e04 !important;
+body:not(.rswpbs-pro-active) li#menu-posts-book ul.wp-submenu.wp-submenu-wrap li:nth-child(9), body:not(.rswpbs-pro-active) li#menu-posts-book ul.wp-submenu.wp-submenu-wrap li:nth-child(10), body:not(.rswpbs-pro-active) li#menu-posts-book ul.wp-submenu.wp-submenu-wrap li:nth-child(11), body:not(.rswpbs-pro-active) li#menu-posts-book ul.wp-submenu.wp-submenu-wrap li:nth-child(12), body:not(.rswpbs-pro-active) li#menu-posts-book ul.wp-submenu.wp-submenu-wrap li:nth-child(13), body:not(.rswpbs-pro-active) li#menu-posts-book ul.wp-submenu.wp-submenu-wrap li:nth-child(14) {
+    padding-left: 10px;
+}
+body:not(.rswpbs-pro-active) li#menu-posts-book ul.wp-submenu.wp-submenu-wrap li:last-child a{
+    color: #ff0000;
     font-weight: 700;
 }
 
@@ -320,7 +323,7 @@ body:not(.rswpbs-pro-active) li#menu-posts-book ul.wp-submenu.wp-submenu-wrap li
 }
 
 .rswpbs-dummy-settings-page .rswpbs-container {
-    width: calc(100% - 30px);
+    width: 100%
     margin: 0 auto;
 }
 

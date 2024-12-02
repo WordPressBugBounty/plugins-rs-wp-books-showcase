@@ -26,6 +26,7 @@ function rswpbs_books_showcase_grid_layout( $atts ) {
 			'show_author' => 'true',
 			'show_price' => 'true',
 			'show_buy_button'	=> 'true',
+	        'show_add_to_cart_btn' => 'false',
 			'show_excerpt'	=> 'true',
 			'excerpt_limit'	=> '60',
 			'books_per_page'	=> '8',
@@ -295,6 +296,7 @@ function rswpbs_books_showcase_grid_layout( $atts ) {
 		'content_wrapper_classes' => $content_wrapper_classes,
 		'show_read_more_button' => $atts['show_read_more_button'],
 		'heightStretch' => $atts['height_stretch'],
+		'showAddToCartBtn' => $atts['show_add_to_cart_btn'],
 	);
 	?>
 	<div class="rswpthemes-books-showcase-area<?php echo esc_attr($sectionClasses);?>">

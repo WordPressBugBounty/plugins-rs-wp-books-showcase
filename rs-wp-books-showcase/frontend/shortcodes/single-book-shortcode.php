@@ -14,6 +14,7 @@ function rswpbs_single_book_shortcode($atts){
 		'image_type'	=> 'book_cover',
 		'show_price'	=> 'true',
 		'show_buy_button'	=> 'true',
+		'show_add_to_cart_btn'	=> 'false',
 		'show_msl'	=> 'true',
 		'msl_title_align'	=> 'center',
 		'book_id'	=> '',
@@ -48,7 +49,7 @@ function rswpbs_single_book_shortcode($atts){
 	$titleTag = 'h2';
 	if (is_singular('book')) {
 		$bookImageMainCol = 'rswpbs-col-lg-5 rswpbs-col-md-5';
-		$bookContentMainCol = 'rswpbs-col-lg-5 rswpbs-col-md-7 pl-lg-5';
+		$bookContentMainCol = 'rswpbs-col-lg-6 rswpbs-col-md-7 pl-lg-3';
 		$containerExtraClass = ' book-single-page';
 		$titleTag = 'h1';
 	}
@@ -127,22 +128,31 @@ function rswpbs_single_book_shortcode($atts){
 						<strong><?php echo rswpbs_static_text_price(); ?></strong>&nbsp;&nbsp;<?php echo wp_kses_post(rswpbs_get_book_price($bookID)); ?>
 					</div>
 					<?php endif;
-					if ('true' == $atts['show_buy_button']) :
-						if (!empty(rswpbs_get_book_buy_btn($bookID)) && empty(rswpbs_get_book_buy_btn_shortcode($bookID))) :
-						?>
-						<div class="rswpthemes-buy-now-button-wrapper d-flex justify-content-start">
-							<?php echo rswpbs_get_book_buy_btn($bookID); ?>
-						</div>
+					?>
+					<div class="book-single-page-buttons-wrapper">
 						<?php
+						if (class_exists('WooCommerce') && true == $atts['show_add_to_cart_btn']) :
+							echo shortcode_exists('cptwoointegration_cart_button') ? do_shortcode( "[cptwoointegration_cart_button/]" ) : '' ;
 						endif;
-						if (!empty(rswpbs_get_book_buy_btn_shortcode($bookID))) :
+						if ('true' == $atts['show_buy_button']) :
+							if (!empty(rswpbs_get_book_buy_btn($bookID)) && empty(rswpbs_get_book_buy_btn_shortcode($bookID))) :
+							?>
+							<div class="rswpthemes-buy-now-button-wrapper d-flex justify-content-start">
+								<?php echo rswpbs_get_book_buy_btn($bookID); ?>
+							</div>
+							<?php
+							endif;
+							if (!empty(rswpbs_get_book_buy_btn_shortcode($bookID))) :
+							?>
+							<div class="rswpthemes-buy-now-button-wrapper d-flex justify-content-start">
+								<?php echo rswpbs_get_book_buy_btn_shortcode($bookID); ?>
+							</div>
+							<?php
+							endif;
+						endif;
 						?>
-						<div class="rswpthemes-buy-now-button-wrapper d-flex justify-content-start">
-							<?php echo rswpbs_get_book_buy_btn_shortcode($bookID); ?>
-						</div>
-						<?php
-						endif;
-					endif;
+					</div>
+					<?php
 					if ('true' == $atts['show_msl'] && class_exists('Rswpbs_Pro')) {
 						echo rswpbs_pro_book_also_available_web_list($bookID, $atts['msl_title_align']);
 					}

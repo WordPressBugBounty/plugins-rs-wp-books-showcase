@@ -65,13 +65,31 @@ function rswpbs_loop_layout($args = array()){
 				?>
 				<div class="rswpbs-book-buttons-wrapper">
 				<?php
+			    if (true == $showAddToCartBtn) :
+			    	$product_id = get_the_ID();
+			    	?>
+			    	<div class="book-add-to-cart-btn">
+			    		<div class="cptwoointegration-cart-btn-wrapper">
+					        <form class="cart" method="post">
+					            <input type="hidden" name="product_id" value="<?php echo esc_attr($product_id); ?>">
+					            <button type="submit" name="add-to-cart" value="<?php echo esc_attr($product_id); ?>" class="loop_add_to_cart_button button alt">
+					                <?php esc_html_e('Add to Cart', 'text-domain'); ?>
+					            </button>
+					        </form>
+					    </div>
+			    	</div>
+			    	<?php
+				endif;
 				if ('true' == $showBookBuyBtn) :
+					$product_id = get_the_ID();
 			    ?>
 			    <div class="book-buy-btn d-flex">
-			      <?php echo wp_kses_post(rswpbs_get_book_buy_btn()); ?>
+			      <?php
+			      echo wp_kses_post(rswpbs_get_book_buy_btn());
+			       ?>
 			    </div>
 			    <?php
-				endif;
+			    endif;
 				if ('true' == $show_read_more_button) :
 			    ?>
 			    <div class="rswpbs-loop-read-more-button">

@@ -11,22 +11,14 @@ function rswpbs_tutorial_page() {
     // Add the settings page
     add_submenu_page(
         'edit.php?post_type=book', // Parent menu slug
-        'RS WP BOOKS SHOWCASE Use Tutorial', // Page title
+        'RS WP Book Showcase Tutorials', // Page title
         'Tutorials & Shortcodes', // Menu title
         'manage_options', // Capability
         'rswpbs-tutorial', // Menu slug
-        'rswpbs_tutorial_page_content' // Callback function
+        'rswpbs_tutorial_page_content', // Callback function
+        5 //Position
     );
-    if (!class_exists('Rswpbs_Pro')) :
-        add_submenu_page(
-            'edit.php?post_type=book', // Parent menu slug
-            'RS WP Book Showcase Settings', // Page title
-            'Settings', // Menu title
-            'manage_options', // Capability
-            'rswpbs-settings', // Menu slug
-            'rswpbs_settings_page_content' // Callback function
-        );
-    endif;
+
     if (!class_exists('Rswpbs_Pro')) :
         add_submenu_page(
             'edit.php?post_type=book', // Parent menu slug
@@ -233,23 +225,6 @@ function rswpbs_tutorial_page_content() {
     <?php
 }
 
-/**
- * Settings Page Content
- */
-function rswpbs_settings_page_content(){
-    ?>
-    <div class="rswpbs-dummy-settings-page">
-        <div class="rswpbs-container">
-            <div class="settings-image-wrapper">
-                <img src="<?php echo esc_url(RSWPBS_PLUGIN_URL . 'admin/assets/img/rswpbs-settings-page.jpg');?>" alt="<?php esc_attr_e('settings page image', 'rswpbs');?>">
-                <div class="upgrade-to-pro-btn">
-                    <a target="_blank" href="<?php echo esc_url('https://rswpthemes.com/rs-wp-books-showcase-wordpress-plugin/');?>"><?php esc_html_e( 'Upgrade To Pro', 'rswpbs' );?></a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <?php
-}
 /**
  * Settings Page Content
  */
