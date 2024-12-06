@@ -1660,12 +1660,12 @@ body.custom-background .rswpbs-book-reviews-area .section-title-area .section-ti
     left: -70px;
 }
 .rswpbs-book-slider__slider-wrapper-row.book-slider-activate .slick-arrow {
-    opacity: 0;
-    visibility: hidden;
+    opacity: 1;
+    visibility: visible;
     transition: .4s;
 }
 
-.eafe-book-slider-section-wrapper:hover .rswpbs-book-slider__slider-wrapper-row.book-slider-activate .slick-arrow {
+.rswpbs-book-slider:hover .rswpbs-book-slider__slider-wrapper-row .slick-arrow {
     visibility: visible;
     opacity: 1;
 }

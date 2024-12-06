@@ -13,6 +13,7 @@ function rswpbs_book_header_section(){
 	$showBuyBtn = 'true';
 	$showMsl = 'true';
 	$showAuthor = 'true';
+	$showAddToCart = 'false';
 	if (class_exists('Rswpbs_Pro')) {
 		$getBookImageType = get_field('single_image_type', 'option');
 		$showSampleContent = get_field('show_sample_content_on_single_page', 'option');

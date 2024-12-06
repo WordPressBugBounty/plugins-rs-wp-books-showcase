@@ -43,6 +43,16 @@ function rswpbs_product_downloadable_meta_box_output($post) {
             </div>
         </div>
         <?php
+    }elseif(class_exists('Rswpbs_Pro') && !function_exists('rswpthemes_cptwoointegration')) {
+        ?>
+        <div class="rswpbs-row mb-3">
+            <div class="rswpbs-col-md-12">
+                <div class="book-field-container">
+                   <p class="m-0" style="font-size: 14px;"><?php esc_html_e('Please log in to https://rswpthemes.com/my-account/downloads/ to download the file \'rswpthemes-cpt-woo-integration-xxx.zip\'. Once downloaded, install and activate it to enable this field.', 'rswpbs'); ?></p>
+                </div>
+            </div>
+        </div>
+        <?php
     }
     ?>
 

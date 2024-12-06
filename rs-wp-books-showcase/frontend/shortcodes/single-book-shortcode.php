@@ -131,7 +131,7 @@ function rswpbs_single_book_shortcode($atts){
 					?>
 					<div class="book-single-page-buttons-wrapper">
 						<?php
-						if (class_exists('WooCommerce') && true == $atts['show_add_to_cart_btn']) :
+						if ( function_exists('rswpthemes_cptwoointegration') && true == $atts['show_add_to_cart_btn']) :
 							echo shortcode_exists('cptwoointegration_cart_button') ? do_shortcode( "[cptwoointegration_cart_button/]" ) : '' ;
 						endif;
 						if ('true' == $atts['show_buy_button']) :
