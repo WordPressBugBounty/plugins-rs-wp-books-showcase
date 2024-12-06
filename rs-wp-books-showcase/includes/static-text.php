@@ -499,3 +499,26 @@ function rswpbs_static_text_read_more(){
 	}
 	return $text;
 }
+
+function rswpbs_static_text_load_more(){
+	$text = __( 'Load More', RSWPBS_TEXT_DOMAIN );
+	if (class_exists('Rswpbs_Pro')) {
+		$getDymaniText = get_field('text_load_more', 'option');
+		if (null !== $getDymaniText) {
+			$text = $getDymaniText;
+		}
+	}
+	return $text;
+}
+
+function rswpbs_static_text_add_to_cart(){
+	$text = __( 'Add To Cart', RSWPBS_TEXT_DOMAIN );
+	if (class_exists('Rswpbs_Pro')) {
+		$getDymaniText = get_field('text_add_to_cart', 'option');
+		if (null !== $getDymaniText) {
+			$text = $getDymaniText;
+		}
+	}
+	return $text;
+}
+
