@@ -72,7 +72,6 @@ function rswpbs_book_slider_shortcode( $atts ) {
 			$booksQargs['orderby'] = 'meta_value_num';
 		}
 	}
-
 	if (!empty($atts['order'])) {
 		$booksQargs['order'] = $atts['order'];
 	}
