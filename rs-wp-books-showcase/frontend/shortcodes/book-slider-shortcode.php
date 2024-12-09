@@ -46,6 +46,7 @@ function rswpbs_book_slider_shortcode( $atts ) {
         'image_position' => 'top',
         'show_price' => 'true',
         'show_buy_button' => 'true',
+        'show_add_to_cart_btn' => 'true',
         'sts_l_screen' => '4',
         'sts_m_screen' => '3',
         'sts_s_screen' => '1',
@@ -348,6 +349,21 @@ function rswpbs_book_slider_shortcode( $atts ) {
 									?>
 									<div class="rswpbs-book-buttons-wrapper">
 									<?php
+									if (function_exists('rswpthemes_cptwoointegration') && 'true' == $atts['show_add_to_cart_btn']) :
+								    	$product_id = get_the_ID();
+								    	?>
+								    	<div class="book-add-to-cart-btn">
+								    		<div class="cptwoointegration-cart-btn-wrapper">
+										        <form class="cart" method="post">
+										            <input type="hidden" name="product_id" value="<?php echo esc_attr($product_id); ?>">
+										            <button type="submit" name="add-to-cart" value="<?php echo esc_attr($product_id); ?>" class="loop_add_to_cart_button button alt">
+										                <?php esc_html_e('Add to Cart', 'text-domain'); ?>
+										            </button>
+										        </form>
+										    </div>
+								    	</div>
+								    	<?php
+									endif;
 									if ('true' == $atts['show_buy_button']) :
 								    ?>
 								    <div class="book-buy-btn d-flex">

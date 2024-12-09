@@ -65,7 +65,7 @@ function rswpbs_loop_layout($args = array()){
 				?>
 				<div class="rswpbs-book-buttons-wrapper">
 				<?php
-			    if (function_exists('rswpthemes_cptwoointegration') && true == $showAddToCartBtn) :
+			    if (function_exists('rswpthemes_cptwoointegration') && 'true' == $showAddToCartBtn) :
 			    	$product_id = get_the_ID();
 			    	?>
 			    	<div class="book-add-to-cart-btn">
