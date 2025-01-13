@@ -178,7 +178,7 @@ function rswpbs_tutorial_page_content() {
                                <h2><?php esc_html_e('To get started, you could watch this video.', RSWPBS_TEXT_DOMAIN); ?></h2>
                             </div>
                             <div class="video-wrapper">
-                                <iframe width="560" height="315" src="https://www.youtube.com/embed/efF130jkcS8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/fI23SU26cSs?si=CfLbtlhSYr3WLWtY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                             </div>
                         </div>
                         <div class="tutorial-single-section">

@@ -24,6 +24,13 @@
     padding: 30px 0 30px 0;
     width: 100%;
 }
+.masonaryactive {
+    position: relative;
+    display: block;
+    overflow: visible !important;
+    min-height: auto;
+}
+
 body.rswp-book-showcase-page .rswpthemes-books-showcase-book-loop-container img {
     max-width: 100% !important;
     height: auto;
