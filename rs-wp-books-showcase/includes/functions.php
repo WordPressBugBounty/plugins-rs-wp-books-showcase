@@ -26,7 +26,9 @@ function rswpbs_get_book_desc($bookId = null, $word_count = 30) {
     $trimmed_words = array_slice($words, 0, $word_count);
     // Join the trimmed words back into a string
     $trimmed_description = implode(' ', $trimmed_words);
-    return wp_kses_post($trimmed_description);
+
+    // Wrap the trimmed description in a <p> tag
+    return wp_kses_post('<p>' . $trimmed_description . '</p>');
 }
 
 function rswpbs_get_book_weight($bookId = null){

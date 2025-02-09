@@ -127,9 +127,13 @@ function rswpbs_books_review_shortcode( $atts ) {
 						elseif('classic' == $atts['layout_style']):
 							?>
 							<div class="ratings-and-quote-wrapper d-flex justify-content-between">
+								<?php
+								if ('true' == $atts['show_quote']) :
+								 ?>
 								<div class="quote align-self-center"><i class="fa-solid fa-quote-left"></i></div>
 								<?php
-								if (!empty($reviewerRating)) :
+								endif;
+								if (!empty($reviewerRating) && 'true' == $atts['show_ratings']) :
 								?>
 								<div class="rattings-wrapper align-self-center">
 									<div class="client-rating">
@@ -146,13 +150,15 @@ function rswpbs_books_review_shortcode( $atts ) {
 							</div>
 							<?php
 						endif;
-						if (!empty(get_the_title( get_the_ID() ))):
+						if (!empty(get_the_title( get_the_ID() ))) :
 						?>
 						<div class="client-feedback">
 							<?php rswpbs_short_and_long_content(260); ?>
 						</div>
 						<?php
-						endif; ?>
+						endif;
+						if ('true' == $atts['show_reviewer']) :
+						?>
 						<div class="reviewer-wrapper">
 							<?php
 							if (!empty($reviewerImage)) :?>
@@ -172,6 +178,9 @@ function rswpbs_books_review_shortcode( $atts ) {
 							</div>
 							<?php endif;?>
 						</div>
+						<?php
+						endif;
+						?>
 					</div>
 				</div>
 				<?php endwhile;?>

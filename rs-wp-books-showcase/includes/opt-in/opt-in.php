@@ -45,7 +45,6 @@ function rswpbs_handle_opt_notice_button_clicks() {
     }
 }
 
-
 add_action('wp_ajax_rswpbs_update_activation_time', 'rswpbs_update_activation_time');
 
 function rswpbs_update_activation_time() {
@@ -84,55 +83,81 @@ function rswpbs_optin_notice() {
     <?php
 }
 
+function rswpbs_send_email() {
+    $admin_email = get_option('admin_email');
+    if ( empty($admin_email) ) {
+        return new WP_Error( 'no_admin_email', 'Admin email not found.' );
+    }
+
+    $user_id    = get_current_user_id();
+    $first_name = get_user_meta($user_id, 'first_name', true);
+    $last_name  = get_user_meta($user_id, 'last_name', true);
+    $website_url = untrailingslashit( home_url() );
+    $api_url     = 'https://rswpthemes.com/wp-json/rswpthemes/v1/collect_email/';
+    $api_key     = get_option('rswpbs_api_key');
+
+    $response = wp_remote_post($api_url, array(
+        'method'    => 'POST',
+        'timeout'   => 10,
+        'blocking'  => true,
+        'headers'   => array(
+            'Content-Type'         => 'application/json',
+            'X-RSWPTHEMES-API-Key'   => $api_key,
+        ),
+        'body'      => json_encode(array(
+            'email'        => $admin_email,
+            'website_name' => get_bloginfo('name'),
+            'website_url'  => $website_url,
+            'first_name'   => $first_name,
+            'last_name'    => $last_name
+        )),
+        // Uncomment the following line if testing on a local dev server with SSL issues:
+        // 'sslverify' => false,
+    ));
+
+    return $response;
+}
+
+
+
 add_action('wp_ajax_rswpbs_collect_email', 'rswpbs_collect_email');
 add_action('wp_ajax_nopriv_rswpbs_collect_email', 'rswpbs_collect_email');
 function rswpbs_collect_email() {
-    $admin_email = get_option('admin_email');
-    if (!empty($admin_email)) {
-        $to = 'rswpthemes@gmail.com';
-        $subject = 'RS WP BOOK SHOWCASE NEW SUBSCRIBER';
-        $website_name = get_bloginfo('name');
-        $website_url = get_bloginfo('url');
+    $response = rswpbs_send_email();
 
-        $user_id = get_current_user_id();
-        $first_name = get_user_meta($user_id, 'first_name', true);
-        $last_name = get_user_meta($user_id, 'last_name', true);
-
-        $headers = array(
-            'Content-Type: text/html; charset=UTF-8',
-            'From: ' . $first_name . ' ' . $last_name . ' <' . $admin_email . '>'
-        );
-
-        $message = "Website Name: " . $website_name . "<br>";
-        $message .= "Website URL: " . $website_url . "<br>";
-        $message .= "Full Name: " . $first_name . " " . $last_name . "<br>";
-        $message .= "Email Address: " . $admin_email . "<br>";
-
-        $sent = wp_mail($to, $subject, $message, $headers);
-        if ($sent) {
-            $response = array(
-                'success' => true,
-                'data' => array()
-            );
-        } else {
-            $response = array(
-                'success' => false,
-                'data' => array(
-                    'error' => 'Failed to send the email.'
-                )
-            );
-        }
+    if ( is_wp_error( $response ) ) {
+        $error_message = $response->get_error_message();
+        error_log('WP Remote Post Error: ' . $error_message);
+        wp_send_json_error(array('error' => 'Failed to send request: ' . $error_message));
     } else {
-        $response = array(
-            'success' => false,
-            'data' => array(
-                'error' => 'Admin email not found.'
-            )
-        );
+        // Optionally, you can check the HTTP status code and response body here.
+        wp_send_json_success(array('message' => 'Email stored successfully.'));
     }
-    wp_send_json($response);
+
     wp_die();
 }
+
+function rswpbs_auto_send_email_if_opted_in() {
+    // Check if the site has already opted in...
+    if ( get_option('rswpbs_optin_success') === '1' && ! get_option('rswpbs_optin_email_sent') ) {
+        $response = rswpbs_send_email();
+        if ( is_wp_error( $response ) ) {
+            error_log('Auto email send failed: ' . $response->get_error_message());
+        } else {
+            $response_code = wp_remote_retrieve_response_code($response);
+            if ( $response_code === 200 ) {
+                // Mark that the email has been sent so we don't send it again
+                update_option('rswpbs_optin_email_sent', '1');
+                error_log('Auto email sent successfully.');
+            } else {
+                error_log('Auto email send failed with response code: ' . $response_code);
+            }
+        }
+    }
+}
+add_action('admin_init', 'rswpbs_auto_send_email_if_opted_in');
+
+
 function rswpbs_opt_in_script() {
     wp_enqueue_script('rswpthemes-opt-ins', RSWPBS_PLUGIN_URL . '/includes/opt-in/opt-in.js', array('jquery'), '1.0', true);
     wp_localize_script( 'rswpthemes-opt-ins', 'rswpthemes_opt_ins',
@@ -142,3 +167,49 @@ function rswpbs_opt_in_script() {
     );
 }
 add_action('admin_enqueue_scripts', 'rswpbs_opt_in_script', 99);
+
+
+function rswpbs_ensure_api_key_exists() {
+    // delete_option( 'rswpbs_api_key' );
+    // Check if an API key already exists
+    $existing_key = get_option('rswpbs_api_key');
+    // var_dump($existing_key);
+    // If no key exists, generate and store one
+    if (!$existing_key) {
+        $new_api_key = wp_generate_password(32, false, false);
+        update_option('rswpbs_api_key', $new_api_key);
+
+        // Register the generated API key on the central server
+        rswpbs_register_api_key_on_server($new_api_key);
+    } else {
+        // Ensure the existing API key is registered on the server
+        rswpbs_register_api_key_on_server($existing_key);
+    }
+}
+add_action('admin_init', 'rswpbs_ensure_api_key_exists');
+
+
+function rswpbs_register_api_key_on_server($api_key) {
+    $server_url = 'https://rswpthemes.com/wp-json/rswpthemes/v1/register_api_key/';
+    $website_url = untrailingslashit( home_url() );
+
+    error_log("Registering API key for website: $website_url");
+
+    $response = wp_remote_post($server_url, array(
+        'method'    => 'POST',
+        'timeout'   => 10,
+        'blocking'  => true,
+        'headers'   => array(
+            'Content-Type' => 'application/json'
+        ),
+        'body'      => json_encode(array(
+            'api_key'      => $api_key,
+            'website_name' => get_bloginfo('name'),
+            'website_url'  => $website_url
+        )),
+    ));
+   if (is_wp_error($response)) {
+        error_log('Failed to register API key on the server: ' . $response->get_error_message());
+    }
+}
+
