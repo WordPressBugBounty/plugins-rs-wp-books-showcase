@@ -1,8 +1,11 @@
 <?php
-if (!class_exists('Rswpbs_Pro')) :
-    add_action('admin_init', 'rswpbs_control_optin_notice');
-endif;
+$emailAlreadySent = get_option('rswpthemes_optin_email_sent');
+$apiKeyRegistered = get_option('rswpthemes_api_key_registered');
+if ( $apiKeyRegistered && $emailAlreadySent ) {
+    return;
+}
 
+add_action('admin_init', 'rswpbs_control_optin_notice');
 function rswpbs_control_optin_notice() {
     $optin_success = get_option('rswpbs_optin_success');
     $hide_notice_transient = get_transient('hide_notice_for_3_days');
@@ -138,16 +141,23 @@ function rswpbs_collect_email() {
 }
 
 function rswpbs_auto_send_email_if_opted_in() {
-    // Check if the site has already opted in...
-    if ( get_option('rswpbs_optin_success') === '1' && ! get_option('rswpbs_optin_email_sent') ) {
-        $response = rswpbs_send_email();
+    // Migrate old email opt-in status to new global format
+    $old_email_sent = get_option('rswpbs_optin_email_sent');
+    $new_email_sent = get_option('rswpthemes_optin_email_sent');
+    if (!empty($old_email_sent) && empty($new_email_sent)) {
+        update_option('rswpthemes_optin_email_sent', $old_email_sent);
+        delete_option('rswpbs_optin_email_sent'); // Cleanup old option
+    }
+    // Check if the site has already opted in
+    if ( get_option('rswpbs_optin_success') === '1' && ! get_option('rswpthemes_optin_email_sent') ) {
+        $response = rswpthemes_send_email();
         if ( is_wp_error( $response ) ) {
             error_log('Auto email send failed: ' . $response->get_error_message());
         } else {
             $response_code = wp_remote_retrieve_response_code($response);
             if ( $response_code === 200 ) {
                 // Mark that the email has been sent so we don't send it again
-                update_option('rswpbs_optin_email_sent', '1');
+                update_option('rswpthemes_optin_email_sent', '1');
                 error_log('Auto email sent successfully.');
             } else {
                 error_log('Auto email send failed with response code: ' . $response_code);
@@ -156,6 +166,7 @@ function rswpbs_auto_send_email_if_opted_in() {
     }
 }
 add_action('admin_init', 'rswpbs_auto_send_email_if_opted_in');
+
 
 
 function rswpbs_opt_in_script() {
@@ -168,26 +179,45 @@ function rswpbs_opt_in_script() {
 }
 add_action('admin_enqueue_scripts', 'rswpbs_opt_in_script', 99);
 
-
 function rswpbs_ensure_api_key_exists() {
-    // Check if an API key already exists
-    $existing_key = get_option('rswpbs_api_key');
-    // Check if the key has been registered already
-    $registered = get_option('rswpbs_api_key_registered');
+    // Migrate Old API Key Options to New Format
+    $old_api_key = get_option('rswpbs_api_key');
+    $old_api_key_registered = get_option('rswpbs_api_key_registered');
+
+    $new_api_key = get_option('rswpthemes_api_key');
+    $new_api_key_registered = get_option('rswpthemes_api_key_registered');
+
+    // If old API key exists but new one is not set, migrate it
+    if (!empty($old_api_key) && empty($new_api_key)) {
+        update_option('rswpthemes_api_key', $old_api_key);
+    }
+
+    // If old API key registration exists but new one is not set, migrate it
+    if (!empty($old_api_key_registered) && empty($new_api_key_registered)) {
+        update_option('rswpthemes_api_key_registered', $old_api_key_registered);
+    }
+
+    // Delete old options to prevent duplicates
+    delete_option('rswpbs_api_key');
+    delete_option('rswpbs_api_key_registered');
+
+    // Now work with the new API Key
+    $existing_key = get_option('rswpthemes_api_key');
+    $registered = get_option('rswpthemes_api_key_registered');
 
     if (!$existing_key) {
         // No key exists: generate one and store it.
         $new_api_key = wp_generate_password(32, false, false);
-        update_option('rswpbs_api_key', $new_api_key);
+        update_option('rswpthemes_api_key', $new_api_key);
         // Register the generated API key on the central server.
-        rswpbs_register_api_key_on_server($new_api_key);
+        rswpthemes_register_api_key_on_server($new_api_key);
         // Set the flag indicating that registration is done.
-        update_option('rswpbs_api_key_registered', '1');
+        update_option('rswpthemes_api_key_registered', '1');
     } else {
         // If an API key exists but it hasn't been registered, register it.
         if (!$registered) {
-            rswpbs_register_api_key_on_server($existing_key);
-            update_option('rswpbs_api_key_registered', '1');
+            rswpthemes_register_api_key_on_server($existing_key);
+            update_option('rswpthemes_api_key_registered', '1');
         }
         // If the key is already registered, do nothing.
     }

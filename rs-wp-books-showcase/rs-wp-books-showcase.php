@@ -3,9 +3,9 @@
  * Plugin Name:       RS WP Books Showcase
  * Plugin URI:        https://rswpthemes.com/rs-wp-books-showcase-wordpress-plugin/
  * Description:       Premier WordPress book gallery plugin, offering advanced search options and multiple layouts for effortless book showcasing.
- * Version:           6.7.13
+ * Version:           6.7.14
  * Requires at least: 4.9
- * Requires PHP:      5.6
+ * Requires PHP:      7.1
  * Author:            RS WP THEMES
  * Author URI:        https://rswpthemes.com
  * License:           GPL v2 or later
@@ -239,7 +239,6 @@ if( function_exists('acf_add_options_page') ) {
 register_activation_hook(__FILE__, 'rswpbs_plugin_activation');
 
 function rswpbs_plugin_activation() {
-    Rswpbs_Register_Book_Post_Type::get_instance(); // Ensure CPT is registered
     set_transient('rswpbs_delayed_redirect_transient', true, 10);
     flush_rewrite_rules();
 }
@@ -286,3 +285,50 @@ add_filter( 'use_block_editor_for_post_type', 'disable_block_editor_for_page_pos
 function disable_block_editor_for_page_post_type( $use_block_editor, $post_type ) {
         return ( 'book' === $post_type ) ? false : $use_block_editor;
 }
+
+
+// Check if book single page is accessible
+function rswpbs_check_book_single_page() {
+    // Get a random book post to test
+    $args = array(
+        'post_type'      => 'book',
+        'posts_per_page' => 1,
+        'post_status'    => 'publish'
+    );
+
+    $query = new WP_Query($args);
+
+    if ($query->have_posts()) {
+        $query->the_post();
+        $book_url = get_permalink();
+        wp_reset_postdata();
+
+        // Check if the book page returns a 404
+        $response = wp_remote_get($book_url);
+
+        if (is_wp_error($response) || wp_remote_retrieve_response_code($response) == 404) {
+            // Show admin notice if book page gives 404
+            add_action('admin_notices', 'rswpbs_show_permalink_notice');
+        }
+    }
+}
+
+// Display admin notice if permalink update is needed
+function rswpbs_show_permalink_notice() {
+    ?>
+    <div class="notice notice-warning">
+        <p><strong><?php esc_html_e('Book archive or single page is not accessible!', 'rswpbs'); ?></strong></p>
+        <p>
+            <?php
+            printf(
+                esc_html__('Please update your permalinks by going to %s and clicking "Save Changes."', 'rswpbs'),
+                '<a href="' . esc_url(admin_url('options-permalink.php')) . '">' . esc_html__('Settings → Permalinks', 'rswpbs') . '</a>'
+            );
+            ?>
+        </p>
+    </div>
+    <?php
+}
+
+// Hook into admin_init to run the check when admin panel loads
+add_action('admin_init', 'rswpbs_check_book_single_page');
