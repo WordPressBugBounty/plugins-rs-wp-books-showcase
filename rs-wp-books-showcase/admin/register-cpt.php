@@ -2,16 +2,6 @@
 /**
  * Register Custom Post Type
  */
-
-function rswpbs_archive_page_slug(){
-	$archivePageSlug = 'books';
-	if (class_exists('Rswpbs_Pro')) {
-		$getArchivePageSlug = get_field('rswpbs_archive_page_slug', 'option');
-		$archivePageSlug = ($getArchivePageSlug === NULL) ? $archivePageSlug : $getArchivePageSlug;
-	}
-	return $archivePageSlug;
-}
-
 class Rswpbs_Register_Book_Post_Type {
 	private $post_type = 'book';
 	public function __construct(){
@@ -73,7 +63,7 @@ class Rswpbs_Register_Book_Post_Type {
 			'show_in_rest'           => true,
 			'publicly_queryable'    => true,
 			'capability_type'       => array('book', 'books'),
-			'rewrite' 				=> array('slug' => rswpbs_archive_page_slug()),
+			'rewrite' 				=> array('slug' => 'books'),
 			'map_meta_cap'			=> true,
 		);
 
@@ -231,3 +221,4 @@ class Rswpbs_Register_Book_Post_Type {
 	}
 
 }
+

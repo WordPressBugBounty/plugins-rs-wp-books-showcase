@@ -170,20 +170,26 @@ add_action('admin_enqueue_scripts', 'rswpbs_opt_in_script', 99);
 
 
 function rswpbs_ensure_api_key_exists() {
-    // delete_option( 'rswpbs_api_key' );
     // Check if an API key already exists
     $existing_key = get_option('rswpbs_api_key');
-    // var_dump($existing_key);
-    // If no key exists, generate and store one
+    // Check if the key has been registered already
+    $registered = get_option('rswpbs_api_key_registered');
+
     if (!$existing_key) {
+        // No key exists: generate one and store it.
         $new_api_key = wp_generate_password(32, false, false);
         update_option('rswpbs_api_key', $new_api_key);
-
-        // Register the generated API key on the central server
+        // Register the generated API key on the central server.
         rswpbs_register_api_key_on_server($new_api_key);
+        // Set the flag indicating that registration is done.
+        update_option('rswpbs_api_key_registered', '1');
     } else {
-        // Ensure the existing API key is registered on the server
-        rswpbs_register_api_key_on_server($existing_key);
+        // If an API key exists but it hasn't been registered, register it.
+        if (!$registered) {
+            rswpbs_register_api_key_on_server($existing_key);
+            update_option('rswpbs_api_key_registered', '1');
+        }
+        // If the key is already registered, do nothing.
     }
 }
 add_action('admin_init', 'rswpbs_ensure_api_key_exists');

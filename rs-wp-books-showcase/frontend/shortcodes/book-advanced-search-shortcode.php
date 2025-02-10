@@ -47,7 +47,6 @@ function rswpbs_advanced_search($atts){
 
 	$actionUrl = rswpbs_search_page_base_url();
 
-
 	$showNameField = true;
 	$showAuthorField = true;
 	$showCategoryField = true;
@@ -56,16 +55,18 @@ function rswpbs_advanced_search($atts){
 	$showYearsField = true;
 	$ShowResetIcon = true;
 	$showPublishersField = true;
+
 	if (class_exists('Rswpbs_Pro')) {
-		$showNameField = get_field( 'show_name_field' ,'option');
-		$showAuthorField = get_field( 'show_author_field' ,'option');
-		$showCategoryField = get_field( 'show_category_field' ,'option');
-		$showSeriesField = get_field( 'show_series_field' ,'option');
-		$showFormatsField = get_field( 'show_formats_field' ,'option');
-		$showYearsField = get_field( 'show_years_field' ,'option');
-		$ShowResetIcon = get_field( 'show_reset_icon' ,'option');
-		$showPublishersField = get_field( 'show_publishers_field' ,'option');
+	    $showNameField = get_field('show_name_field', 'option') ?? true;
+	    $showAuthorField = get_field('show_author_field', 'option') ?? true;
+	    $showCategoryField = get_field('show_category_field', 'option') ?? true;
+	    $showSeriesField = get_field('show_series_field', 'option') ?? true;
+	    $showFormatsField = get_field('show_formats_field', 'option') ?? true;
+	    $showYearsField = get_field('show_years_field', 'option') ?? true;
+	    $ShowResetIcon = get_field('show_reset_icon', 'option') ?? true;
+	    $showPublishersField = get_field('show_publishers_field', 'option') ?? true;
 	}
+
 	if ( '2' == $atts['fields_col'] ) {
 		$search_field_col = 'rswpbs-col-lg-6 rswpbs-col-6 rswpbs-col-md-6';
 		$search_btn_col = 'rswpbs-col-lg-3 rswpbs-col-6 rswpbs-col-md-6';
