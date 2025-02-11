@@ -3,7 +3,7 @@ Contributors: rswpthemes
 Tags: wordpress books gallery plugin, wordpress book library plugin, book showcase plugin, online books gallery plugin wordpress, WordPress book review plugin
 Requires at least: 5.2
 Tested up to: 6.7
-Stable tag: 6.7.15
+Stable tag: 6.7.16
 Requires PHP: 7.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -572,3 +572,6 @@ Install RS WP Book Showcase as a regular WordPress plugin. Here are different wa
 
 = 6.7.15 - Feb 11, 2025 ==
 * Solved Fatal Error rswpthemes_register_api_key_on_server function
+
+= 6.7.16 - Feb 11, 2025 ==
+* Solved Fatal Error for rswpthemes send email

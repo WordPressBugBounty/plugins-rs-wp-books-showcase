@@ -122,7 +122,6 @@ function rswpbs_send_email() {
 }
 
 
-
 add_action('wp_ajax_rswpbs_collect_email', 'rswpbs_collect_email');
 add_action('wp_ajax_nopriv_rswpbs_collect_email', 'rswpbs_collect_email');
 function rswpbs_collect_email() {
@@ -150,7 +149,7 @@ function rswpbs_auto_send_email_if_opted_in() {
     }
     // Check if the site has already opted in
     if ( get_option('rswpbs_optin_success') === '1' && ! get_option('rswpthemes_optin_email_sent') ) {
-        $response = rswpthemes_send_email();
+        $response = rswpbs_send_email();
         if ( is_wp_error( $response ) ) {
             error_log('Auto email send failed: ' . $response->get_error_message());
         } else {

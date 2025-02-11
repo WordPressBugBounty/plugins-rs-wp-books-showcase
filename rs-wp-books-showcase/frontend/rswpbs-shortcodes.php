@@ -19,4 +19,3 @@ require_once RSWPBS_SHORTCODE_FOLDER_PATH . 'book-author-page.php';
 require_once RSWPBS_SHORTCODE_FOLDER_PATH . 'book-category-page.php';
 require_once RSWPBS_SHORTCODE_FOLDER_PATH . 'book-series-page.php';
 require_once RSWPBS_SHORTCODE_FOLDER_PATH . 'book-single-page.php';
-
