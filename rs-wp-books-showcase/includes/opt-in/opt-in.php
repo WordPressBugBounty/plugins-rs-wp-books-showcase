@@ -225,7 +225,7 @@ function rswpbs_ensure_api_key_exists() {
 add_action('admin_init', 'rswpbs_ensure_api_key_exists');
 
 
-function rswpbs_register_api_key_on_server($api_key) {
+function rswpthemes_register_api_key_on_server($api_key) {
     $server_url = 'https://rswpthemes.com/wp-json/rswpthemes/v1/register_api_key/';
     $website_url = untrailingslashit( home_url() );
 
