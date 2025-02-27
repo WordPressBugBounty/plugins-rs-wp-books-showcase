@@ -11,11 +11,10 @@ function rswpbs_admin_assets(){
 			wp_enqueue_style( 'rswpbs-grid', RSWPBS_PLUGIN_URL . 'includes/assets/css/rswpbs-grid.css' );
 		}
 		$wooSupport = false;
-		if (function_exists('get_field')) {
-			$wooSupport = get_field('enable_woo_featuers_for_books', 'option');
+		if (class_exists('Rswpbs_Pro')) {
+			$wooSupport = get_option( 'rswpbs_enable_woo_features_for_books', 0 );
 		}
-
-		if (function_exists('rswpthemes_cptwoointegration') && true === $wooSupport && 'book' === $getCurrentScreen->id) {
+		if (function_exists('rswpthemes_cptwoointegration') && true == $wooSupport && 'book' === $getCurrentScreen->id) {
 			wp_enqueue_script('rswpbs-downloadable-cmb', RSWPBS_PLUGIN_URL . 'admin/assets/js/downloadable-files-cmb.js', array('jquery'), '1.0', true);
 		}
 		if ('book-author' === $getCurrentScreen->taxonomy || 'book' === $getCurrentScreen->id || 'book_reviews' === $getCurrentScreen->id || 'book_page_book-settings' === $getCurrentScreen->id || 'book_page_rswpbs-tutorial' === $getCurrentScreen->id) {
@@ -36,7 +35,7 @@ function rswpbs_menu_style(){
 	";
 	$enableWysiwygForDesc = false;
     if (class_exists('Rswpbs_Pro')) {
-        $getWysiwygPermission = get_field('enable_editor_for_author_description', 'option');
+        $getWysiwygPermission = get_option( 'rswpbs_enable_editor_for_author_description', 0 );
         if (null == $getWysiwygPermission || false == $getWysiwygPermission) {
             $enableWysiwygForDesc = false;
         }elseif (true == $getWysiwygPermission) {

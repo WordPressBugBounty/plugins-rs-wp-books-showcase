@@ -47,24 +47,20 @@ function rswpbs_advanced_search($atts){
 
 	$actionUrl = rswpbs_search_page_base_url();
 
-	$showNameField = true;
-	$showAuthorField = true;
-	$showCategoryField = true;
-	$showSeriesField = true;
-	$showFormatsField = true;
-	$showYearsField = true;
-	$ShowResetIcon = true;
-	$showPublishersField = true;
+	$showNameField = get_option('rswpbs_show_name_field', 1) ?? true;
+	$showCategoryField = get_option('rswpbs_show_category_field', 1) ?? true;
+	$showFormatsField = get_option('rswpbs_show_formats_field', 1) ?? true;
+	$showYearsField = get_option('rswpbs_show_years_field', 1) ?? true;
+	$showSeriesField = false;
+	$showAuthorField = false;
+	$ShowResetIcon = false;
+	$showPublishersField = false;
 
 	if (class_exists('Rswpbs_Pro')) {
-	    $showNameField = get_field('show_name_field', 'option') ?? true;
-	    $showAuthorField = get_field('show_author_field', 'option') ?? true;
-	    $showCategoryField = get_field('show_category_field', 'option') ?? true;
-	    $showSeriesField = get_field('show_series_field', 'option') ?? true;
-	    $showFormatsField = get_field('show_formats_field', 'option') ?? true;
-	    $showYearsField = get_field('show_years_field', 'option') ?? true;
-	    $ShowResetIcon = get_field('show_reset_icon', 'option') ?? true;
-	    $showPublishersField = get_field('show_publishers_field', 'option') ?? true;
+	    $showSeriesField = get_option('rswpbs_show_series_field', 1) ?? true;
+	    $showAuthorField = get_option('rswpbs_show_author_field', 1) ?? true;
+	    $ShowResetIcon = get_option('rswpbs_show_reset_icon', 1) ?? true;
+	    $showPublishersField = get_option('rswpbs_show_publishers_field', 1) ?? true;
 	}
 
 	if ( '2' == $atts['fields_col'] ) {
@@ -80,12 +76,17 @@ function rswpbs_advanced_search($atts){
 		$search_btn_col = 'rswpbs-col-lg-2 rswpbs-col-6 rswpbs-col-md-6';
 		$reset_btn_col = 'rswpbs-col-lg-1 rswpbs-col-6 rswpbs-col-md-6';
 	}
+	$searchrmRowClass = 'rswpbs-free-search-form-row';
+	if (class_exists('Rswpbs_Pro')) {
+		$searchrmRowClass = 'rswpbs-pro-search-form-row';
+	}
+
 	?>
 		<div class="rswpthemes-books-showcase-search-form-container">
 			<form class="rswpthemes-books-search-form" id="rswpthemes-books-search-form" action="<?php echo esc_url( $actionUrl ); ?>" method="get">
 				<input type="hidden" name="search_type" value="book">
 				<input type="hidden" name="sortby" id="rswpbs-sortby" value="">
-				<div class="rswpthemes-search-form rswpbs-row">
+				<div class="rswpthemes-search-form rswpbs-row <?php echo esc_attr($searchrmRowClass);?>">
 					<?php
 					if (true == $showNameField) :
 					?>

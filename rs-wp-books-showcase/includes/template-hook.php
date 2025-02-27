@@ -103,10 +103,10 @@ function rswpbs_archive_page_header(){
   $archivePageTitle = '';
   $archivePageDesc = '';
   if (class_exists('Rswpbs_Pro')) :
-    $showArchiveHeader = get_field('show_book_archive_page_header', 'option');
+    $showArchiveHeader = rswpbs_show_archie_page_header();
     $showArchiveHeader = ($showArchiveHeader === NULL || $showArchiveHeader === true) ? true : false;
-    $archivePageTitle = get_field('books_archive_page_title', 'option');
-    $archivePageDesc = get_field('books_archive_page_description', 'option');
+    $archivePageTitle = rswpbs_archive_page_title();
+    $archivePageDesc = rswpbs_archive_page_description();
   endif;
   $headingClass = '';
   if (true == $showArchiveHeader) :

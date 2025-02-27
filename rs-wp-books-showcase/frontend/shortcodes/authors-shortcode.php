@@ -47,7 +47,7 @@ function rswpbs_author_shortcode_output($atts){
 					$authorImage = '';
 					if (class_exists('Rswpbs_Pro')) {
 						$isRswpbsPro = true;
-						$authorImage = get_field('author_picture', 'book-author_'.$author->term_id);
+						$authorImage = get_term_meta($author->term_id, 'rswpbs_book_author_picture', true);
 					}
 
 					?>
@@ -60,7 +60,7 @@ function rswpbs_author_shortcode_output($atts){
 								<div class="rswpbs-author-profile-picture-wrapper">
 									<div class="author-profile-picture-container">
 										<a href="<?php echo esc_url($termLink);?>">
-											<img src="<?php echo get_field('author_picture', 'book-author_'.$author->term_id);?>" alt="<?php echo esc_attr($author->name);?>">
+											<img src="<?php echo $authorImage;?>" alt="<?php echo esc_attr($author->name);?>">
 										</a>
 									</div>
 									<?php
@@ -68,7 +68,9 @@ function rswpbs_author_shortcode_output($atts){
 									?>
 									<div class="author-social-links-wrapper">
 										<?php
-										rswpbs_pro_book_author_social_links($authorID);
+										if (function_exists('rswpbs_pro_book_author_social_links')) {
+											rswpbs_pro_book_author_social_links($authorID);
+										}
 										?>
 									</div>
 									<?php

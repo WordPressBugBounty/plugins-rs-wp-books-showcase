@@ -438,7 +438,7 @@ function rswpbs_get_book_price($bookId = null){
 	}
 	$currenySign = '$';
 	if (class_exists('Rswpbs_Pro')) {
-		$currenySign = get_field('price_currency', 'option');
+		$currenySign = get_option( 'rswpbs_price_currency', '$' );
 		if (null === $currenySign) {
 			$currenySign = '$';
 		}
@@ -463,7 +463,7 @@ function rswpbs_get_book_price_except_markup($bookId = null){
 	}
 	$currenySign = '$';
 	if (class_exists('Rswpbs_Pro')) {
-		$currenySign = get_field('price_currency', 'option');
+		$currenySign = get_option( 'rswpbs_price_currency', '$' );
 	}
 	$bookRegularPrice = str_replace('$', '', get_post_meta( $bookId, rswpbs_prefix() . 'book_price', true ));
 	$bookSalePrice = str_replace('$', '', get_post_meta( $bookId, rswpbs_prefix() . 'book_sale_price', true ));
@@ -481,6 +481,9 @@ function rswpbs_get_book_buy_btn($bookId = null){
 	}
 	$buy_btn_text = get_post_meta( $bookId, rswpbs_prefix() . 'buy_btn_text', true );
 	$buy_btn_link = get_post_meta( $bookId, rswpbs_prefix() . 'buy_btn_link', true );
+
+	$buy_btn_link = rswpbs_modify_amazon_url($buy_btn_link, 'lft01-20');
+
 	$output = '';
 	if (!empty($buy_btn_text)) :
 		$output = '<a href="'.esc_url($buy_btn_link).'" target="_blank" class="rswpthemes-book-buy-now-button">'.$buy_btn_text.'</a>';
@@ -757,34 +760,40 @@ function rswpbs_is_woocommerce_pages(){
     }
 }
 
-function rswpbs_search_page_base_url(){
-	global $post;
-	$getActionPageUrl = '';
-	$baseUrl = get_post_type_archive_link('book');
+function rswpbs_search_page_base_url() {
+    global $post;
+    $baseUrl = ''; // Default empty value
 
-	if (class_exists('Rswpbs_Pro')) {
-		$getActionPageUrl = get_field('book_search_page', 'option');
-		if (!empty($getActionPageUrl) && null != $getActionPageUrl) {
-			$baseUrl = get_the_permalink($getActionPageUrl);
-		}else{
-			$baseUrl = get_post_type_archive_link('book');
-		}
-	}else{
-		if (is_post_type_archive('book')) {
-			$baseUrl = get_post_type_archive_link('book');
-		}elseif (is_front_page()) {
-			$baseUrl = get_post_type_archive_link('book');
-		}elseif (is_tax('book-category')) {
-			$baseUrl = get_post_type_archive_link('book');
-		}elseif (is_tax('book-series')) {
-			$baseUrl = get_post_type_archive_link('book');
-		}elseif(is_page()){
-			$baseUrl = get_the_permalink($post->ID);
-		}elseif (is_single()) {
-			$baseUrl = get_post_type_archive_link('book');
-		}
-	}
-	return $baseUrl;
+    // 🚀 If we're inside a page, use its own URL as the base
+    if (is_page()) {
+        $baseUrl = get_permalink($post->ID);
+    }
+
+    // 🚀 If Rswpbs_Pro is active, check the saved book search page
+    if (class_exists('Rswpbs_Pro')) {
+        $getActionPageUrl = get_option('rswpbs_book_search_page');
+        if (!empty($getActionPageUrl) && null != $getActionPageUrl && 'default' !== $getActionPageUrl) {
+            $baseUrl = get_permalink($getActionPageUrl);
+        }
+    }
+
+    // 🚀 Ensure fallback to a manually created Books page
+    if (empty($baseUrl)) {
+        $book_page = get_page_by_path('books'); // Check for "Books" page first
+        if (!$book_page) {
+            $book_page = get_page_by_path('book'); // Check for "Book" page
+        }
+        if ($book_page) {
+            $baseUrl = get_permalink($book_page->ID);
+        }
+    }
+
+    // 🚀 Last fallback: If all else fails, use home URL
+    if (empty($baseUrl)) {
+        $baseUrl = home_url('/');
+    }
+
+    return $baseUrl;
 }
 
 function rswpbs_book_filtering_menu_category(){

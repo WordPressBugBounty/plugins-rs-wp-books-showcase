@@ -86,6 +86,8 @@ class Rswpbs_Cmb_For_Book
 		$buy_btn_text = get_post_meta( $post->ID, $this->prefix . 'buy_btn_text', true );
 		$buy_btn_link = get_post_meta( $post->ID, $this->prefix . 'buy_btn_link', true );
 		$book_reading_age = get_post_meta( $post->ID, $this->prefix . 'book_reading_age', true );
+		$book_grade_level = get_post_meta( $post->ID, $this->prefix . 'book_grade_level', true );
+		$book_lexile_measure = get_post_meta( $post->ID, $this->prefix . 'book_lexile_measure', true );
 		if (class_exists('Rswpbs_Pro')) {
 			$buy_btn_shortcode = get_post_meta( $post->ID, $this->prefix . 'buy_btn_shortcode', true );
 		}
@@ -110,18 +112,12 @@ class Rswpbs_Cmb_For_Book
 					<div class="rswpbs-row">
 						<div class="rswpbs-col-lg-4 mb-20">
 							<div class="book-field-container">
-								<?php
-								echo $this->book_pro_field();
-								?>
 								<label for="original-book-name"><?php esc_html_e( 'Original Book Name', RSWPBS_TEXT_DOMAIN );?></label>
 								<input type="text" name="original_book_name" class="w-100 regular-text" id="original-book-name" value="<?php echo esc_attr($original_book_name);?>" placeholder="Original Book Name">
 							</div>
 						</div>
 						<div class="rswpbs-col-lg-4 mb-20">
 							<div class="book-field-container">
-								<?php
-								echo $this->book_pro_field();
-								?>
 								<label for="original-book-url"><?php esc_html_e( 'Original Book URL', RSWPBS_TEXT_DOMAIN );?></label>
 								<input type="text" name="original_book_url" class="w-100 regular-text" id="original-book-url" value="<?php echo esc_attr($original_book_url);?>" placeholder="<?php esc_attr_e('Original Book Url', 'rswpbs'); ?>">
 							</div>
@@ -147,23 +143,32 @@ class Rswpbs_Cmb_For_Book
 						</div>
 						<div class="rswpbs-col-lg-4 mb-20">
 							<div class="book-field-container">
-								<?php
-								echo $this->book_pro_field();
-								?>
 								<label for="reading-age"><?php esc_html_e( 'Reading Age', RSWPBS_TEXT_DOMAIN );?></label>
-								<input type="text" name="book_reading_age" class="w-100 regular-text" id="reading-age" value="<?php echo esc_attr($book_reading_age);?>" placeholder="18+">
+								<input type="text" name="book_reading_age" class="w-100 regular-text" id="reading-age" value="<?php echo esc_attr($book_reading_age);?>" placeholder="Example: 8+ years">
 							</div>
 						</div>
-						<div class="rswpbs-col-lg-8 mb-20">
+						<div class="rswpbs-col-lg-4 mb-20">
 							<div class="book-field-container">
-								<label for="short-description"><?php esc_html_e( 'Book Short Description', RSWPBS_TEXT_DOMAIN );?></label>
-								<textarea type="text" rows="5" class="w-100 regular-text" name="short_description" id="short-description" value="<?php echo esc_attr($short_description); ?>" placeholder="Short Description"><?php echo wp_kses_post($short_description); ?></textarea>
+								<label for="grade-level"><?php esc_html_e( 'Grade level', RSWPBS_TEXT_DOMAIN );?></label>
+								<input type="text" name="book_grade_level" class="w-100 regular-text" id="grade-level" value="<?php echo esc_attr($book_grade_level);?>" placeholder="Example: 3 - 6">
+							</div>
+						</div>
+						<div class="rswpbs-col-lg-4 mb-20">
+							<div class="book-field-container">
+								<label for="lexile-measure"><?php esc_html_e( 'Lexile measure', RSWPBS_TEXT_DOMAIN );?></label>
+								<input type="text" name="book_lexile_measure" class="w-100 regular-text" id="lexile-measure" value="<?php echo esc_attr($book_lexile_measure);?>" placeholder="Example: 880L">
 							</div>
 						</div>
 						<div class="rswpbs-col-lg-4 mb-20">
 							<div class="book-field-container">
 								<label for="publish-country"><?php esc_html_e( 'Country', RSWPBS_TEXT_DOMAIN );?></label>
 								<input type="text" name="book_country" class="w-100 regular-text" id="book-country" value="<?php echo esc_attr($book_country); ?>" placeholder="Country">
+							</div>
+						</div>
+						<div class="rswpbs-col-lg-12 mb-20">
+							<div class="book-field-container">
+								<label for="short-description"><?php esc_html_e( 'Book Short Description', RSWPBS_TEXT_DOMAIN );?></label>
+								<textarea type="text" rows="5" class="w-100 regular-text" name="short_description" id="short-description" value="<?php echo esc_attr($short_description); ?>" placeholder="Short Description"><?php echo wp_kses_post($short_description); ?></textarea>
 							</div>
 						</div>
 						<div class="rswpbs-col-lg-4 mb-20">
@@ -234,9 +239,6 @@ class Rswpbs_Cmb_For_Book
 						</div>
 						<div class="rswpbs-col-lg-4 mb-20">
 							<div class="book-field-container">
-								<?php
-								echo $this->book_pro_field();
-								?>
 								<label for="book-file-format"><?php esc_html_e( 'File Format (If Ebook)', RSWPBS_TEXT_DOMAIN );?></label>
 								<input type="text" name="book_file_format" class="w-100 regular-text" id="book-file-format" value="<?php echo esc_attr($book_file_format); ?>" placeholder="PDF">
 							</div>
@@ -249,9 +251,6 @@ class Rswpbs_Cmb_For_Book
 						</div>
 						<div class="rswpbs-col-lg-4 mb-20">
 							<div class="book-field-container">
-								<?php
-								echo $this->book_pro_field();
-								?>
 								<label for="book-text-to-speech"><?php esc_html_e( 'Text-To-Speech', RSWPBS_TEXT_DOMAIN );?></label>
 								<select name="book_text_to_speech" class="w-100" id="book-text-to-speech">
 									<option value="blank" <?php echo selected( $book_text_to_speech, 'blank', false );?>>
@@ -264,13 +263,10 @@ class Rswpbs_Cmb_For_Book
 										<?php esc_html_e( 'Not Enabled', RSWPBS_TEXT_DOMAIN );?>
 									</option>
 								</select>
-							</div>v
+							</div>
 						</div>
 						<div class="rswpbs-col-lg-4 mb-20">
 							<div class="book-field-container">
-								<?php
-								echo $this->book_pro_field();
-								?>
 								<label for="screen-reader"><?php esc_html_e( 'Screen Reader', RSWPBS_TEXT_DOMAIN );?></label>
 								<select name="screen_reader" class="w-100" id="screen-reader">
 									<option value="blank" <?php echo selected( $screen_reader, 'blank', false );?>>
@@ -287,9 +283,6 @@ class Rswpbs_Cmb_For_Book
 						</div>
 						<div class="rswpbs-col-lg-4 mb-20">
 							<div class="book-field-container">
-								<?php
-								echo $this->book_pro_field();
-								?>
 								<label for="enhanced-typesetting"><?php esc_html_e( 'Enhanced typesetting', RSWPBS_TEXT_DOMAIN );?></label>
 								<select name="enhanced_typesetting" class="w-100" id="enhanced-typesetting">
 									<option value="blank" <?php echo selected( $enhanced_typesetting, 'blank', false );?>>
@@ -306,9 +299,6 @@ class Rswpbs_Cmb_For_Book
 						</div>
 						<div class="rswpbs-col-lg-4 mb-20">
 							<div class="book-field-container">
-								<?php
-								echo $this->book_pro_field();
-								?>
 								<label for="x-ray"><?php esc_html_e( 'X-Ray', RSWPBS_TEXT_DOMAIN );?></label>
 								<select name="x_ray" class="w-100" id="x-ray">
 									<option value="blank" <?php echo selected( $x_ray, 'blank', false );?>>
@@ -325,9 +315,6 @@ class Rswpbs_Cmb_For_Book
 						</div>
 						<div class="rswpbs-col-lg-4 mb-20">
 							<div class="book-field-container">
-								<?php
-								echo $this->book_pro_field();
-								?>
 								<label for="word-wise"><?php esc_html_e( 'Word Wise', RSWPBS_TEXT_DOMAIN );?></label>
 								<select name="word_wise" class="w-100" id="word-wise">
 									<option value="blank" <?php echo selected( $word_wise, 'blank', false );?>>
@@ -344,18 +331,12 @@ class Rswpbs_Cmb_For_Book
 						</div>
 						<div class="rswpbs-col-lg-4 mb-20">
 							<div class="book-field-container">
-								<?php
-								echo $this->book_pro_field();
-								?>
 								<label for="sticky-notes"><?php esc_html_e( 'Sticky Notes', RSWPBS_TEXT_DOMAIN );?></label>
 								<input type="text" name="sticky_notes" class="w-100 regular-text" id="sticky-notes" value="<?php echo esc_attr($sticky_notes); ?>" placeholder="On Kindle Scribe">
 							</div>
 						</div>
 						<div class="rswpbs-col-lg-4 mb-20">
 							<div class="book-field-container">
-								<?php
-								echo $this->book_pro_field();
-								?>
 								<label for="print-length"><?php esc_html_e( 'Print length', RSWPBS_TEXT_DOMAIN );?></label>
 								<input type="text" name="print_length" class="w-100 regular-text" id="print-length" value="<?php echo esc_attr($print_length); ?>" placeholder="128 Pages">
 							</div>
@@ -491,35 +472,81 @@ class Rswpbs_Cmb_For_Book
 				</div>
 			</div>
 			<?php
-			if (!class_exists('Rswpbs_Pro')) :
-			?>
-			<div class="rswpbs-row pro-item-spacer">
-				<div class="rswpbs-col-md-12">
-					<div class="book-field-container no-border">
-						<?php
-						echo $this->book_pro_field();
-						?>
-						<div class="book-field-wrapper">
-							<img src="<?php echo esc_url( RSWPBS_PLUGIN_URL . '/includes/assets/img/sales-links.png');?>" alt="">
-						</div>
-					</div>
+			$proFeaturesClass = 'free-active';
+			$showFeatureDesc = true;
+			if (class_exists('Rswpbs_Pro')) {
+				$proFeaturesClass = 'pro-active';
+				$showFeatureDesc = false;
+			}
+			 ?>
+			<div class="rswpbs-pro-field-wrapper <?php echo esc_attr($proFeaturesClass);?>">
+				<?php
+				if (true === $showFeatureDesc) :
+				?>
+				<div class="rswpbs-pro-field-description">
+					<p>The Formats feature in RS WP Book Showcase lets you showcase multiple book formats like eBook, paperback, or audiobook with pricing, purchase links, and images. Whether you're an author selling directly or using affiliate links, this feature makes book listings more engaging, user-friendly, and easy to manage with drag-and-drop sorting.</p>
+				</div>
+				<?php
+				endif;
+				?>
+				<div class="rswpbs-repeater-field-inner">
+					<?php
+					echo $this->book_pro_field();
+					rswpbs_render_formats_meta_box($post);
+					?>
 				</div>
 			</div>
-			<div class="rswpbs-row pro-item-spacer">
-				<div class="rswpbs-col-md-12">
-					<div class="book-field-container no-border">
-						<?php
-						echo $this->book_pro_field();
-						?>
-						<div class="book-field-wrapper">
-							<img src="<?php echo esc_url( RSWPBS_PLUGIN_URL . '/includes/assets/img/book-formates.png');?>" alt="">
-						</div>
-					</div>
+			<div class="rswpbs-pro-field-wrapper <?php echo esc_attr($proFeaturesClass);?>">
+				<?php
+				if (true === $showFeatureDesc) :
+				?>
+				<div class="rswpbs-pro-field-description">
+					<p>The Multiple Purchase Links feature in RS WP Book Showcase allows users to add multiple store links for a book, such as Amazon, Barnes & Noble, Apple Books, and Google Play. With image upload, custom sorting, and easy link management, it ensures a seamless buying experience for readers and increases book sales potential.</p>
+				</div>
+				<?php
+				endif;
+				?>
+				<div class="rswpbs-repeater-field-inner">
+					<?php
+					echo $this->book_pro_field();
+					rswpbs_render_msl_meta_box($post);
+					?>
 				</div>
 			</div>
-			<?php
-			endif;
-			?>
+			<div class="rswpbs-pro-field-wrapper <?php echo esc_attr($proFeaturesClass);?>">
+				<?php
+				if (true === $showFeatureDesc) :
+				?>
+				<div class="rswpbs-pro-field-description">
+					<p>The Sample Content feature in RS WP Book Showcase Pro allows you to provide book previews in multiple formats, including PDF, images, audio, and video. By clicking the Add New button, you can easily upload and organize sample content, helping visitors explore your book before purchasing. This feature enhances reader engagement and boosts sales.</p>
+				</div>
+				<?php
+				endif;
+				?>
+				<div class="rswpbs-repeater-field-inner">
+					<?php
+					echo $this->book_pro_field();
+					render_book_sample_content_box($post);
+					?>
+				</div>
+			</div>
+			<div class="rswpbs-pro-field-wrapper <?php echo esc_attr($proFeaturesClass);?>">
+				<?php
+				if (true === $showFeatureDesc) :
+				?>
+				<div class="rswpbs-pro-field-description">
+					<p>The Downloadable Books feature in RS WP Book Showcase Pro integrates WooCommerce digital downloads, allowing authors and publishers to sell books directly from their websites. Whether selling physical books or eBooks, this feature transforms book listings into WooCommerce products, enabling cart, checkout, and order management with any supported payment gateway. Perfect for building a fully functional book store, it offers options for download limits, expiry dates, and secure file delivery—providing a seamless shopping experience for customers.</p>
+				</div>
+				<?php
+				endif;
+				?>
+				<div class="rswpbs-repeater-field-inner">
+					<?php
+					echo $this->book_pro_field();
+					rswpbs_product_downloadable_meta_box_output($post);
+					?>
+				</div>
+			</div>
 		</div>
 	<?php
 	}
@@ -551,6 +578,8 @@ class Rswpbs_Cmb_For_Book
 			'book_publish_year' => (isset($_POST['book_publish_year']) ? sanitize_text_field($_POST['book_publish_year']) : ''),
 			'book_publisher_name' => (isset($_POST['book_publisher_name']) ? sanitize_text_field($_POST['book_publisher_name']) : ''),
 			'book_reading_age' => (isset($_POST['book_reading_age']) ? sanitize_text_field($_POST['book_reading_age']) : ''),
+			'book_grade_level' => (isset($_POST['book_grade_level']) ? sanitize_text_field($_POST['book_grade_level']) : ''),
+			'book_lexile_measure' => (isset($_POST['book_lexile_measure']) ? sanitize_text_field($_POST['book_lexile_measure']) : ''),
 			'short_description' => (isset($_POST['short_description']) ? wp_kses_post($_POST['short_description']) : ''),
 			'book_pages' => (isset($_POST['book_pages']) ? sanitize_text_field($_POST['book_pages']) : ''),
 			'book_isbn' => (isset($_POST['book_isbn']) ? sanitize_text_field($_POST['book_isbn']) : ''),
@@ -580,21 +609,23 @@ class Rswpbs_Cmb_For_Book
 			'buy_btn_shortcode' => (isset($_POST['buy_btn_shortcode']) ? sanitize_text_field($_POST['buy_btn_shortcode']) : ''),
 		);
 
-		if (!class_exists('Rswpbs_Pro')) {
-			unset($meta_fields['original_book_name']);
-			unset($meta_fields['original_book_url']);
-			unset($meta_fields['simultaneous_device_usage']);
-			unset($meta_fields['book_file_format']);
-			unset($meta_fields['book_text_to_speech']);
-			unset($meta_fields['screen_reader']);
-			unset($meta_fields['enhanced_typesetting']);
-			unset($meta_fields['x_ray']);
-			unset($meta_fields['word_wise']);
-			unset($meta_fields['book_reading_age']);
-			unset($meta_fields['sticky_notes']);
-			unset($meta_fields['print_length']);
-			unset($meta_fields['buy_btn_shortcode']);
-		}
+		// if (!class_exists('Rswpbs_Pro')) {
+		// 	unset($meta_fields['original_book_name']);
+		// 	unset($meta_fields['original_book_url']);
+		// 	unset($meta_fields['simultaneous_device_usage']);
+		// 	unset($meta_fields['book_file_format']);
+		// 	unset($meta_fields['book_text_to_speech']);
+		// 	unset($meta_fields['screen_reader']);
+		// 	unset($meta_fields['enhanced_typesetting']);
+		// 	unset($meta_fields['x_ray']);
+		// 	unset($meta_fields['word_wise']);
+		// 	unset($meta_fields['book_reading_age']);
+		// 	unset($meta_fields['book_grade_level']);
+		// 	unset($meta_fields['book_lexile_measure']);
+		// 	unset($meta_fields['sticky_notes']);
+		// 	unset($meta_fields['print_length']);
+		// 	unset($meta_fields['buy_btn_shortcode']);
+		// }
 
 		if (empty($meta_fields['book_sale_price'])) {
 			$meta_fields['book_query_price'] = $meta_fields['book_price'];

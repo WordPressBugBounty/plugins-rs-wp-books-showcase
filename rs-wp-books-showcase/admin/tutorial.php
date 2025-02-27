@@ -18,17 +18,6 @@ function rswpbs_tutorial_page() {
         'rswpbs_tutorial_page_content', // Callback function
         5 //Position
     );
-
-    if (!class_exists('Rswpbs_Pro')) :
-        add_submenu_page(
-            'edit.php?post_type=book', // Parent menu slug
-            'RS WP Book Showcase CSV IMPORT', // Page title
-            'CSV IMPORT', // Menu title
-            'manage_options', // Capability
-            'rswpbs-csv-import', // Menu slug
-            'rswpbs_csv_import_dummy_content' // Callback function
-        );
-    endif;
 }
 add_action( 'admin_menu', 'rswpbs_tutorial_page', 10);
 
@@ -218,24 +207,6 @@ function rswpbs_tutorial_page_content() {
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <?php
-}
-
-/**
- * Settings Page Content
- */
-function rswpbs_csv_import_dummy_content(){
-    ?>
-    <div class="rswpbs-dummy-settings-page">
-        <div class="rswpbs-container">
-            <div class="settings-image-wrapper">
-                <img src="<?php echo esc_url(RSWPBS_PLUGIN_URL . 'admin/assets/img/csv-import.jpg');?>" alt="<?php esc_attr_e('settings page image', 'rswpbs');?>">
-                <div class="upgrade-to-pro-btn">
-                    <a target="_blank" href="<?php echo esc_url('https://rswpthemes.com/rs-wp-books-showcase-wordpress-plugin/');?>"><?php esc_html_e( 'Upgrade To Pro', 'rswpbs' );?></a>
                 </div>
             </div>
         </div>

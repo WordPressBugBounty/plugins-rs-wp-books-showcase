@@ -1,0 +1,131 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 2,
+    "name": "rswpbs/book-block",
+    "title": "RS WP Book Gallery",
+    "category": "widgets",
+    "icon": "book",
+    "description": "A Gutenberg block for displaying book posts in a customizable grid.",
+    "supports": {
+        "html": false
+    },
+    "attributes": {
+        "booksPerPage": {
+            "type": "number",
+            "default": 8
+        },
+        "booksPerRow": {
+            "type": "number",
+            "default": 4
+        },
+        "categoriesInclude": {
+            "type": "string",
+            "default": ""
+        },
+        "categoriesExclude": {
+            "type": "string",
+            "default": ""
+        },
+        "authorsInclude": {
+            "type": "string",
+            "default": ""
+        },
+        "authorsExclude": {
+            "type": "string",
+            "default": ""
+        },
+        "excludeBooks": {
+            "type": "string",
+            "default": ""
+        },
+        "order": {
+            "type": "string",
+            "default": "DESC"
+        },
+        "orderby": {
+            "type": "string",
+            "default": "date"
+        },
+        "showPagination": {
+            "type": "boolean",
+            "default": true
+        },
+        "showAuthor": {
+            "type": "boolean",
+            "default": true
+        },
+        "showTitle": {
+            "type": "boolean",
+            "default": true
+        },
+        "titleType": {
+            "type": "string",
+            "default": "title"
+        },
+        "showImage": {
+            "type": "boolean",
+            "default": true
+        },
+        "imageType": {
+            "type": "string",
+            "default": "book_cover"
+        },
+        "imagePosition": {
+            "type": "string",
+            "default": "top"
+        },
+        "showExcerpt": {
+            "type": "boolean",
+            "default": true
+        },
+        "excerptType": {
+            "type": "string",
+            "default": "excerpt"
+        },
+        "excerptLimit": {
+            "type": "number",
+            "default": 30
+        },
+        "showPrice": {
+            "type": "boolean",
+            "default": true
+        },
+        "showBuyButton": {
+            "type": "boolean",
+            "default": true
+        },
+        "showMsl": {
+            "type": "boolean",
+            "default": false
+        },
+        "mslTitleAlign": {
+            "type": "string",
+            "default": "center"
+        },
+        "contentAlign": {
+            "type": "string",
+            "default": "center"
+        },
+        "showSearchForm": {
+            "type": "boolean",
+            "default": true
+        },
+        "showSortingForm": {
+            "type": "boolean",
+            "default": true
+        },
+        "showReadMoreButton": {
+            "type": "boolean",
+            "default": false
+        },
+        "showMasonryLayout": {
+            "type": "boolean",
+            "default": false
+        },
+        "heightStretch": {
+            "type": "boolean",
+            "default": true
+        }
+    },
+    "editorScript": "file:./build/index.js"
+}

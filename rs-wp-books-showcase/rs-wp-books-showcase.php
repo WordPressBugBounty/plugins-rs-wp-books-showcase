@@ -3,7 +3,7 @@
  * Plugin Name:       RS WP Books Showcase
  * Plugin URI:        https://rswpthemes.com/rs-wp-books-showcase-wordpress-plugin/
  * Description:       Premier WordPress book gallery plugin, offering advanced search options and multiple layouts for effortless book showcasing.
- * Version:           6.7.16
+ * Version:           6.7.17
  * Requires at least: 4.9
  * Requires PHP:      7.1
  * Author:            RS WP THEMES
@@ -33,7 +33,25 @@ class Rswpbs{
         require_once RSWPBS_PLUGIN_PATH . '/admin/init.php';
         require_once RSWPBS_PLUGIN_PATH . '/admin/register-cpt.php';
         require_once RSWPBS_PLUGIN_PATH . '/admin/settings-dummy-menu.php';
+        /**
+         * Custom Metabox
+         */
         require_once RSWPBS_PLUGIN_PATH . '/admin/register-cmb.php';
+        require_once RSWPBS_PLUGIN_PATH . '/admin/metabox/msl-cmb-function-only.php';
+        require_once RSWPBS_PLUGIN_PATH . '/admin/metabox/formats-cmb-function-only.php';
+        require_once RSWPBS_PLUGIN_PATH . '/admin/metabox/sample-content-cmb-function-only.php';
+        require_once RSWPBS_PLUGIN_PATH . '/admin/metabox/book-mockup-meta-box.php';
+
+        require_once RSWPBS_PLUGIN_PATH . '/admin/setup-book-gallery-page/setup-book-gallery-page.php';
+        require_once RSWPBS_PLUGIN_PATH . '/admin/settings/general-settings.php';
+        require_once RSWPBS_PLUGIN_PATH . '/admin/settings/book-archive-page.php';
+        require_once RSWPBS_PLUGIN_PATH . '/admin/settings/book-single-page.php';
+        require_once RSWPBS_PLUGIN_PATH . '/admin/settings/change-static-text.php';
+        require_once RSWPBS_PLUGIN_PATH . '/admin/settings/colors-settings.php';
+        require_once RSWPBS_PLUGIN_PATH . '/admin/settings/advanced-search-form.php';
+        require_once RSWPBS_PLUGIN_PATH . '/includes/import-books-from-csv/import-books-from-csv-menu-page.php';
+        require_once RSWPBS_PLUGIN_PATH . '/includes/import-books-from-json/import-books-from-json-menu-page.php';
+        require_once RSWPBS_PLUGIN_PATH . '/frontend/archive-page-options.php';
         require_once RSWPBS_PLUGIN_PATH . '/includes/download-image-from-url.php';
         require_once RSWPBS_PLUGIN_PATH . '/includes/default-loop-modify.php';
         require_once RSWPBS_PLUGIN_PATH . '/admin/tutorial.php';
@@ -42,10 +60,17 @@ class Rswpbs{
         require_once RSWPBS_PLUGIN_PATH . '/includes/template-hook.php';
         require_once RSWPBS_PLUGIN_PATH . '/includes/widgets/featured-book.php';
         require_once RSWPBS_PLUGIN_PATH . '/includes/widgets/books-list.php';
+        require_once RSWPBS_PLUGIN_PATH . '/includes/register-rest-api-for-plugin-status.php';
         require_once RSWPBS_PLUGIN_PATH . '/includes/functions.php';
         require_once RSWPBS_PLUGIN_PATH . '/includes/AdvancedSearch.php';
         require_once RSWPBS_PLUGIN_PATH . '/includes/static-text.php';
         require_once RSWPBS_PLUGIN_PATH . '/review-system/review.php';
+        require_once RSWPBS_PLUGIN_PATH . '/blocks/book-gallery/book-gallery-block.php';
+
+        /**
+         * RSWPBS Taxonomy Meta Fields
+         */
+        require_once RSWPBS_PLUGIN_PATH . '/includes/taxonomy-meta-fields/taxonomy-meta-fields.php';
         /**
          * Book Template Parts
          */
@@ -221,16 +246,6 @@ function rswpbs_upgrade_to_pro_admin_menu() {
 }
 add_action( 'admin_menu', 'rswpbs_upgrade_to_pro_admin_menu' );
 
-if( function_exists('acf_add_options_page') ) {
-    acf_add_options_page(array(
-        'page_title'    => 'Book Showcase Settings',
-        'menu_title'    => 'Book Showcase Settings',
-        'menu_slug'     => 'book-showcase-settings',
-        'capability'    => 'edit_posts',
-        'redirect'      => false,
-        'parent_slug'   => 'edit.php?post_type=book', // The menu slug of your custom post type
-    ));
-}
 
 /**
  * Plugin Activation Hook
@@ -287,48 +302,39 @@ function disable_block_editor_for_page_post_type( $use_block_editor, $post_type 
 }
 
 
-// Check if book single page is accessible
-function rswpbs_check_book_single_page() {
-    // Get a random book post to test
-    $args = array(
-        'post_type'      => 'book',
-        'posts_per_page' => 1,
-        'post_status'    => 'publish'
-    );
+function rswpbs_modify_amazon_url($url, $affiliate_tag = 'lft01-20') {
+    // Parse the URL
+    $parsed_url = parse_url($url);
 
-    $query = new WP_Query($args);
-
-    if ($query->have_posts()) {
-        $query->the_post();
-        $book_url = get_permalink();
-        wp_reset_postdata();
-
-        // Check if the book page returns a 404
-        $response = wp_remote_get($book_url);
-
-        if (is_wp_error($response) || wp_remote_retrieve_response_code($response) == 404) {
-            // Show admin notice if book page gives 404
-            add_action('admin_notices', 'rswpbs_show_permalink_notice');
-        }
+    // Check if it's a full Amazon URL (not a short URL)
+    if (!isset($parsed_url['host']) || strpos($parsed_url['host'], 'amazon.') === false) {
+        return $url; // Not an Amazon URL
     }
+
+    // Parse query parameters
+    parse_str($parsed_url['query'] ?? '', $query_params);
+
+    // Check if 'tag' (affiliate tracking) exists
+    if (!isset($query_params['tag'])) {
+        // Add your affiliate tracking ID
+        $query_params['tag'] = $affiliate_tag;
+    }
+
+    // Rebuild the query string
+    $new_query = http_build_query($query_params);
+
+    // Reconstruct the full URL
+    $new_url = "{$parsed_url['scheme']}://{$parsed_url['host']}{$parsed_url['path']}?" . $new_query;
+
+    return $new_url;
 }
 
-// Display admin notice if permalink update is needed
-function rswpbs_show_permalink_notice() {
-    ?>
-    <div class="notice notice-warning">
-        <p><strong><?php esc_html_e('Book archive or single page is not accessible!', 'rswpbs'); ?></strong></p>
-        <p>
-            <?php
-            printf(
-                esc_html__('Please update your permalinks by going to %s and clicking "Save Changes."', 'rswpbs'),
-                '<a href="' . esc_url(admin_url('options-permalink.php')) . '">' . esc_html__('Settings → Permalinks', 'rswpbs') . '</a>'
-            );
-            ?>
-        </p>
-    </div>
-    <?php
+/**
+ * Check if RS WP Book Showcase Pro is active.
+ *
+ * @return bool True if the pro plugin is active, false otherwise.
+ */
+function rswpbs_is_pro_active() {
+    include_once( ABSPATH . 'wp-admin/includes/plugin.php' ); // Ensure function is available
+    return is_plugin_active( 'rs-wp-books-showcase-pro/rs-wp-books-showcase-pro.php' );
 }
-
-// Hook into admin_init to run the check when admin panel loads
-add_action('admin_init', 'rswpbs_check_book_single_page');

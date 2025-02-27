@@ -59,11 +59,11 @@ class Rswpbs_Register_Book_Post_Type {
 			'show_in_nav_menus'     => true,
 			'can_export'            => true,
 			'exclude_from_search'   => false,
-			'has_archive'           => true,
+			'has_archive'           => false,
 			'show_in_rest'           => true,
 			'publicly_queryable'    => true,
 			'capability_type'       => array('book', 'books'),
-			'rewrite' 				=> array('slug' => 'books'),
+			// 'rewrite' 				=> array('slug' => 'books'),
 			'map_meta_cap'			=> true,
 		);
 

@@ -4,9 +4,9 @@ function rswpbs_book_reviews(){
 	$showReviewList = true;
 	$showReviewSectionTitle = true;
 	if (class_exists('Rswpbs_Pro')) {
-		$showReviewList = get_field('show_book_reviews', 'option');
-		$showReviewSectionTitle = get_field('show_book_reviews_section_title', 'option');
-		$showReviewSectionTitle = ($showReviewSectionTitle === NULL || $showReviewSectionTitle === true) ? 'true' : 'false';
+		$showReviewList = get_option('rswpbs_show_book_reviews', 1);
+		$showReviewSectionTitle = get_option('rswpbs_show_book_reviews_section_title', 1);
+		$showReviewSectionTitle = ($showReviewSectionTitle === NULL || $showReviewSectionTitle == true) ? 'true' : 'false';
 	}else{
 		$showReviewList = true;
 	}

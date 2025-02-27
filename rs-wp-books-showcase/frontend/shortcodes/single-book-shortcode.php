@@ -25,15 +25,13 @@ function rswpbs_single_book_shortcode($atts){
 	}else{
 		$bookID = intval($atts['book_id']);
 	}
+
 	ob_start();
 	if (!empty($bookID) || 0 != $bookID) :
 
 	$showSampleContent = false;
-	if (function_exists('rswpbs_pro_have_sample_content') &&  true === rswpbs_pro_have_sample_content($bookID)) {
-		$showSampleContent = false;
-		if ('true' == $atts['show_sample_content']) {
-			$showSampleContent = true;
-		}
+	if ('true' == $atts['show_sample_content']) {
+		$showSampleContent = true;
 	}
 
 	$bookImageWrapperColumnClass = 'rswpbs-col-md-12 rswpbs-col-12 pl-0 pr-1';
@@ -102,7 +100,7 @@ function rswpbs_single_book_shortcode($atts){
 							echo '<h2 class="book-name"><a href="'.get_the_permalink( $bookID ).'">'.esc_html( rswpbs_get_book_name($bookID) ).'</a></h2>';
 						}
 					endif;
-					if(!empty(rswpbs_get_book_author($bookID))) : ?>
+					if(!empty(rswpbs_get_book_author($bookID)) && 'true' == $atts['show_author']) : ?>
 					<h4 class="book-author"><strong><?php echo rswpbs_static_text_by(); ?> </strong>
 						<?php
 						echo wp_kses_post(rswpbs_get_book_author($bookID));

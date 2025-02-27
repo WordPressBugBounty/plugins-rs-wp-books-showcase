@@ -1,0 +1,261 @@
+<?php
+/**
+ * General Settings - Secure Version
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly.
+}
+
+/**
+ * Returns an associative array of allowed currencies.
+ *
+ * Duplicate values have been removed.
+ *
+ * @return array
+ */
+function rswpbs_get_allowed_currencies() {
+    return array(
+        '$'     => '$',
+        '€'     => '€',
+        '¥'     => '¥',
+        '£'     => '£',
+        'A$'    => 'A$',
+        'C$'    => 'C$',
+        'CHF'   => 'CHF',
+        'kr'    => 'kr',
+        'NZ$'   => 'NZ$',
+        'Mex$'  => 'Mex$',
+        'S$'    => 'S$',
+        'HK$'   => 'HK$',
+        '₩'     => '₩',
+        '₺'     => '₺',
+        '₹'     => '₹',
+        'R$'    => 'R$',
+        'R'     => 'R',
+        '₽'     => '₽',
+        'إ'     => 'إ',
+        'RM'    => 'RM',
+        'KM'    => 'KM',
+        '฿'     => '฿',
+        'Rp'    => 'Rp',
+        'zł'    => 'zł',
+        'CLP$'  => 'CLP$',
+        '₱'     => '₱',
+        'COL$'  => 'COL$',
+        '₫'     => '₫',
+        'ARS$'  => 'ARS$',
+        'EGP£'  => 'EGP£',
+        'S/'    => 'S/',
+        'Kč'    => 'Kč',
+        'Ft'    => 'Ft',
+        '₪'     => '₪',
+        'NT$'   => 'NT$',
+        '₴'     => '₴',
+        '₡'     => '₡',
+        'ا'     => 'ا',
+        'Rs'    => 'Rs',
+        'ZK'    => 'ZK',
+        'B$'    => 'B$',
+        'лв'    => 'лв',
+        'lei'   => 'lei',
+        'kn'    => 'kn',
+        'RD$'   => 'RD$',
+        'L'     => 'L',
+        'रू'    => 'रू',
+        'N$'    => 'N$',
+        'U'     => 'U',
+        'ق'     => 'ق',
+        'J$'    => 'J$',
+        'TT$'   => 'TT$',
+        'TSh'   => 'TSh',
+        'P'     => 'P',
+        '₾'     => '₾',
+        'USh'   => 'USh',
+        '₸'     => '₸',
+        '֏'     => '֏',
+        'ден'   => 'ден',
+        'FCFA'  => 'FCFA',
+        '₵'     => '₵',
+        'Bds$'  => 'Bds$',
+        'BSD$'  => 'BSD$',
+        'FJ$'   => 'FJ$',
+        'CFA'   => 'CFA',
+        '₨'     => '₨',
+        '₭'     => '₭',
+        'ETB'   => 'ETB',
+        'CUP$'  => 'CUP$',
+        'KSh'   => 'KSh',
+    );
+}
+
+/**
+ * Sanitization callback for Price Currency.
+ *
+ * @param string $value The submitted currency.
+ * @return string Allowed currency or default.
+ */
+function rswpbs_sanitize_price_currency( $value ) {
+    $allowed = rswpbs_get_allowed_currencies();
+    if ( isset( $allowed[ $value ] ) ) {
+        return $value;
+    }
+    return '$'; // Return default if invalid.
+}
+
+/**
+ * Sanitization callback for the Book Search Page field.
+ *
+ * @param mixed $value The submitted value.
+ * @return int Sanitized page ID.
+ */
+function rswpbs_sanitize_book_search_page( $value ) {
+    return absint( $value );
+}
+
+/**
+ * Sanitization callback for checkbox fields.
+ *
+ * @param mixed $value The submitted value.
+ * @return int Returns 1 if checked, 0 otherwise.
+ */
+function rswpbs_sanitize_checkbox( $value ) {
+    return ( $value == 1 ) ? 1 : 0;
+}
+
+/**
+ * Add the General Settings submenu under the Book custom post type.
+ */
+add_action( 'admin_menu', 'rswpbs_general_settings_page' );
+function rswpbs_general_settings_page() {
+    add_submenu_page(
+        'edit.php?post_type=book', // Custom post type slug.
+        esc_html__( 'RS WP Book Showcase Settings', 'rswpbs' ),
+        esc_html__( 'Book Showcase Settings', 'rswpbs' ),
+        'manage_options',
+        'rswpbs-settings',
+        'rswp_book_showcase_settings_page'
+    );
+}
+
+/**
+ * Render the General Settings page.
+ */
+function rswp_book_showcase_settings_page() {
+    // Verify user capability.
+    if ( ! current_user_can( 'manage_options' ) ) {
+        wp_die( esc_html__( 'You do not have sufficient permissions to access this page.', 'rswpbs' ) );
+    }
+
+    $active_tab = isset( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : 'general';
+    ?>
+    <div class="wrap rswpbs-general-settings-tab">
+        <h1><?php esc_html_e( 'RS WP Book Showcase Settings', 'rswpbs' ); ?></h1>
+        <?php rswp_book_showcase_settings_tabs( $active_tab ); ?>
+        <form method="post" action="options.php">
+            <?php
+            settings_fields( 'rswpbs_general_settings_group' );
+            do_settings_sections( 'rswpbs_general_settings_page' );
+            submit_button();
+            ?>
+        </form>
+    </div>
+    <?php
+}
+
+/**
+ * Register General Settings along with their sanitization callbacks.
+ */
+function rswpbs_register_general_settings() {
+    // Register settings.
+    register_setting( 'rswpbs_general_settings_group', 'rswpbs_price_currency', 'rswpbs_sanitize_price_currency' );
+    // register_setting( 'rswpbs_general_settings_group', 'rswpbs_book_search_page', 'rswpbs_sanitize_book_search_page' );
+    register_setting( 'rswpbs_general_settings_group', 'rswpbs_enable_editor_for_author_description', 'rswpbs_sanitize_checkbox' );
+    register_setting( 'rswpbs_general_settings_group', 'rswpbs_enable_woo_features_for_books', 'rswpbs_sanitize_checkbox' );
+
+    // Add Settings Section.
+    add_settings_section(
+        'rswpbs_general_settings_section',
+        esc_html__( 'General Settings', 'rswpbs' ),
+        '__return_false',
+        'rswpbs_general_settings_page'
+    );
+
+    // Add Fields.
+    add_settings_field(
+        'rswpbs_price_currency',
+        esc_html__( 'Price Currency', 'rswpbs' ),
+        'rswpbs_price_currency_callback',
+        'rswpbs_general_settings_page',
+        'rswpbs_general_settings_section'
+    );
+
+    // add_settings_field(
+    //     'rswpbs_book_search_page',
+    //     esc_html__( 'Search Page', 'rswpbs' ),
+    //     'rswpbs_book_search_page_callback',
+    //     'rswpbs_general_settings_page',
+    //     'rswpbs_general_settings_section'
+    // );
+
+    add_settings_field(
+        'rswpbs_enable_editor_for_author_description',
+        esc_html__( 'Enable Editor For Author Description', 'rswpbs' ),
+        'rswpbs_enable_editor_for_author_description_callback',
+        'rswpbs_general_settings_page',
+        'rswpbs_general_settings_section'
+    );
+
+    add_settings_field(
+        'rswpbs_enable_woo_features_for_books',
+        esc_html__( 'Allow Customers to Buy All Books via WooCommerce', 'rswpbs' ),
+        'rswpbs_enable_woo_features_for_books_callback',
+        'rswpbs_general_settings_page',
+        'rswpbs_general_settings_section'
+    );
+}
+add_action( 'admin_init', 'rswpbs_register_general_settings' );
+
+/**
+ * Callback for Price Currency field.
+ */
+function rswpbs_price_currency_callback() {
+    $allowed  = rswpbs_get_allowed_currencies();
+    $selected = get_option( 'rswpbs_price_currency', '$' );
+    echo '<select name="rswpbs_price_currency">';
+    foreach ( $allowed as $key => $label ) {
+        echo '<option value="' . esc_attr( $key ) . '" ' . selected( $selected, $key, false ) . '>' . esc_html( $label ) . '</option>';
+    }
+    echo '</select>';
+}
+
+/**
+ * Callback for Enable Editor For Author Description field.
+ */
+function rswpbs_enable_editor_for_author_description_callback() {
+    $is_pro = rswpbs_is_pro_active();
+    $checked = get_option( 'rswpbs_enable_editor_for_author_description', 0 );
+    if ($is_pro) {
+        echo '<input type="checkbox" name="rswpbs_enable_editor_for_author_description" value="1" ' . checked( 1, $checked, false ) . ' />';
+    }else{
+        echo '<input type="checkbox" disabled />';
+        echo ' <span style="color: red;">' . esc_html__( 'Available in Pro version only.', 'rswpbs' ) . '</span>';
+        echo ' <a href="'.esc_url('https://rswpthemes.com/rs-wp-book-showcase-wordpress-plugin/').'" target="_blank">' . esc_html__( 'Upgrade to Pro', 'rswpbs' ) . '</a>';
+    }
+}
+
+/**
+ * Callback for WooCommerce features for books field.
+ */
+function rswpbs_enable_woo_features_for_books_callback() {
+    $is_pro = rswpbs_is_pro_active(); // Assuming you define this constant in the Pro version
+    $checked = get_option( 'rswpbs_enable_woo_features_for_books', 0 );
+
+    if ( $is_pro ) {
+        echo '<input type="checkbox" name="rswpbs_enable_woo_features_for_books" value="1" ' . checked( 1, $checked, false ) . ' />';
+    } else {
+        echo '<input type="checkbox" disabled />';
+        echo ' <span style="color: red;">' . esc_html__( 'Available in Pro version only.', 'rswpbs' ) . '</span>';
+        echo ' <a href="'.esc_url('https://rswpthemes.com/rs-wp-book-showcase-wordpress-plugin/').'" target="_blank">' . esc_html__( 'Upgrade to Pro', 'rswpbs' ) . '</a>';
+    }
+}

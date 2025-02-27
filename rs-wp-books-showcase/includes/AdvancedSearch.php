@@ -62,23 +62,20 @@ function rswpbs_static_search_string($params = array()) {
 }
 
 function rswpbs_search_query_args(){
-    $showNameField = true;
-    $showAuthorField = true;
-    $showCategoryField = true;
-    $showSeriesField = true;
-    $showFormatsField = true;
-    $showYearsField = true;
-    $ShowResetIcon = true;
-    $showPublishersField = true;
+    $showNameField = get_option( 'rswpbs_show_name_field' ,1);
+    $showAuthorField = false;
+    $showCategoryField = get_option( 'rswpbs_show_category_field' ,1);
+    $showSeriesField = false;
+    $showFormatsField = get_option( 'rswpbs_show_formats_field' ,1);
+    $showYearsField = get_option( 'rswpbs_show_years_field' ,1);
+    $ShowResetIcon = false;
+    $showPublishersField = false;
+
     if (class_exists('Rswpbs_Pro')) {
-        $showNameField = get_field( 'show_name_field' ,'option');
-        $showAuthorField = get_field( 'show_author_field' ,'option');
-        $showCategoryField = get_field( 'show_category_field' ,'option');
-        $showSeriesField = get_field( 'show_series_field' ,'option');
-        $showFormatsField = get_field( 'show_formats_field' ,'option');
-        $showYearsField = get_field( 'show_years_field' ,'option');
-        $ShowResetIcon = get_field( 'show_reset_icon' ,'option');
-        $showPublishersField = get_field( 'show_publishers_field' ,'option');
+        $showAuthorField = get_option( 'rswpbs_show_author_field' ,1);
+        $showSeriesField = get_option( 'rswpbs_show_series_field' ,1);
+        $ShowResetIcon = get_option( 'rswpbs_show_reset_icon' ,1);
+        $showPublishersField = get_option( 'rswpbs_show_publishers_field' ,1);
     }
 
     $search_fields = rswpbs_search_fields();

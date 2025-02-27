@@ -1,0 +1,22 @@
+{
+  "name": "book-gallery",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "wp-scripts build",
+    "start": "wp-scripts start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "@wordpress/block-editor": "^14.13.0",
+    "@wordpress/blocks": "^14.7.0",
+    "@wordpress/components": "^29.4.0",
+    "@wordpress/element": "^6.18.0",
+    "@wordpress/scripts": "^30.11.0"
+  }
+}

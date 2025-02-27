@@ -29,23 +29,16 @@ function rswpbs_book_series_page_shortcode($atts){
 	$showBookDescription = 'true';
 	$showBuyNowBtn = 'true';
 	if (class_exists('Rswpbs_Pro')) {
-		$showSearchSection = get_field('show_search_section', 'option');
-		$showSearchSection =  ($showSearchSection === NULL || $showSearchSection === true) ? 'true' : 'false';
-		$bookPerPage = get_field('books_per_page', 'option');
-		$show_sorting_section = get_field('show_sorting_section', 'option');
-		$show_sorting_section = ($show_sorting_section === NULL || $show_sorting_section === true) ? 'true' : 'false';
-		$bookCoverPosition = get_field('book_cover_position', 'option');
-		$booksPerRow = get_field('books_per_row', 'option');
-	    $showBookTItle = get_field('show_book_title', 'option');
-	    $showBookTItle = ($showBookTItle === NULL || $showBookTItle === true) ? 'true' : 'false';
-	    $showBookAuthor = get_field('show_author_name', 'option');
-	    $showBookAuthor = ($showBookAuthor === NULL || $showBookAuthor === true) ? 'true' : 'false';
-	    $showBookPrice = get_field('show_price', 'option');
-	    $showBookPrice = ($showBookPrice === NULL || $showBookPrice === true) ? 'true' : 'false';
-	    $showBookDescription = get_field('show_description', 'option');
-	    $showBookDescription = ($showBookDescription === NULL || $showBookDescription === true) ? 'true' : 'false';
-	    $showBuyNowBtn = get_field('show_buy_now_button', 'option');
-	    $showBuyNowBtn = ($showBuyNowBtn === NULL || $showBuyNowBtn === true) ? 'true' : 'false';
+		$showSearchSection = rswpbs_show_archive_page_search();
+		$bookPerPage = rswpbs_archive_page_books_per_page();
+		$show_sorting_section = rswpbs_show_archive_page_sorting();
+		$bookCoverPosition = rswpbs_archive_page_book_cover_position();
+		$booksPerRow = rswpbs_archive_page_books_per_row();
+	    $showBookTItle = rswpbs_show_archive_page_book_title();
+	    $showBookAuthor = rswpbs_show_archive_page_book_author();
+	    $showBookPrice = rswpbs_show_archive_page_book_price();
+	    $showBookDescription = rswpbs_show_archive_page_book_description();
+	    $showBuyNowBtn = rswpbs_show_archive_page_book_buy_button();
 	}
 
 	?>
@@ -54,8 +47,8 @@ function rswpbs_book_series_page_shortcode($atts){
 			<div class="rswpbs-book-category-container-inner">
 				<?php
 				$showBookArchivePageHeader = true;
-				if (class_exists('Rswpbs_Pro') && function_exists('get_field')) {
-					$showBookArchivePageHeader = get_field('show_book_archive_page_header', 'option');
+				if (class_exists('Rswpbs_Pro')) {
+					$showBookArchivePageHeader = get_option('rswpbs_show_book_archive_page_header', 1);
 				}
 				$descriptions = $currentCatObj->description;
 				if (true == $showBookArchivePageHeader) :

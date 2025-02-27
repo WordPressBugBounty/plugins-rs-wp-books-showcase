@@ -8,8 +8,8 @@ function rswpbs_book_single_shortcode($atts) {
 	);
 	$showContentSection = true;
 	if (class_exists('Rswpbs_Pro')) {
-		$showContentSection = get_field('show_book_long_description', 'option');
-		$showContentSection = ($showContentSection === NULL || $showContentSection === true) ? 'true' : 'false';
+		$showContentSection = get_option('rswpbs_show_book_long_description', 1);
+		$showContentSection = ($showContentSection === NULL || $showContentSection == true) ? 'true' : 'false';
 	}
 	ob_start();
 	do_action('rswpbs_book_page_before');

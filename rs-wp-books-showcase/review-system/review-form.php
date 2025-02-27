@@ -4,13 +4,13 @@
  */
 function rswpbs_check_reviewer_permision(){
     $getReviewPermission = false;
-    if (class_exists('Rswpbs_Pro') && function_exists('get_field')) {
-      $getReviewPermission = get_field('submit_review_without_login', 'option');
+    if (class_exists('Rswpbs_Pro')) {
+      $getReviewPermission = get_option('rswpbs_submit_review_without_login', 0);
     }
     $allowLoggedOutUserToSubmitReview = false;
-    if ( $getReviewPermission === true ) {
+    if ( $getReviewPermission == true ) {
         $allowLoggedOutUserToSubmitReview = true;
-    } elseif ( $getReviewPermission === false ) {
+    } elseif ( $getReviewPermission == false ) {
         if (is_user_logged_in()) {
           $allowLoggedOutUserToSubmitReview = true;
         }else{
@@ -40,7 +40,7 @@ function rswpbs_review_form_callback(){
   	<div class="review-section-title">
 	    <h3><?php echo rswpbs_static_text_submit_your_review(); ?>
       <?php
-      if ( false === rswpbs_check_reviewer_permision() ) {
+      if ( false == rswpbs_check_reviewer_permision() ) {
         echo sprintf('<small>%1$s <a href="%3$s">%2$s</a></small>',
           rswpbs_static_text_not_allowed_for_review(),
           rswpbs_static_text_log_in(),
@@ -155,11 +155,9 @@ add_action('rswpbs_book_page_after', 'rswpbs_book_review_form', 15);
 function rswpbs_book_review_form(){
   $showReviewForm = true;
   if (class_exists('Rswpbs_Pro')) {
-    $showReviewForm = get_field('show_review_form', 'option');
-  }else{
-    $showReviewForm = true;
+    $showReviewForm = get_option('rswpbs_show_review_form', 1);
   }
-  if ( true === $showReviewForm ) :
+  if ( true == $showReviewForm ) :
     ?>
     <div class="rswpbs-book-review-form-area">
       <div class="rswpbs-container">

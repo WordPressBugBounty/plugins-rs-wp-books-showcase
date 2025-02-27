@@ -7,17 +7,17 @@ function rswpbs_remove_woocommerce_meta_box_for_books() {
 }
 add_action('add_meta_boxes', 'rswpbs_remove_woocommerce_meta_box_for_books', 40);
 
-add_action('add_meta_boxes', 'rswpbs_product_downloadable_meta_box');
-function rswpbs_product_downloadable_meta_box() {
-    add_meta_box(
-        'custom-downloadable-meta-box',
-        __('Downloadable Data', 'woocommerce'),
-        'rswpbs_product_downloadable_meta_box_output',
-        'book',
-        'normal',
-        'high'
-    );
-}
+// add_action('add_meta_boxes', 'rswpbs_product_downloadable_meta_box');
+// function rswpbs_product_downloadable_meta_box() {
+//     add_meta_box(
+//         'custom-downloadable-meta-box',
+//         __('Downloadable Data', 'woocommerce'),
+//         'rswpbs_product_downloadable_meta_box_output',
+//         'book',
+//         'normal',
+//         'high'
+//     );
+// }
 
 function rswpbs_product_downloadable_meta_box_output($post) {
     // Retrieve existing values
@@ -35,13 +35,6 @@ function rswpbs_product_downloadable_meta_box_output($post) {
                 <a target="_blank" href="<?php echo esc_url('https://rswpthemes.com/rs-wp-book-showcase-wordpress-plugin/'); ?>" class="pro_badge"><?php esc_html_e('Upgrade To Pro', 'rswpbs'); ?></a>
             </div>
         </div>
-        <div class="rswpbs-row mb-3">
-            <div class="rswpbs-col-md-10">
-                <div class="book-field-container">
-                   <p class="m-0" style="font-size: 20px;"><?php esc_html_e('Once payment for this book is complete, these downloadable files will be available for you in your WooCommerce account under \'My Account > Downloads\'. Note: This feature is included in RS WP Book Showcase Pro', 'rswpbs'); ?></p>
-                </div>
-            </div>
-        </div>
         <?php
     }elseif(class_exists('Rswpbs_Pro') && !function_exists('rswpthemes_cptwoointegration')) {
         ?>
@@ -55,7 +48,6 @@ function rswpbs_product_downloadable_meta_box_output($post) {
         <?php
     }
     ?>
-
     <div class="rswpbs-row mb-3">
     	<div class="rswpbs-col-md-12">
     		<div class="book-field-container">

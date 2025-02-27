@@ -156,3 +156,4 @@ function rswpbs_book_added_to_cart_notice() {
 	</div>
     <?php
 }
+

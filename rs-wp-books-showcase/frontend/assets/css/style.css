@@ -793,6 +793,17 @@ a.rswpthemes-book-buy-now-button:hover {
     border: 1px solid #f1f1f1;
 }
 
+.rswpthemes-book-overview .a-text-italic {
+    font-style: italic;
+}
+
+.rswpthemes-book-overview ul.a-unordered-list,
+.rswpthemes-book-overview ul {
+    margin-bottom: 20px !important;!i;!;!i;!;
+}
+
+.rswpthemes-book-overview span.a-text-bold {font-weight: 700;}
+
 .rswpthemes-book-overview-section .rswpthemes-book-overview {
     color: #444;
 }
@@ -906,7 +917,10 @@ span.rswpthemes-arrow-down {
 .rswpthemes-search-form .search-field input[type=submit] {
     border-radius: 0;
 }
-
+.rswpthemes-search-form.rswpbs-row.rswpbs-free-search-form-row > div {
+    max-width: 20% !important;!i;!;
+    flex: 0 0 20%;
+}
 .rswpthemes-search-form .search-field input[type=submit],
 .rswpthemes-search-form .search-field input[type=submit]:hover {
     background: #39b152;
@@ -1355,7 +1369,7 @@ body.theme-book-author-template section.footer-content.footer-top-area .footer-s
 .rswpbs-review-form-field input[type="submit"] {
     height: 40px;
     border: 0;
-    width: 100px;
+    width: auto;
     text-transform: capitalize;
     font-size: 16px;
     cursor: pointer;
@@ -1365,7 +1379,9 @@ body.theme-book-author-template section.footer-content.footer-top-area .footer-s
     font-size: 24px;
     color: #ccc;
 }
-
+.rswpbs-review-form-field .stars p.stars {
+    display: none;
+}
 .rswpbs-review-form-field .stars i {
     cursor: pointer;
 }

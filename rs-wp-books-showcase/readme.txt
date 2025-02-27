@@ -3,7 +3,7 @@ Contributors: rswpthemes
 Tags: wordpress books gallery plugin, wordpress book library plugin, book showcase plugin, online books gallery plugin wordpress, WordPress book review plugin
 Requires at least: 5.2
 Tested up to: 6.7
-Stable tag: 6.7.16
+Stable tag: 6.7.17
 Requires PHP: 7.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -575,3 +575,16 @@ Install RS WP Book Showcase as a regular WordPress plugin. Here are different wa
 
 = 6.7.16 - Feb 11, 2025 ==
 * Solved Fatal Error for rswpthemes send email
+
+= 6.7.17 - Feb 27, 2025 ==
+* Added Settings Page In Free Version.
+* Unlocked all Pro Meta Fields for free
+* Added Import Books From Json Feature.
+* Converted ACF Fields To Native Meta Fields API and Settings API
+* Added Book Gallery Gutenberg Block
+* Converted Repeater ACF Fields Native Meta Fields
+* Added ACF to Native API migration option in Pro.
+* Disabled Books Archive Page
+* Added Option to setup book Gallery page from admin notice
+* Added 404 Not Found Detector and Asked to save permalinks
+
