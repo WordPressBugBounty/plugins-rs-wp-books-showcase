@@ -11,22 +11,23 @@ function rswpbs_amz_admin_notice() {
     if (!$dismissed_time || (time() - $dismissed_time) > 86400) { // 86400 seconds = 24 hours
         ?>
         <div class="notice notice-info is-dismissible rswpbs-amz-admin-notice">
-            <h3 class="amz-notice-heading"><?php esc_html_e('🚀 Boost Your Earnings & Expand Your Book Collection!', 'rswpbs'); ?></h3>
-            <p>
-                <?php
-                esc_html_e('You can now import more books from Amazon and monetize your website by inserting your ', 'rswpbs');
-                echo '<strong>' . esc_html__('Amazon Tracking ID', 'rswpbs') . '</strong>. ';
-                esc_html_e('This allows you to ', 'rswpbs');
-                echo '<strong>' . esc_html__('earn a commission', 'rswpbs') . '</strong> ';
-                esc_html_e('every time a visitor clicks on a book link and makes a purchase on Amazon.', 'rswpbs');
-                ?>
+            <h3 class="amz-notice-heading"><?php echo esc_html__('🚀 Effortless Book Catalog + Affiliate Earnings! 📚💰', 'rswpbs'); ?></h3>
+            <p class="amz-notice-sub-heading"><strong>
+                <?php echo esc_html__('Want to monetize your website effortlessly? Now, you can import 1,000+ books from Amazon to your website site in just 10 minutes – no manual work needed!', 'rswpbs'); ?></strong>
             </p>
             <ul>
-                <li><?php esc_html_e('✔️ Increase book listings on your website effortlessly', 'rswpbs'); ?></li>
-                <li><?php esc_html_e('✔️ Monetize your book links with your Amazon Tracking ID', 'rswpbs'); ?></li>
-                <li><?php esc_html_e('✔️ Earn commissions on every sale generated from your site', 'rswpbs'); ?></li>
+                <li><?php echo esc_html__('✅ ', 'rswpbs'); ?><strong><?php echo esc_html__('Instant Book Catalog –', 'rswpbs'); ?></strong> <?php echo esc_html__('Add hundreds (or thousands) of books with just a few clicks. No need to manually enter titles, descriptions, or images!', 'rswpbs'); ?></li>
+
+                <li><?php echo esc_html__('✅ ', 'rswpbs'); ?><strong><?php echo esc_html__('Earn Commissions Automatically –', 'rswpbs'); ?></strong> <?php echo esc_html__('Insert your Amazon Tracking ID and earn every time someone buys a book through your website.', 'rswpbs'); ?></li>
+
+                <li><?php echo esc_html__('✅ ', 'rswpbs'); ?><strong><?php echo esc_html__('Works for Any Niche –', 'rswpbs'); ?></strong> <?php echo esc_html__('Whether your site is about business, fitness, self-improvement, cooking, tech, or anything else, you can recommend relevant books to your audience.', 'rswpbs'); ?></li>
+
+                <li><?php echo esc_html__('✅ ', 'rswpbs'); ?><strong><?php echo esc_html__('The Bigger Your Catalog, The More You Earn –', 'rswpbs'); ?></strong> <?php echo esc_html__('A large book collection = higher chances of sales & commissions!', 'rswpbs'); ?></li>
+
+                <li><?php echo esc_html__('✅ ', 'rswpbs'); ?><strong><?php echo esc_html__('No Tech Skills Needed –', 'rswpbs'); ?></strong> <?php echo esc_html__('Set up everything easily with our step-by-step video guide included in the Import Books from Amazon page.', 'rswpbs'); ?></li>
             </ul>
-            <p><strong><?php esc_html_e('Take advantage of this feature today!', 'rswpbs'); ?></strong></p>
+
+            <p><strong><?php echo esc_html__('Get Started in Just a Few Clicks!', 'rswpbs'); ?></strong></p>
             <div class="rswpbs-amz-admin-notice-btn-wrapper">
                 <a href="<?php echo esc_url(admin_url('edit.php?post_type=book&page=rswpbs-settings')); ?>" class="button button-primary">
                     <?php esc_html_e('Enter Tracking ID', 'rswpbs'); ?>
@@ -35,6 +36,7 @@ function rswpbs_amz_admin_notice() {
                     <?php esc_html_e('Import Books from Amazon', 'rswpbs'); ?>
                 </a>
             </div>
+            <p><strong><?php echo esc_html__('💰 Start building your book catalog today and turn your website into a passive income machine!', 'rswpbs'); ?></strong></p>
         </div>
         <script type="text/javascript">
             jQuery(document).ready(function($) {

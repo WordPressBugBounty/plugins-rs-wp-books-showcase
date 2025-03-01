@@ -3,7 +3,7 @@ Contributors: rswpthemes
 Tags: wordpress books gallery plugin, wordpress book library plugin, book showcase plugin, online books gallery plugin wordpress, WordPress book review plugin
 Requires at least: 5.2
 Tested up to: 6.7
-Stable tag: 6.7.18
+Stable tag: 6.7.19
 Requires PHP: 7.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -592,3 +592,6 @@ Install RS WP Book Showcase as a regular WordPress plugin. Here are different wa
 * Added Import Amazon Books Into WordPress Video Tutorial.
 * Added Amazon Tracking ID field.
 * Added Admin Notice For import books from amazon.
+
+= 6.7.19 - March 01, 2025 ==
+* Improved Admin Notice

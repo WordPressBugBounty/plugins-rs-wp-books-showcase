@@ -760,3 +760,13 @@ input.regular-text.amz-trcking-input-free {
 p.amz-trcking-id-description {
     display: inline-block;
 }
+p.amz-notice-sub-heading {
+    font-size: 14px;
+}
+.notice.notice-info.is-dismissible.rswpbs-amz-admin-notice p {
+    font-size: 14px;
+}
+.notice.notice-info.is-dismissible.rswpbs-amz-admin-notice ul li {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
