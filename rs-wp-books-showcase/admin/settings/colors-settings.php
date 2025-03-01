@@ -50,7 +50,7 @@ function rswpbs_colors_page() {
     ?>
     <div class="wrap">
         <h1><?php esc_html_e( 'RS WP Book Showcase Settings', 'rswpbs' ); ?></h1>
-        <?php rswp_book_showcase_settings_tabs( 'colors' ); ?>
+        <?php rswpbs_settings_tabs( 'colors' ); ?>
         <form method="post" action="options.php">
             <?php
             settings_fields( 'rswpbs_colors_settings_group' );

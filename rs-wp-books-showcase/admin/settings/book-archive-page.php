@@ -37,7 +37,7 @@ function rswp_book_showcase_books_archive_page() {
     <div class="wrap rswpbs-archive-page-setting-tab">
         <h1><?php esc_html_e('RS WP Book Showcase Settings', 'rswpbs'); ?></h1>
         <?php
-        rswp_book_showcase_settings_tabs( 'books_archive' );
+        rswpbs_settings_tabs( 'books_archive' );
         ?>
         <h2 class="rswpbs-subtitle">Book Archive Page Settings</h2>
         <p class="rswpbs-subdescription">This Settings will apply to Book Category, Author, and Series Archive Pages</p>

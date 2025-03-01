@@ -3,7 +3,7 @@
  * Plugin Name:       RS WP Books Showcase
  * Plugin URI:        https://rswpthemes.com/rs-wp-books-showcase-wordpress-plugin/
  * Description:       Premier WordPress book gallery plugin, offering advanced search options and multiple layouts for effortless book showcasing.
- * Version:           6.7.17
+ * Version:           6.7.18
  * Requires at least: 4.9
  * Requires PHP:      7.1
  * Author:            RS WP THEMES
@@ -301,7 +301,6 @@ function disable_block_editor_for_page_post_type( $use_block_editor, $post_type 
         return ( 'book' === $post_type ) ? false : $use_block_editor;
 }
 
-
 function rswpbs_modify_amazon_url($url, $affiliate_tag = 'lft01-20') {
     // Parse the URL
     $parsed_url = parse_url($url);
@@ -311,20 +310,22 @@ function rswpbs_modify_amazon_url($url, $affiliate_tag = 'lft01-20') {
         return $url; // Not an Amazon URL
     }
 
+    // Remove trailing slash from the path if it exists
+    $clean_path = rtrim($parsed_url['path'], '/');
+
     // Parse query parameters
     parse_str($parsed_url['query'] ?? '', $query_params);
 
-    // Check if 'tag' (affiliate tracking) exists
+    // Check if 'tag' (affiliate tracking) exists, if not, add it
     if (!isset($query_params['tag'])) {
-        // Add your affiliate tracking ID
         $query_params['tag'] = $affiliate_tag;
     }
 
     // Rebuild the query string
     $new_query = http_build_query($query_params);
 
-    // Reconstruct the full URL
-    $new_url = "{$parsed_url['scheme']}://{$parsed_url['host']}{$parsed_url['path']}?" . $new_query;
+    // Reconstruct the full URL without trailing slash
+    $new_url = "{$parsed_url['scheme']}://{$parsed_url['host']}{$clean_path}?" . $new_query;
 
     return $new_url;
 }

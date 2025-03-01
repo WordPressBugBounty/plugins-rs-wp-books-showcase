@@ -7,6 +7,12 @@ if ( $apiKeyRegistered && $emailAlreadySent ) {
 
 add_action('admin_init', 'rswpbs_control_optin_notice');
 function rswpbs_control_optin_notice() {
+
+    // delete_option('rswpthemes_optin_email_sent');
+    // delete_option('rswpthemes_api_key_registered');
+    // delete_option('rswpbs_optin_success');
+    // delete_transient('hide_notice_for_3_days');
+
     $optin_success = get_option('rswpbs_optin_success');
     $hide_notice_transient = get_transient('hide_notice_for_3_days');
 
@@ -70,15 +76,17 @@ function rswpbs_optin_notice() {
             <div class="rs-wp-book-showase-optin-inner">
                 <div class="rs-wp-book-showase-opt-in-logo-col">
                     <div class="rs-wp-book-showcase-logo">
-                        <img src="<?php echo esc_url( RSWPBS_PLUGIN_URL . 'includes/assets/img/rs-wp-book-showcase-logo.png' );?>" alt="<?php esc_attr_e('RS WP BOOK SHOWCASE', 'rswpbs');?>">
+                        <img src="<?php echo esc_url( RSWPBS_PLUGIN_URL . 'admin/assets/img/rs-wp-book-showcase-logo.png' );?>" alt="<?php esc_attr_e('RS WP BOOK SHOWCASE', 'rswpbs');?>">
                     </div>
                 </div>
                 <div class="rs-wp-book-showase-opt-in-content-col">
                     <h4><?php esc_html_e( 'Love using RS WP BOOK SHOWCASE?', 'rswpbs' );?></h4>
                     <p><?php esc_html_e('Become a super contributor by opting in to share non-sensitive plugin data and to receive periodic email updates from us.', 'rswpbs'); ?></p>
-                    <a href="?opt_in_success" id="yes-i-would-love-to" class="button button-primary"><?php esc_html_e('Sure! I\'d love to help', 'rswpbs'); ?></a>
-                    <a href="?opt_in_unsuccess" id="no-thank-you" class="button"><?php esc_html_e( 'No Thanks', 'rswpbs' );?></a>
-                    <a href="<?php echo esc_url('https://rswpthemes.com/rs-wp-books-showcase-wordpress-plugin/');?>" id="upgrade-to-pro" class="button"><?php esc_html_e( 'Upgrade To Pro', 'rswpbs' );?></a>
+                    <div class="opt-in-buttons-wrapper">
+                        <a href="?opt_in_success" id="yes-i-would-love-to" class="button button-primary"><?php esc_html_e('Sure! I\'d love to help', 'rswpbs'); ?></a>
+                        <a href="?opt_in_unsuccess" id="no-thank-you" class="button"><?php esc_html_e( 'No Thanks', 'rswpbs' );?></a>
+                        <a href="<?php echo esc_url('https://rswpthemes.com/rs-wp-books-showcase-wordpress-plugin/');?>" id="upgrade-to-pro" class="button"><?php esc_html_e( 'Upgrade To Pro', 'rswpbs' );?></a>
+                    </div>
                 </div>
             </div>
         </div>

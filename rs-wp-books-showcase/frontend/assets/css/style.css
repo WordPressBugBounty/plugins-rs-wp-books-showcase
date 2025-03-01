@@ -1762,7 +1762,10 @@ body.custom-background .rswpbs-book-reviews-area .section-title-area .section-ti
     margin-bottom: 0;
     padding: 2px;
 }
-
+.slick-slide > div.rswpthemes-book-container {
+    display: block;
+    width: 100%;
+}
 .rswpbs-book-slider.featured-slider .book-list-layout .book-title {
     font-size: 46px;
     line-height: 60px;

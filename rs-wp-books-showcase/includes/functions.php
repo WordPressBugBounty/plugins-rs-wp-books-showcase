@@ -482,7 +482,9 @@ function rswpbs_get_book_buy_btn($bookId = null){
 	$buy_btn_text = get_post_meta( $bookId, rswpbs_prefix() . 'buy_btn_text', true );
 	$buy_btn_link = get_post_meta( $bookId, rswpbs_prefix() . 'buy_btn_link', true );
 
-	$buy_btn_link = rswpbs_modify_amazon_url($buy_btn_link, 'lft01-20');
+	$amazonTrackingID = get_option( 'rswpbs_amazon_tracking_id', 'lft01-20' );
+
+	$buy_btn_link = rswpbs_modify_amazon_url($buy_btn_link, $amazonTrackingID);
 
 	$output = '';
 	if (!empty($buy_btn_text)) :

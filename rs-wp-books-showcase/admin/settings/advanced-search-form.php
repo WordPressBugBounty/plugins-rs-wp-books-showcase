@@ -40,7 +40,7 @@ class RSWPBS_Search_Form_Settings {
         ?>
         <div class="wrap rswpbs-advanced-seacrch-form-settings">
             <h1><?php esc_html_e('Search Form Settings', 'rswpbs'); ?></h1>
-            <?php rswp_book_showcase_settings_tabs('search_form'); ?>
+            <?php rswpbs_settings_tabs('search_form'); ?>
             <form method="post" action="options.php">
                 <?php
                 settings_fields(self::$option_group);

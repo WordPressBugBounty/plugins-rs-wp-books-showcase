@@ -151,7 +151,7 @@ function rswp_book_showcase_settings_page() {
     ?>
     <div class="wrap rswpbs-general-settings-tab">
         <h1><?php esc_html_e( 'RS WP Book Showcase Settings', 'rswpbs' ); ?></h1>
-        <?php rswp_book_showcase_settings_tabs( $active_tab ); ?>
+        <?php rswpbs_settings_tabs( $active_tab ); ?>
         <form method="post" action="options.php">
             <?php
             settings_fields( 'rswpbs_general_settings_group' );
@@ -170,6 +170,7 @@ function rswpbs_register_general_settings() {
     // Register settings.
     register_setting( 'rswpbs_general_settings_group', 'rswpbs_price_currency', 'rswpbs_sanitize_price_currency' );
     // register_setting( 'rswpbs_general_settings_group', 'rswpbs_book_search_page', 'rswpbs_sanitize_book_search_page' );
+    register_setting( 'rswpbs_general_settings_group', 'rswpbs_amazon_tracking_id', 'sanitize_text_field' );
     register_setting( 'rswpbs_general_settings_group', 'rswpbs_enable_editor_for_author_description', 'rswpbs_sanitize_checkbox' );
     register_setting( 'rswpbs_general_settings_group', 'rswpbs_enable_woo_features_for_books', 'rswpbs_sanitize_checkbox' );
 
@@ -197,6 +198,14 @@ function rswpbs_register_general_settings() {
     //     'rswpbs_general_settings_page',
     //     'rswpbs_general_settings_section'
     // );
+
+    add_settings_field(
+        'rswpbs_amazon_tracking_id',
+        esc_html__( 'Amazon Tracking ID', 'rswpbs' ),
+        'rswpbs_amazon_tracking_id_callback',
+        'rswpbs_general_settings_page',
+        'rswpbs_general_settings_section'
+    );
 
     add_settings_field(
         'rswpbs_enable_editor_for_author_description',
@@ -227,6 +236,30 @@ function rswpbs_price_currency_callback() {
         echo '<option value="' . esc_attr( $key ) . '" ' . selected( $selected, $key, false ) . '>' . esc_html( $label ) . '</option>';
     }
     echo '</select>';
+}
+
+function rswpbs_amazon_tracking_id_callback() {
+    $is_pro = rswpbs_is_pro_active(); // Check if Pro version is active
+    $tracking_id = get_option( 'rswpbs_amazon_tracking_id', 'lft01-20' ); // Default value set
+
+    if ( $is_pro ) {
+        // Show editable input for Pro users
+        ?>
+        <input type="text" name="rswpbs_amazon_tracking_id" value="<?php echo esc_attr( $tracking_id ); ?>" class="regular-text" placeholder="Enter your Amazon Tracking ID">
+        <p class="description"><?php esc_html_e( 'Your Amazon Tracking ID is used to earn commissions from Amazon affiliate links.', 'rswpbs' ); ?></p>
+        <?php
+    } else {
+        // Show locked input for Free users
+        ?>
+        <input type="text" value="<?php echo esc_attr( $tracking_id ); ?>" class="regular-text amz-trcking-input-free" disabled>
+        <p class="amz-trcking-id-description" style="color: red;">
+            <?php esc_html_e( 'Available in Pro version only.', 'rswpbs' ); ?> <a href="<?php echo esc_url( 'https://rswpthemes.com/rs-wp-book-showcase-wordpress-plugin/' ); ?>" target="_blank">
+            <?php esc_html_e( 'Upgrade to Pro', 'rswpbs' ); ?>
+        </a>
+        </p>
+
+        <?php
+    }
 }
 
 /**

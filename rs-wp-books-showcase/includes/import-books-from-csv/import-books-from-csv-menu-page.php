@@ -18,7 +18,7 @@ function rswpbs_import_books_from_csv_page() {
         <h1>Import Books From CSV</h1>
         <?php
         // Show the settings tabs
-        rswp_book_showcase_settings_tabs('import_books_from_csv');
+        rswpbs_settings_tabs('import_books_from_csv');
 
         // Show admin notices if books are imported
         if (isset($_GET['imported'])) {

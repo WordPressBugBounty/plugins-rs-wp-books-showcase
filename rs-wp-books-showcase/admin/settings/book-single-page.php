@@ -31,8 +31,8 @@ function rswpbs_book_single_page() {
         <h1><?php esc_html_e( 'RS WP Book Showcase Single Page Settings', 'rswpbs' ); ?></h1>
         <?php
         // If you use tabs, ensure the function exists.
-        if ( function_exists( 'rswp_book_showcase_settings_tabs' ) ) {
-            rswp_book_showcase_settings_tabs( 'book_single' );
+        if ( function_exists( 'rswpbs_settings_tabs' ) ) {
+            rswpbs_settings_tabs( 'book_single' );
         }
         ?>
         <form method="post" action="options.php">
