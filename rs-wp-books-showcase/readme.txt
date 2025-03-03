@@ -1,9 +1,9 @@
-=== RS WP Book ShowCase - WordPress Book Gallery Plugin (Book Slider, Book Carousel, Book Grid, Book List))  ===
+=== RS WP Book Showcase & Library  ===
 Contributors: rswpthemes
-Tags: wordpress books gallery plugin, wordpress book library plugin, book showcase plugin, online books gallery plugin wordpress, WordPress book review plugin
+Tags: book carousel, book collection, book display, book library, book catalogue
 Requires at least: 5.2
 Tested up to: 6.7
-Stable tag: 6.7.19
+Stable tag: 6.7.20
 Requires PHP: 7.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -12,161 +12,167 @@ Premier WordPress book gallery plugin, offering advanced search options and mult
 
 == Description ==
 
-RS WP Book Showcase is the best book showcase WordPress plugin for authors, publishers, and book reviewers. This powerful book gallery plugin is designed to help you effortlessly showcase and sell your books, taking your online book business to new heights.
+**RS WP Book Showcase** is a powerful, all-in-one **WordPress book gallery plugin** designed for **authors, book reviewers, affiliate marketers, bloggers, and bookstore owners**. Whether you want to **showcase your books**, build a **book catalog**, or set up a **fully functional online bookstore**, this plugin has everything you need.
 
-With the RS WP Book Showcase, you can beautifully display all the important information about your books, including the book name, author, category, publish date, publisher name, descriptions, reviews, ratings, and more. Engage your readers with stunning book layouts, including grid, slider, and carousel options.
+## 🚀 Key Features
 
-Finding the perfect book is super easy with the advanced search form, allowing readers to search by title, author, category, and more. Plus, the sorting feature enables quick and easy browsing by title, date, and price.
+✔ **Advanced Book Showcase**
+   Display books beautifully with **customizable layouts, galleries, and a dedicated single book page**.
 
-Collect and showcase reader testimonials to build trust and credibility. Enable multiple sales links to provide convenient purchase options from popular online retailers. Display multiple formats, such as e-books, audiobooks, and physical books, with sales links and prices.
+✔ **Advanced Search & Filtering**
+   Help visitors find books effortlessly with a **powerful search form**.
 
-RS WP Book Showcase offers an intuitive user interface, seamless compatibility with all browsers and devices, regular updates to ensure optimal performance, and top-notch customer support to assist you every step of the way.
+✔ **Import Books with Ease**
+   Add books manually or **import them via CSV or directly from Amazon**.
 
-[READ MORE ABOUT RS WP BOOK SHOWCASE](https://rswpthemes.com/rs-wp-books-showcase-wordpress-plugin/) || [UPGRADE TO PRO](https://rswpthemes.com/rs-wp-books-showcase-wordpress-plugin/)
+✔ **Automatic Amazon Affiliate Tagging**
+   Enter your **Amazon Tracking ID** once, and the plugin will **automatically append it** to all Amazon book links—no need to add it manually.
 
-## **Documentations**
-**Text Documentation**
+✔ **Complete Bookstore Setup**
+   Transform your website into a **fully functional online bookstore**, with multiple purchase links and book formats.
 
- - [How To Add Books Gallery To WordPress Website](https://rswpthemes.com/how-to-add-books-gallery-to-wordpress-website/) [ 1 Easy Way ]
- - [How To Add Books To A WordPress Website](https://rswpthemes.com/how-to-add-books-to-a-wordpress-website/) [ 2 Easy Methods ]
- - [How To Add Multiple Purchase Links To A Book Page](https://rswpthemes.com/how-to-add-multiple-purchase-links-to-a-book-page-in-wordpress-using-rs-wp-books-showcase-plugin/)
+✔ **Built-in Review System**
+   Enable readers to leave reviews **just like WooCommerce**, increasing engagement and credibility.
 
-= How To Add Book To Your WordPress WebSite and Shortcodes Using Guide =
+✔ **Show Sample Content**
+   Let visitors preview a **sample chapter or excerpt** before purchasing.
+
+✔ **Multi-Language Support**
+   Easily **translate the plugin** into any language and localize your book showcase effortlessly.
+
+✔ **Book Gallery Block for Gutenberg**
+   Build and customize book galleries **seamlessly using the Gutenberg block editor**.
+
+✔ **Extensive Book Carousel**
+   Showcase selected books **anywhere on your page** using a **book carousel shortcode or Gutenberg block**.
+
+---
+**Whether you’re an author looking to showcase books, a blogger reviewing bestsellers, or an affiliate marketer building a book catalog, RS WP Book Showcase is the perfect solution.**
+---
+
+## Features Comparison
+
+### ✅ **Available in Free & Pro**
+- **Advanced Search Form** (Free: Limited, Pro: Includes all fields)
+- **Unlimited Books**
+- **Book Gallery Gutenberg Block**
+- **Book Gallery Shortcode & List Layout**
+- **Book Slider/Carousel Shortcode & Gutenberg Block**
+- **Fully Customizable Book Meta Fields**
+- **Price & Buy Now Button**
+- **Custom Taxonomies (Author, Category, Series)**
+- **Book Status Field**
+- **Customizable Price Currency**
+- **Control Over Book Archive Pages**
+- **Show/Hide Any Elements & Customize Colors**
+- **Search Form Customization** (Pro unlocks all fields)
+
+### 🔥 **Pro Only Features**
+- **Amazon Affiliate ID Integration** (Automatic Tracking ID Addition)
+- **WooCommerce Integration** (Sell Books Directly)
+- **Enable Editor for Author Descriptions**
+- **Guest Reviews (Allow Logged-Out Users)**
+- **Cart & Checkout System**
+- **Multiple Purchase Links**
+- **Show Sample Book Content**
+- **Show Multiple Formats (Price & Purchase Links)**
+- **Import Books From CSV & Amazon**
+- **Full-Width Book Slider Block**
+- **Translate All Text Fields**
+- **Add Social Media Links to Author Pages**
+
+📖 [**Discover All Features of RS WP Book Showcase**](https://rswpthemes.com/rs-wp-books-showcase-wordpress-plugin/)
+🔓 [**Unlock Pro Features**](https://rswpthemes.com/rs-wp-books-showcase-wordpress-plugin/)
+
+---
+
+## **📚 Documentation & Tutorials**
+### **Text Documentation**
+- 📌 [How To Add Books Gallery To WordPress Website](https://rswpthemes.com/how-to-add-books-gallery-to-wordpress-website/) (1 Easy Way)
+- 📌 [How To Add Books To A WordPress Website](https://rswpthemes.com/how-to-add-books-to-a-wordpress-website/) (2 Methods)
+- 📌 [How To Add Multiple Purchase Links To A Book Page](https://rswpthemes.com/how-to-add-multiple-purchase-links-to-a-book-page-in-wordpress-using-rs-wp-books-showcase-plugin/)
+
+### **Video Tutorials**
+📽 **How To Add a Book Gallery To Your Website (Free)**
 [youtube https://www.youtube.com/watch?v=fI23SU26cSs&t=4s]
 
-## How to Add Books Gallery To Your WordPress Website?
+📽 **How to Scrape Book Details From Amazon and Import to Your Website**
+[youtube https://www.youtube.com/watch?v=F88TSjXuU7o&t]
 
-To add a book gallery in your WordPress website, follow these steps:
-
-1.  **Login** to your WordPress Dashboard and Go to Plugins -> Add New from the admin menu.
-
-2.  **Search** for RS WP Book Showcase and then install and activate it.
-
-3.  **Create** a book gallery page and paste the following shortcode in that page:
-
-> [rswpbs_book_gallery books_per_page="8" books_per_row="4"
-> categories_include="false" categories_exclude="false"
-> authors_include="false" authors_exclude="false" exclude_books="false"
-> order="DESC" orderby="date" show_pagination="true" show_author="true"
-> show_title="true" title_type="title" show_image="true"
-> image_type="book_cover" image_position="top" show_excerpt="true"
-> excerpt_type="excerpt" excerpt_limit="30" show_price="true"
-> show_buy_button="true" show_msl="false" msl_title_align="center"
-> content_align="center" show_search_form="true"
-> show_sorting_form="true"]
-
-4.  **Publish** the page, and your book gallery page is ready.
-
-Learn more about [**WordPress book gallery shortcode**](https://rswpthemes.com/documentation/rs-wp-book-showcase-wordpress-book-gallery-shortcode/).
-
-= Add Book Gallery To Your WordPress Website Using Gutenberg Block (PRO) =
+📽 **How To Add A Book Gallery Using Gutenberg Block (PRO)**
 [youtube https://www.youtube.com/watch?v=84gda4bjCa0&t]
 
-= Add Book Gallery To Your WordPress Website Using Elementor Widget (PRO) =
+📽 **How To Add A Book Gallery Using Elementor (PRO)**
 [youtube https://www.youtube.com/watch?v=XiOyJ9x061E]
 
 
-## Standout features of RS WP Book Showcase WordPress Plugin
+---
 
-**Display your book’s all information**
-You can display all the important information about your book in one place. From the title, author, and publisher to the descriptions, ratings, and availability status, readers can easily access comprehensive details about your book.
+## 🚀 Why Choose RS WP Book Showcase?
 
-**Various layout options** [Pro](https://rswpthemes.com/rs-wp-books-showcase-wordpress-plugin/)
-Whether you prefer a sleek grid display, an engaging book slider, or a classic list layout, you have the freedom to showcase your books in a visually stunning and user-friendly manner. Capture your reader's attention and create a captivating browsing experience with the flexibility to choose the layout that best suits your book collection and website design.
+✔ **Regular Updates & Feature Enhancements**
+   We ensure **frequent updates** with **new features, security patches, and improved functionality**.
 
-**Advanced search form**
-With the advanced search form, users can easily search and filter books by author, title,
+✔ **Premium Customer Support**
+   Get **dedicated support** to help you set up and customize your book showcase effortlessly.
 
-publisher, and other criteria. It helps readers to find the exact book they are looking for without having to sift through multiple pages or categories. It provides a seamless and efficient user experience.
+✔ **Lightning-Fast Performance**
+   Optimized for **speed and performance**, ensuring smooth navigation and a seamless user experience.
 
-**Sorting**
-Readers can sort books alphabetically, by date, or by price, allowing them to quickly find the desired book. Whether they want to explore new releases, find the cheapest options, or browse authors, sorting simplifies the book discovery process.
-
-**Readers Testimonials**
-You can showcase feedback and reviews from readers directly on your website. It provides social proof and builds credibility, helping potential buyers make informed decisions. Also, you can moderate the testimonials and display them prominently, offering visitors valuable insights and encouraging trust in your books.
-
-**Multiple sales links** [Pro](https://rswpthemes.com/rs-wp-books-showcase-wordpress-plugin/)
-You can include links to various online bookstores and your own website, making it convenient for readers to buy the book from their preferred platform. It helps to expand the reach and potential sales avenues, ensuring a seamless buying experience for readers.
-
-**Multiple Formats** [Pro](https://rswpthemes.com/rs-wp-books-showcase-wordpress-plugin/)
-You can show your books in various formats, including e-book, audiobook, and physical book. Also, you can provide sales links and pricing for each format, enabling readers to easily purchase the book in their preferred format. It enhances accessibility and readers' satisfaction by accommodating different reading preferences.
-
-## RS WP Book Showcase [ Free Features ]
-
- - **Book Title**
- - **Publish Date**
- - **Publisher Name**
- - **Descriptions**
- - **Book Country**
- - **Book Language**
- - **Book Translator Name**
- - **Book Format**
- - **Total Book Pages**
- - **ISBN**
- - **ISBN-10**
- - **ISBN-13**
- - **ASIN**
- - **File Size ( If Ebook )**
- - **Book Dimension**
- - **Book Availability Status**
- - **Average Book Rating**
- - **Total Book Ratings**
- - **Book Rating Links**
- - **Price**
- - **Buy Now Button**
-
-## RS WP Book Showcase [ Pro Features ]
-
-- **Change All Static Text** [Pro](rswpthemes.com/rs-wp-books-showcase-wordpress-plugin/)
-- **Multiple Sales Links** [Pro](rswpthemes.com/rs-wp-books-showcase-wordpress-plugin/)
-- **Books Formats With Links** [Pro](rswpthemes.com/rs-wp-books-showcase-wordpress-plugin/)
-- **Collect & Show Readers Feedback** [Pro](rswpthemes.com/rs-wp-books-showcase-wordpress-plugin/)
-- **Books Full Width Slider** [Pro](rswpthemes.com/rs-wp-books-showcase-wordpress-plugin/)
-- **Book Carousel** [Pro](rswpthemes.com/rs-wp-books-showcase-wordpress-plugin/)
-- **Advanced Colour Schemes** [Pro](rswpthemes.com/rs-wp-books-showcase-wordpress-plugin/)
-- **Books Archive Pages** [Pro](rswpthemes.com/rs-wp-books-showcase-wordpress-plugin/)
-- **Advanced Search Filter** [Pro](rswpthemes.com/rs-wp-books-showcase-wordpress-plugin/)
-- **Elementor Widget** [Pro](rswpthemes.com/rs-wp-books-showcase-wordpress-plugin/)
-- **File Format (If Ebook)** [Pro](rswpthemes.com/rs-wp-books-showcase-wordpress-plugin/)
-- **Text-to-Speech** [Pro](rswpthemes.com/rs-wp-books-showcase-wordpress-plugin/)
-- **Screen Reader** [Pro](rswpthemes.com/rs-wp-books-showcase-wordpress-plugin/)
-- **Enhanced typesetting** [Pro](rswpthemes.com/rs-wp-books-showcase-wordpress-plugin/)
-- **X-Ray** [Pro](rswpthemes.com/rs-wp-books-showcase-wordpress-plugin/)
-- **Word Wise** [Pro](rswpthemes.com/rs-wp-books-showcase-wordpress-plugin/)
-- **Sticky notes** [Pro](rswpthemes.com/rs-wp-books-showcase-wordpress-plugin/)
-- **Print length** [Pro](rswpthemes.com/rs-wp-books-showcase-wordpress-plugin/)
+✔ **Seamless Elementor Integration**
+   Use **Elementor’s drag-and-drop builder** to design and customize book showcases effortlessly.
 
 
-## Why love RS WP Book Showcase WordPress Plugin?
+---
 
-**Regular updates**
-Our plugin is regularly updated, ensuring you have access to the newest features, enhanced security, improved functionality, and seamless compatibility.
+## **🎭 Most Compatible Themes for This Plugin**
 
-**Top-notch customer support**
-Our dedicated team is committed to providing exceptional customer support, ensuring that you receive prompt and effective assistance whenever you need it.
+- [**Author Portfolio Pro Theme**](https://rswpthemes.com/author-portfolio-pro-wordpress-theme/)
+  **The ultimate WordPress theme for authors, writers, publishers, and bloggers.**
+  SEO-optimized, responsive, and built for **book showcases**.
 
-**Lightning-fast**
-Enjoy lightning-fast loading speed, ensuring your website and book content are delivered swiftly, creating a seamless browsing experience for your readers.
+- [**Book Author Blog WordPress Theme (Free)**](https://rswpthemes.com/book-author-blog-wordpress-theme/)
+- [**Author Personal Blog WordPress Theme (Free)**](https://rswpthemes.com/author-personal-blog-wordpress-theme/)
+- [**Writers Portfolio WordPress Theme (Free)**](https://rswpthemes.com/writers-portfolio-wordpress-theme/)
+- [**Book Review Blog WordPress Theme (Free)**](https://wordpress.org/themes/book-review-blog/)
+- [**Book Author Template WordPress Theme (Free)**](https://wordpress.org/themes/book-author-template/)
 
-**Elementor**
-Seamless integration of the RS WP Book Showcase plugin with the Elementor page builder allows to design and customize book showcase sections using Elementor's drag-and-drop interface, giving full control over the layout and design of the book displays.
+
+== Frequently Asked Questions ==
+
+= How do I add a book gallery? =
+You can add a book gallery using the **Gutenberg block, shortcode, or Elementor widget**.
+
+= Does this plugin support Amazon Affiliate links? =
+Yes! You can enter your **Amazon Tracking ID** once, and all Amazon book links will automatically have your affiliate tag added.
+
+= Can I import books from Amazon? =
+Yes! The **Pro version** allows you to import books from **Amazon and CSV files**.
+
+= Does this plugin work with WooCommerce? =
+Yes! You can enable **WooCommerce integration** in the **Pro version** to sell books directly. Even if you already have a WooCommerce store selling other products, you can still sell books separately without affecting your existing store setup. Books will not appear on default WooCommerce shop pages, but they will be fully integrated with the **cart, checkout, and order system**. Additionally, you can add **downloadable book files**, allowing customers to download them instantly after completing payment.
 
 
-## Most Compatible Themes For This Plugin
+== Donate ==
+If you love this plugin and want to support its development, you can donate here:
+[Buy Me a Coffee](https://buymeacoffee.com/aalimran07)
 
- - [**Author Portfolio Pro
-   Theme**](https://rswpthemes.com/author-portfolio-pro-wordpress-theme/)
+== Screenshots ==
 
-    Author Portfolio Pro is the ultimate WordPress theme for authors, writers, publishers, and bloggers. Showcase your work, create stunning book galleries, and customize your site with ease. With SEO optimization, responsive design, and dedicated support, your writing journey is about to soar.
-
- - [**Book Author Blog WordPress
-   Theme(Free)**](https://rswpthemes.com/book-author-blog-wordpress-theme/)
-
- - [**Author Personal Blog WordPress
-   Theme(Free)**](https://rswpthemes.com/author-personal-blog-wordpress-theme/)
-
- - [**Writers Portfolio WordPress
-   Theme(Free)**](https://rswpthemes.com/writers-portfolio-wordpress-theme/)
+1. **Book Grid Gallery View** – Display books in a **visually appealing grid layout**.
+2. **Book List Gallery View** – Display books in a **structured list layout** for easy browsing.
+3. **Book Details Page** – Show complete book information, including **buy buttons, reviews, and metadata**.
+4. **Book Editor Page** – Easily add and manage all book details from a user-friendly editor.
+5. **Gutenberg Blocks** – Add **book galleries, sliders, and carousels** using **Gutenberg blocks**.
+6. **WooCommerce Integration** – Sell books seamlessly with **WooCommerce support (Pro feature)**.
+7. **General Settings Page** – Configure essential plugin settings from a centralized dashboard.
+8. **Archive Settings Page** – Control the appearance and behavior of **archive, author, and taxonomy pages**.
+9. **Book Details Page Settings** – Customize the layout and elements of the **single book details page**.
+10. **Built-in Translation Support** – Easily translate all plugin text using the built-in translation settings.
+11. **Color Customization** – Adjust the colors of **all elements** to match your website's branding.
+12. **Advanced Search Form Settings** – Enable or disable search fields to refine the **book search experience**.
+13. **Import Books from CSV** – Bulk import books **from a CSV file** with ease.
+14. **Import Books from Amazon** – Fetch and import book data **directly from Amazon (Pro feature)**.
 
 
 == Installation ==
@@ -176,7 +182,7 @@ Install RS WP Book Showcase as a regular WordPress plugin. Here are different wa
 **Install by search plugin:**
 
 1. In your Admin, go to menu Plugins > Add New
-2. Search WordPress Books Gallery
+2. Search RS WP Book Showcase
 3. Click to install
 4. Activate the plugin
 
@@ -595,3 +601,7 @@ Install RS WP Book Showcase as a regular WordPress plugin. Here are different wa
 
 = 6.7.19 - March 01, 2025 ==
 * Improved Admin Notice
+
+= 6.7.20 - March 03, 2025 ==
+* Added Searchable Dropdown in Advanced Search Form.
+* Improved Readme.txt file

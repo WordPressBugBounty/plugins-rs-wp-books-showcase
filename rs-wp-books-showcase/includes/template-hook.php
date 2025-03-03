@@ -80,8 +80,8 @@ function rswpbs_author_taxonomy_page_header_author_info(){
   ?>
     <div class="row">
       <div class="col-md-12">
-        <div class="rswpthemes-book-showcase-page-title">
-          <h1 class="rswpthemes-book-author-name <?php echo esc_attr($headingClass);?>">
+        <div class="rswpbs-book-showcase-page-title">
+          <h1 class="rswpbs-book-author-name <?php echo esc_attr($headingClass);?>">
             <?php
             echo esc_html($currentAuthorObj->name);
             ?>
@@ -116,7 +116,7 @@ function rswpbs_archive_page_header(){
     ?>
     <div class="row">
       <div class="col-md-12">
-        <div class="rswpthemes-book-showcase-page-title">
+        <div class="rswpbs-book-showcase-page-title">
           <?php
           if (!empty($archivePageTitle)) {
             echo '<h1 class='.$headingClass.'>'. esc_html($archivePageTitle) .'</h1>';

@@ -3,11 +3,11 @@ function rswpbs_loop_layout($args = array()){
 	extract($args);
 	?>
 	<div class="<?php echo esc_attr($bookColumnClases);?>">
-		<div class="rswpthemes-book-container<?php echo esc_attr($book_container_classes);?>">
+		<div class="rswpbs-book-container<?php echo esc_attr($book_container_classes);?>">
 			<?php
 			if ('true' == $showBookImage) :
 			?>
-			<div class="rswpthemes-book-loop-image<?php echo esc_attr($thumbnail_wrapper_classes);?>">
+			<div class="rswpbs-book-loop-image<?php echo esc_attr($thumbnail_wrapper_classes);?>">
 				<a href="<?php the_permalink(); ?>">
 				<?php
 					if ('book_cover' == $bookImageType) :
@@ -23,7 +23,7 @@ function rswpbs_loop_layout($args = array()){
 			<?php
 			endif;
 			?>
-			<div class="rswpthemes-book-loop-content-wrapper<?php echo esc_attr($content_wrapper_classes);?>">
+			<div class="rswpbs-book-loop-content-wrapper<?php echo esc_attr($content_wrapper_classes);?>">
 				<?php
 				if ('true' == $showBookTitle):
 				?>

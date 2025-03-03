@@ -58,7 +58,7 @@
     font-weight: 700;
 }
 
-.rswpthemes-image-container {
+.rswpbs-image-container {
     height: 345px;
     width: 100%;
     background-color: #ddd;
@@ -67,7 +67,7 @@
     background-repeat: no-repeat
 }
 
-.taxonomy-area.image-upload-wrapper .rswpthemes-image-container {
+.taxonomy-area.image-upload-wrapper .rswpbs-image-container {
     width: 200px;
     height: 200px;
 }

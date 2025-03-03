@@ -41,7 +41,7 @@ function rs_wp_book_showcase_ajax_shortcode($atts) {
     if ('true' == $atts['show_search_form']) :
         $search_fields_col = $atts['search_fields_col'];
     ?>
-    <div class="rswptheme-advanced-search-form-area">
+    <div class="rswpbs-advanced-search-form-area">
         <?php echo do_shortcode("[rswpbs_advanced_search fields_col=\"$search_fields_col\"]"); ?>
     </div>
     <?php
@@ -82,7 +82,7 @@ function rs_wp_book_showcase_ajax_shortcode($atts) {
             </div>
         </div>
     </div>
-    <div class="rswpthemes-books-showcase-area">
+    <div class="rswpbs-books-showcase-area">
         <div id="book-list-container" class="rswpbs-row">
             <?php
             echo rs_wp_book_showcase_ajax_handler($atts, $_GET);
@@ -94,7 +94,7 @@ function rs_wp_book_showcase_ajax_shortcode($atts) {
      ?>
     <div class="rswpbs-row">
         <div class="rswpbs-col-md-12">
-            <div class="rswpthemes-books-load-more text-center">
+            <div class="rswpbs-books-load-more text-center">
                 <div id="load-more-button-container"><button id="load-more-books">Load More</button></div>
             </div>
         </div>
@@ -313,11 +313,11 @@ function rs_wp_book_showcase_ajax_handler($atts, $search_criteria = array(), $pa
             $bookQuery->the_post();
             ?>
             <div class="<?php echo esc_attr($bookColumnClases);?>">
-                <div class="rswpthemes-book-container<?php echo esc_attr($book_container_classes);?>">
+                <div class="rswpbs-book-container<?php echo esc_attr($book_container_classes);?>">
                     <?php
                     if ('true' == $showBookImage) :
                     ?>
-                    <div class="rswpthemes-book-loop-image<?php echo esc_attr($thumbnail_wrapper_classes);?>">
+                    <div class="rswpbs-book-loop-image<?php echo esc_attr($thumbnail_wrapper_classes);?>">
                         <a href="<?php the_permalink(); ?>">
                         <?php
                             if ('book_cover' == $bookImageType) :
@@ -333,7 +333,7 @@ function rs_wp_book_showcase_ajax_handler($atts, $search_criteria = array(), $pa
                     <?php
                     endif;
                     ?>
-                    <div class="rswpthemes-book-loop-content-wrapper<?php echo esc_attr($content_wrapper_classes);?>">
+                    <div class="rswpbs-book-loop-content-wrapper<?php echo esc_attr($content_wrapper_classes);?>">
                         <?php
                         if ('true' == $showBookTitle):
                         ?>

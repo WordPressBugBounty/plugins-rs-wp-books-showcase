@@ -14,7 +14,7 @@ function rswpbs_book_single_shortcode($atts) {
 	ob_start();
 	do_action('rswpbs_book_page_before');
 	?>
-	<div class="rswpthemes-book-single-wrapper">
+	<div class="rswpbs-book-single-wrapper">
 		<div class="rswpbs-container">
 			<?php
 			/**

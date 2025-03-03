@@ -7,15 +7,15 @@ function rswpbs_book_content_section(){
 	$publishersQueryLink = rswpbs_static_search_string(array('publisher' => rswpbs_get_book_publisher_name()));
 	do_action('rswpbs_before_book_overview_section');
 	?>
-	<div class="rswpthemes-book-overview-section">
+	<div class="rswpbs-book-overview-section">
 		<div class="rswpbs-row">
 			<div class="rswpbs-col-lg-8 pl-0">
-				<div class="rswpthemes-book-overview">
+				<div class="rswpbs-book-overview">
 					<?php the_content(); ?>
 				</div>
 			</div>
 			<div class="rswpbs-col-lg-4 pl-0 pr-0">
-				<div class="rswpthemes-book-information-container">
+				<div class="rswpbs-book-information-container">
 					<?php
 					do_action('rswpbs_before_book_information');
 					$availability = rswpbs_get_book_availability_status();

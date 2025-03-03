@@ -52,19 +52,19 @@ function rswpbs_single_book_shortcode($atts){
 		$titleTag = 'h1';
 	}
 	?>
-	<div class="rswpthemes-book-single-header-content-container<?php echo esc_attr($containerExtraClass);?>">
+	<div class="rswpbs-book-single-header-content-container<?php echo esc_attr($containerExtraClass);?>">
 		<?php do_action('rswpbs_single_book_before_header_row'); ?>
 		<div class="rswpbs-row justify-content-center m-0">
 			<div class="<?php echo esc_attr($bookImageMainCol);?> text-center">
 				<?php do_action('rswpbs_single_book_before_thumbnail'); ?>
-				<div class="rswpthemes-book-image-wrapper-row<?php echo esc_attr($bookImageWrapperRowClass);?>">
+				<div class="rswpbs-book-image-wrapper-row<?php echo esc_attr($bookImageWrapperRowClass);?>">
 					<?php
 					if (true == $showSampleContent) {
 						rswpbs_pro_sample_content($bookID);
 					}
 					?>
 					<div class="<?php echo esc_attr($bookImageWrapperColumnClass);?>">
-						<div class="rswpthemes-book-image-wrapper">
+						<div class="rswpbs-book-image-wrapper">
 							<?php
 							if (is_singular('book')) {
 								if ('book_cover' == $atts['image_type']) {
@@ -90,7 +90,7 @@ function rswpbs_single_book_shortcode($atts){
 				<?php do_action('rswpbs_single_book_after_thumbnail'); ?>
 			</div>
 			<div class="<?php echo esc_attr($bookContentMainCol);?>">
-				<div class="rswpthemes-book-content-wrapper">
+				<div class="rswpbs-book-content-wrapper">
 					<?php
 					do_action('rswpbs_before_single_book_main_details');
 					if(!empty(rswpbs_get_book_name($bookID)) && 'true' == $atts['show_title']) :
@@ -116,7 +116,7 @@ function rswpbs_single_book_shortcode($atts){
 					<?php endif;
 					if(!empty(rswpbs_get_book_desc($bookID)) && 'true' == $atts['show_description']) :
 					?>
-					<div class="rswpthemes-book-short-description mb-3">
+					<div class="rswpbs-book-short-description mb-3">
 						<?php echo wp_kses_post( rswpbs_get_book_desc($bookID) );?>
 					</div>
 					<?php endif;
@@ -135,14 +135,14 @@ function rswpbs_single_book_shortcode($atts){
 						if ('true' == $atts['show_buy_button']) :
 							if (!empty(rswpbs_get_book_buy_btn($bookID)) && empty(rswpbs_get_book_buy_btn_shortcode($bookID))) :
 							?>
-							<div class="rswpthemes-buy-now-button-wrapper d-flex justify-content-start">
+							<div class="rswpbs-buy-now-button-wrapper d-flex justify-content-start">
 								<?php echo rswpbs_get_book_buy_btn($bookID); ?>
 							</div>
 							<?php
 							endif;
 							if (!empty(rswpbs_get_book_buy_btn_shortcode($bookID))) :
 							?>
-							<div class="rswpthemes-buy-now-button-wrapper d-flex justify-content-start">
+							<div class="rswpbs-buy-now-button-wrapper d-flex justify-content-start">
 								<?php echo rswpbs_get_book_buy_btn_shortcode($bookID); ?>
 							</div>
 							<?php

@@ -40,7 +40,7 @@ class Rswpbs_Books_List_Widget extends WP_Widget {
 	    $getBooks = get_posts( $booksQargs );
 
 	    ?>
-	    <div class="rswpthemes-book-list-widget-area-wrapper">
+	    <div class="rswpbs-book-list-widget-area-wrapper">
 	        <?php
 	        if ( $getBooks ) :
 	            foreach ( $getBooks as $book ) :
@@ -49,7 +49,7 @@ class Rswpbs_Books_List_Widget extends WP_Widget {
 	                $bookAuthor = rswpbs_get_book_author( $book->ID );
 	                $bookprice = rswpbs_get_book_price( $book->ID );
 	        ?>
-	        <div class="rswpthemes-book-list-widget-area-inner">
+	        <div class="rswpbs-book-list-widget-area-inner">
 	            <?php if ( $show_book_image ) : ?>
 	            <div class="book-image">
 	                <a href="<?php echo esc_url( get_the_permalink( $book->ID ) ); ?>"><?php echo wp_kses_post( $bookImage ); ?></a>

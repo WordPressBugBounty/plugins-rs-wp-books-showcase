@@ -488,7 +488,7 @@ function rswpbs_get_book_buy_btn($bookId = null){
 
 	$output = '';
 	if (!empty($buy_btn_text)) :
-		$output = '<a href="'.esc_url($buy_btn_link).'" target="_blank" class="rswpthemes-book-buy-now-button">'.$buy_btn_text.'</a>';
+		$output = '<a href="'.esc_url($buy_btn_link).'" target="_blank" class="rswpbs-book-buy-now-button">'.$buy_btn_text.'</a>';
 	endif;
 	return $output;
 }
@@ -671,7 +671,7 @@ function rswpbs_shorting_form_global($queryName, $bookPerPage, $search_form_disp
 		      <?php
 		      if (true == $search_form_displayed) {
 		        ?>
-		        <form action="<?php echo esc_url($actionUrl);?>" method="get" id="rswpthemes-book-sort-form">
+		        <form action="<?php echo esc_url($actionUrl);?>" method="get" id="rswpbs-book-sort-form">
 		          <input type="hidden" name="sortby" id="rswpbs-sortby" value="">
 		        <?php
 		      }

@@ -38,7 +38,7 @@ class Rswpbs_Featured_Books_Widget extends WP_Widget {
 		}
 		$getBook = get_posts($featuredBookArgs);
 		?>
-		<div class="rswpthemes-featured-book-area-wrapper">
+		<div class="rswpbs-featured-book-area-wrapper">
 			<?php
 			if ($getBook) :
 				foreach($getBook as $book) :
@@ -48,7 +48,7 @@ class Rswpbs_Featured_Books_Widget extends WP_Widget {
 					$external_website_lists = rswpbs_ext_website_list($book->ID);
 
 			?>
-			<div class="rswpthemes-featured-book-area-inner">
+			<div class="rswpbs-featured-book-area-inner">
 				<div class="book-image">
 					<a href="<?php echo esc_url(get_the_permalink($book->ID)); ?>"><?php echo wp_kses_post($bookImage); ?></a>
 				</div>
@@ -60,7 +60,7 @@ class Rswpbs_Featured_Books_Widget extends WP_Widget {
 				</div>
 				<?php
 				if(!empty(rswpbs_get_book_buy_btn($book->ID))) : ?>
-				<div class="rswpthemes-featured-book-purchase-button">
+				<div class="rswpbs-featured-book-purchase-button">
 					<?php echo rswpbs_get_book_buy_btn($book->ID); ?>
 				</div>
 				<?php endif;?>

@@ -82,11 +82,11 @@ function rswpbs_advanced_search($atts){
 	}
 
 	?>
-		<div class="rswpthemes-books-showcase-search-form-container">
-			<form class="rswpthemes-books-search-form" id="rswpthemes-books-search-form" action="<?php echo esc_url( $actionUrl ); ?>" method="get">
+		<div class="rswpbs-books-showcase-search-form-container">
+			<form class="rswpbs-books-search-form" id="rswpbs-books-search-form" action="<?php echo esc_url( $actionUrl ); ?>" method="get">
 				<input type="hidden" name="search_type" value="book">
 				<input type="hidden" name="sortby" id="rswpbs-sortby" value="">
-				<div class="rswpthemes-search-form rswpbs-row <?php echo esc_attr($searchrmRowClass);?>">
+				<div class="rswpbs-search-form rswpbs-row <?php echo esc_attr($searchrmRowClass);?>">
 					<?php
 					if (true == $showNameField) :
 					?>
@@ -102,7 +102,7 @@ function rswpbs_advanced_search($atts){
 					?>
 					<div class="<?php echo esc_attr($search_field_col);?>">
 						<div class="search-field">
-							<select name="author" id="book-author" class="rswpthemes-select-field">
+							<select name="author" id="book-author" class="rswpbs-select-field">
 								<option value="all"><?php echo rswpbs_static_text_all_authors();?></option>
 								<?php foreach( $bookAuthors as $author ) : ?>
 								<option value="<?php echo esc_attr( $author->slug );?>" <?php selected( $author->slug, $search_fields['author'], true );?>>
@@ -119,7 +119,7 @@ function rswpbs_advanced_search($atts){
 					?>
 					<div class="<?php echo esc_attr($search_field_col);?>">
 						<div class="search-field">
-							<select name="category" id="book-category" class="rswpthemes-select-field">
+							<select name="category" id="book-category" class="rswpbs-select-field">
 								<option value="all"><?php echo rswpbs_static_text_all_categories();?></option>
 								<?php foreach($bookCategories as $category) : ?>
 								<option value="<?php echo esc_attr($category->slug);?>" <?php selected($category->slug, $search_fields['category'], true);?> >
@@ -136,7 +136,7 @@ function rswpbs_advanced_search($atts){
 					?>
 					<div class="<?php echo esc_attr($search_field_col);?>">
 						<div class="search-field">
-							<select name="series" id="book-series" class="rswpthemes-select-field">
+							<select name="series" id="book-series" class="rswpbs-select-field">
 								<option value="all"><?php echo rswpbs_static_text_all_series();?></option>
 								<?php foreach($bookSeries as $series) : ?>
 								<option value="<?php echo esc_attr($series->slug);?>" <?php selected($series->slug, $search_fields['series'], true);?> >
@@ -153,7 +153,7 @@ function rswpbs_advanced_search($atts){
 					?>
 					<div class="<?php echo esc_attr($search_field_col);?>">
 						<div class="search-field">
-							<select name="format" id="book-format" class="rswpthemes-select-field">
+							<select name="format" id="book-format" class="rswpbs-select-field">
 								<option value="all"><?php echo rswpbs_static_text_all_formats();?></option>
 								<?php foreach($book_formats as $bookFormat) : ?>
 								<option value="<?php echo esc_html($bookFormat) ?>" <?php echo selected( $bookFormat, $search_fields['format'], true );?>>
@@ -170,7 +170,7 @@ function rswpbs_advanced_search($atts){
 					?>
 					<div class="<?php echo esc_attr($search_field_col);?>">
 						<div class="search-field">
-							<select name="publisher" id="book-publisher" class="rswpthemes-select-field">
+							<select name="publisher" id="book-publisher" class="rswpbs-select-field">
 								<option value="all"><?php echo rswpbs_static_text_all_publishers();?></option>
 								<?php foreach($book_publishers as $publisher) : ?>
 								<option value="<?php echo esc_html($publisher) ?>" <?php selected( $publisher, $search_fields['publisher'], true ); ?>>
@@ -187,7 +187,7 @@ function rswpbs_advanced_search($atts){
 					?>
 					<div class="<?php echo esc_attr($search_field_col);?>">
 						<div class="search-field">
-							<select name="publish_year" id="publish_year" class="rswpthemes-select-field">
+							<select name="publish_year" id="publish_year" class="rswpbs-select-field">
 								<option value="all"><?php echo rswpbs_static_text_all_years();?></option>
 								<?php foreach($book_publish_years as $year) : ?>
 								<option value="<?php echo esc_html($year) ?>" <?php selected( $year, $search_fields['publish_year'], true ); ?>>

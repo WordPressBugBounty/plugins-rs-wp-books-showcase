@@ -258,14 +258,14 @@ function rswpbs_books_showcase_grid_layout( $atts ) {
 		$display_sorting_form_wrapper = false;
 		$search_fields_col = $atts['search_fields_col'];
 	?>
-	<div class="rswptheme-advanced-search-form-area">
+	<div class="rswpbs-advanced-search-form-area">
 		<?php echo do_shortcode("[rswpbs_advanced_search fields_col=\"$search_fields_col\"]"); ?>
 	</div>
 	<?php
 	endif;
 	if ('true' == $atts['show_sorting_form']) :
 	?>
-	<div class="rswpthemes-books-shorting-form-area">
+	<div class="rswpbs-books-shorting-form-area">
 		<?php rswpbs_shorting_form_global($booksQuery, $bookPerPage, $display_sorting_form_wrapper); ?>
 	</div>
 	<?php
@@ -299,9 +299,9 @@ function rswpbs_books_showcase_grid_layout( $atts ) {
 		'showAddToCartBtn' => $atts['show_add_to_cart_btn'],
 	);
 	?>
-	<div class="rswpthemes-books-showcase-area<?php echo esc_attr($sectionClasses);?>">
+	<div class="rswpbs-books-showcase-area<?php echo esc_attr($sectionClasses);?>">
 		<!-- Start Books Loop Container -->
-		<div class="rswpthemes-books-showcase-book-loop-container">
+		<div class="rswpbs-books-showcase-book-loop-container">
 			<div class="rswpbs-row<?php echo esc_attr($wrapperRowClass);?>">
 				<?php
 				if (is_rswpbs_page()) :
@@ -326,7 +326,7 @@ function rswpbs_books_showcase_grid_layout( $atts ) {
 			?>
 			<div class="rswpbs-row">
 				<div class="rswpbs-col-md-12">
-					<div class="rswpthemes-books-pagination">
+					<div class="rswpbs-books-pagination">
 						<?php
 						if (is_rswpbs_page()) {
 							rswpbs_navigation();

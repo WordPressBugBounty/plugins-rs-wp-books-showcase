@@ -278,11 +278,11 @@ function rswpbs_book_slider_shortcode( $atts ) {
     					$bookQuery->the_post();
 		    			?>
 		    			<div class="rswpbs-book-slider__slider-item">
-		    				<div class="rswpthemes-book-container<?php echo esc_attr($book_list_row_classes);?>">
+		    				<div class="rswpbs-book-container<?php echo esc_attr($book_list_row_classes);?>">
 								<?php
 								if ('true' == $atts['show_image']) :
 								?>
-								<div class="rswpthemes-book-loop-image<?php echo esc_attr($thumbnail_wrapper_classes);?>">
+								<div class="rswpbs-book-loop-image<?php echo esc_attr($thumbnail_wrapper_classes);?>">
 									<a href="<?php the_permalink(); ?>"><?php
 									if ('book_cover' == $atts['image_type']) :
 										echo wp_kses_post(rswpbs_get_book_image(get_the_ID()));
@@ -300,7 +300,7 @@ function rswpbs_book_slider_shortcode( $atts ) {
 								endif;
 								if (true === $loopContentWrapper) :
 								?>
-								<div class="rswpthemes-book-loop-content-wrapper<?php echo esc_attr($content_wrapper_classes);?>">
+								<div class="rswpbs-book-loop-content-wrapper<?php echo esc_attr($content_wrapper_classes);?>">
 									<?php
 									if ('true' == $atts['show_title']):
 									?>

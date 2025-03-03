@@ -59,8 +59,8 @@ function rswpbs_book_category_page_shortcode($atts){
 				?>
 				<div class="rswpbs-row">
 					<div class="rswpbs-col-md-12">
-						<div class="rswpthemes-book-showcase-page-title">
-							<h1 class="rswpthemes-book-category-name<?php echo esc_attr($headingClass);?>"><?php echo esc_html($currentCatObj->name); ?></h1>
+						<div class="rswpbs-book-showcase-page-title">
+							<h1 class="rswpbs-book-category-name<?php echo esc_attr($headingClass);?>"><?php echo esc_html($currentCatObj->name); ?></h1>
 							<div class="cateogry-details">
 								<p><?php echo wp_kses_post($currentCatObj->description); ?></p>
 							</div>

@@ -1,9 +1,18 @@
 (function($) {
-    $('.search-field select').selectize();
+    $('.search-field select').select2({
+        searchField: ['text', 'value'], // Allows searching by text and value
+        persist: false, // Prevents saving custom user input
+        create: false, // Disables creating new options
+        allowEmptyOption: true,
+        allowClear: true,
+        placeholder: "Search or select"
+    });
+
     $('#rswpbs-sort').change(function() {
         $('#rswpbs-sortby').val(this.value);
         $('#rswpthemes-books-search-form, #rswpthemes-book-sort-form').submit();
     });
+
     $('.reset-search-form').click(function(event) {
         event.preventDefault();
         history.pushState({}, "", window.location.pathname);
