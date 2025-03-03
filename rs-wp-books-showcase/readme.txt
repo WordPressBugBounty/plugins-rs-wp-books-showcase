@@ -1,9 +1,9 @@
-=== RS WP Book Showcase & Library  ===
+=== RS WP Book Showcase – A Complete Book Catalogue & Library System ===
 Contributors: rswpthemes
 Tags: book carousel, book collection, book display, book library, book catalogue
 Requires at least: 5.2
 Tested up to: 6.7
-Stable tag: 6.7.20
+Stable tag: 6.7.21
 Requires PHP: 7.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -17,34 +17,34 @@ Premier WordPress book gallery plugin, offering advanced search options and mult
 ## 🚀 Key Features
 
 ✔ **Advanced Book Showcase**
-   Display books beautifully with **customizable layouts, galleries, and a dedicated single book page**.
+   Display books beautifully with customizable layouts, galleries, and a dedicated single book page.
 
 ✔ **Advanced Search & Filtering**
-   Help visitors find books effortlessly with a **powerful search form**.
+   Help visitors find books effortlessly with a powerful search form.
 
 ✔ **Import Books with Ease**
-   Add books manually or **import them via CSV or directly from Amazon**.
+   Add books manually or import them via CSV or directly from Amazon.
 
 ✔ **Automatic Amazon Affiliate Tagging**
-   Enter your **Amazon Tracking ID** once, and the plugin will **automatically append it** to all Amazon book links—no need to add it manually.
+   Enter your Amazon Tracking ID once, and the plugin will automatically append it to all Amazon book links—no need to add it manually.
 
 ✔ **Complete Bookstore Setup**
-   Transform your website into a **fully functional online bookstore**, with multiple purchase links and book formats.
+   Transform your website into a fully functional online bookstore, with multiple purchase links and book formats.
 
 ✔ **Built-in Review System**
-   Enable readers to leave reviews **just like WooCommerce**, increasing engagement and credibility.
+   Enable readers to leave reviews just like WooCommerce, increasing engagement and credibility.
 
 ✔ **Show Sample Content**
-   Let visitors preview a **sample chapter or excerpt** before purchasing.
+   Let visitors preview a sample chapter or excerpt before purchasing.
 
 ✔ **Multi-Language Support**
-   Easily **translate the plugin** into any language and localize your book showcase effortlessly.
+   Easily translate the plugin into any language and localize your book showcase effortlessly.
 
 ✔ **Book Gallery Block for Gutenberg**
-   Build and customize book galleries **seamlessly using the Gutenberg block editor**.
+   Build and customize book galleries seamlessly using the Gutenberg block editor.
 
 ✔ **Extensive Book Carousel**
-   Showcase selected books **anywhere on your page** using a **book carousel shortcode or Gutenberg block**.
+   Showcase selected books anywhere on your page using a book carousel shortcode or Gutenberg block.
 
 ---
 **Whether you’re an author looking to showcase books, a blogger reviewing bestsellers, or an affiliate marketer building a book catalog, RS WP Book Showcase is the perfect solution.**
@@ -605,3 +605,6 @@ Install RS WP Book Showcase as a regular WordPress plugin. Here are different wa
 = 6.7.20 - March 03, 2025 ==
 * Added Searchable Dropdown in Advanced Search Form.
 * Improved Readme.txt file
+
+= 6.7.21 - March 04, 2025 ==
+* NO Major Update Just Improved Readme file
