@@ -1795,6 +1795,10 @@ body.custom-background .rswpbs-book-reviews-area .section-title-area .section-ti
     display: block;
     width: 100%;
 }
+.slick-slide > div.rswpbs-book-container.book-list-layout.thumbnail-position-right, .slick-slide > div.rswpbs-book-container.book-list-layout.thumbnail-position-left{
+    display:flex !important;
+}
+
 .rswpbs-book-slider.featured-slider .book-list-layout .book-title {
     font-size: 46px;
     line-height: 60px;
