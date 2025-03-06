@@ -891,6 +891,7 @@ span.rswpbs-arrow-down {
     margin-bottom: 30px;
     border: 1px solid #f1f1f1;
 }
+
 .rswpbs-search-form .search-field input,
 .search-field select {
     width: 100%;
@@ -966,7 +967,32 @@ span.rswpbs-arrow-down {
     text-align: right;
     float: right;
 }
+body.right-sidebar .rswpbs-advanced-search-form-area .rswpbs-search-form.rswpbs-row >div,
+body.left-sidebar .rswpbs-advanced-search-form-area .rswpbs-search-form.rswpbs-row >div {
+    padding-right: 7px !important;
+    padding-left: 7px !important;
+}
 
+body.right-sidebar .rswpbs-advanced-search-form-area .rswpbs-search-form .search-field,
+body.left-sidebar .rswpbs-advanced-search-form-area .rswpbs-search-form .search-field {
+    margin-bottom: 10px;
+}
+
+body.right-sidebar .rswpbs-advanced-search-form-area .rswpbs-search-form.rswpbs-row >div span.select2.select2-container.select2-container--default,
+body.left-sidebar .rswpbs-advanced-search-form-area .rswpbs-search-form.rswpbs-row >div span.select2.select2-container.select2-container--default {
+    width: 100% !important;
+}
+
+body.right-sidebar .rswpbs-advanced-search-form-area .rswpbs-books-showcase-search-form-container,
+body.left-sidebar .rswpbs-advanced-search-form-area .rswpbs-books-showcase-search-form-container {
+    padding-top: 10px !important;
+    padding-bottom: 0px !important;
+}
+
+.rswpbs-book-container.rswpbs-row.book-list-layout.thumbnail-position-left,
+.rswpbs-book-container.rswpbs-row.book-list-layout.thumbnail-position-right {
+    margin-bottom: 0;
+}
 .rswpbs-books-sorting-field select#rswpbs-sort {
     background-image: none;
     -webkit-appearance: button;
