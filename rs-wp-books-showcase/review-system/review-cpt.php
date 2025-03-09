@@ -2,7 +2,7 @@
 /**
  * Book Review Post Type
  */
-function create_book_reviews_post_type() {
+function rswpbs_reg_book_reviews_post_type() {
   register_post_type('book_reviews', array(
     'labels' => array(
       'name' => 'Book Reviews',
@@ -34,8 +34,29 @@ function create_book_reviews_post_type() {
     'has_archive' => true,
     'rewrite' => array('slug' => 'book-reviews'),
     'supports' => array('title', 'editor', 'author', 'thumbnail'),
+    'show_in_rest' => true,
     'menu_position' => 7,
     'menu_icon' => 'dashicons-star-filled',
   ));
 }
-add_action('init', 'create_book_reviews_post_type');
+add_action('init', 'rswpbs_reg_book_reviews_post_type');
+
+
+function rswpbs_register_book_reviews_custom_fields() {
+    register_rest_field('book_reviews', 'meta_data', [
+        'get_callback'    => 'rswpbs_get_book_reviews_custom_fields',
+        'update_callback' => null,
+        'schema'          => null,
+    ]);
+}
+
+function rswpbs_get_book_reviews_custom_fields($object) {
+    return [
+        'reviewer_name'  => get_post_meta($object['id'], '_rswpbs_reviewer_name', true),
+        'reviewer_email' => get_post_meta($object['id'], '_rswpbs_reviewer_email', true),
+        'rating'         => get_post_meta($object['id'], '_rswpbs_rating', true),
+        'reviewed_book'  => get_post_meta($object['id'], '_rswpbs_reviewed_book', true),
+    ];
+}
+
+add_action('rest_api_init', 'rswpbs_register_book_reviews_custom_fields');

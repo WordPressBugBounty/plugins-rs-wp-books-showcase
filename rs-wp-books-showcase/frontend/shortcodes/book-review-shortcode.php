@@ -96,7 +96,6 @@ function rswpbs_books_review_shortcode( $atts ) {
 					$reviewQuery->the_post();
 					$getRatings = get_post_meta( get_the_ID(), '_rswpbs_rating', true );
 					$reviewerName = get_post_meta( get_the_ID(), '_rswpbs_reviewer_name', true );
-					// $reviewContent = rswpbs_short_and_long_content(get_the_ID(), 40);
 				?>
 				<div class="<?php echo esc_attr( $item_class ); ?> efe_customer_review_de">
 					<div class="testimonial__item-inner">

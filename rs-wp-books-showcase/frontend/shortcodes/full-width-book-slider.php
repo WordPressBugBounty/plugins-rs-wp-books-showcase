@@ -72,8 +72,8 @@ $htmlAttributes = trim($htmlAttributes);
             <div class="slider-wrapper featured-book-slider-activate" <?php echo $htmlAttributes;?>>
                 <?php while ($query->have_posts()) : $query->the_post(); ?>
                 <div class="slider-item">
-                    <div class="row align-items-center featured-book-item featured-book-row">
-                        <div class="col-lg-8 col-md-6 pr-xl-5 align-self-center featured-book-column featured-book-content-column">
+                    <div class="rswpbs-row align-items-center featured-book-item featured-book-row">
+                        <div class="rswpbs-col-lg-8 rswpbs-col-md-6 pr-xl-5 align-self-center featured-book-column featured-book-content-column">
                             <div class="featured-book-content-wrapper">
                                 <div class="featured-book-content-container">
                                     <?php if ('true' == $settings['show_title']) : ?>
@@ -110,7 +110,7 @@ $htmlAttributes = trim($htmlAttributes);
                         </div>
 
                         <?php if ($settings['show_image']) : ?>
-                        <div class="col-lg-4 col-md-6 align-self-center featured-book-column featured-book-cover-column">
+                        <div class="rswpbs-col-lg-4 rswpbs-col-md-6 align-self-center featured-book-column featured-book-cover-column">
                             <div class="featured-book-cover-wrapper">
                                 <a href="<?php the_permalink(); ?>"><?php the_post_thumbnail(); ?></a>
                             </div>

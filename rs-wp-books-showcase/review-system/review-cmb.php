@@ -22,8 +22,6 @@ function rswpbs_book_review_meta_box_cb($post) {
 	$reviewer_email = get_post_meta($post->ID, '_rswpbs_reviewer_email', true);
 	$rating = get_post_meta($post->ID, '_rswpbs_rating', true);
 	$reviewed_book = get_post_meta($post->ID, '_rswpbs_reviewed_book', true);
-	// $select_book = get_post_meta($post->ID, '_rswpbs_select_book', true);
-// var_dump($reviewed_book);
 	$bookQueryArgs = array(
 			'post_type'	=> 'book',
 			'posts_per_page' => -1,
