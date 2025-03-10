@@ -68,6 +68,8 @@ jQuery(document).ready(function($) {
     if (typeof elementorFrontend !== 'undefined' && typeof elementor !== 'undefined') {
         elementorFrontend.hooks.addAction('frontend/element_ready/extra_addon_book_slider.default', BookSlider);
         elementorFrontend.hooks.addAction('frontend/element_ready/text-editor.default', BookSlider);
+        elementorFrontend.hooks.addAction('frontend/element_ready/rswpthemes_awt_book_carousel.default', BookSlider);
+        elementorFrontend.hooks.addAction('frontend/element_ready/shortcode.default', BookSlider);
     } else if (window.acf) {
         window.acf.addAction('render_block_preview/type=rswp-book-slider', BookSlider);
     } else {

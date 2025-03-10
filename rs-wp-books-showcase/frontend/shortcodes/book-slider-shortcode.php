@@ -333,11 +333,14 @@ function rswpbs_book_slider_shortcode( $atts ) {
 									<?php endif;
 									if ('true' == $atts['show_excerpt']) :
 										if ('excerpt' == $atts['excerpt_type'] && !empty(rswpbs_get_book_desc())) :
-										?>
-										<div class="book-desc d-flex">
-									      <p><?php echo wp_kses_post(rswpbs_get_book_desc(get_the_ID(), intval($atts['excerpt_limit']))); ?></p>
-									    </div>
-									    <?php
+											$pureDesc = strip_tags(rswpbs_get_book_desc());
+											if (!empty($pureDesc)) :
+											?>
+											<div class="book-desc d-flex">
+										      <?php echo wp_kses_post(rswpbs_get_book_desc(get_the_ID(), intval($atts['excerpt_limit']))); ?>
+										    </div>
+										    <?php
+											endif;
 										elseif('fullcontent' == $atts['excerpt_type']):
 											?>
 											<div class="book-full-content-as-excerpt">
