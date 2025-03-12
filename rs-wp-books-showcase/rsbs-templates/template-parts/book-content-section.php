@@ -357,6 +357,17 @@ function rswpbs_book_content_section(){
 						</div>
 					</div>
 					<?php endif;
+					if (!empty(rswpbs_get_book_reading_date())):
+					?>
+					<div class="information-list">
+						<div class="information-label">
+							<h4><?php echo rswpbs_static_text_reading_date();?></h4>
+						</div>
+						<div class="information-content">
+							<h4><?php echo wp_kses_post(rswpbs_get_book_reading_date()); ?></h4>
+						</div>
+					</div>
+					<?php endif;
 					do_action('rswpbs_after_book_information');
 					?>
 				</div>

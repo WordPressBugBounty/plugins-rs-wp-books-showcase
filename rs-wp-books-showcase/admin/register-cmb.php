@@ -83,6 +83,7 @@ class Rswpbs_Cmb_For_Book
 		$book_availability_status = get_post_meta( $post->ID, $this->prefix . 'book_availability_status', true );
 		$total_book_ratings = get_post_meta( $post->ID, $this->prefix . 'total_book_ratings', true );
 		$book_rating_links = get_post_meta( $post->ID, $this->prefix . 'book_rating_links', true );
+		$book_reading_date = get_post_meta( $post->ID, $this->prefix . 'book_reading_date', true );
 		$buy_btn_text = get_post_meta( $post->ID, $this->prefix . 'buy_btn_text', true );
 		$buy_btn_link = get_post_meta( $post->ID, $this->prefix . 'buy_btn_link', true );
 		$book_reading_age = get_post_meta( $post->ID, $this->prefix . 'book_reading_age', true );
@@ -341,6 +342,12 @@ class Rswpbs_Cmb_For_Book
 								<input type="text" name="print_length" class="w-100 regular-text" id="print-length" value="<?php echo esc_attr($print_length); ?>" placeholder="128 Pages">
 							</div>
 						</div>
+						<div class="rswpbs-col-lg-3">
+							<div class="book-field-container">
+								<label for="book-reading-date"><?php esc_html_e( 'Reading Date', RSWPBS_TEXT_DOMAIN );?></label>
+								<input type="text" name="book_reading_date" class="w-100 regular-text" id="book-reading-date" value="<?php echo esc_attr($book_reading_date); ?>">
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -410,6 +417,7 @@ class Rswpbs_Cmb_For_Book
 						<input type="text" name="book_rating_links" class="w-100 regular-text" id="book-rating-links" value="<?php echo esc_attr($book_rating_links); ?>">
 					</div>
 				</div>
+
 			</div>
 			<div class="rswpbs-row">
 				<div class="rswpbs-col-lg-12">
@@ -604,28 +612,11 @@ class Rswpbs_Cmb_For_Book
 			'total_book_ratings' => (isset($_POST['total_book_ratings']) ? sanitize_text_field($_POST['total_book_ratings']) : ''),
 			'average_book_rating' => (isset($_POST['average_book_rating']) ? sanitize_text_field($_POST['average_book_rating']) : ''),
 			'book_rating_links' => (isset($_POST['book_rating_links']) ? sanitize_text_field($_POST['book_rating_links']) : ''),
+			'book_reading_date' => (isset($_POST['book_reading_date']) ? sanitize_text_field($_POST['book_reading_date']) : ''),
 			'buy_btn_text' => (isset($_POST['buy_btn_text']) ? sanitize_text_field($_POST['buy_btn_text']) : ''),
 			'buy_btn_link' => (isset($_POST['buy_btn_link']) ? sanitize_text_field($_POST['buy_btn_link']) : ''),
 			'buy_btn_shortcode' => (isset($_POST['buy_btn_shortcode']) ? sanitize_text_field($_POST['buy_btn_shortcode']) : ''),
 		);
-
-		// if (!class_exists('Rswpbs_Pro')) {
-		// 	unset($meta_fields['original_book_name']);
-		// 	unset($meta_fields['original_book_url']);
-		// 	unset($meta_fields['simultaneous_device_usage']);
-		// 	unset($meta_fields['book_file_format']);
-		// 	unset($meta_fields['book_text_to_speech']);
-		// 	unset($meta_fields['screen_reader']);
-		// 	unset($meta_fields['enhanced_typesetting']);
-		// 	unset($meta_fields['x_ray']);
-		// 	unset($meta_fields['word_wise']);
-		// 	unset($meta_fields['book_reading_age']);
-		// 	unset($meta_fields['book_grade_level']);
-		// 	unset($meta_fields['book_lexile_measure']);
-		// 	unset($meta_fields['sticky_notes']);
-		// 	unset($meta_fields['print_length']);
-		// 	unset($meta_fields['buy_btn_shortcode']);
-		// }
 
 		if (empty($meta_fields['book_sale_price'])) {
 			$meta_fields['book_query_price'] = $meta_fields['book_price'];

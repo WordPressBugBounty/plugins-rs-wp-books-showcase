@@ -50,6 +50,7 @@ $static_texts = [
     'rswpbs_text_dimension' => ['rswpbs_static_text_dimension', 'Dimension'],
     'rswpbs_text_weight' => ['rswpbs_static_text_weight', 'Weight'],
     'rswpbs_text_average_ratings' => ['rswpbs_static_text_avarage_ratings', 'Average Ratings'],
+    'rswpbs_text_reading_date' => ['rswpbs_static_text_reading_date', 'Reading Date'],
     'rswpbs_text_file_size' => ['rswpbs_static_text_file_size', 'File Size'],
     'rswpbs_text_file_format' => ['rswpbs_static_text_file_format', 'File Format'],
     'rswpbs_text_simultaneous_device_usage' => ['rswpbs_static_text_simultaneous_device_usage', 'Simultaneous Device Usage'],

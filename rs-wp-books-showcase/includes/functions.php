@@ -513,6 +513,14 @@ function rswpbs_get_book_availability_status($bookId = null){
 	return $book_availability_status;
 }
 
+function rswpbs_get_book_reading_date($bookId = null){
+	if ($bookId === null) {
+		$bookId = get_the_ID();
+	}
+	$book_reading_date = get_post_meta( $bookId, rswpbs_prefix() . 'book_reading_date', true );
+	return $book_reading_date;
+}
+
 function rswpbs_get_avg_rate($bookId = null) {
     if ($bookId === null) {
         $bookId = get_the_ID();

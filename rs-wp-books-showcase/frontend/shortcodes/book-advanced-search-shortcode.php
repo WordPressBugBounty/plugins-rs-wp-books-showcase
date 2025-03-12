@@ -98,7 +98,10 @@ function rswpbs_advanced_search($atts){
 					<?php
 					endif;
 					if (true == $showAuthorField) :
-						sort($bookAuthors);
+					// Sort authors alphabetically by name
+					usort($bookAuthors, function($a, $b) {
+					    return strcmp($a->name, $b->name);
+					});
 					?>
 					<div class="<?php echo esc_attr($search_field_col);?>">
 						<div class="search-field">
@@ -115,7 +118,10 @@ function rswpbs_advanced_search($atts){
 					<?php
 					endif;
 					if (true == $showCategoryField) :
-						sort($bookCategories);
+					// Sort categoreis alphabetically by name
+					usort($bookCategories, function($a, $b) {
+					    return strcmp($a->name, $b->name);
+					});
 					?>
 					<div class="<?php echo esc_attr($search_field_col);?>">
 						<div class="search-field">

@@ -1842,7 +1842,7 @@ body.custom-background .rswpbs-book-reviews-area .section-title-area .section-ti
 }
 
 .rswpbs-book-slider .rswpbs-book-loop-content-wrapper .book-price .regular-price.previous-price {
-    font-size: 24px;
+    font-size: 18px;
     align-self: center;
     margin-right: 10px;
 }
@@ -1960,9 +1960,16 @@ body.left-sidebar .carousel-slider .book-list-layout .rswpbs-book-loop-content-w
     margin-bottom: 5px !important;
 }
 
+.rswpbs-book-buttons-wrapper > div {
+  margin-right: 0 !important;
+}
+.rswpbs-book-buttons-wrapper > div:first-child {
+  margin-left: 0 !important;
+}
+
 .rswpbs-book-buttons-wrapper .book-add-to-cart-btn button {
-    border-radius: 0 !important;
-    padding: 9px 25px !important;
+    border-radius: 0;
+    padding: 9px 25px;
     line-height: inherit;
     display: block;
     width: auto;
