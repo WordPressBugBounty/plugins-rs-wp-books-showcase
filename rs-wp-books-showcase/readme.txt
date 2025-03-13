@@ -3,7 +3,7 @@ Contributors: rswpthemes
 Tags: book carousel, book collection, book display, book library, book catalogue
 Requires at least: 5.2
 Tested up to: 6.7
-Stable tag: 6.7.26
+Stable tag: 6.7.27
 Requires PHP: 7.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -624,3 +624,6 @@ Install RS WP Book Showcase as a regular WordPress plugin. Here are different wa
 = 6.7.26 - March 12, 2025 ==
 * Added Reading Date Field
 * Improved Styles
+
+= 6.7.27 - March 13, 2025 ==
+* Improved Notice Display
