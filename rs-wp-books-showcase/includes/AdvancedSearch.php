@@ -1,27 +1,31 @@
 <?php
 function rswpbs_paged(){
-	$paged = 1;
-	if ( get_query_var( 'paged' ) ) {
-	    $paged = get_query_var( 'paged' );
-	 } elseif ( get_query_var( 'page' ) ) {
-	    $paged = get_query_var( 'page' );
-	 } else {
-	     $paged = 1;
-	 }
-	return $paged;
+    $paged = 1;
+    if ( get_query_var( 'paged' ) ) {
+        $paged = get_query_var( 'paged' );
+    } elseif ( get_query_var( 'page' ) ) {
+        $paged = get_query_var( 'page' );
+    } else {
+        $paged = 1;
+    }
+    return $paged;
 }
 
 function rswpbs_search_fields(){
-	$search_fields = array(
-		'name' => (isset($_GET['book_name']) ? sanitize_text_field($_GET['book_name']) : ''),
-		'author' => (isset($_GET['author']) ? sanitize_text_field($_GET['author']) : ''),
-		'category' => (isset($_GET['category']) ? sanitize_text_field($_GET['category']) : ''),
+    $search_fields = array(
+        'name' => (isset($_GET['book_name']) ? sanitize_text_field($_GET['book_name']) : ''),
+        'author' => (isset($_GET['author']) ? sanitize_text_field($_GET['author']) : ''),
+        'category' => (isset($_GET['category']) ? sanitize_text_field($_GET['category']) : ''),
         'series' => (isset($_GET['series']) ? sanitize_text_field($_GET['series']) : ''),
-		'format' => (isset($_GET['format']) ? sanitize_text_field($_GET['format']) : ''),
-		'publisher' => (isset($_GET['publisher']) ? sanitize_text_field($_GET['publisher']) : ''),
-		'publish_year' => (isset($_GET['publish_year']) ? sanitize_text_field($_GET['publish_year']) : ''),
-		'sortby' => (isset($_GET['sortby']) ? sanitize_text_field($_GET['sortby']) : ''),
-	);
+        'format' => (isset($_GET['format']) ? sanitize_text_field($_GET['format']) : ''),
+        'publisher' => (isset($_GET['publisher']) ? sanitize_text_field($_GET['publisher']) : ''),
+        'publish_year' => (isset($_GET['publish_year']) ? sanitize_text_field($_GET['publish_year']) : ''),
+        'sortby' => (isset($_GET['sortby']) ? sanitize_text_field($_GET['sortby']) : ''),
+        // Add new fields
+        'language' => (isset($_GET['language']) ? sanitize_text_field($_GET['language']) : ''),
+        'isbn' => (isset($_GET['isbn']) ? sanitize_text_field($_GET['isbn']) : ''),
+        'isbn_10' => (isset($_GET['isbn_10']) ? sanitize_text_field($_GET['isbn_10']) : ''),
+    );
 
     if (is_tax('book-category')) {
         $taxPageObj = get_queried_object();
@@ -34,7 +38,7 @@ function rswpbs_search_fields(){
         $search_fields['series'] = $taxPageSlug;
     }
 
-	return $search_fields;
+    return $search_fields;
 }
 
 function rswpbs_static_search_string($params = array()) {
@@ -47,6 +51,10 @@ function rswpbs_static_search_string($params = array()) {
         'format' => (isset($params['format']) ? sanitize_text_field($params['format']) : 'all'),
         'publisher' => (isset($params['publisher']) ? sanitize_text_field($params['publisher']) : 'all'),
         'publish_year' => (isset($params['publish_year']) ? sanitize_text_field($params['publish_year']) : 'all'),
+        // Add new fields
+        'language' => (isset($params['language']) ? sanitize_text_field($params['language']) : 'all'),
+        'isbn' => (isset($params['isbn']) ? sanitize_text_field($params['isbn']) : ''),
+        'isbn_10' => (isset($params['isbn_10']) ? sanitize_text_field($params['isbn_10']) : ''),
     );
     $query_string = http_build_query(array(
         'search_type' => 'book',
@@ -57,26 +65,24 @@ function rswpbs_static_search_string($params = array()) {
         'format' => strtolower($search_fields['format']),
         'publisher' => strtolower($search_fields['publisher']),
         'publish_year' => strtolower($search_fields['publish_year']),
+        'language' => strtolower($search_fields['language']),
+        'isbn' => strtolower($search_fields['isbn']),
+        'isbn_10' => strtolower($search_fields['isbn_10']),
     ));
     return $baseUrl . '?' . $query_string;
 }
 
 function rswpbs_search_query_args(){
-    $showNameField = get_option( 'rswpbs_show_name_field' ,1);
-    $showAuthorField = false;
-    $showCategoryField = get_option( 'rswpbs_show_category_field' ,1);
-    $showSeriesField = false;
-    $showFormatsField = get_option( 'rswpbs_show_formats_field' ,1);
-    $showYearsField = get_option( 'rswpbs_show_years_field' ,1);
-    $ShowResetIcon = false;
-    $showPublishersField = false;
-
-    if (class_exists('Rswpbs_Pro')) {
-        $showAuthorField = get_option( 'rswpbs_show_author_field' ,1);
-        $showSeriesField = get_option( 'rswpbs_show_series_field' ,1);
-        $ShowResetIcon = get_option( 'rswpbs_show_reset_icon' ,1);
-        $showPublishersField = get_option( 'rswpbs_show_publishers_field' ,1);
-    }
+    $showNameField = get_option('rswpbs_show_name_field', 1);
+    $showCategoryField = get_option('rswpbs_show_category_field', 1);
+    $showFormatsField = get_option('rswpbs_show_formats_field', 1);
+    $showYearsField = get_option('rswpbs_show_years_field', 1);
+    $showAuthorField = get_option('rswpbs_show_author_field', 1);
+    $showSeriesField = get_option('rswpbs_show_series_field', 1);
+    $showPublishersField = get_option('rswpbs_show_publishers_field', 1);
+    $showLanguageField = get_option('rswpbs_show_language_field', 1);
+    $showIsbnField = get_option('rswpbs_show_isbn_field', 1);
+    $showIsbn10Field = get_option('rswpbs_show_isbn_10_field', 1);
 
     $search_fields = rswpbs_search_fields();
 
@@ -84,12 +90,13 @@ function rswpbs_search_query_args(){
     $tax_query = array();
     $meta_query = array();
     $queryArgs = array();
+
     if (true == $showCategoryField) :
         if ( $search_fields['category'] != 'all' ) {
             $tax_query[] = array(
-                'taxonomy'	=>	'book-category',
-                'field'	=>	'slug',
-                'terms'	=>	$search_fields['category']
+                'taxonomy'  =>  'book-category',
+                'field' =>  'slug',
+                'terms' =>  $search_fields['category']
             );
         }
     endif;
@@ -105,9 +112,9 @@ function rswpbs_search_query_args(){
     if (true == $showAuthorField) :
         if ($search_fields['author'] != 'all') {
             $tax_query[] = array(
-                'taxonomy'	=>	'book-author',
-                'field'	=>	'slug',
-                'terms'	=>	$search_fields['author']
+                'taxonomy'  =>  'book-author',
+                'field' =>  'slug',
+                'terms' =>  $search_fields['author']
             );
         }
     endif;
@@ -143,6 +150,36 @@ function rswpbs_search_query_args(){
             );
         }
     endif;
+
+    // Add new fields: Language, ISBN, ISBN-10
+    if (true == $showLanguageField) :
+        if (!empty($search_fields['language']) && $search_fields['language'] != 'all') {
+            $meta_query[] = array(
+                'key'     => '_rsbs_book_language',
+                'value'   => $search_fields['language'],
+                'compare' => 'LIKE',
+            );
+        }
+    endif;
+    if (true == $showIsbnField) :
+        if (!empty($search_fields['isbn'])) {
+            $meta_query[] = array(
+                'key'     => '_rsbs_book_isbn',
+                'value'   => $search_fields['isbn'],
+                'compare' => 'LIKE',
+            );
+        }
+    endif;
+    if (true == $showIsbn10Field) :
+        if (!empty($search_fields['isbn_10'])) {
+            $meta_query[] = array(
+                'key'     => '_rsbs_book_isbn_10',
+                'value'   => $search_fields['isbn_10'],
+                'compare' => 'LIKE',
+            );
+        }
+    endif;
+
     if (!empty($tax_query)) {
         $tax_query['relation'] = 'AND';
         $queryArgs['tax_query'] = $tax_query;
@@ -156,9 +193,9 @@ function rswpbs_search_query_args(){
 }
 
 function rswpbs_sorting_form_args(){
-	$search_fields = rswpbs_search_fields();
-	$queryArgs = array();
-	if ('default' != $search_fields['sortby']) {
+    $search_fields = rswpbs_search_fields();
+    $queryArgs = array();
+    if ('default' != $search_fields['sortby']) {
         switch ( $search_fields['sortby'] ) {
             case 'price_asc':
               $queryArgs['meta_key'] = '_rsbs_book_query_price';
@@ -187,7 +224,7 @@ function rswpbs_sorting_form_args(){
               $queryArgs['order'] = 'DESC';
               break;
         }
-    }else{
+    } else {
        $queryArgs['orderby'] = 'date';
        $queryArgs['order'] = 'DESC';
     }
@@ -196,14 +233,14 @@ function rswpbs_sorting_form_args(){
 }
 
 function rswpbs_total_books_message($queryName, $bookPerPage){
-	$total_books = $queryName->found_posts;
-	$paged = rswpbs_paged();
-	$current_page = $paged; // Replace with the current page number
-	$start_index = ( $current_page - 1 ) * $bookPerPage + 1;
-	$end_index = $start_index + $bookPerPage - 1;
-	if ( $end_index > $total_books ) {
-	  $end_index = $total_books;
-	}
-	$message = 'Showing ' . $start_index . '-' . $end_index . ' of ' . $total_books . ' ' .rswpbs_static_text_books();
-	return esc_html($message);
+    $total_books = $queryName->found_posts;
+    $paged = rswpbs_paged();
+    $current_page = $paged; // Replace with the current page number
+    $start_index = ( $current_page - 1 ) * $bookPerPage + 1;
+    $end_index = $start_index + $bookPerPage - 1;
+    if ( $end_index > $total_books ) {
+        $end_index = $total_books;
+    }
+    $message = 'Showing ' . $start_index . '-' . $end_index . ' of ' . $total_books . ' ' . rswpbs_static_text_books();
+    return esc_html($message);
 }

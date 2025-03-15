@@ -410,7 +410,9 @@ body:not(.rswpbs-pro-active) li#menu-posts-book ul.wp-submenu.wp-submenu-wrap li
 .rswpbs-single-page-settings-tab table.form-table.rswpbs-settings-table tbody tr:nth-child(4) td:nth-child(1),
 .rswpbs-single-page-settings-tab table.form-table.rswpbs-settings-table tbody tr:nth-child(4) td:nth-child(2),
 .rswpbs-single-page-settings-tab table.form-table.rswpbs-settings-table tbody tr:nth-child(4) td:nth-child(3),
-.wrap.rswpbs-advanced-seacrch-form-settings table tr:nth-child(2) td {
+.wrap.rswpbs-advanced-seacrch-form-settings table tr:nth-child(1) td,
+.wrap.rswpbs-advanced-seacrch-form-settings table tr:nth-child(2) td,
+.wrap.rswpbs-advanced-seacrch-form-settings table tr:nth-child(3) td {
     background: #b9b9b9;
 }
 
@@ -418,13 +420,14 @@ table.form-table.rswpbs-settings-table.rswpbs-pro-active tbody tr td{
     background: #fff !important;
 }
 
-
 .rswpbs-single-page-settings-tab table.form-table.rswpbs-settings-table tbody tr:nth-child(3) td:nth-child(3) label,
 .rswpbs-single-page-settings-tab table.form-table.rswpbs-settings-table tbody tr:nth-child(3) td:nth-child(4) label,
 .rswpbs-single-page-settings-tab table.form-table.rswpbs-settings-table tbody tr:nth-child(4) td:nth-child(1) label,
 .rswpbs-single-page-settings-tab table.form-table.rswpbs-settings-table tbody tr:nth-child(4) td:nth-child(2) label,
 .rswpbs-single-page-settings-tab table.form-table.rswpbs-settings-table tbody tr:nth-child(4) td:nth-child(3) label,
-.wrap.rswpbs-advanced-seacrch-form-settings table tr:nth-child(2) td label {
+.wrap.rswpbs-advanced-seacrch-form-settings table tr:nth-child(1) td label,
+.wrap.rswpbs-advanced-seacrch-form-settings table tr:nth-child(2) td label,
+.wrap.rswpbs-advanced-seacrch-form-settings table tr:nth-child(3) td label {
     color: #000;
 }
 
@@ -433,7 +436,9 @@ table.form-table.rswpbs-settings-table.rswpbs-pro-active tbody tr td{
 .rswpbs-single-page-settings-tab table.form-table.rswpbs-settings-table tbody tr:nth-child(4) td:nth-child(1) input[type=checkbox]:disabled,
 .rswpbs-single-page-settings-tab table.form-table.rswpbs-settings-table tbody tr:nth-child(4) td:nth-child(2) input[type=checkbox]:disabled,
 .rswpbs-single-page-settings-tab table.form-table.rswpbs-settings-table tbody tr:nth-child(4) td:nth-child(3) input[type=checkbox]:disabled,
-.wrap.rswpbs-advanced-seacrch-form-settings table tr:nth-child(2) td input[type=checkbox]:disabled {
+.wrap.rswpbs-advanced-seacrch-form-settings table tr:nth-child(1) td input[type=checkbox]:disabled,
+.wrap.rswpbs-advanced-seacrch-form-settings table tr:nth-child(2) td input[type=checkbox]:disabled,
+.wrap.rswpbs-advanced-seacrch-form-settings table tr:nth-child(3) td input[type=checkbox]:disabled {
     background: #fff;
     width: 18px;
     height: 18px;

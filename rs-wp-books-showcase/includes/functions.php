@@ -31,6 +31,54 @@ function rswpbs_get_book_desc($bookId = null, $word_count = 30) {
     return wp_kses_post('<p>' . $trimmed_description . '</p>');
 }
 
+function rswpbs_get_single_book_excerpt($bookId = null) {
+    // Default to current post ID if none provided
+    if ($bookId === null) {
+        $bookId = get_the_ID();
+    }
+
+    // Check if "Show Excerpt" is enabled
+    $show_excerpt = get_option('rswpbs_show_excerpt_on_single_page', 1); // Default to 1 (enabled)
+    if (!$show_excerpt) {
+        return ''; // Return empty string if excerpt is disabled
+    }
+
+    // Get excerpt settings
+    $excerpt_type = get_option('rswpbs_single_page_excerpt_type', 'excerpt'); // Corrected option name to match settings
+    $excerpt_limit = get_option('rswpbs_single_page_excerpt_limit', 150); // Corrected option name to match settings
+
+    // Process the description based on excerpt type
+    if ($excerpt_type === 'excerpt') {
+        // Get the short description for excerpt type
+        $short_description = get_post_meta($bookId, rswpbs_prefix() . 'short_description', true);
+        if (empty($short_description)) {
+            return ''; // Return empty if no description exists
+        }
+
+        // Trim to character limit
+        $trimmed_description = substr($short_description, 0, $excerpt_limit);
+        // Ensure we don't cut off in the middle of a word
+        if (strlen($short_description) > $excerpt_limit) {
+            $last_space = strrpos($trimmed_description, ' ');
+            if ($last_space !== false) {
+                $trimmed_description = substr($trimmed_description, 0, $last_space);
+            }
+            $trimmed_description .= '...'; // Add ellipsis if trimmed
+        }
+    } else {
+        // Full content using get_the_content()
+        $trimmed_description = get_the_content(null, false, $bookId);
+        if (empty($trimmed_description)) {
+            return ''; // Return empty if no content exists
+        }
+        // Apply content filters to process shortcodes, formatting, etc.
+        $trimmed_description = apply_filters('the_content', $trimmed_description);
+    }
+
+    // Return the description wrapped in a <p> tag, allowing basic HTML
+    return wp_kses_post($trimmed_description); // No need to manually add <p> since the_content may already include tags
+}
+
 function rswpbs_get_book_weight($bookId = null){
 	if ($bookId === null) {
 		$bookId = get_the_ID();

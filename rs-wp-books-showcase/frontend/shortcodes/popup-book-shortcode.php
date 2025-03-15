@@ -2,9 +2,9 @@
 /**
  * Book Small Details Shortcode
  */
-// [rswpbs_single_book show_sample_content="true" show_title="false" show_ratings="true" show_description="true" image_type="book_cover" show_price="true" show_msl="true" book_id=""]
-add_shortcode('rswpbs_single_book', 'rswpbs_single_book_shortcode');
-function rswpbs_single_book_shortcode($atts){
+// [rswpbs_popup_book show_sample_content="true" show_title="false" show_ratings="true" show_description="true" image_type="book_cover" show_price="true" show_msl="true" book_id=""]
+add_shortcode('rswpbs_popup_book', 'rswpbs_popup_book_shortcode');
+function rswpbs_popup_book_shortcode($atts){
 	$atts = shortcode_atts(array(
 		'show_sample_content'	=> 'true',
 		'show_title'	=> 'true',
@@ -52,6 +52,7 @@ function rswpbs_single_book_shortcode($atts){
 		$titleTag = 'h1';
 	}
 	?>
+
 	<div class="rswpbs-book-single-header-content-container<?php echo esc_attr($containerExtraClass);?>">
 		<?php do_action('rswpbs_single_book_before_header_row'); ?>
 		<div class="rswpbs-row justify-content-center m-0">
@@ -162,6 +163,7 @@ function rswpbs_single_book_shortcode($atts){
 		<?php do_action('rswpbs_single_book_after_header_row'); ?>
 	</div>
 	<?php
+	rswpbs_book_content_section($bookID);
 	endif;
 	return ob_get_clean();
 }

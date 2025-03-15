@@ -61,6 +61,9 @@ class RSWPBS_Search_Form_Settings {
                                 'rswpbs_show_author_field',
                                 'rswpbs_show_series_field',
                                 'rswpbs_show_publishers_field',
+                                'rswpbs_show_language_field',
+                                'rswpbs_show_isbn_field',
+                                'rswpbs_show_isbn_10_field',
                                 'rswpbs_show_reset_icon'
                             ];
                             $count = 0;
@@ -87,11 +90,17 @@ class RSWPBS_Search_Form_Settings {
 
     public function register_settings() {
         $fields = [
-            'rswpbs_show_name_field', 'rswpbs_show_category_field', 'rswpbs_show_author_field', 'rswpbs_show_formats_field', 'rswpbs_show_years_field', 'rswpbs_show_series_field', 'rswpbs_show_publishers_field', 'rswpbs_show_reset_icon',
+            'rswpbs_show_name_field', 'rswpbs_show_category_field', 'rswpbs_show_author_field',
+            'rswpbs_show_formats_field', 'rswpbs_show_years_field', 'rswpbs_show_series_field',
+            'rswpbs_show_publishers_field', 'rswpbs_show_language_field', 'rswpbs_show_isbn_field',
+            'rswpbs_show_isbn_10_field', 'rswpbs_show_reset_icon',
         ];
 
         foreach ($fields as $field) {
-            register_setting(self::$option_group, $field, ['sanitize_callback' => 'absint']);
+            register_setting(self::$option_group, $field, [
+                'sanitize_callback' => 'absint',
+                'default' => 1 // Ensure default is 1 (visible)
+            ]);
         }
 
         add_settings_section(
@@ -104,32 +113,27 @@ class RSWPBS_Search_Form_Settings {
 
     public function render_checkbox_field($args) {
         $option_name = $args['option_name'];
+        $is_pro_active = function_exists('rswpbs_is_pro_active') && rswpbs_is_pro_active();
+
+        // Get the current value, default to 1 (checked) for all fields
         $checked = get_option($option_name, 1);
-        $is_pro_active = function_exists('rswpbs_is_pro_active') && rswpbs_is_pro_active(); // Check if Pro is active
 
-        // Define Pro-only fields
-        $pro_fields = [
-            'rswpbs_show_author_field',
-            'rswpbs_show_series_field',
-            'rswpbs_show_publishers_field',
-            'rswpbs_show_reset_icon'
-        ];
-
-        if (!$is_pro_active && in_array($option_name, $pro_fields, true)) {
-            $checked = '0'; // Only override if it's a Pro-only field
+        // If Pro is not active, force all fields to be checked and disable the checkbox
+        if (!$is_pro_active) {
+            $checked = 1; // Force checked state
+            $disabled_attr = 'disabled'; // Disable the checkbox
+        } else {
+            $disabled_attr = ''; // Enable the checkbox if Pro is active
         }
 
-        // Check if the field is Pro-only
-        $is_pro_field = in_array($option_name, $pro_fields, true);
-        $disabled_attr = ($is_pro_field && ! $is_pro_active) ? 'disabled' : '';
-
+        // Render the checkbox
         echo '<label>' . ucwords(str_replace(['rswpbs_', '_'], ['', ' '], $option_name)) . ': ';
         echo '<input type="checkbox" name="' . esc_attr($option_name) . '" value="1" ' . checked(1, $checked, false) . ' ' . $disabled_attr . ' />';
         echo '</label>';
 
-        // Show upgrade message for locked fields
-        if ($is_pro_field && ! $is_pro_active) {
-            echo '<a href="'.esc_url('https://rswpthemes.com/rs-wp-book-showcase-wordpress-plugin/').'" target="_blank">🔒 This is a Pro feature. Upgrade to unlock.</p>';
+        // Show upgrade message if Pro is not active
+        if (!$is_pro_active) {
+            echo '<p><a href="' . esc_url('https://rswpthemes.com/rs-wp-book-showcase-wordpress-plugin/') . '" target="_blank">🔒 Upgrade to Pro to hide fields.</a></p>';
         }
     }
 }
