@@ -3,7 +3,7 @@ Contributors: rswpthemes
 Tags: book carousel, book collection, book display, book library, book catalogue
 Requires at least: 5.2
 Tested up to: 6.7
-Stable tag: 6.7.28
+Stable tag: 6.7.29
 Requires PHP: 7.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -636,3 +636,7 @@ Install RS WP Book Showcase as a regular WordPress plugin. Here are different wa
 * All link is clickable for search from ajax book showcase.
 * Added three more fields for Advanced Search form.
 * Unlocked all search fields.
+
+= 6.7.29 - March 16, 2025 ==
+* Added Search Fields Sorting System
+

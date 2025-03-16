@@ -9,7 +9,7 @@ function rswpbs_advanced_search($atts) {
 
     ob_start();
 
-    // Fetch book metadata
+    // Fetch book metadata (unchanged)
     $books_query = get_posts(['post_type' => 'book', 'numberposts' => -1]);
     $metadata = [
         'formats' => [],
@@ -19,7 +19,6 @@ function rswpbs_advanced_search($atts) {
         'isbns' => [],
         'isbn_10s' => []
     ];
-
     foreach ($books_query as $book) {
         $metadata['formats'][] = strtolower(rswpbs_get_book_format($book->ID));
         $metadata['publishers'][] = strtolower(rswpbs_get_book_publisher_name($book->ID));
@@ -28,24 +27,22 @@ function rswpbs_advanced_search($atts) {
         $metadata['isbns'][] = strtolower(get_post_meta($book->ID, '_rsbs_book_isbn', true));
         $metadata['isbn_10s'][] = strtolower(get_post_meta($book->ID, '_rsbs_book_isbn_10', true));
     }
-
-    // Remove duplicates and empty values
     foreach ($metadata as &$data) {
         $data = array_filter(array_unique($data));
         sort($data);
     }
 
-    // Taxonomies
+    // Taxonomies (unchanged)
     $taxonomies = [
         'authors' => get_terms(['taxonomy' => 'book-author', 'hide_empty' => false]),
         'series' => get_terms(['taxonomy' => 'book-series', 'hide_empty' => false]),
         'categories' => get_terms(['taxonomy' => 'book-category', 'hide_empty' => false])
     ];
-
     foreach ($taxonomies as &$terms) {
         usort($terms, fn($a, $b) => strcmp($a->name, $b->name));
     }
 
+    // Field visibility (unchanged)
     $visibility = [
         'name' => get_option('rswpbs_show_name_field', 1),
         'category' => get_option('rswpbs_show_category_field', 1),
@@ -60,183 +57,202 @@ function rswpbs_advanced_search($atts) {
     $visibility['isbn_10'] = get_option('rswpbs_show_isbn_10_field', 1);
     $visibility['reset'] = get_option('rswpbs_show_reset_icon', 1);
 
-
-    // Column classes
+    // Column classes (unchanged)
     $col_classes = [
         '2' => ['field' => 'rswpbs-col-lg-6 rswpbs-col-6 rswpbs-col-md-4', 'btn' => 'rswpbs-col-lg-3 rswpbs-col-md-3 rswpbs-col-5', 'reset' => 'rswpbs-col-lg-2 rswpbs-col-md-2 rswpbs-col-3'],
         '3' => ['field' => 'rswpbs-col-lg-4 rswpbs-col-6 rswpbs-col-md-4', 'btn' => 'rswpbs-col-lg-3 rswpbs-col-md-3 rswpbs-col-5', 'reset' => 'rswpbs-col-lg-2 rswpbs-col-md-2 rswpbs-col-3'],
         '4' => ['field' => 'rswpbs-col-lg-3 rswpbs-col-6 rswpbs-col-md-4', 'btn' => 'rswpbs-col-lg-2 rswpbs-col-md-3 rswpbs-col-5', 'reset' => 'rswpbs-col-lg-1 rswpbs-col-md-2 rswpbs-col-3']
     ];
-
     $columns = $col_classes[$atts['fields_col']] ?? $col_classes['3'];
 
     $search_fields = rswpbs_search_fields();
     $form_class = class_exists('Rswpbs_Pro') ? 'rswpbs-pro-search-form-row' : 'rswpbs-free-search-form-row';
+
+    // Get the field order
+    $default_order = [
+        'rswpbs_show_name_field', 'rswpbs_show_category_field', 'rswpbs_show_author_field',
+        'rswpbs_show_formats_field', 'rswpbs_show_years_field', 'rswpbs_show_series_field',
+        'rswpbs_show_publishers_field', 'rswpbs_show_language_field', 'rswpbs_show_isbn_field',
+        'rswpbs_show_isbn_10_field', 'rswpbs_show_reset_icon'
+    ];
+    $field_order = get_option('rswpbs_search_field_order', $default_order);
+
     ?>
     <div class="rswpbs-books-showcase-search-form-container">
-        <?php
-        if ( is_user_logged_in() && current_user_can( 'manage_options' ) ) :
-        ?>
-            <div class="admin-message-for-search-form">
-                <?php
-                $message = sprintf(
-                    /* translators: %1$s is the bolded "admins" text, %2$s is the link to the Search Form Settings page */
-                    __( 'This instruction is visible only to %1$s; viewers cannot see this. To show/hide elements, please visit the %2$s page.', 'rswpbs' ),
-                    '<strong>' . esc_html__( 'admins', 'rswpbs' ) . '</strong>',
-                    '<a href="' . esc_url( home_url( '/wp-admin/edit.php?post_type=book&page=rswpbs-settings-search-form' ) ) . '">' . esc_html__( 'Search Form Settings', 'rswpbs' ) . '</a>'
-                );
-                echo wp_kses_post( $message );
-                ?>
-            </div>
-        <?php
-        endif;
-        ?>
         <form class="rswpbs-books-search-form" id="rswpbs-books-search-form" action="<?php echo esc_url(rswpbs_search_page_base_url()); ?>" method="get">
             <input type="hidden" name="search_type" value="book">
             <input type="hidden" name="sortby" id="rswpbs-sortby" value="">
             <div class="rswpbs-search-form rswpbs-row justify-content-end justify-content-md-start <?php echo esc_attr($form_class); ?>">
-                <?php if ($visibility['name']): ?>
-                <div class="<?php echo esc_attr($columns['field']); ?>">
-                    <div class="search-field">
-                        <input type="text" name="book_name" id="book-name" placeholder="<?php echo rswpbs_static_text_book_name(); ?>" value="<?php echo esc_attr($search_fields['name']); ?>">
-                    </div>
-                </div>
-                <?php endif; ?>
+                <?php
+                // Render fields in the saved order
+                foreach ($field_order as $field) {
+                    switch ($field) {
+                        case 'rswpbs_show_name_field':
+                            if ($visibility['name']): ?>
+                                <div class="<?php echo esc_attr($columns['field']); ?>">
+                                    <div class="search-field">
+                                        <input type="text" name="book_name" id="book-name" placeholder="<?php echo rswpbs_static_text_book_name(); ?>" value="<?php echo esc_attr($search_fields['name']); ?>">
+                                    </div>
+                                </div>
+                            <?php endif;
+                            break;
 
-                <?php if ($visibility['author'] ?? false): ?>
-                <div class="<?php echo esc_attr($columns['field']); ?>">
-                    <div class="search-field">
-                        <select name="author" id="book-author" class="rswpbs-select-field">
-                            <option value="all"><?php echo rswpbs_static_text_all_authors(); ?></option>
-                            <?php foreach ($taxonomies['authors'] as $author): ?>
-                            <option value="<?php echo esc_attr($author->slug); ?>" <?php selected($author->slug, $search_fields['author']); ?>>
-                                <?php echo esc_html($author->name); ?>
-                            </option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-                </div>
-                <?php endif; ?>
+                        case 'rswpbs_show_author_field':
+                            if ($visibility['author'] ?? false): ?>
+                                <div class="<?php echo esc_attr($columns['field']); ?>">
+                                    <div class="search-field">
+                                        <select name="author" id="book-author" class="rswpbs-select-field">
+                                            <option value="all"><?php echo rswpbs_static_text_all_authors(); ?></option>
+                                            <?php foreach ($taxonomies['authors'] as $author): ?>
+                                                <option value="<?php echo esc_attr($author->slug); ?>" <?php selected($author->slug, $search_fields['author']); ?>>
+                                                    <?php echo esc_html($author->name); ?>
+                                                </option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                </div>
+                            <?php endif;
+                            break;
 
-                <?php if ($visibility['category']): ?>
-                <div class="<?php echo esc_attr($columns['field']); ?>">
-                    <div class="search-field">
-                        <select name="category" id="book-category" class="rswpbs-select-field">
-                            <option value="all"><?php echo rswpbs_static_text_all_categories(); ?></option>
-                            <?php foreach ($taxonomies['categories'] as $category): ?>
-                            <option value="<?php echo esc_attr($category->slug); ?>" <?php selected($category->slug, $search_fields['category']); ?>>
-                                <?php echo esc_html($category->name); ?>
-                            </option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-                </div>
-                <?php endif; ?>
+                        case 'rswpbs_show_category_field':
+                            if ($visibility['category']): ?>
+                                <div class="<?php echo esc_attr($columns['field']); ?>">
+                                    <div class="search-field">
+                                        <select name="category" id="book-category" class="rswpbs-select-field">
+                                            <option value="all"><?php echo rswpbs_static_text_all_categories(); ?></option>
+                                            <?php foreach ($taxonomies['categories'] as $category): ?>
+                                                <option value="<?php echo esc_attr($category->slug); ?>" <?php selected($category->slug, $search_fields['category']); ?>>
+                                                    <?php echo esc_html($category->name); ?>
+                                                </option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                </div>
+                            <?php endif;
+                            break;
 
-                <?php if ($visibility['series'] ?? false): ?>
-                <div class="<?php echo esc_attr($columns['field']); ?>">
-                    <div class="search-field">
-                        <select name="series" id="book-series" class="rswpbs-select-field">
-                            <option value="all"><?php echo rswpbs_static_text_all_series(); ?></option>
-                            <?php foreach ($taxonomies['series'] as $series): ?>
-                            <option value="<?php echo esc_attr($series->slug); ?>" <?php selected($series->slug, $search_fields['series']); ?>>
-                                <?php echo esc_html($series->name); ?>
-                            </option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-                </div>
-                <?php endif; ?>
+                        case 'rswpbs_show_series_field':
+                            if ($visibility['series'] ?? false): ?>
+                                <div class="<?php echo esc_attr($columns['field']); ?>">
+                                    <div class="search-field">
+                                        <select name="series" id="book-series" class="rswpbs-select-field">
+                                            <option value="all"><?php echo rswpbs_static_text_all_series(); ?></option>
+                                            <?php foreach ($taxonomies['series'] as $series): ?>
+                                                <option value="<?php echo esc_attr($series->slug); ?>" <?php selected($series->slug, $search_fields['series']); ?>>
+                                                    <?php echo esc_html($series->name); ?>
+                                                </option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                </div>
+                            <?php endif;
+                            break;
 
-                <?php if ($visibility['format']): ?>
-                <div class="<?php echo esc_attr($columns['field']); ?>">
-                    <div class="search-field">
-                        <select name="format" id="book-format" class="rswpbs-select-field">
-                            <option value="all"><?php echo rswpbs_static_text_all_formats(); ?></option>
-                            <?php foreach ($metadata['formats'] as $format): ?>
-                            <option value="<?php echo esc_attr($format); ?>" <?php selected($format, $search_fields['format']); ?>>
-                                <?php echo esc_html($format); ?>
-                            </option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-                </div>
-                <?php endif; ?>
+                        case 'rswpbs_show_formats_field':
+                            if ($visibility['format']): ?>
+                                <div class="<?php echo esc_attr($columns['field']); ?>">
+                                    <div class="search-field">
+                                        <select name="format" id="book-format" class="rswpbs-select-field">
+                                            <option value="all"><?php echo rswpbs_static_text_all_formats(); ?></option>
+                                            <?php foreach ($metadata['formats'] as $format): ?>
+                                                <option value="<?php echo esc_attr($format); ?>" <?php selected($format, $search_fields['format']); ?>>
+                                                    <?php echo esc_html($format); ?>
+                                                </option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                </div>
+                            <?php endif;
+                            break;
 
-                <?php if ($visibility['publisher'] ?? false): ?>
-                <div class="<?php echo esc_attr($columns['field']); ?>">
-                    <div class="search-field">
-                        <select name="publisher" id="book-publisher" class="rswpbs-select-field">
-                            <option value="all"><?php echo rswpbs_static_text_all_publishers(); ?></option>
-                            <?php foreach ($metadata['publishers'] as $publisher): ?>
-                            <option value="<?php echo esc_attr($publisher); ?>" <?php selected($publisher, $search_fields['publisher']); ?>>
-                                <?php echo esc_html($publisher); ?>
-                            </option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-                </div>
-                <?php endif; ?>
+                        case 'rswpbs_show_publishers_field':
+                            if ($visibility['publisher'] ?? false): ?>
+                                <div class="<?php echo esc_attr($columns['field']); ?>">
+                                    <div class="search-field">
+                                        <select name="publisher" id="book-publisher" class="rswpbs-select-field">
+                                            <option value="all"><?php echo rswpbs_static_text_all_publishers(); ?></option>
+                                            <?php foreach ($metadata['publishers'] as $publisher): ?>
+                                                <option value="<?php echo esc_attr($publisher); ?>" <?php selected($publisher, $search_fields['publisher']); ?>>
+                                                    <?php echo esc_html($publisher); ?>
+                                                </option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                </div>
+                            <?php endif;
+                            break;
 
-                <?php if ($visibility['year']): ?>
-                <div class="<?php echo esc_attr($columns['field']); ?>">
-                    <div class="search-field">
-                        <select name="publish_year" id="publish_year" class="rswpbs-select-field">
-                            <option value="all"><?php echo rswpbs_static_text_all_years(); ?></option>
-                            <?php foreach ($metadata['years'] as $year): ?>
-                            <option value="<?php echo esc_attr($year); ?>" <?php selected($year, $search_fields['publish_year']); ?>>
-                                <?php echo esc_html($year); ?>
-                            </option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-                </div>
-                <?php endif; ?>
+                        case 'rswpbs_show_years_field':
+                            if ($visibility['year']): ?>
+                                <div class="<?php echo esc_attr($columns['field']); ?>">
+                                    <div class="search-field">
+                                        <select name="publish_year" id="publish_year" class="rswpbs-select-field">
+                                            <option value="all"><?php echo rswpbs_static_text_all_years(); ?></option>
+                                            <?php foreach ($metadata['years'] as $year): ?>
+                                                <option value="<?php echo esc_attr($year); ?>" <?php selected($year, $search_fields['publish_year']); ?>>
+                                                    <?php echo esc_html($year); ?>
+                                                </option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                </div>
+                            <?php endif;
+                            break;
 
-                <?php if ($visibility['language']): ?>
-                <div class="<?php echo esc_attr($columns['field']); ?>">
-                    <div class="search-field">
-                        <select name="language" id="book-language" class="rswpbs-select-field">
-                            <option value="all"><?php echo esc_html__('All Languages', 'rswpbs'); ?></option>
-                            <?php foreach ($metadata['languages'] as $language): ?>
-                            <option value="<?php echo esc_attr($language); ?>" <?php selected($language, $search_fields['language']); ?>>
-                                <?php echo esc_html($language); ?>
-                            </option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-                </div>
-                <?php endif; ?>
+                        case 'rswpbs_show_language_field':
+                            if ($visibility['language'] ?? false): ?>
+                                <div class="<?php echo esc_attr($columns['field']); ?>">
+                                    <div class="search-field">
+                                        <select name="language" id="book-language" class="rswpbs-select-field">
+                                            <option value="all"><?php echo esc_html__('All Languages', 'rswpbs'); ?></option>
+                                            <?php foreach ($metadata['languages'] as $language): ?>
+                                                <option value="<?php echo esc_attr($language); ?>" <?php selected($language, $search_fields['language']); ?>>
+                                                    <?php echo esc_html($language); ?>
+                                                </option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                </div>
+                            <?php endif;
+                            break;
 
-                <?php if ($visibility['isbn']): ?>
-                <div class="<?php echo esc_attr($columns['field']); ?>">
-                    <div class="search-field">
-                        <input type="text" name="isbn" id="book-isbn" placeholder="<?php echo esc_html__('ISBN', 'rswpbs'); ?>" value="<?php echo esc_attr($search_fields['isbn']); ?>">
-                    </div>
-                </div>
-                <?php endif; ?>
+                        case 'rswpbs_show_isbn_field':
+                            if ($visibility['isbn'] ?? false): ?>
+                                <div class="<?php echo esc_attr($columns['field']); ?>">
+                                    <div class="search-field">
+                                        <input type="text" name="isbn" id="book-isbn" placeholder="<?php echo esc_html__('ISBN', 'rswpbs'); ?>" value="<?php echo esc_attr($search_fields['isbn']); ?>">
+                                    </div>
+                                </div>
+                            <?php endif;
+                            break;
 
-                <?php if ($visibility['isbn_10']): ?>
-                <div class="<?php echo esc_attr($columns['field']); ?>">
-                    <div class="search-field">
-                        <input type="text" name="isbn_10" id="book-isbn-10" placeholder="<?php echo esc_html__('ISBN-10', 'rswpbs'); ?>" value="<?php echo esc_attr($search_fields['isbn_10']); ?>">
-                    </div>
-                </div>
-                <?php endif; ?>
+                        case 'rswpbs_show_isbn_10_field':
+                            if ($visibility['isbn_10'] ?? false): ?>
+                                <div class="<?php echo esc_attr($columns['field']); ?>">
+                                    <div class="search-field">
+                                        <input type="text" name="isbn_10" id="book-isbn-10" placeholder="<?php echo esc_html__('ISBN-10', 'rswpbs'); ?>" value="<?php echo esc_attr($search_fields['isbn_10']); ?>">
+                                    </div>
+                                </div>
+                            <?php endif;
+                            break;
 
+                        case 'rswpbs_show_reset_icon':
+                            if ($visibility['reset'] ?? false): ?>
+                                <div class="<?php echo esc_attr($columns['reset']); ?>">
+                                    <div class="search-field">
+                                        <button type="button" class="reset-search-form"><i class="fa-solid fa-arrows-rotate"></i></button>
+                                    </div>
+                                </div>
+                            <?php endif;
+                            break;
+                    }
+                }
+                ?>
                 <div class="<?php echo esc_attr($columns['btn']); ?>">
                     <div class="search-field">
                         <input type="submit" value="<?php echo rswpbs_static_text_search(); ?>">
                     </div>
                 </div>
-
-                <?php if ($visibility['reset'] ?? false): ?>
-                <div class="<?php echo esc_attr($columns['reset']); ?>">
-                    <div class="search-field">
-                        <button type="button" class="reset-search-form"><i class="fa-solid fa-arrows-rotate"></i></button>
-                    </div>
-                </div>
-                <?php endif; ?>
             </div>
         </form>
     </div>

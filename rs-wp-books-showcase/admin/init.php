@@ -22,6 +22,8 @@ function rswpbs_admin_assets(){
 			wp_enqueue_script('rs-wp-book-showcase-admin-custom', RSWPBS_PLUGIN_URL . 'admin/assets/js/admin-custom.js', array('jquery'), '1.0', true);
 			wp_enqueue_media();
 		}
+
+		wp_enqueue_script('jquery-ui-sortable');
 	}
 }
 

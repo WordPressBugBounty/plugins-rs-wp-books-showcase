@@ -7,7 +7,12 @@ a.toplevel_page_best-theme-for-author-website:active {
     color: #fff !important;
     opacity: 1;
 }
-
+ul#rswpbs-sortable-fields.rswpbs-free-active {
+    opacity: .5;
+}
+ul#rswpbs-sortable-fields li {
+    cursor: move;
+}
 a.toplevel_page_best-theme-for-author-website .wp-menu-image:before {
     color: #fff !important;
 }
