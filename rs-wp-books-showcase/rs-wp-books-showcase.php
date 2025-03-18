@@ -3,7 +3,7 @@
  * Plugin Name:       RS WP Book Showcase
  * Plugin URI:        https://rswpthemes.com/rs-wp-books-showcase-wordpress-plugin/
  * Description:       Premier WordPress book gallery plugin, offering advanced search options and multiple layouts for effortless book showcasing.
- * Version:           6.7.29
+ * Version:           6.7.31
  * Requires at least: 4.9
  * Requires PHP:      7.1
  * Author:            RS WP THEMES
@@ -43,17 +43,20 @@ class Rswpbs{
         require_once RSWPBS_PLUGIN_PATH . '/admin/metabox/book-mockup-meta-box.php';
 
         require_once RSWPBS_PLUGIN_PATH . '/admin/setup-book-gallery-page/setup-book-gallery-page.php';
+        require_once RSWPBS_PLUGIN_PATH . '/includes/import-books-from-json.php';
         require_once RSWPBS_PLUGIN_PATH . '/admin/settings/general-settings.php';
         require_once RSWPBS_PLUGIN_PATH . '/admin/settings/book-archive-page.php';
         require_once RSWPBS_PLUGIN_PATH . '/admin/settings/book-single-page.php';
         require_once RSWPBS_PLUGIN_PATH . '/admin/settings/change-static-text.php';
         require_once RSWPBS_PLUGIN_PATH . '/admin/settings/colors-settings.php';
         require_once RSWPBS_PLUGIN_PATH . '/admin/settings/advanced-search-form.php';
+        require_once RSWPBS_PLUGIN_PATH . '/includes/detect-amz-affiliate-id.php';
         require_once RSWPBS_PLUGIN_PATH . '/includes/import-books-from-csv/import-books-from-csv-menu-page.php';
         require_once RSWPBS_PLUGIN_PATH . '/includes/import-books-from-json/import-books-from-json-menu-page.php';
         require_once RSWPBS_PLUGIN_PATH . '/frontend/archive-page-options.php';
         require_once RSWPBS_PLUGIN_PATH . '/includes/download-image-from-url.php';
         require_once RSWPBS_PLUGIN_PATH . '/includes/default-loop-modify.php';
+        require_once RSWPBS_PLUGIN_PATH . '/includes/solve-book-not-found-issue.php';
         require_once RSWPBS_PLUGIN_PATH . '/admin/tutorial.php';
         require_once RSWPBS_PLUGIN_PATH . '/frontend/enqueue-scripts.php';
         require_once RSWPBS_PLUGIN_PATH . '/frontend/rswpbs-shortcodes.php';
@@ -259,7 +262,7 @@ function rswpbs_plugin_activation() {
 }
 
 // Hook to handle the delayed redirect
-add_action('admin_init', 'rswpbs_do_delayed_redirect');
+// add_action('admin_init', 'rswpbs_do_delayed_redirect');
 
 function rswpbs_do_delayed_redirect() {
     $getRswpThemesSlug = get_stylesheet();

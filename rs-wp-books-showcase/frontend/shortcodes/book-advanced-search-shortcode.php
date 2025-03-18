@@ -79,6 +79,23 @@ function rswpbs_advanced_search($atts) {
 
     ?>
     <div class="rswpbs-books-showcase-search-form-container">
+        <?php
+        if ( is_user_logged_in() && current_user_can( 'manage_options' ) ) :
+        ?>
+            <div class="admin-message-for-search-form">
+                <?php
+                $message = sprintf(
+                    /* translators: %1$s is the bolded "admins" text, %2$s is the link to the Search Form Settings page */
+                    __( 'This instruction is visible only to %1$s; viewers cannot see it. To show, hide, or reorder search fields, please visit the %2$s page.', 'rswpbs' ),
+                    '<strong>' . esc_html__( 'admins', 'rswpbs' ) . '</strong>',
+                    '<a href="' . esc_url( home_url( '/wp-admin/edit.php?post_type=book&page=rswpbs-settings-search-form' ) ) . '">' . esc_html__( 'Search Form Settings', 'rswpbs' ) . '</a>'
+                );
+                echo wp_kses_post( $message );
+                ?>
+            </div>
+        <?php
+        endif;
+        ?>
         <form class="rswpbs-books-search-form" id="rswpbs-books-search-form" action="<?php echo esc_url(rswpbs_search_page_base_url()); ?>" method="get">
             <input type="hidden" name="search_type" value="book">
             <input type="hidden" name="sortby" id="rswpbs-sortby" value="">

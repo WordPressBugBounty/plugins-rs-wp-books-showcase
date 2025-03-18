@@ -702,6 +702,11 @@ div#rswpbs-migration-notice {
 }
 div#rswpbs-setup-books-page-notice {
     background: #ddd;
+    width: 840px;
+}
+div#rswpbs-setup-books-page-notice p {
+    font-size: 18px;
+    width: 830px;
 }
 div#rswpbs-setup-books-page-notice > h3 {
     margin-top: 10px !important;

@@ -24,6 +24,7 @@
     padding: 30px 0 30px 0;
     width: 100%;
 }
+
 .masonaryactive {
     position: relative;
     display: block;
@@ -35,6 +36,7 @@ body.rswp-book-showcase-page .rswpbs-books-showcase-book-loop-container img {
     max-width: 100% !important;
     height: auto;
 }
+
 .rswpbs-book-author-container-inner {
     background: #fff;
     padding: 30px;
@@ -50,6 +52,7 @@ body.rswp-book-showcase-page .rswpbs-books-showcase-book-loop-container img {
     margin-bottom: 30px;
     width: 100%;
 }
+
 .book-single-column.book-col-have-margin {
     margin-bottom: 30px;
 }
@@ -58,11 +61,13 @@ body.rswp-book-showcase-page .rswpbs-books-showcase-book-loop-container img {
     margin-bottom: 0;
     height: 100%;
 }
+
 .rswpbs-book-single-wrapper img {
     max-width: 100%;
     max-height: max-content;
     height: auto;
 }
+
 .rs-wp-books-showcase-archive-page .book-content-column,
 .rs-wp-books-showcase-author-tax-page .book-content-column,
 .rs-wp-books-showcase-category-tax-page .book-content-column {
@@ -73,9 +78,11 @@ body.rswp-book-showcase-page .rswpbs-books-showcase-book-loop-container img {
     border: 1px solid #f1f1f1;
     margin-bottom: 30px;
 }
+
 .align-self-stretch .rswpbs-book-container {
     background: #fff;
 }
+
 .rswpbs-books-showcase-book-loop-container {
     margin-top: 40px;
 }
@@ -105,8 +112,7 @@ body.single-post.both-sidebar .book-grid-layout h2.book-title {
     padding: 0;
 }
 
-body.single-post.right-sidebar .book-grid-layout h2.book-title a
-body.single-post.left-sidebar .book-grid-layout h2.book-title a,
+body.single-post.right-sidebar .book-grid-layout h2.book-title a body.single-post.left-sidebar .book-grid-layout h2.book-title a,
 body.single-post.both-sidebar .book-grid-layout h2.book-title a {
     display: block;
     color: #000;
@@ -475,6 +481,7 @@ body.custom-background .rswpbs-book-showcase-page-title {
 }
 
 @media (max-width: 767px) {
+
     .rswpbs-book-single-header-content-container h1.book-name,
     .rswpbs-book-single-header-content-container h2.book-name {
         font-size: 26px;
@@ -576,6 +583,7 @@ body.custom-background .rswpbs-book-showcase-page-title {
 .rswpbs-book-loop-content-wrapper.book-content-column.content-align-left * {
     text-align: left;
 }
+
 body.single-post .book-also-available-website-list a:hover {
     color: #fff;
 }
@@ -799,10 +807,16 @@ a.rswpbs-book-buy-now-button:hover {
 
 .rswpbs-book-overview ul.a-unordered-list,
 .rswpbs-book-overview ul {
-    margin-bottom: 20px !important;!i;!;!i;!;
+    margin-bottom: 20px !important;
+     !i;
+     !;
+     !i;
+     !;
 }
 
-.rswpbs-book-overview span.a-text-bold {font-weight: 700;}
+.rswpbs-book-overview span.a-text-bold {
+    font-weight: 700;
+}
 
 .rswpbs-book-overview-section .rswpbs-book-overview {
     color: #444;
@@ -885,6 +899,7 @@ span.rswpbs-arrow-down {
 .rswpbs-book-single-header-content-container .rswpbs-book-external-website-list .rswpbs-book-buy-now-button:active .rswpbs-arrow-down {
     border-top-color: #fff;
 }
+
 .rswpbs-books-showcase-search-form-container {
     padding: 20px 20px 5px 20px;
     background: #ffffff;
@@ -901,6 +916,7 @@ span.rswpbs-arrow-down {
     border: 1px solid #f1f1f1;
     background: #fff;
 }
+
 .rswpbs-search-form .select2-container .select2-selection--single .select2-selection__arrow b {
     border-color: #444 transparent transparent transparent;
     border-style: solid;
@@ -913,7 +929,8 @@ span.rswpbs-arrow-down {
     top: 50%;
     width: 0
 }
-.rswpbs-search-form .select2-container--default .select2-selection--single .select2-selection__rendered{
+
+.rswpbs-search-form .select2-container--default .select2-selection--single .select2-selection__rendered {
     line-height: 40px;
     padding-top: 0;
     padding-bottom: 0;
@@ -922,17 +939,21 @@ span.rswpbs-arrow-down {
 .rswpbs-search-form .select2-container--default .select2-selection--single .select2-selection__clear {
     margin-right: 20px;
 }
+
 .rswpbs-search-form .select2-container--default .select2-selection--single .select2-selection__arrow {
     top: 0;
     height: 100%;
     right: 5px;
 }
-.rswpbs-search-form .select2-container .select2-selection--single .select2-selection__placeholder{
+
+.rswpbs-search-form .select2-container .select2-selection--single .select2-selection__placeholder {
     font-size: 14px;
 }
-.rswpbs-search-form .select2-container .select2-selection--single{
+
+.rswpbs-search-form .select2-container .select2-selection--single {
     height: 40px;
 }
+
 .rswpbs-search-form .search-field .selectize-dropdown,
 .rswpbs-search-form .search-field .selectize-input {
     border: 1px solid #f1f1f1;
@@ -947,6 +968,7 @@ span.rswpbs-arrow-down {
 .rswpbs-search-form .search-field input[type=submit] {
     border-radius: 0;
 }
+
 /*.rswpbs-search-form.rswpbs-row.rswpbs-free-search-form-row > div {
     max-width: 20% !important;!i;!;
     flex: 0 0 20%;
@@ -967,8 +989,9 @@ span.rswpbs-arrow-down {
     text-align: right;
     float: right;
 }
-body.right-sidebar .rswpbs-advanced-search-form-area .rswpbs-search-form.rswpbs-row >div,
-body.left-sidebar .rswpbs-advanced-search-form-area .rswpbs-search-form.rswpbs-row >div {
+
+body.right-sidebar .rswpbs-advanced-search-form-area .rswpbs-search-form.rswpbs-row>div,
+body.left-sidebar .rswpbs-advanced-search-form-area .rswpbs-search-form.rswpbs-row>div {
     padding-right: 7px !important;
     padding-left: 7px !important;
 }
@@ -978,8 +1001,8 @@ body.left-sidebar .rswpbs-advanced-search-form-area .rswpbs-search-form .search-
     margin-bottom: 10px;
 }
 
-body.right-sidebar .rswpbs-advanced-search-form-area .rswpbs-search-form.rswpbs-row >div span.select2.select2-container.select2-container--default,
-body.left-sidebar .rswpbs-advanced-search-form-area .rswpbs-search-form.rswpbs-row >div span.select2.select2-container.select2-container--default {
+body.right-sidebar .rswpbs-advanced-search-form-area .rswpbs-search-form.rswpbs-row>div span.select2.select2-container.select2-container--default,
+body.left-sidebar .rswpbs-advanced-search-form-area .rswpbs-search-form.rswpbs-row>div span.select2.select2-container.select2-container--default {
     width: 100% !important;
 }
 
@@ -993,6 +1016,7 @@ body.left-sidebar .rswpbs-advanced-search-form-area .rswpbs-books-showcase-searc
 .rswpbs-book-container.rswpbs-row.book-list-layout.thumbnail-position-right {
     margin-bottom: 0;
 }
+
 .rswpbs-books-sorting-field select#rswpbs-sort {
     background-image: none;
     -webkit-appearance: button;
@@ -1018,9 +1042,12 @@ body.left-sidebar .rswpbs-advanced-search-form-area .rswpbs-books-showcase-searc
     width: 100%;
     margin-top: 2em;
 }
-.rswpbs-books-pagination .rswpbs-pagination, .rswpbs-books-pagination .rswpbs-pagination .pagination {
+
+.rswpbs-books-pagination .rswpbs-pagination,
+.rswpbs-books-pagination .rswpbs-pagination .pagination {
     margin: 0;
 }
+
 .rswpbs-books-pagination a {
     text-decoration: none !important;
 }
@@ -1308,9 +1335,11 @@ body.left-sidebar .rswpbs-advanced-search-form-area .rswpbs-books-showcase-searc
     backdrop-filter: none;
     filter: none;
 }
+
 .rswpbs-book-list-widget-area-inner .book-image:after {
     display: none;
 }
+
 .rswpbs-book-list-widget-area-inner .book-image .book-view-button a {
     position: absolute;
     display: inline-block;
@@ -1333,9 +1362,15 @@ body.left-sidebar .rswpbs-advanced-search-form-area .rswpbs-books-showcase-searc
     background: #f9464a;
     color: #fff;
 }
-.footer-sidebar.widget .rswpbs-book-list-widget-area-inner .book-view-button a, .footer-sidebar.widget .rswpbs-book-list-widget-area-inner .book-name a, .footer-sidebar.widget .rswpbs-book-list-widget-area-inner .book-author a, .footer-sidebar.widget .rswpbs-book-list-widget-area-inner .book-price .regular-price, .footer-sidebar.widget .rswpbs-book-list-widget-area-inner .book-price .sale-price  {
+
+.footer-sidebar.widget .rswpbs-book-list-widget-area-inner .book-view-button a,
+.footer-sidebar.widget .rswpbs-book-list-widget-area-inner .book-name a,
+.footer-sidebar.widget .rswpbs-book-list-widget-area-inner .book-author a,
+.footer-sidebar.widget .rswpbs-book-list-widget-area-inner .book-price .regular-price,
+.footer-sidebar.widget .rswpbs-book-list-widget-area-inner .book-price .sale-price {
     color: #000;
 }
+
 .rswpbs-book-list-widget-area-inner:hover .book-image .book-view-button a {
     visibility: visible;
     opacity: 1;
@@ -1353,7 +1388,9 @@ body.theme-book-author-template section.footer-content.footer-top-area .footer-s
     color: #000;
 }
 
-body.theme-book-author-template section.footer-content.footer-top-area .footer-sidebar.widget .rswpbs-book-list-widget-area-inner .book-image .book-view-button a {color: #000;}
+body.theme-book-author-template section.footer-content.footer-top-area .footer-sidebar.widget .rswpbs-book-list-widget-area-inner .book-image .book-view-button a {
+    color: #000;
+}
 
 body.theme-book-author-template section.footer-content.footer-top-area .footer-sidebar.widget .rswpbs-book-list-widget-area-inner .book-image .book-view-button a:hover {
     color: #fff;
@@ -1410,17 +1447,22 @@ body.theme-book-author-template section.footer-content.footer-top-area .footer-s
     width: 100%;
     border: 1px solid #f1f1f1;
 }
+
 .rswpbs-review-form-field br {
     display: none;
 }
 
-.rswpbs-review-form-field input[type="text"], .rswpbs-review-form-field input[type="password"], .rswpbs-review-form-field input[type="email"] {
+.rswpbs-review-form-field input[type="text"],
+.rswpbs-review-form-field input[type="password"],
+.rswpbs-review-form-field input[type="email"] {
     height: 40px;
     padding: 0 10px;
 }
-.rswpbs-review-form-field textarea{
+
+.rswpbs-review-form-field textarea {
     padding: 20px;
 }
+
 .rswpbs-review-form-field input[type="submit"] {
     height: 40px;
     border: 0;
@@ -1429,14 +1471,17 @@ body.theme-book-author-template section.footer-content.footer-top-area .footer-s
     font-size: 16px;
     cursor: pointer;
 }
+
 .rswpbs-review-form-field .stars {
     display: inline-block;
     font-size: 24px;
     color: #ccc;
 }
+
 .rswpbs-review-form-field .stars p.stars {
     display: none;
 }
+
 .rswpbs-review-form-field .stars i {
     cursor: pointer;
 }
@@ -1634,30 +1679,35 @@ body.custom-background .rswpbs-book-reviews-area .section-title-area .section-ti
     margin-top: 10px;
 }
 
-.layout-style-classic .ratings-and-quote-wrapper .quote{
+.layout-style-classic .ratings-and-quote-wrapper .quote {
     font-size: 45px;
     color: #F3ECE7;
     line-height: 0;
 }
 
-.layout-style-classic .ratings-and-quote-wrapper .client-rating span{
+.layout-style-classic .ratings-and-quote-wrapper .client-rating span {
     color: #FFA500;
     margin-left: 5px;
 }
+
 .layout-style-classic .review-short-content {
     color: #777;
 }
+
 .layout-style-classic .review-short-content a {
     color: #777;
     font-weight: 700;
 }
-.layout-style-classic .testimonial__item-inner h4.client-name{
+
+.layout-style-classic .testimonial__item-inner h4.client-name {
     color: #333;
 }
-.layout-style-classic .testimonial__item-inner .review-time{
+
+.layout-style-classic .testimonial__item-inner .review-time {
     color: #777;
     font-style: normal;
 }
+
 /*Book Archive Page Pagination*/
 .rswpbs-pagination {
     margin: 50px 0;
@@ -1737,6 +1787,7 @@ body.custom-background .rswpbs-book-reviews-area .section-title-area .section-ti
 .rswpbs-book-slider__slider-wrapper-row.book-slider-activate .slick-arrow.slick-prev {
     left: -70px;
 }
+
 .rswpbs-book-slider__slider-wrapper-row.book-slider-activate .slick-arrow {
     opacity: 1;
     visibility: visible;
@@ -1747,6 +1798,7 @@ body.custom-background .rswpbs-book-reviews-area .section-title-area .section-ti
     visibility: visible;
     opacity: 1;
 }
+
 @media (max-width: 1200px) {
     .rswpbs-book-slider__slider-wrapper-row.book-slider-activate .slick-arrow.slick-next {
         right: -20px;
@@ -1817,12 +1869,15 @@ body.custom-background .rswpbs-book-reviews-area .section-title-area .section-ti
     margin-bottom: 0;
     padding: 2px;
 }
-.slick-slide > div.rswpbs-book-container {
+
+.slick-slide>div.rswpbs-book-container {
     display: block;
     width: 100%;
 }
-.slick-slide > div.rswpbs-book-container.book-list-layout.thumbnail-position-right, .slick-slide > div.rswpbs-book-container.book-list-layout.thumbnail-position-left{
-    display:flex !important;
+
+.slick-slide>div.rswpbs-book-container.book-list-layout.thumbnail-position-right,
+.slick-slide>div.rswpbs-book-container.book-list-layout.thumbnail-position-left {
+    display: flex !important;
 }
 
 .rswpbs-book-slider.featured-slider .book-list-layout .book-title {
@@ -1956,15 +2011,17 @@ body.left-sidebar .carousel-slider .book-list-layout .rswpbs-book-loop-content-w
     font-weight: 400;
     text-transform: capitalize;
 }
+
 .rswpbs-book-buttons-wrapper .book-add-to-cart-btn {
     margin-bottom: 5px !important;
 }
 
-.rswpbs-book-buttons-wrapper > div {
-  margin-right: 0 !important;
+.rswpbs-book-buttons-wrapper>div {
+    margin-right: 0 !important;
 }
-.rswpbs-book-buttons-wrapper > div:first-child {
-  margin-left: 0 !important;
+
+.rswpbs-book-buttons-wrapper>div:first-child {
+    margin-left: 0 !important;
 }
 
 .rswpbs-book-buttons-wrapper .book-add-to-cart-btn button {
@@ -2181,6 +2238,7 @@ body.right-sidebar .book-gallery-list-layout-1-col .book-list-layout .book-autho
 body.left-sidebar .book-gallery-list-layout-1-col .book-list-layout .book-author {
     font-size: 18px;
 }
+
 body.right-sidebar .book-gallery-list-layout-1-col .book-list-layout .book-author a,
 body.left-sidebar .book-gallery-list-layout-1-col .book-list-layout .book-author a {
     font-weight: 400;
@@ -2202,27 +2260,33 @@ body.left-sidebar .book-gallery-list-layout-1-col .book-list-layout .book-multip
     margin-bottom: 15px;
     line-height: 36px;
 }
+
 body.right-sidebar .book-gallery-list-layout-1-col .book-list-layout,
-body.left-sidebar .book-gallery-list-layout-1-col .book-list-layout{
+body.left-sidebar .book-gallery-list-layout-1-col .book-list-layout {
     padding: 15px;
 }
+
 body.right-sidebar .book-gallery-list-layout-1-col .rswpbs-book-loop-content-wrapper .msl-title-wrapper,
-body.left-sidebar .book-gallery-list-layout-1-col .rswpbs-book-loop-content-wrapper .msl-title-wrapper{
+body.left-sidebar .book-gallery-list-layout-1-col .rswpbs-book-loop-content-wrapper .msl-title-wrapper {
     margin-bottom: 0;
 }
+
 body.single-post .rswpbs-book-loop-content-wrapper.book-content-column .single-website a {
     font-weight: 400;
     font-size: 16px;
     line-height: normal;
 }
+
 body.single-post .post-details-page .book-also-available-website-list a:hover {
     color: #fff;
     text-decoration: none;
 }
+
 body.both-sidebar .book-gallery-list-layout-1-col .book-list-layout .book-title {
     font-size: 22px;
     line-height: 32px;
 }
+
 body.both-sidebar .book-gallery-list-layout-1-col .book-list-layout .book-author {
     font-size: 18px;
 }
@@ -2234,14 +2298,16 @@ body.both-sidebar .book-gallery-list-layout-1-col .book-list-layout .book-author
 body.both-sidebar .book-gallery-list-layout-1-col .book-list-layout .book-price {
     font-size: 24px;
 }
+
 body.both-sidebar .book-gallery-list-layout-1-col .book-list-layout .book-desc {
     font-size: 16px;
     line-height: 26px;
 }
 
-body.both-sidebar .book-gallery-list-layout-1-col .book-list-layout{
+body.both-sidebar .book-gallery-list-layout-1-col .book-list-layout {
     padding: 15px;
 }
+
 body.both-sidebar .rswpbs-book-container.book-list-layout.thumbnail-position-left .rswpbs-book-loop-image {
     padding-right: 10px !important;
 }
@@ -2268,16 +2334,23 @@ body.both-sidebar .rswpbs-book-container.book-list-layout.thumbnail-position-lef
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 button.loop_add_to_cart_button.button.alt {
     position: relative;
 }
-button.loop_add_to_cart_button.button.alt.disabled{
+
+button.loop_add_to_cart_button.button.alt.disabled {
     border-color: #00000094;
 }
+
 button.loop_add_to_cart_button.button.alt.disabled:before {
     position: absolute;
     width: 100%;
@@ -2296,7 +2369,7 @@ button.loop_add_to_cart_button.button.alt.disabled:after {
     border: 3px dashed #fff;
     border-radius: 50%;
     -webkit-animation: spin 800ms linear infinite;
-        animation: spin 800ms linear infinite;
+    animation: spin 800ms linear infinite;
 }
 
 /* Book Single Page Cart Button */
@@ -2308,6 +2381,7 @@ button.loop_add_to_cart_button.button.alt.disabled:after {
 body.single-book div.product .rswpbs-container form.cart {
     margin-bottom: 0;
 }
+
 body.single-book div.product .rswpbs-container form.cart input::-webkit-outer-spin-button,
 body.single-book div.product .rswpbs-container form.cart input::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -2332,10 +2406,12 @@ body.single-book div.product .rswpbs-container form.cart .author-portfolio-pro-q
     color: rgb(0 0 0 / 60%);
     font-size: 11px;
 }
-body.single-book div.product .rswpbs-container form.cart .single_add_to_cart_button{
+
+body.single-book div.product .rswpbs-container form.cart .single_add_to_cart_button {
     height: auto;
 }
-body.single-book div.product .rswpbs-container div.quantity{
+
+body.single-book div.product .rswpbs-container div.quantity {
     float: none;
 }
 
@@ -2540,15 +2616,67 @@ body.single-book div.product .rswpbs-container form.cart .author-portfolio-pro-q
     border-top: 1px solid #ddd;
     margin: 20px 0;
 }
+
 .rswpbs-modal-content .rswpbs-book-single-header-content-container.others-pages h2.book-name {
     font-size: 24px;
     line-height: 1.4;
 }
+
 span.a-text-bold {
     font-weight: 700;
 }
+
 .admin-message-for-search-form {
     background: #ddd;
     margin-bottom: 10px;
     padding: 2px 10px;
+}
+
+
+.rswpbs-author-search {
+    margin-bottom: 20px;
+}
+
+.rswpbs-author-search-form {
+    display: flex;
+    gap: 10px;
+}
+
+.author-search-input {
+    padding: 8px;
+    width: 200px;
+}
+
+.rswpbs-load-more-wrapper {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.rswpbs-load-more-btn {
+    padding: 10px 20px;
+    background: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.rswpbs-load-more-btn:hover {
+    background: #0056b3;
+}
+
+form.rswpbs-author-search-form input {
+    width: 100%;
+}
+
+form.rswpbs-author-search-form button {
+    background: #f1f1f1;
+    border: 1px solid #f1f1f1;
+    color: #000;
+}
+
+.rswpbs-search-message {
+    text-align: center;
+    color: #666;
+    margin-top: 10px;
+    font-style: italic;
 }
