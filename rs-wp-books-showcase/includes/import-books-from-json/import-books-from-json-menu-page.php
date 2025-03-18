@@ -3,6 +3,21 @@
  * Admin Notice For Amazon Affiliate Marketer
  */
 function rswpbs_amz_admin_notice() {
+    // First check if there are any books
+    $book_count = wp_count_posts('book');
+    $published_books = $book_count->publish;
+
+    // Check if a books page exists (assuming it might be identified by a specific slug or template)
+    $books_page_exists = false;
+    $books_page = get_page_by_path('books'); // Adjust 'books' slug as needed
+    if ($books_page || get_option('rswpbs_books_page_id')) { // You might need to adjust this condition
+        $books_page_exists = true;
+    }
+
+    // Only proceed if there are books and a books page exists
+    if ($published_books == 0 || !$books_page_exists) {
+        return; // Exit if no books or no books page
+    }
 
     $active_theme = wp_get_theme();
     $showNotice = true;
@@ -11,17 +26,17 @@ function rswpbs_amz_admin_notice() {
         if ( false !== get_option('book_author_template_notice_dismissed_forever') || false !== get_option('book_author_template_notice_remind_time')) {
             $showNotice = true;
         }
-    }elseif ($active_theme->get('Name') === 'Author Portfolio') {
+    } elseif ($active_theme->get('Name') === 'Author Portfolio') {
         $showNotice = false;
         if ( false !== get_option('author_portfolio_notice_dismissed_forever') || false !== get_option('author_portfolio_notice_remind_time')) {
             $showNotice = true;
         }
-    }elseif ($active_theme->get('Name') === 'Author Personal Blog') {
+    } elseif ($active_theme->get('Name') === 'Author Personal Blog') {
         $showNotice = false;
         if ( false !== get_option('author_personal_blog_notice_dismissed_forever') || false !== get_option('author_personal_blog_notice_remind_time')) {
             $showNotice = true;
         }
-    }elseif ($active_theme->get('Name') === 'Book Author Blog') {
+    } elseif ($active_theme->get('Name') === 'Book Author Blog') {
         $showNotice = false;
         if ( false !== get_option('author_personal_blog_notice_dismissed_forever') || false !== get_option('author_personal_blog_notice_remind_time')) {
             $showNotice = true;
@@ -34,30 +49,23 @@ function rswpbs_amz_admin_notice() {
 
     if($showNotice) :
         // Check if not dismissed forever and either never dismissed or 3 days have passed
-        if (!$dismissed_forever && (!$dismissed_time || (time() - $dismissed_time) > (3 * 86400))) : // 3 * 86400 = 3 days
+        if (!$dismissed_forever && (!$dismissed_time || (time() - $dismissed_time) > (3 * 86400))) :
             ?>
-            <div class="notice notice-info is-dismissible rswpbs-amz-admin-notice">
-                <h3 class="amz-notice-heading"><?php echo esc_html__('🚀 Effortless Book Catalog + Affiliate Earnings! 📚💰', 'rswpbs'); ?></h3>
-                <p class="amz-notice-sub-heading"><strong>
-                    <?php echo esc_html__('Want to monetize your website effortlessly? Now, you can import 1,000+ books from Amazon to your website site in just 10 minutes – no manual work needed!', 'rswpbs'); ?></strong>
+            <!-- Rest of your notice HTML and JavaScript remains the same -->
+            <div class="notice notice-info rswpbs-amz-admin-notice">
+                <p class="amz-notice-sub-heading">
+                    <?php echo esc_html__('Ready to monetize your site with ease? Import over 1,000 books from Amazon in just 10 minutes—no manual effort required! Or, effortlessly upload your own collection from a CSV file to build a stunning book showcase tailored to your audience.', 'rswpbs'); ?>
                 </p>
-                <ul>
-                    <li><?php echo esc_html__('✅ ', 'rswpbs'); ?><strong><?php echo esc_html__('Instant Book Catalog –', 'rswpbs'); ?></strong> <?php echo esc_html__('Add hundreds (or thousands) of books with just a few clicks. No need to manually enter titles, descriptions, or images!', 'rswpbs'); ?></li>
-                    <li><?php echo esc_html__('✅ ', 'rswpbs'); ?><strong><?php echo esc_html__('Earn Commissions Automatically –', 'rswpbs'); ?></strong> <?php echo esc_html__('Insert your Amazon Tracking ID and earn every time someone buys a book through your website.', 'rswpbs'); ?></li>
-                    <li><?php echo esc_html__('✅ ', 'rswpbs'); ?><strong><?php echo esc_html__('Works for Any Niche –', 'rswpbs'); ?></strong> <?php echo esc_html__('Whether your site is about business, fitness, self-improvement, cooking, tech, or anything else, you can recommend relevant books to your audience.', 'rswpbs'); ?></li>
-                    <li><?php echo esc_html__('✅ ', 'rswpbs'); ?><strong><?php echo esc_html__('The Bigger Your Catalog, The More You Earn –', 'rswpbs'); ?></strong> <?php echo esc_html__('A large book collection = higher chances of sales & commissions!', 'rswpbs'); ?></li>
-                    <li><?php echo esc_html__('✅ ', 'rswpbs'); ?><strong><?php echo esc_html__('No Tech Skills Needed –', 'rswpbs'); ?></strong> <?php echo esc_html__('Set up everything easily with our step-by-step video guide included in the Import Books from Amazon page.', 'rswpbs'); ?></li>
-                </ul>
                 <p><strong><?php echo esc_html__('Get Started in Just a Few Clicks!', 'rswpbs'); ?></strong></p>
                 <div class="rswpbs-amz-admin-notice-btn-wrapper">
-                    <a href="<?php echo esc_url(admin_url('edit.php?post_type=book&page=rswpbs-settings')); ?>" class="button button-primary">
-                        <?php esc_html_e('Enter Tracking ID', 'rswpbs'); ?>
+                    <a href="<?php echo esc_url(admin_url('edit.php?post_type=book&page=import-books-from-csv')); ?>" class="button button-primary">
+                        <?php esc_html_e('Import Books From CSV', 'rswpbs'); ?>
                     </a>
                     <a href="<?php echo esc_url(admin_url('edit.php?post_type=book&page=import-books-from-json')); ?>" class="import-books-from-amazon-btn button button-secondary"><span class="dashicons dashicons-amazon"></span>
                         <?php esc_html_e('Import Books from Amazon', 'rswpbs'); ?>
                     </a>
                 </div>
-                <p><strong><?php echo esc_html__('💰 Start building your book catalog today and turn your website into a passive income machine!', 'rswpbs'); ?></strong></p>
+                <br>
                 <div class="rswpbs-notice-dismiss-links">
                     <a href="#" class="rswpbs-dismiss-forever" data-nonce="<?php echo wp_create_nonce('rswpbs_amz_dismiss_forever'); ?>">Dismiss Forever</a> |
                     <a href="#" class="rswpbs-remind-later" data-nonce="<?php echo wp_create_nonce('rswpbs_amz_remind_later'); ?>">Remind Me Later</a>
@@ -65,7 +73,6 @@ function rswpbs_amz_admin_notice() {
             </div>
             <script type="text/javascript">
                 jQuery(document).ready(function($) {
-                    // Handle Dismiss Forever
                     $('.rswpbs-dismiss-forever').on('click', function(e) {
                         e.preventDefault();
                         $.post(ajaxurl, {
@@ -76,7 +83,6 @@ function rswpbs_amz_admin_notice() {
                         });
                     });
 
-                    // Handle Remind Me Later
                     $('.rswpbs-remind-later').on('click', function(e) {
                         e.preventDefault();
                         $.post(ajaxurl, {
@@ -86,14 +92,6 @@ function rswpbs_amz_admin_notice() {
                             $('.rswpbs-amz-admin-notice').slideUp();
                         });
                     });
-
-                    // Handle default dismiss button
-                    $('.rswpbs-amz-admin-notice').on('click', '.notice-dismiss', function() {
-                        $.post(ajaxurl, {
-                            action: 'rswpbs_amz_remind_later',
-                            security: '<?php echo wp_create_nonce("rswpbs_amz_remind_later"); ?>'
-                        });
-                    });
                 });
             </script>
             <?php
@@ -101,7 +99,6 @@ function rswpbs_amz_admin_notice() {
     endif;
 }
 add_action('admin_notices', 'rswpbs_amz_admin_notice');
-
 // Handle dismiss forever
 function rswpbs_amz_dismiss_forever() {
     check_ajax_referer('rswpbs_amz_dismiss_forever', 'security');
@@ -154,7 +151,7 @@ function rswpbs_import_books_from_json_page() {
 
     ?>
     <div class="wrap">
-        <h1>Import Books from JSON</h1>
+        <h1><?php esc_html_e('Import Books from JSON', 'rswpbs'); ?></h1>
         <?php
         // If you have custom tabs
         if ( function_exists( 'rswpbs_settings_tabs' ) ) {

@@ -8,15 +8,20 @@ if ( $apiKeyRegistered && $emailAlreadySent ) {
 add_action('admin_init', 'rswpbs_control_optin_notice');
 function rswpbs_control_optin_notice() {
 
-    // delete_option('rswpthemes_optin_email_sent');
-    // delete_option('rswpthemes_api_key_registered');
-    // delete_option('rswpbs_optin_success');
-    // delete_transient('hide_notice_for_3_days');
+    $user_id = get_current_user_id();
+    $dismissed_forever = get_user_meta($user_id, 'rswpbs_amz_notice_dismissed_forever', true);
+    $dismissed_time = get_user_meta($user_id, 'rswpbs_amz_notice_dismissed_time', true);
+
+
 
     $optin_success = get_option('rswpbs_optin_success');
     $hide_notice_transient = get_transient('hide_notice_for_3_days');
 
     $notice_show = true;
+
+    if (!$dismissed_forever && !$dismissed_time) : // 3 * 86400 = 3 days
+        $notice_show = false;
+    endif;
 
     if ('1' == $optin_success) {
         $notice_show = false;
