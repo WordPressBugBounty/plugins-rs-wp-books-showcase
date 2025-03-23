@@ -57,25 +57,25 @@ function rs_wp_book_showcase_ajax_shortcode($atts) {
                 <div class="rswpbs-books-sorting-field" id="rswpbs-books-sorting-field">
                     <select id="rswpbs-sort">
                         <option value="default">
-                            <?php esc_html_e('Default Sorting', RSWPBS_TEXT_DOMAIN);?>
+                            <?php esc_html_e('Default Sorting', 'rswpbs');?>
                         </option>
                         <option value="price_asc" <?php echo ($search_fields['sortby']=='price_asc' ? 'selected="selected"' : '' ); ?>>
-                            <?php esc_html_e( 'Price (Low to High)', RSWPBS_TEXT_DOMAIN );?>
+                            <?php esc_html_e( 'Price (Low to High)', 'rswpbs' );?>
                         </option>
                         <option value="price_desc" <?php echo ($search_fields['sortby']=='price_desc' ? 'selected="selected"' : '' ); ?>>
-                            <?php esc_html_e( 'Price (High to Low)', RSWPBS_TEXT_DOMAIN );?>
+                            <?php esc_html_e( 'Price (High to Low)', 'rswpbs' );?>
                         </option>
                         <option value="title_asc" <?php echo ($search_fields['sortby']=='title_asc' ? 'selected="selected"' : '' ); ?>>
-                            <?php esc_html_e( 'Title (A-Z)', RSWPBS_TEXT_DOMAIN );?>
+                            <?php esc_html_e( 'Title (A-Z)', 'rswpbs' );?>
                         </option>
                         <option value="title_desc" <?php echo ($search_fields['sortby']=='title_desc' ? 'selected="selected"' : '' ); ?>>
-                            <?php esc_html_e( 'Title (Z-A)', RSWPBS_TEXT_DOMAIN );?>
+                            <?php esc_html_e( 'Title (Z-A)', 'rswpbs' );?>
                         </option>
                         <option value="date_asc" <?php echo ($search_fields['sortby']=='date_asc' ? 'selected="selected"' : '' ); ?>>
-                            <?php esc_html_e( 'Date (Oldest to Newest)', RSWPBS_TEXT_DOMAIN );?>
+                            <?php esc_html_e( 'Date (Oldest to Newest)', 'rswpbs' );?>
                         </option>
                         <option value="date_desc" <?php echo ($search_fields['sortby']=='date_desc' ? 'selected="selected"' : '' ); ?>>
-                            <?php esc_html_e( 'Date (Newest to Oldest)', RSWPBS_TEXT_DOMAIN );?>
+                            <?php esc_html_e( 'Date (Newest to Oldest)', 'rswpbs' );?>
                         </option>
                     </select>
                 </div>

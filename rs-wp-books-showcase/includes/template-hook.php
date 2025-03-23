@@ -135,3 +135,21 @@ function rswpbs_archive_page_header(){
     <?php
   endif;
 }
+
+function rswpbs_default_book_header() {
+    rswpbs_book_header_section();
+}
+add_action('rswpbs_book_header', 'rswpbs_default_book_header', 10);
+add_action('rswpbs_book_header', 'rswpbs_more_books_by_author', 15);
+function rswpbs_more_books_by_author(){
+  $authorIds = rswpbs_get_book_author_ids();
+  $getCurrentBookId = get_the_ID();
+  ?>
+  <div class="related-book-section">
+    <h2>More Books By <?php echo wp_kses_post(rswpbs_get_book_author());?></h2>
+    <?php
+    echo do_shortcode( "[rswpbs_book_slider books_per_page=\"8\" exclude_books=\"$getCurrentBookId\" authors_include=\"$authorIds\" show_author=\"true\" show_title=\"true\" show_excerpt=\"false\" excerpt_type=\"excerpt\" excerpt_limit=\"30\" show_price=\"false\" show_buy_button=\"true\" content_align=\"center\" sts_l_screen=\"4\" sts_m_screen=\"3\" sts_s_screen=\"1\" slider_style=\"carousel\"]" );
+    ?>
+  </div>
+  <?php
+}

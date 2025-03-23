@@ -34,9 +34,9 @@ function rswpbs_advanced_search($atts) {
 
     // Taxonomies (unchanged)
     $taxonomies = [
-        'authors' => get_terms(['taxonomy' => 'book-author', 'hide_empty' => false]),
-        'series' => get_terms(['taxonomy' => 'book-series', 'hide_empty' => false]),
-        'categories' => get_terms(['taxonomy' => 'book-category', 'hide_empty' => false])
+        'authors' => get_terms(['taxonomy' => 'book-author', 'hide_empty' => true]),
+        'series' => get_terms(['taxonomy' => 'book-series', 'hide_empty' => true]),
+        'categories' => get_terms(['taxonomy' => 'book-category', 'hide_empty' => true])
     ];
     foreach ($taxonomies as &$terms) {
         usort($terms, fn($a, $b) => strcmp($a->name, $b->name));

@@ -34,7 +34,7 @@ function rswpbs_book_review_meta_box_cb($post) {
 	<div class="rswpbs-row">
 		<div class="rswpbs-col-lg-3">
 			<div class="rswpbs-review-cmb-field">
-				<label for="reviewed_book"><?php esc_html_e( 'This Review Was Submitted in:', RSWPBS_TEXT_DOMAIN );?></label><br>
+				<label for="reviewed_book"><?php esc_html_e( 'This Review Was Submitted in:', 'rswpbs' );?></label><br>
 				<select name="reviewed_book" id="reviewed_book">
 					<option value="--"><?php echo esc_html_e( 'Select A Book', 'rswpbs' );?></option>
 					<?php
@@ -58,19 +58,19 @@ function rswpbs_book_review_meta_box_cb($post) {
 		</div>
 		<div class="rswpbs-col-lg-3">
 			<div class="rswpbs-review-cmb-field">
-				<label for="name"><?php esc_html_e( 'Full Name:', RSWPBS_TEXT_DOMAIN );?></label><br>
+				<label for="name"><?php esc_html_e( 'Full Name:', 'rswpbs' );?></label><br>
 				<input type="text" name="reviewer_name" id="name" value="<?php echo esc_attr($reviewer_name); ?>">
 			</div>
 		</div>
 		<div class="rswpbs-col-lg-3">
 			<div class="rswpbs-review-cmb-field">
-				<label for="email"><?php esc_html_e( 'Email Address:', RSWPBS_TEXT_DOMAIN );?></label><br>
+				<label for="email"><?php esc_html_e( 'Email Address:', 'rswpbs' );?></label><br>
 				<input type="email" name="reviewer_email" id="email" value="<?php echo esc_attr($reviewer_email); ?>">
 			</div>
 		</div>
 		<div class="rswpbs-col-lg-3">
 			<div class="rswpbs-review-cmb-field">
-				<label for="rating"><?php esc_html_e( 'Rating:', RSWPBS_TEXT_DOMAIN );?></label><br>
+				<label for="rating"><?php esc_html_e( 'Rating:', 'rswpbs' );?></label><br>
 				<select name="rating" id="rating">
 					<option value="1" <?php selected($rating, 1); ?>>1</option>
 					<option value="2" <?php selected($rating, 2); ?>>2</option>

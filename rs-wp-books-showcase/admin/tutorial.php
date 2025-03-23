@@ -47,8 +47,8 @@ function rswpbs_tutorial_page_content() {
                         </div>
                         <div class="tutorial-single-section">
                             <div class="shortcode-title mt-5">
-                               <h2><?php esc_html_e('Book Gallery Shortcode', RSWPBS_TEXT_DOMAIN); ?></h2>
-                               <p><?php esc_html_e('Copy this shortcode and past it in your books page.', RSWPBS_TEXT_DOMAIN);?></p>
+                               <h2><?php esc_html_e('Book Gallery Shortcode', 'rswpbs'); ?></h2>
+                               <p><?php esc_html_e('Copy this shortcode and past it in your books page.', 'rswpbs');?></p>
                                 <?php
                                 if (!class_exists('Rswpbs_Pro')) :
                                 ?>
@@ -65,8 +65,8 @@ function rswpbs_tutorial_page_content() {
                         </div>
                         <div class="tutorial-single-section">
                             <div class="shortcode-title">
-                               <h2><?php esc_html_e('Book Slider Shortcode', RSWPBS_TEXT_DOMAIN); ?></h2>
-                               <p><?php esc_html_e('Copy this shortcode and past it anywhere of the page/post where you want to show book slider.', RSWPBS_TEXT_DOMAIN);?></p>
+                               <h2><?php esc_html_e('Book Slider Shortcode', 'rswpbs'); ?></h2>
+                               <p><?php esc_html_e('Copy this shortcode and past it anywhere of the page/post where you want to show book slider.', 'rswpbs');?></p>
                                 <?php
                                 if (!class_exists('Rswpbs_Pro')) :
                                 ?>
@@ -83,8 +83,8 @@ function rswpbs_tutorial_page_content() {
                         </div>
                         <div class="tutorial-single-section">
                             <div class="shortcode-title">
-                               <h2><?php esc_html_e('Pages Shortcodes', RSWPBS_TEXT_DOMAIN); ?></h2>
-                               <p><?php esc_html_e('These Shortcodes mostly created to create block theme template for book single page, book category, book author, book series archive pages.', RSWPBS_TEXT_DOMAIN);?></p>
+                               <h2><?php esc_html_e('Pages Shortcodes', 'rswpbs'); ?></h2>
+                               <p><?php esc_html_e('These Shortcodes mostly created to create block theme template for book single page, book category, book author, book series archive pages.', 'rswpbs');?></p>
                                 <?php
                                 if (!class_exists('Rswpbs_Pro')) :
                                 ?>
@@ -116,8 +116,8 @@ function rswpbs_tutorial_page_content() {
                         </div>
                         <div class="tutorial-single-section">
                             <div class="shortcode-title">
-                               <h2><?php esc_html_e('Authors Shortcode', RSWPBS_TEXT_DOMAIN); ?></h2>
-                               <p><?php esc_html_e('Copy this shortcode and past it anywhere of the page/post where you want to show All Book Authors.', RSWPBS_TEXT_DOMAIN);?></p>
+                               <h2><?php esc_html_e('Authors Shortcode', 'rswpbs'); ?></h2>
+                               <p><?php esc_html_e('Copy this shortcode and past it anywhere of the page/post where you want to show All Book Authors.', 'rswpbs');?></p>
                                 <?php
                                 if (!class_exists('Rswpbs_Pro')) :
                                 ?>
@@ -134,8 +134,8 @@ function rswpbs_tutorial_page_content() {
                         </div>
                         <div class="tutorial-single-section">
                             <div class="shortcode-title">
-                               <h2><?php esc_html_e('Single Book Shortcode', RSWPBS_TEXT_DOMAIN); ?></h2>
-                               <p><?php esc_html_e('Copy this shortcode and past it anywhere of the page/post where you want to a single book. just make sure you have added book_id', RSWPBS_TEXT_DOMAIN);?></p>
+                               <h2><?php esc_html_e('Single Book Shortcode', 'rswpbs'); ?></h2>
+                               <p><?php esc_html_e('Copy this shortcode and past it anywhere of the page/post where you want to a single book. just make sure you have added book_id', 'rswpbs');?></p>
                                 <?php
                                 if (!class_exists('Rswpbs_Pro')) :
                                 ?>
@@ -164,7 +164,7 @@ function rswpbs_tutorial_page_content() {
                         </div>
                         <div class="tutorial-single-section">
                              <div class="video-title">
-                               <h2><?php esc_html_e('To get started, you could watch this video.', RSWPBS_TEXT_DOMAIN); ?></h2>
+                               <h2><?php esc_html_e('To get started, you could watch this video.', 'rswpbs'); ?></h2>
                             </div>
                             <div class="video-wrapper">
                                 <iframe width="560" height="315" src="https://www.youtube.com/embed/fI23SU26cSs?si=CfLbtlhSYr3WLWtY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -172,17 +172,17 @@ function rswpbs_tutorial_page_content() {
                         </div>
                         <div class="tutorial-single-section">
                             <div class="shortcode-title">
-                               <h2><?php esc_html_e('Book Gallery and Book Slider Gutenberg Block ( Pro ).', RSWPBS_TEXT_DOMAIN); ?></h2>
+                               <h2><?php esc_html_e('Book Gallery and Book Slider Gutenberg Block ( Pro ).', 'rswpbs'); ?></h2>
                                 <?php
                                 if (!class_exists('Rswpbs_Pro')) :
                                 ?>
-                                <p><?php esc_html_e('This Block Is Available In The Pro Version Only.', RSWPBS_TEXT_DOMAIN);?><a class="upgradeToProLink" href="<?php echo esc_url('https://rswpthemes.com/rs-wp-books-showcase-wordpress-plugin/');?>"><?php esc_html_e( 'Upgrade To Pro', RSWPBS_TEXT_DOMAIN );?></a></p>
+                                <p><?php esc_html_e('This Block Is Available In The Pro Version Only.', 'rswpbs');?><a class="upgradeToProLink" href="<?php echo esc_url('https://rswpthemes.com/rs-wp-books-showcase-wordpress-plugin/');?>"><?php esc_html_e( 'Upgrade To Pro', 'rswpbs' );?></a></p>
                                <?php
                                 endif;
                                ?>
                             </div>
                             <div class="video-title">
-                               <h3><?php esc_html_e('How to Use Gutenberg Block.', RSWPBS_TEXT_DOMAIN); ?></h3>
+                               <h3><?php esc_html_e('How to Use Gutenberg Block.', 'rswpbs'); ?></h3>
                             </div>
                             <div class="video-wrapper">
                                <iframe width="560" height="315" src="https://www.youtube.com/embed/84gda4bjCa0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
@@ -190,17 +190,17 @@ function rswpbs_tutorial_page_content() {
                         </div>
                         <div class="tutorial-single-section">
                             <div class="shortcode-title">
-                               <h2><?php esc_html_e('Display Books Using Elementor Page Builder ( Pro ).', RSWPBS_TEXT_DOMAIN); ?></h2>
+                               <h2><?php esc_html_e('Display Books Using Elementor Page Builder ( Pro ).', 'rswpbs'); ?></h2>
                                 <?php
                                 if (!class_exists('Rswpbs_Pro')) :
                                 ?>
-                                <p><?php esc_html_e('This Widget is Available In The Pro Version Only.');?><a class="upgradeToProLink" href="<?php echo esc_url('https://rswpthemes.com/rs-wp-books-showcase-wordpress-plugin/');?>"><?php esc_html_e( 'Upgrade To Pro', RSWPBS_TEXT_DOMAIN );?></a></p>
+                                <p><?php esc_html_e('This Widget is Available In The Pro Version Only.');?><a class="upgradeToProLink" href="<?php echo esc_url('https://rswpthemes.com/rs-wp-books-showcase-wordpress-plugin/');?>"><?php esc_html_e( 'Upgrade To Pro', 'rswpbs' );?></a></p>
                                <?php
                                 endif;
                                ?>
                             </div>
                             <div class="video-title">
-                               <h3><?php esc_html_e('Design a Stunning Book Gallery with Elementor: A Step-by-Step Guide', RSWPBS_TEXT_DOMAIN); ?></h3>
+                               <h3><?php esc_html_e('Design a Stunning Book Gallery with Elementor: A Step-by-Step Guide', 'rswpbs'); ?></h3>
                             </div>
                             <div class="video-wrapper">
                                 <iframe width="560" height="315" src="https://www.youtube.com/embed/XiOyJ9x061E" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>

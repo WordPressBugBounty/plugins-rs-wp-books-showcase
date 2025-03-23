@@ -16,37 +16,37 @@ class Rswpbs_Register_Book_Post_Type {
 	 */
 	public function register_book_post_type(){
 			$labels = array(
-			'name'                  => _x( 'Books', 'Book', RSWPBS_TEXT_DOMAIN ),
-			'singular_name'         => _x( 'Books Showcase', 'Books', RSWPBS_TEXT_DOMAIN ),
-			'menu_name'             => __( 'RS WP Books Showcase', RSWPBS_TEXT_DOMAIN ),
-			'name_admin_bar'        => __( 'RS WP Books Showcase', RSWPBS_TEXT_DOMAIN ),
-			'archives'              => __( 'Book Archives', RSWPBS_TEXT_DOMAIN ),
-			'attributes'            => __( 'Book Attributes', RSWPBS_TEXT_DOMAIN ),
-			'parent_item_colon'     => __( 'Parent Book:', RSWPBS_TEXT_DOMAIN ),
-			'all_items'             => __( 'All Books', RSWPBS_TEXT_DOMAIN ),
-			'add_new_item'          => __( 'Add New Book', RSWPBS_TEXT_DOMAIN ),
-			'add_new'               => __( 'Add New Book', RSWPBS_TEXT_DOMAIN ),
-			'new_item'              => __( 'New Book', RSWPBS_TEXT_DOMAIN ),
-			'edit_item'             => __( 'Edit Book', RSWPBS_TEXT_DOMAIN ),
-			'update_item'           => __( 'Update Book', RSWPBS_TEXT_DOMAIN ),
-			'view_item'             => __( 'View Book', RSWPBS_TEXT_DOMAIN ),
-			'view_items'            => __( 'View Books', RSWPBS_TEXT_DOMAIN ),
-			'search_items'          => __( 'Search Book', RSWPBS_TEXT_DOMAIN ),
-			'not_found'             => __( 'Not found', RSWPBS_TEXT_DOMAIN ),
-			'not_found_in_trash'    => __( 'Not found in Trash', RSWPBS_TEXT_DOMAIN ),
-			'featured_image'        => __( 'Book Front Cover', RSWPBS_TEXT_DOMAIN ),
-			'set_featured_image'    => __( 'Set Book Front Cover', RSWPBS_TEXT_DOMAIN ),
-			'remove_featured_image' => __( 'Remove featured image', RSWPBS_TEXT_DOMAIN ),
-			'use_featured_image'    => __( 'Use as featured image', RSWPBS_TEXT_DOMAIN ),
-			'insert_into_item'      => __( 'Insert into item', RSWPBS_TEXT_DOMAIN ),
-			'uploaded_to_this_item' => __( 'Uploaded to this item', RSWPBS_TEXT_DOMAIN ),
-			'items_list'            => __( 'Items list', RSWPBS_TEXT_DOMAIN ),
-			'items_list_navigation' => __( 'Items list navigation', RSWPBS_TEXT_DOMAIN ),
-			'filter_items_list'     => __( 'Filter items list', RSWPBS_TEXT_DOMAIN ),
+			'name'                  => _x( 'Books', 'Book', 'rswpbs' ),
+			'singular_name'         => _x( 'Books Showcase', 'Books', 'rswpbs' ),
+			'menu_name'             => __( 'RS WP Books Showcase', 'rswpbs' ),
+			'name_admin_bar'        => __( 'RS WP Books Showcase', 'rswpbs' ),
+			'archives'              => __( 'Book Archives', 'rswpbs' ),
+			'attributes'            => __( 'Book Attributes', 'rswpbs' ),
+			'parent_item_colon'     => __( 'Parent Book:', 'rswpbs' ),
+			'all_items'             => __( 'All Books', 'rswpbs' ),
+			'add_new_item'          => __( 'Add New Book', 'rswpbs' ),
+			'add_new'               => __( 'Add New Book', 'rswpbs' ),
+			'new_item'              => __( 'New Book', 'rswpbs' ),
+			'edit_item'             => __( 'Edit Book', 'rswpbs' ),
+			'update_item'           => __( 'Update Book', 'rswpbs' ),
+			'view_item'             => __( 'View Book', 'rswpbs' ),
+			'view_items'            => __( 'View Books', 'rswpbs' ),
+			'search_items'          => __( 'Search Book', 'rswpbs' ),
+			'not_found'             => __( 'Not found', 'rswpbs' ),
+			'not_found_in_trash'    => __( 'Not found in Trash', 'rswpbs' ),
+			'featured_image'        => __( 'Book Front Cover', 'rswpbs' ),
+			'set_featured_image'    => __( 'Set Book Front Cover', 'rswpbs' ),
+			'remove_featured_image' => __( 'Remove featured image', 'rswpbs' ),
+			'use_featured_image'    => __( 'Use as featured image', 'rswpbs' ),
+			'insert_into_item'      => __( 'Insert into item', 'rswpbs' ),
+			'uploaded_to_this_item' => __( 'Uploaded to this item', 'rswpbs' ),
+			'items_list'            => __( 'Items list', 'rswpbs' ),
+			'items_list_navigation' => __( 'Items list navigation', 'rswpbs' ),
+			'filter_items_list'     => __( 'Filter items list', 'rswpbs' ),
 		);
 		$args = array(
-			'label'                 => __( 'Books Showcase', RSWPBS_TEXT_DOMAIN ),
-			'description'           => __( 'Click on any book cover to learn more.', RSWPBS_TEXT_DOMAIN ),
+			'label'                 => __( 'Books Showcase', 'rswpbs' ),
+			'description'           => __( 'Click on any book cover to learn more.', 'rswpbs' ),
 			'labels'                => $labels,
 			'supports'              => array( 'title', 'editor', 'thumbnail', 'revisions', 'author' ),
 			'hierarchical'          => true,
@@ -75,26 +75,26 @@ class Rswpbs_Register_Book_Post_Type {
 	 */
 	public function register_book_cat_taxonomy(){
 			$labels = array(
-			'name'                       => _x( 'Book Categories', 'Book Categories', RSWPBS_TEXT_DOMAIN ),
-			'singular_name'              => _x( 'Book Category', 'Book Category', RSWPBS_TEXT_DOMAIN ),
-			'menu_name'                  => __( 'Book Categories', RSWPBS_TEXT_DOMAIN ),
-			'all_items'                  => __( 'All Book Categories', RSWPBS_TEXT_DOMAIN ),
-			'parent_item'                => __( 'Parent Item', RSWPBS_TEXT_DOMAIN ),
-			'parent_item_colon'          => __( 'Parent Item:', RSWPBS_TEXT_DOMAIN ),
-			'new_item_name'              => __( 'New Item Name', RSWPBS_TEXT_DOMAIN ),
-			'add_new_item'               => __( 'Add New Item', RSWPBS_TEXT_DOMAIN ),
-			'edit_item'                  => __( 'Edit Item', RSWPBS_TEXT_DOMAIN ),
-			'update_item'                => __( 'Update Item', RSWPBS_TEXT_DOMAIN ),
-			'view_item'                  => __( 'View Item', RSWPBS_TEXT_DOMAIN ),
-			'separate_items_with_commas' => __( 'Separate items with commas', RSWPBS_TEXT_DOMAIN ),
-			'add_or_remove_items'        => __( 'Add or remove items', RSWPBS_TEXT_DOMAIN ),
-			'choose_from_most_used'      => __( 'Choose from the most used', RSWPBS_TEXT_DOMAIN ),
-			'popular_items'              => __( 'Popular Items', RSWPBS_TEXT_DOMAIN ),
-			'search_items'               => __( 'Search Items', RSWPBS_TEXT_DOMAIN ),
-			'not_found'                  => __( 'Not Found', RSWPBS_TEXT_DOMAIN ),
-			'no_terms'                   => __( 'No items', RSWPBS_TEXT_DOMAIN ),
-			'items_list'                 => __( 'Items list', RSWPBS_TEXT_DOMAIN ),
-			'items_list_navigation'      => __( 'Items list navigation', RSWPBS_TEXT_DOMAIN ),
+			'name'                       => _x( 'Book Categories', 'Book Categories', 'rswpbs' ),
+			'singular_name'              => _x( 'Book Category', 'Book Category', 'rswpbs' ),
+			'menu_name'                  => __( 'Book Categories', 'rswpbs' ),
+			'all_items'                  => __( 'All Book Categories', 'rswpbs' ),
+			'parent_item'                => __( 'Parent Item', 'rswpbs' ),
+			'parent_item_colon'          => __( 'Parent Item:', 'rswpbs' ),
+			'new_item_name'              => __( 'New Item Name', 'rswpbs' ),
+			'add_new_item'               => __( 'Add New Item', 'rswpbs' ),
+			'edit_item'                  => __( 'Edit Item', 'rswpbs' ),
+			'update_item'                => __( 'Update Item', 'rswpbs' ),
+			'view_item'                  => __( 'View Item', 'rswpbs' ),
+			'separate_items_with_commas' => __( 'Separate items with commas', 'rswpbs' ),
+			'add_or_remove_items'        => __( 'Add or remove items', 'rswpbs' ),
+			'choose_from_most_used'      => __( 'Choose from the most used', 'rswpbs' ),
+			'popular_items'              => __( 'Popular Items', 'rswpbs' ),
+			'search_items'               => __( 'Search Items', 'rswpbs' ),
+			'not_found'                  => __( 'Not Found', 'rswpbs' ),
+			'no_terms'                   => __( 'No items', 'rswpbs' ),
+			'items_list'                 => __( 'Items list', 'rswpbs' ),
+			'items_list_navigation'      => __( 'Items list navigation', 'rswpbs' ),
 		);
 		$args = array(
 			'labels'                     => $labels,
@@ -119,26 +119,26 @@ class Rswpbs_Register_Book_Post_Type {
 	 */
 	public function register_book_series_taxonomy(){
 			$labels = array(
-			'name'                       => _x( 'Book Series', 'Book Series', RSWPBS_TEXT_DOMAIN ),
-			'singular_name'              => _x( 'Book series', 'Book series', RSWPBS_TEXT_DOMAIN ),
-			'menu_name'                  => __( 'Book Series', RSWPBS_TEXT_DOMAIN ),
-			'all_items'                  => __( 'All Book Series', RSWPBS_TEXT_DOMAIN ),
-			'parent_item'                => __( 'Parent Item', RSWPBS_TEXT_DOMAIN ),
-			'parent_item_colon'          => __( 'Parent Item:', RSWPBS_TEXT_DOMAIN ),
-			'new_item_name'              => __( 'New Item Name', RSWPBS_TEXT_DOMAIN ),
-			'add_new_item'               => __( 'Add New Item', RSWPBS_TEXT_DOMAIN ),
-			'edit_item'                  => __( 'Edit Item', RSWPBS_TEXT_DOMAIN ),
-			'update_item'                => __( 'Update Item', RSWPBS_TEXT_DOMAIN ),
-			'view_item'                  => __( 'View Item', RSWPBS_TEXT_DOMAIN ),
-			'separate_items_with_commas' => __( 'Separate items with commas', RSWPBS_TEXT_DOMAIN ),
-			'add_or_remove_items'        => __( 'Add or remove items', RSWPBS_TEXT_DOMAIN ),
-			'choose_from_most_used'      => __( 'Choose from the most used', RSWPBS_TEXT_DOMAIN ),
-			'popular_items'              => __( 'Popular Items', RSWPBS_TEXT_DOMAIN ),
-			'search_items'               => __( 'Search Items', RSWPBS_TEXT_DOMAIN ),
-			'not_found'                  => __( 'Not Found', RSWPBS_TEXT_DOMAIN ),
-			'no_terms'                   => __( 'No items', RSWPBS_TEXT_DOMAIN ),
-			'items_list'                 => __( 'Items list', RSWPBS_TEXT_DOMAIN ),
-			'items_list_navigation'      => __( 'Items list navigation', RSWPBS_TEXT_DOMAIN ),
+			'name'                       => _x( 'Book Series', 'Book Series', 'rswpbs' ),
+			'singular_name'              => _x( 'Book series', 'Book series', 'rswpbs' ),
+			'menu_name'                  => __( 'Book Series', 'rswpbs' ),
+			'all_items'                  => __( 'All Book Series', 'rswpbs' ),
+			'parent_item'                => __( 'Parent Item', 'rswpbs' ),
+			'parent_item_colon'          => __( 'Parent Item:', 'rswpbs' ),
+			'new_item_name'              => __( 'New Item Name', 'rswpbs' ),
+			'add_new_item'               => __( 'Add New Item', 'rswpbs' ),
+			'edit_item'                  => __( 'Edit Item', 'rswpbs' ),
+			'update_item'                => __( 'Update Item', 'rswpbs' ),
+			'view_item'                  => __( 'View Item', 'rswpbs' ),
+			'separate_items_with_commas' => __( 'Separate items with commas', 'rswpbs' ),
+			'add_or_remove_items'        => __( 'Add or remove items', 'rswpbs' ),
+			'choose_from_most_used'      => __( 'Choose from the most used', 'rswpbs' ),
+			'popular_items'              => __( 'Popular Items', 'rswpbs' ),
+			'search_items'               => __( 'Search Items', 'rswpbs' ),
+			'not_found'                  => __( 'Not Found', 'rswpbs' ),
+			'no_terms'                   => __( 'No items', 'rswpbs' ),
+			'items_list'                 => __( 'Items list', 'rswpbs' ),
+			'items_list_navigation'      => __( 'Items list navigation', 'rswpbs' ),
 		);
 		$args = array(
 			'labels'                     => $labels,
@@ -208,14 +208,14 @@ class Rswpbs_Register_Book_Post_Type {
 			$columns['taxonomy-book-author'],
 			$columns['taxonomy-book-series']
 		);
-		$columns['title']	= __( 'Book Name', RSWPBS_TEXT_DOMAIN );
-		$columns['taxonomy-book-author']	= __( 'Book Author', RSWPBS_TEXT_DOMAIN );
+		$columns['title']	= __( 'Book Name', 'rswpbs' );
+		$columns['taxonomy-book-author']	= __( 'Book Author', 'rswpbs' );
 		$columns['taxonomy-book-author']	= $columns['taxonomy-book-author'];
-		$columns['taxonomy-book-series']	= __( 'Book Series', RSWPBS_TEXT_DOMAIN );
+		$columns['taxonomy-book-series']	= __( 'Book Series', 'rswpbs' );
 		$columns['taxonomy-book-series']	= $columns['taxonomy-book-series'];
-		$columns['taxonomy-book-category']	= __( 'Book Categories', RSWPBS_TEXT_DOMAIN );
+		$columns['taxonomy-book-category']	= __( 'Book Categories', 'rswpbs' );
 		$columns['taxonomy-book-category']	= $columns['taxonomy-book-category'];
-		$columns['date']	= __( 'Date', RSWPBS_TEXT_DOMAIN );
+		$columns['date']	= __( 'Date', 'rswpbs' );
 		$columns['date']	= $columns['date'];
 		return $columns;
 	}

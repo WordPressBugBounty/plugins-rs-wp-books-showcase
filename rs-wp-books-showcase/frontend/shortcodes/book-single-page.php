@@ -20,7 +20,7 @@ function rswpbs_book_single_shortcode($atts) {
 			/**
 			 * Book Header Section
 			 */
-			rswpbs_book_header_section();
+			do_action('rswpbs_book_header');
 			/**
 			 * Book Content Section
 			 */

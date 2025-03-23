@@ -3,6 +3,11 @@
  * Admin Notice For Amazon Affiliate Marketer
  */
 function rswpbs_amz_admin_notice() {
+    // Check if the current user has the required capabilities (admin privileges)
+    if (!current_user_can('install_plugins') || !current_user_can('manage_options')) {
+        return; // Exit if the user doesn't have the necessary permissions
+    }
+
     // First check if there are any books
     $book_count = wp_count_posts('book');
     $published_books = $book_count->publish;
@@ -23,22 +28,22 @@ function rswpbs_amz_admin_notice() {
     $showNotice = true;
     if ($active_theme->get('Name') === 'Book Author Template') {
         $showNotice = false;
-        if ( false !== get_option('book_author_template_notice_dismissed_forever') || false !== get_option('book_author_template_notice_remind_time')) {
+        if (false !== get_option('book_author_template_notice_dismissed_forever') || false !== get_option('book_author_template_notice_remind_time')) {
             $showNotice = true;
         }
     } elseif ($active_theme->get('Name') === 'Author Portfolio') {
         $showNotice = false;
-        if ( false !== get_option('author_portfolio_notice_dismissed_forever') || false !== get_option('author_portfolio_notice_remind_time')) {
+        if (false !== get_option('author_portfolio_notice_dismissed_forever') || false !== get_option('author_portfolio_notice_remind_time')) {
             $showNotice = true;
         }
     } elseif ($active_theme->get('Name') === 'Author Personal Blog') {
         $showNotice = false;
-        if ( false !== get_option('author_personal_blog_notice_dismissed_forever') || false !== get_option('author_personal_blog_notice_remind_time')) {
+        if (false !== get_option('author_personal_blog_notice_dismissed_forever') || false !== get_option('author_personal_blog_notice_remind_time')) {
             $showNotice = true;
         }
     } elseif ($active_theme->get('Name') === 'Book Author Blog') {
         $showNotice = false;
-        if ( false !== get_option('author_personal_blog_notice_dismissed_forever') || false !== get_option('author_personal_blog_notice_remind_time')) {
+        if (false !== get_option('author_personal_blog_notice_dismissed_forever') || false !== get_option('author_personal_blog_notice_remind_time')) {
             $showNotice = true;
         }
     }
@@ -47,7 +52,7 @@ function rswpbs_amz_admin_notice() {
     $dismissed_forever = get_user_meta($user_id, 'rswpbs_amz_notice_dismissed_forever', true);
     $dismissed_time = get_user_meta($user_id, 'rswpbs_amz_notice_dismissed_time', true);
 
-    if($showNotice) :
+    if ($showNotice) :
         // Check if not dismissed forever and either never dismissed or 3 days have passed
         if (!$dismissed_forever && (!$dismissed_time || (time() - $dismissed_time) > (3 * 86400))) :
             ?>

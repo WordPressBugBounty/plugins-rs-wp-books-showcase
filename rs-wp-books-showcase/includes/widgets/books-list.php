@@ -87,7 +87,7 @@ class Rswpbs_Books_List_Widget extends WP_Widget {
 
 
 	public function form( $instance ) {
-	    $widget_title = ! empty( $instance['widget_title'] ) ? $instance['widget_title'] : __( 'Read My Books', RSWPBS_TEXT_DOMAIN );
+	    $widget_title = ! empty( $instance['widget_title'] ) ? $instance['widget_title'] : __( 'Read My Books', 'rswpbs' );
 	    $show_book_image = isset( $instance['show_book_image'] ) ? $instance['show_book_image'] : true;  // Default to true
 	    $show_book_title = isset( $instance['show_book_title'] ) ? $instance['show_book_title'] : true;  // Default to true
 	    $show_author_name = isset( $instance['show_author_name'] ) ? $instance['show_author_name'] : true;  // Default to true
@@ -100,7 +100,7 @@ class Rswpbs_Books_List_Widget extends WP_Widget {
 	        <input class="widefat" id="<?php echo $this->get_field_id( 'widget_title' ); ?>" name="<?php echo $this->get_field_name( 'widget_title' ); ?>" type="text" value="<?php echo esc_attr( $widget_title ); ?>">
 	    </p>
 	    <p>
-	        <label for="<?php echo esc_attr( $this->get_field_id( 'books_per_page' ) ); ?>"><?php esc_attr_e( 'Books Posts Per Page:', RSWPBS_TEXT_DOMAIN ); ?></label>
+	        <label for="<?php echo esc_attr( $this->get_field_id( 'books_per_page' ) ); ?>"><?php esc_attr_e( 'Books Posts Per Page:', 'rswpbs' ); ?></label>
 	        <input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'books_per_page' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'books_per_page' ) ); ?>" type="number" value="<?php echo esc_attr( $books_per_page ); ?>">
 	    </p>
 	    <p>

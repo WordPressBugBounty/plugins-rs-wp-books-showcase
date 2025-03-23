@@ -20,7 +20,7 @@ class Rswpbs_Cmb_For_Book
 		 */
 		add_meta_box(
 			'book_information',
-			esc_html__( 'Book Information', RSWPBS_TEXT_DOMAIN ),
+			esc_html__( 'Book Information', 'rswpbs' ),
 			array($this, 'book_information_fields_render'),
 			'book',
 			'advanced',
@@ -113,238 +113,238 @@ class Rswpbs_Cmb_For_Book
 					<div class="rswpbs-row">
 						<div class="rswpbs-col-lg-4 mb-20">
 							<div class="book-field-container">
-								<label for="original-book-name"><?php esc_html_e( 'Original Book Name', RSWPBS_TEXT_DOMAIN );?></label>
+								<label for="original-book-name"><?php esc_html_e( 'Original Book Name', 'rswpbs' );?></label>
 								<input type="text" name="original_book_name" class="w-100 regular-text" id="original-book-name" value="<?php echo esc_attr($original_book_name);?>" placeholder="Original Book Name">
 							</div>
 						</div>
 						<div class="rswpbs-col-lg-4 mb-20">
 							<div class="book-field-container">
-								<label for="original-book-url"><?php esc_html_e( 'Original Book URL', RSWPBS_TEXT_DOMAIN );?></label>
+								<label for="original-book-url"><?php esc_html_e( 'Original Book URL', 'rswpbs' );?></label>
 								<input type="text" name="original_book_url" class="w-100 regular-text" id="original-book-url" value="<?php echo esc_attr($original_book_url);?>" placeholder="<?php esc_attr_e('Original Book Url', 'rswpbs'); ?>">
 							</div>
 						</div>
 						<div class="rswpbs-col-lg-4 mb-20">
 							<div class="book-field-container">
-								<label for="book-name"><?php esc_html_e( 'Book Name', RSWPBS_TEXT_DOMAIN );?></label>
+								<label for="book-name"><?php esc_html_e( 'Book Name', 'rswpbs' );?></label>
 								<input type="text" name="book_name" class="w-100 regular-text" id="book-name" value="<?php echo esc_attr($book_name);?>" placeholder="Book Name">
 							</div>
 						</div>
 						<div class="rswpbs-col-lg-4 mb-20">
 							<div class="book-field-container">
-								<label for="publish-date"><?php esc_html_e( 'Publish Date', RSWPBS_TEXT_DOMAIN );?></label>
+								<label for="publish-date"><?php esc_html_e( 'Publish Date', 'rswpbs' );?></label>
 								<input type="date" name="book_publish_date" class="w-100 regular-text" id="publish-date" value="<?php echo esc_attr($book_publish_date);?>">
 								<input type="hidden" name="book_publish_year" class="w-100 regular-text" id="publish-year" value="<?php echo esc_attr($book_publish_year);?>">
 							</div>
 						</div>
 						<div class="rswpbs-col-lg-4 mb-20">
 							<div class="book-field-container">
-								<label for="publisher-name"><?php esc_html_e( 'Publisher Name', RSWPBS_TEXT_DOMAIN );?></label>
+								<label for="publisher-name"><?php esc_html_e( 'Publisher Name', 'rswpbs' );?></label>
 								<input type="text" name="book_publisher_name" class="w-100 regular-text" id="publisher-name" value="<?php echo esc_attr($book_publisher_name);?>" placeholder="Publisher Name">
 							</div>
 						</div>
 						<div class="rswpbs-col-lg-4 mb-20">
 							<div class="book-field-container">
-								<label for="reading-age"><?php esc_html_e( 'Reading Age', RSWPBS_TEXT_DOMAIN );?></label>
+								<label for="reading-age"><?php esc_html_e( 'Reading Age', 'rswpbs' );?></label>
 								<input type="text" name="book_reading_age" class="w-100 regular-text" id="reading-age" value="<?php echo esc_attr($book_reading_age);?>" placeholder="Example: 8+ years">
 							</div>
 						</div>
 						<div class="rswpbs-col-lg-4 mb-20">
 							<div class="book-field-container">
-								<label for="grade-level"><?php esc_html_e( 'Grade level', RSWPBS_TEXT_DOMAIN );?></label>
+								<label for="grade-level"><?php esc_html_e( 'Grade level', 'rswpbs' );?></label>
 								<input type="text" name="book_grade_level" class="w-100 regular-text" id="grade-level" value="<?php echo esc_attr($book_grade_level);?>" placeholder="Example: 3 - 6">
 							</div>
 						</div>
 						<div class="rswpbs-col-lg-4 mb-20">
 							<div class="book-field-container">
-								<label for="lexile-measure"><?php esc_html_e( 'Lexile measure', RSWPBS_TEXT_DOMAIN );?></label>
+								<label for="lexile-measure"><?php esc_html_e( 'Lexile measure', 'rswpbs' );?></label>
 								<input type="text" name="book_lexile_measure" class="w-100 regular-text" id="lexile-measure" value="<?php echo esc_attr($book_lexile_measure);?>" placeholder="Example: 880L">
 							</div>
 						</div>
 						<div class="rswpbs-col-lg-4 mb-20">
 							<div class="book-field-container">
-								<label for="publish-country"><?php esc_html_e( 'Country', RSWPBS_TEXT_DOMAIN );?></label>
+								<label for="publish-country"><?php esc_html_e( 'Country', 'rswpbs' );?></label>
 								<input type="text" name="book_country" class="w-100 regular-text" id="book-country" value="<?php echo esc_attr($book_country); ?>" placeholder="Country">
 							</div>
 						</div>
 						<div class="rswpbs-col-lg-12 mb-20">
 							<div class="book-field-container">
-								<label for="short-description"><?php esc_html_e( 'Book Short Description', RSWPBS_TEXT_DOMAIN );?></label>
+								<label for="short-description"><?php esc_html_e( 'Book Short Description', 'rswpbs' );?></label>
 								<textarea type="text" rows="5" class="w-100 regular-text" name="short_description" id="short-description" value="<?php echo esc_attr($short_description); ?>" placeholder="Short Description"><?php echo wp_kses_post($short_description); ?></textarea>
 							</div>
 						</div>
 						<div class="rswpbs-col-lg-4 mb-20">
 							<div class="book-field-container">
-								<label for="publish-language"><?php esc_html_e( 'Book language', RSWPBS_TEXT_DOMAIN );?></label>
+								<label for="publish-language"><?php esc_html_e( 'Book language', 'rswpbs' );?></label>
 								<input type="text" name="book_language" class="w-100 regular-text" id="book-language" value="<?php echo esc_attr($book_language); ?>" placeholder="Book language">
 							</div>
 						</div>
 						<div class="rswpbs-col-lg-4 mb-20">
 							<div class="book-field-container">
-								<label for="book-format"><?php esc_html_e( 'Book Format', RSWPBS_TEXT_DOMAIN );?></label>
+								<label for="book-format"><?php esc_html_e( 'Book Format', 'rswpbs' );?></label>
 								<input type="text" name="book_format" class="w-100 regular-text" id="book-format" value="<?php echo esc_attr($book_format); ?>" placeholder="Example: Hardcover">
 							</div>
 						</div>
 						<div class="rswpbs-col-lg-4 mb-20">
 							<div class="book-field-container">
-								<label for="publish-date"><?php esc_html_e( 'Book Pages', RSWPBS_TEXT_DOMAIN );?></label>
+								<label for="publish-date"><?php esc_html_e( 'Book Pages', 'rswpbs' );?></label>
 								<input type="text" name="book_pages" class="w-100 regular-text" id="book-pages" value="<?php echo esc_attr($book_pages); ?>" placeholder="Book Pages">
 							</div>
 						</div>
 						<div class="rswpbs-col-lg-4 mb-20">
 							<div class="book-field-container">
-								<label for="book-isbn"><?php esc_html_e( 'ISBN', RSWPBS_TEXT_DOMAIN );?></label>
+								<label for="book-isbn"><?php esc_html_e( 'ISBN', 'rswpbs' );?></label>
 								<input type="text" name="book_isbn" class="w-100 regular-text" id="book-isbn" value="<?php echo esc_attr($book_isbn); ?>" placeholder="Book ISBN">
 							</div>
 						</div>
 						<div class="rswpbs-col-lg-4 mb-20">
 							<div class="book-field-container">
-								<label for="book-isbn-10"><?php esc_html_e( 'ISBN-10', RSWPBS_TEXT_DOMAIN );?></label>
+								<label for="book-isbn-10"><?php esc_html_e( 'ISBN-10', 'rswpbs' );?></label>
 								<input type="text" name="book_isbn_10" class="w-100 regular-text" id="book-isbn-10" value="<?php echo esc_attr($book_isbn_10); ?>" placeholder="ISBN 10">
 							</div>
 						</div>
 						<div class="rswpbs-col-lg-4 mb-20">
 							<div class="book-field-container">
-								<label for="book-isbn-13"><?php esc_html_e( 'ISBN-13', RSWPBS_TEXT_DOMAIN );?></label>
+								<label for="book-isbn-13"><?php esc_html_e( 'ISBN-13', 'rswpbs' );?></label>
 								<input type="text" name="book_isbn_13" class="w-100 regular-text" id="book-isbn-13" value="<?php echo esc_attr($book_isbn_13); ?>" placeholder="ISBN 13">
 							</div>
 						</div>
 						<div class="rswpbs-col-lg-4 mb-20">
 							<div class="book-field-container">
-								<label for="book-translator"><?php esc_html_e( 'Translator Name', RSWPBS_TEXT_DOMAIN );?></label>
+								<label for="book-translator"><?php esc_html_e( 'Translator Name', 'rswpbs' );?></label>
 								<input type="text" name="book_translator" class="w-100 regular-text" id="book-translator" value="<?php echo esc_attr($book_translator); ?>" placeholder="Translator">
 							</div>
 						</div>
 						<div class="rswpbs-col-lg-4 mb-20">
 							<div class="book-field-container">
-								<label for="book-dimension"><?php esc_html_e( 'Dimension', RSWPBS_TEXT_DOMAIN );?></label>
+								<label for="book-dimension"><?php esc_html_e( 'Dimension', 'rswpbs' );?></label>
 								<input type="text" name="book_dimension" class="w-100 regular-text" id="book-dimension" value="<?php echo esc_attr($book_dimension); ?>" placeholder="Book Dimension">
 							</div>
 						</div>
 						<div class="rswpbs-col-lg-4 mb-20">
 							<div class="book-field-container">
-								<label for="book-weight"><?php esc_html_e( 'Weight', RSWPBS_TEXT_DOMAIN );?></label>
+								<label for="book-weight"><?php esc_html_e( 'Weight', 'rswpbs' );?></label>
 								<input type="text" name="book_weight" class="w-100 regular-text" id="book-weight" value="<?php echo esc_attr($book_weight); ?>" placeholder="Book Weight">
 							</div>
 						</div>
 						<div class="rswpbs-col-lg-4 mb-20">
 							<div class="book-field-container">
-								<label for="book-file-size"><?php esc_html_e( 'File size (If Ebook)', RSWPBS_TEXT_DOMAIN );?></label>
+								<label for="book-file-size"><?php esc_html_e( 'File size (If Ebook)', 'rswpbs' );?></label>
 								<input type="text" name="book_file_size" class="w-100 regular-text" id="book-file-size" value="<?php echo esc_attr($book_file_size); ?>" placeholder="File Size">
 							</div>
 						</div>
 						<div class="rswpbs-col-lg-4 mb-20">
 							<div class="book-field-container">
-								<label for="simultaneous-device-usage"><?php esc_html_e( 'Simultaneous device usage', RSWPBS_TEXT_DOMAIN );?></label>
+								<label for="simultaneous-device-usage"><?php esc_html_e( 'Simultaneous device usage', 'rswpbs' );?></label>
 								<input type="text" name="simultaneous_device_usage" class="w-100 regular-text" id="simultaneous-device-usage" value="<?php echo esc_attr($simultaneous_device_usage); ?>" placeholder="Up to 5 simultaneous devices, per publisher limits">
 							</div>
 						</div>
 						<div class="rswpbs-col-lg-4 mb-20">
 							<div class="book-field-container">
-								<label for="book-file-format"><?php esc_html_e( 'File Format (If Ebook)', RSWPBS_TEXT_DOMAIN );?></label>
+								<label for="book-file-format"><?php esc_html_e( 'File Format (If Ebook)', 'rswpbs' );?></label>
 								<input type="text" name="book_file_format" class="w-100 regular-text" id="book-file-format" value="<?php echo esc_attr($book_file_format); ?>" placeholder="PDF">
 							</div>
 						</div>
 						<div class="rswpbs-col-lg-4 mb-20">
 							<div class="book-field-container">
-								<label for="book-asin"><?php esc_html_e( 'ASIN', RSWPBS_TEXT_DOMAIN );?></label>
+								<label for="book-asin"><?php esc_html_e( 'ASIN', 'rswpbs' );?></label>
 								<input type="text" name="book_asin" class="w-100 regular-text" id="book-asin" value="<?php echo esc_attr($book_asin); ?>" placeholder="ASIN">
 							</div>
 						</div>
 						<div class="rswpbs-col-lg-4 mb-20">
 							<div class="book-field-container">
-								<label for="book-text-to-speech"><?php esc_html_e( 'Text-To-Speech', RSWPBS_TEXT_DOMAIN );?></label>
+								<label for="book-text-to-speech"><?php esc_html_e( 'Text-To-Speech', 'rswpbs' );?></label>
 								<select name="book_text_to_speech" class="w-100" id="book-text-to-speech">
 									<option value="blank" <?php echo selected( $book_text_to_speech, 'blank', false );?>>
-										<?php esc_html_e( 'Choose an option', RSWPBS_TEXT_DOMAIN );?>
+										<?php esc_html_e( 'Choose an option', 'rswpbs' );?>
 									</option>
 									<option value="enabled" <?php echo selected( $book_text_to_speech, 'enabled', false );?>>
-										<?php esc_html_e( 'Enabled', RSWPBS_TEXT_DOMAIN );?>
+										<?php esc_html_e( 'Enabled', 'rswpbs' );?>
 									</option>
 									<option value="not_enabled" <?php echo selected( $book_text_to_speech, 'not_enabled', false);?>>
-										<?php esc_html_e( 'Not Enabled', RSWPBS_TEXT_DOMAIN );?>
+										<?php esc_html_e( 'Not Enabled', 'rswpbs' );?>
 									</option>
 								</select>
 							</div>
 						</div>
 						<div class="rswpbs-col-lg-4 mb-20">
 							<div class="book-field-container">
-								<label for="screen-reader"><?php esc_html_e( 'Screen Reader', RSWPBS_TEXT_DOMAIN );?></label>
+								<label for="screen-reader"><?php esc_html_e( 'Screen Reader', 'rswpbs' );?></label>
 								<select name="screen_reader" class="w-100" id="screen-reader">
 									<option value="blank" <?php echo selected( $screen_reader, 'blank', false );?>>
-										<?php esc_html_e( 'Choose an option', RSWPBS_TEXT_DOMAIN );?>
+										<?php esc_html_e( 'Choose an option', 'rswpbs' );?>
 									</option>
 									<option value="supported" <?php echo selected( $screen_reader, 'supported', false );?>>
-										<?php esc_html_e( 'Supported', RSWPBS_TEXT_DOMAIN );?>
+										<?php esc_html_e( 'Supported', 'rswpbs' );?>
 									</option>
 									<option value="unsupported" <?php echo selected( $screen_reader, 'unsupported', false);?>>
-										<?php esc_html_e( 'Unsupported', RSWPBS_TEXT_DOMAIN );?>
+										<?php esc_html_e( 'Unsupported', 'rswpbs' );?>
 									</option>
 								</select>
 							</div>
 						</div>
 						<div class="rswpbs-col-lg-4 mb-20">
 							<div class="book-field-container">
-								<label for="enhanced-typesetting"><?php esc_html_e( 'Enhanced typesetting', RSWPBS_TEXT_DOMAIN );?></label>
+								<label for="enhanced-typesetting"><?php esc_html_e( 'Enhanced typesetting', 'rswpbs' );?></label>
 								<select name="enhanced_typesetting" class="w-100" id="enhanced-typesetting">
 									<option value="blank" <?php echo selected( $enhanced_typesetting, 'blank', false );?>>
-										<?php esc_html_e( 'Choose an option', RSWPBS_TEXT_DOMAIN );?>
+										<?php esc_html_e( 'Choose an option', 'rswpbs' );?>
 									</option>
 									<option value="enabled" <?php echo selected( $enhanced_typesetting, 'enabled', false );?>>
-										<?php esc_html_e( 'Enabled', RSWPBS_TEXT_DOMAIN );?>
+										<?php esc_html_e( 'Enabled', 'rswpbs' );?>
 									</option>
 									<option value="not_enabled" <?php echo selected( $enhanced_typesetting, 'not_enabled', false);?>>
-										<?php esc_html_e( 'Not Enabled', RSWPBS_TEXT_DOMAIN );?>
+										<?php esc_html_e( 'Not Enabled', 'rswpbs' );?>
 									</option>
 								</select>
 							</div>
 						</div>
 						<div class="rswpbs-col-lg-4 mb-20">
 							<div class="book-field-container">
-								<label for="x-ray"><?php esc_html_e( 'X-Ray', RSWPBS_TEXT_DOMAIN );?></label>
+								<label for="x-ray"><?php esc_html_e( 'X-Ray', 'rswpbs' );?></label>
 								<select name="x_ray" class="w-100" id="x-ray">
 									<option value="blank" <?php echo selected( $x_ray, 'blank', false );?>>
-										<?php esc_html_e( 'Choose an option', RSWPBS_TEXT_DOMAIN );?>
+										<?php esc_html_e( 'Choose an option', 'rswpbs' );?>
 									</option>
 									<option value="enabled" <?php echo selected( $x_ray, 'enabled', false );?>>
-										<?php esc_html_e( 'Enabled', RSWPBS_TEXT_DOMAIN );?>
+										<?php esc_html_e( 'Enabled', 'rswpbs' );?>
 									</option>
 									<option value="not_enabled" <?php echo selected( $x_ray, 'not_enabled', false);?>>
-										<?php esc_html_e( 'Not Enabled', RSWPBS_TEXT_DOMAIN );?>
+										<?php esc_html_e( 'Not Enabled', 'rswpbs' );?>
 									</option>
 								</select>
 							</div>
 						</div>
 						<div class="rswpbs-col-lg-4 mb-20">
 							<div class="book-field-container">
-								<label for="word-wise"><?php esc_html_e( 'Word Wise', RSWPBS_TEXT_DOMAIN );?></label>
+								<label for="word-wise"><?php esc_html_e( 'Word Wise', 'rswpbs' );?></label>
 								<select name="word_wise" class="w-100" id="word-wise">
 									<option value="blank" <?php echo selected( $word_wise, 'blank', false );?>>
-										<?php esc_html_e( 'Choose an option', RSWPBS_TEXT_DOMAIN );?>
+										<?php esc_html_e( 'Choose an option', 'rswpbs' );?>
 									</option>
 									<option value="enabled" <?php echo selected( $word_wise, 'enabled', false );?>>
-										<?php esc_html_e( 'Enabled', RSWPBS_TEXT_DOMAIN );?>
+										<?php esc_html_e( 'Enabled', 'rswpbs' );?>
 									</option>
 									<option value="not_enabled" <?php echo selected( $word_wise, 'not_enabled', false);?>>
-										<?php esc_html_e( 'Not Enabled', RSWPBS_TEXT_DOMAIN );?>
+										<?php esc_html_e( 'Not Enabled', 'rswpbs' );?>
 									</option>
 								</select>
 							</div>
 						</div>
 						<div class="rswpbs-col-lg-4 mb-20">
 							<div class="book-field-container">
-								<label for="sticky-notes"><?php esc_html_e( 'Sticky Notes', RSWPBS_TEXT_DOMAIN );?></label>
+								<label for="sticky-notes"><?php esc_html_e( 'Sticky Notes', 'rswpbs' );?></label>
 								<input type="text" name="sticky_notes" class="w-100 regular-text" id="sticky-notes" value="<?php echo esc_attr($sticky_notes); ?>" placeholder="On Kindle Scribe">
 							</div>
 						</div>
 						<div class="rswpbs-col-lg-4 mb-20">
 							<div class="book-field-container">
-								<label for="print-length"><?php esc_html_e( 'Print length', RSWPBS_TEXT_DOMAIN );?></label>
+								<label for="print-length"><?php esc_html_e( 'Print length', 'rswpbs' );?></label>
 								<input type="text" name="print_length" class="w-100 regular-text" id="print-length" value="<?php echo esc_attr($print_length); ?>" placeholder="128 Pages">
 							</div>
 						</div>
 						<div class="rswpbs-col-lg-3">
 							<div class="book-field-container">
-								<label for="book-reading-date"><?php esc_html_e( 'Reading Date', RSWPBS_TEXT_DOMAIN );?></label>
+								<label for="book-reading-date"><?php esc_html_e( 'Reading Date', 'rswpbs' );?></label>
 								<input type="text" name="book_reading_date" class="w-100 regular-text" id="book-reading-date" value="<?php echo esc_attr($book_reading_date); ?>">
 							</div>
 						</div>
@@ -354,66 +354,66 @@ class Rswpbs_Cmb_For_Book
 			<div class="rswpbs-row mb-4">
 				<div class="rswpbs-col-lg-3">
 					<div class="book-field-container">
-						<label for="book-availability-status"><?php esc_html_e( 'Book Availability Status', RSWPBS_TEXT_DOMAIN );?></label>
+						<label for="book-availability-status"><?php esc_html_e( 'Book Availability Status', 'rswpbs' );?></label>
 						<select name="book_availability_status" class="w-100" id="book-availability-status">
 							<option value="blank" <?php echo selected( $book_availability_status, 'blank', false );?>>
-								<?php esc_html_e( 'Choose an option', RSWPBS_TEXT_DOMAIN );?>
+								<?php esc_html_e( 'Choose an option', 'rswpbs' );?>
 							</option>
 							<option value="available" <?php echo selected( $book_availability_status, 'available', false );?>>
-								<?php esc_html_e( 'Available', RSWPBS_TEXT_DOMAIN );?>
+								<?php esc_html_e( 'Available', 'rswpbs' );?>
 							</option>
 							<option value="upcoming" <?php echo selected( $book_availability_status, 'upcoming', false);?>>
-								<?php esc_html_e( 'Upcoming', RSWPBS_TEXT_DOMAIN );?>
+								<?php esc_html_e( 'Upcoming', 'rswpbs' );?>
 							</option>
 						</select>
 					</div>
 				</div>
 				<div class="rswpbs-col-lg-3">
 					<div class="book-field-container">
-						<label for="average-book-rating"><?php esc_html_e( 'Average Book Rating', RSWPBS_TEXT_DOMAIN );?></label>
+						<label for="average-book-rating"><?php esc_html_e( 'Average Book Rating', 'rswpbs' );?></label>
 						<select name="average_book_rating" class="w-100" id="average-book-rating">
 							<option value="nan" <?php echo selected( $average_book_rating, 'nan', false );?>>
-								<?php esc_html_e( 'Rate This Book', RSWPBS_TEXT_DOMAIN );?>
+								<?php esc_html_e( 'Rate This Book', 'rswpbs' );?>
 							</option>
 							<option value="5" <?php echo selected( $average_book_rating, '5', false );?>>
-								<?php esc_html_e( '5 Star', RSWPBS_TEXT_DOMAIN );?>
+								<?php esc_html_e( '5 Star', 'rswpbs' );?>
 							</option>
 							<option value="4.5" <?php echo selected( $average_book_rating, '4.5', false );?>>
-								<?php esc_html_e( '4.5 Star', RSWPBS_TEXT_DOMAIN );?>
+								<?php esc_html_e( '4.5 Star', 'rswpbs' );?>
 							</option>
 							<option value="4" <?php echo selected( $average_book_rating, '4', false );?>>
-								<?php esc_html_e( '4 Star', RSWPBS_TEXT_DOMAIN );?>
+								<?php esc_html_e( '4 Star', 'rswpbs' );?>
 							</option>
 							<option value="3.5" <?php echo selected( $average_book_rating, '3.5', false);?>>
-								<?php esc_html_e( '3.5 Star', RSWPBS_TEXT_DOMAIN );?>
+								<?php esc_html_e( '3.5 Star', 'rswpbs' );?>
 							</option>
 							<option value="3" <?php echo selected( $average_book_rating, '3', false);?>>
-								<?php esc_html_e( '3 Star', RSWPBS_TEXT_DOMAIN );?>
+								<?php esc_html_e( '3 Star', 'rswpbs' );?>
 							</option>
 							<option value="2.5" <?php echo selected( $average_book_rating, '2.5', false);?>>
-								<?php esc_html_e( '2.5 Star', RSWPBS_TEXT_DOMAIN );?>
+								<?php esc_html_e( '2.5 Star', 'rswpbs' );?>
 							</option>
 							<option value="2" <?php echo selected( $average_book_rating, '2', false);?>>
-								<?php esc_html_e( '2 Star', RSWPBS_TEXT_DOMAIN );?>
+								<?php esc_html_e( '2 Star', 'rswpbs' );?>
 							</option>
 							<option value="1.5" <?php echo selected( $average_book_rating, '1.5', false);?>>
-								<?php esc_html_e( '1.5 Star', RSWPBS_TEXT_DOMAIN );?>
+								<?php esc_html_e( '1.5 Star', 'rswpbs' );?>
 							</option>
 							<option value="1" <?php echo selected( $average_book_rating, '1', false);?>>
-								<?php esc_html_e( '1 Star', RSWPBS_TEXT_DOMAIN );?>
+								<?php esc_html_e( '1 Star', 'rswpbs' );?>
 							</option>
 						</select>
 					</div>
 				</div>
 				<div class="rswpbs-col-lg-3">
 					<div class="book-field-container">
-						<label for="total-book-ratings"><?php esc_html_e( 'Total Book Ratings', RSWPBS_TEXT_DOMAIN );?></label>
+						<label for="total-book-ratings"><?php esc_html_e( 'Total Book Ratings', 'rswpbs' );?></label>
 						<input type="text" name="total_book_ratings" class="w-100 regular-text" id="total-book-ratings" value="<?php echo esc_attr($total_book_ratings); ?>" placeholder="4500">
 					</div>
 				</div>
 				<div class="rswpbs-col-lg-3">
 					<div class="book-field-container">
-						<label for="book-rating-links"><?php esc_html_e( 'Book Rating Links', RSWPBS_TEXT_DOMAIN );?></label>
+						<label for="book-rating-links"><?php esc_html_e( 'Book Rating Links', 'rswpbs' );?></label>
 						<input type="text" name="book_rating_links" class="w-100 regular-text" id="book-rating-links" value="<?php echo esc_attr($book_rating_links); ?>">
 					</div>
 				</div>
@@ -426,7 +426,7 @@ class Rswpbs_Cmb_For_Book
 							<div class="rswpbs-row">
 								<div class="rswpbs-col-lg-12 mb-20">
 									<div class="book-field-container">
-										<label for="book-price"><?php esc_html_e( 'Book Price', RSWPBS_TEXT_DOMAIN );?></label>
+										<label for="book-price"><?php esc_html_e( 'Book Price', 'rswpbs' );?></label>
 										<div class="rswpbs-row">
 											<div class="rswpbs-col-md-6">
 												<div class="currency-sign">$</div>
@@ -447,11 +447,11 @@ class Rswpbs_Cmb_For_Book
 									<div class="book-field-container">
 										<div class="rswpbs-row">
 											<div class="rswpbs-col-md-6">
-												<label for="buy-now-btn-text"><?php esc_html_e( 'Buy Button Text', RSWPBS_TEXT_DOMAIN );?></label>
+												<label for="buy-now-btn-text"><?php esc_html_e( 'Buy Button Text', 'rswpbs' );?></label>
 												<input type="text" name="buy_btn_text" class="w-100 regular-text" id="buy-now-btn-text" value="<?php echo esc_attr($buy_btn_text);?>" placeholder="Buy Now">
 											</div>
 											<div class="rswpbs-col-md-6">
-												<label for="buy-now-btn-link"><?php esc_html_e( 'Buy Button Link', RSWPBS_TEXT_DOMAIN );?></label>
+												<label for="buy-now-btn-link"><?php esc_html_e( 'Buy Button Link', 'rswpbs' );?></label>
 												<input type="text" name="buy_btn_link" class="w-100 regular-text" id="buy-now-btn-link" value="<?php echo esc_attr($buy_btn_link);?>" placeholder="Book Purchase Link">
 											</div>
 										</div>
@@ -464,8 +464,8 @@ class Rswpbs_Cmb_For_Book
 									<div class="book-field-container">
 										<div class="rswpbs-row">
 											<div class="rswpbs-col-md-12">
-												<label for="buy-now-btn-link"><?php esc_html_e( 'Buy Button ShortCode', RSWPBS_TEXT_DOMAIN );?></label>
-												<p><?php esc_html_e( 'Shortcode Data Will Be Shown Instead of Buy Now Button.', RSWPBS_TEXT_DOMAIN );?></p>
+												<label for="buy-now-btn-link"><?php esc_html_e( 'Buy Button ShortCode', 'rswpbs' );?></label>
+												<p><?php esc_html_e( 'Shortcode Data Will Be Shown Instead of Buy Now Button.', 'rswpbs' );?></p>
 												<input type="text" name="buy_btn_shortcode" class="w-100 regular-text" id="buy-now-btn-shortcode" value="<?php echo esc_attr($buy_btn_shortcode);?>" placeholder="Book Purchase Link">
 											</div>
 										</div>

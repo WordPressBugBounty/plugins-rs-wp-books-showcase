@@ -61,7 +61,7 @@ $htmlAttributes = trim($htmlAttributes);
     $query = new WP_Query($args);
 
     if (!$query->have_posts()) {
-        $noBooks = esc_html__( 'No books available to display.', RSWPBS_TEXT_DOMAIN );
+        $noBooks = esc_html__( 'No books available to display.', 'rswpbs' );
         return '<p>'.$noBooks.'</p>';
     }
 

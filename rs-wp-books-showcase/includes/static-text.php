@@ -16,7 +16,7 @@ function rswpbs_get_static_text( $option_name, $default ) {
     $text = get_option( $option_name, $default );
 
     // Apply WordPress localization function.
-    return __( $text, 'RSWPBS_TEXT_DOMAIN' );
+    return __( $text, 'rswpbs' );
 }
 
 /**

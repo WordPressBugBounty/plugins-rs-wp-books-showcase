@@ -3,7 +3,7 @@
  * Plugin Name:       RS WP Book Showcase
  * Plugin URI:        https://rswpthemes.com/rs-wp-books-showcase-wordpress-plugin/
  * Description:       Premier WordPress book gallery plugin, offering advanced search options and multiple layouts for effortless book showcasing.
- * Version:           6.7.32
+ * Version:           6.7.33
  * Requires at least: 4.9
  * Requires PHP:      7.1
  * Author:            RS WP THEMES
@@ -163,6 +163,7 @@ function rswpbs_set_book_author_role(){
             $role->add_cap('read_private_books', false);
             $role->add_cap('edit_private_books', false);
             $role->add_cap('delete_private_books', false);
+            $role->add_cap('upload_files');
             $role->add_cap('delete_others_books', false);
             $role->add_cap('manage_book_author', false);
             $role->add_cap('delete_book_author', false);
@@ -170,6 +171,8 @@ function rswpbs_set_book_author_role(){
             $role->add_cap('delete_book_category', false);
             $role->add_cap('manage_book_series', false);
             $role->add_cap('delete_book_series', false);
+            $role->add_cap('edit_books');
+            $role->add_cap('edit_published_books');
         }else{
             $role->add_cap('publish_books', true);
             $role->add_cap('delete_books', true);
@@ -226,7 +229,7 @@ function rswpbs_allow_admin_access($prevent_admin_access) {
 
 if (!class_exists('Rswpbs_Pro')) :
     function rswpbs_upgrade_to_pro_link_pal( $links ) {
-        $upgradetoProLink = sprintf('<a target="_blank" class="rswpbs-pal-link-ugtp" href="%1$s">%2$s</a>', esc_url( 'https://rswpthemes.com/rs-wp-books-showcase-wordpress-plugin/' ), esc_html__('Book Gallery Upgrade to Pro', RSWPBS_TEXT_DOMAIN) );
+        $upgradetoProLink = sprintf('<a target="_blank" class="rswpbs-pal-link-ugtp" href="%1$s">%2$s</a>', esc_url( 'https://rswpthemes.com/rs-wp-books-showcase-wordpress-plugin/' ), esc_html__('Book Gallery Upgrade to Pro', 'rswpbs') );
         $settings = sprintf('<a href="%1$s">%2$s</a>', esc_url(admin_url('edit.php?post_type=book&page=rswpbs-settings')), esc_html__('Settings', RSWPBS_PLUGIN_PATH));
         array_splice( $links, 0, 0, $upgradetoProLink );
         array_splice( $links, 1, 0, $settings );

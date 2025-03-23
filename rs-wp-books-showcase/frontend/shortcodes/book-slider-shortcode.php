@@ -225,13 +225,13 @@ function rswpbs_book_slider_shortcode( $atts ) {
 	    $loopContentWrapper = true;
 	}
 
-	$book_container_classes = 'container-full';
+	$book_container_classes = 'rswpbs-container-full';
 	$book_list_row_classes = '';
 	$thumbnail_wrapper_classes	= '';
 	$content_wrapper_classes	= '';
 	if ('left' === $atts['image_position']) {
 		$book_list_row_classes = ' rswpbs-row mr-0 ml-0 align-items-center justify-content-between book-list-layout thumbnail-position-left';
-		$book_container_classes = 'container';
+		$book_container_classes = 'rswpbs-container';
 		$thumbnail_wrapper_classes	= ' book-cover-column rswpbs-col-md-6 rswpbs-col-lg-5 rswpbs-col-xl-4 pr-4 pl-0';
 		$content_wrapper_classes	= ' book-content-column rswpbs-col-md-6 rswpbs-col-lg-7 rswpbs-col-xl-8';
 		if ('featured' === $atts['slider_style']) {
@@ -240,7 +240,7 @@ function rswpbs_book_slider_shortcode( $atts ) {
 		}
 	}elseif ('right' === $atts['image_position']) {
 		$book_list_row_classes = ' rswpbs-row mr-0 ml-0 align-items-center justify-content-between flex-row-reverse book-list-layout thumbnail-position-right';
-		$book_container_classes = 'container';
+		$book_container_classes = 'rswpbs-container';
 		$thumbnail_wrapper_classes	= ' book-cover-column rswpbs-col-md-6 rswpbs-col-lg-5 rswpbs-col-xl-4 pr-0 pl-4 text-right';
 		$content_wrapper_classes	= ' book-content-column rswpbs-col-md-6 rswpbs-col-lg-7 rswpbs-col-xl-8';
 		if ('featured' === $atts['slider_style']) {
@@ -248,7 +248,7 @@ function rswpbs_book_slider_shortcode( $atts ) {
 			$content_wrapper_classes	= ' book-content-column rswpbs-col-md-6 rswpbs-col-lg-7 rswpbs-col-xl-7';
 		}
 	}elseif ('top' === $atts['image_position']) {
-		$book_container_classes = 'container-full';
+		$book_container_classes = 'rswpbs-container-full';
 		$thumbnail_wrapper_classes	= ' thumbnail-position-top';
 	}
 
@@ -264,20 +264,22 @@ function rswpbs_book_slider_shortcode( $atts ) {
 		}
 	}
 	$bookQuery = new WP_Query($booksQargs);
-	$activateSlider = '';
+	$activateSlider = 'rswpbs-row';
+	$sliderItemCol = ' rswpbs-col-md-4';
 	if ($bookQuery->post_count > 1) {
-	    $activateSlider = ' book-slider-activate row';
+		$activateSlider = ' book-slider-activate row';
+		$sliderItemCol = '';
 	}
     ?>
     <div class="rswpbs-book-slider <?php echo esc_attr($sliderItemClasess_string);?>">
-    	<div class="container">
+    	<div class="rswpbs-container">
     		<div class="rswpbs-book-slider__slider-wrapper-row<?php echo esc_attr($activateSlider);?>" <?php echo $sliderAttr;?>>
     			<?php
     			if ($bookQuery->have_posts()) :
     				while( $bookQuery->have_posts() ) :
     					$bookQuery->the_post();
 		    			?>
-		    			<div class="rswpbs-book-slider__slider-item">
+		    			<div class="rswpbs-book-slider__slider-item<?php echo esc_attr($sliderItemCol);?>">
 		    				<div class="rswpbs-book-container<?php echo esc_attr($book_list_row_classes);?>">
 								<?php
 								if ('true' == $atts['show_image']) :

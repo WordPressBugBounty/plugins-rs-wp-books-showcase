@@ -32,6 +32,8 @@ function rswpbs_assets(){
 		$enableSliderAssets = true;
 	}elseif (is_singular('shortcode')) {
 		$enableSliderAssets = true;
+	}elseif (is_singular('book')) {
+		$enableSliderAssets = true;
 	}
 
  	/**

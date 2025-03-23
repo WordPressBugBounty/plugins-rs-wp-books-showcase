@@ -135,9 +135,9 @@ function rswpbs_get_book_text_to_speech($bookId = null){
 	}elseif(class_exists('Rswpbs_Pro') && 'blank' == $book_text_to_speech){
 		$book_text_to_speech = '';
 	}elseif('enabled' == $book_text_to_speech) {
-		$book_text_to_speech = __( 'Enabled', RSWPBS_TEXT_DOMAIN );;
+		$book_text_to_speech = __( 'Enabled', 'rswpbs' );;
 	}elseif('not_enabled' == $book_text_to_speech) {
-		$book_text_to_speech = __( 'Not Enabled', RSWPBS_TEXT_DOMAIN );;
+		$book_text_to_speech = __( 'Not Enabled', 'rswpbs' );;
 	}
 	return $book_text_to_speech;
 }
@@ -152,9 +152,9 @@ function rswpbs_get_screen_reader($bookId = null){
 	}elseif(class_exists('Rswpbs_Pro') && 'blank' == $screen_reader){
 		$screen_reader = '';
 	}elseif('enabled' == $screen_reader) {
-		$screen_reader = __( 'Enabled', RSWPBS_TEXT_DOMAIN );;
+		$screen_reader = __( 'Enabled', 'rswpbs' );;
 	}elseif('not_enabled' == $screen_reader) {
-		$screen_reader = __( 'Not Enabled', RSWPBS_TEXT_DOMAIN );;
+		$screen_reader = __( 'Not Enabled', 'rswpbs' );;
 	}
 	return $screen_reader;
 }
@@ -169,9 +169,9 @@ function rswpbs_get_enhanced_typesetting($bookId = null){
 	}elseif(class_exists('Rswpbs_Pro') && 'blank' == $enhanced_typesetting){
 		$enhanced_typesetting = '';
 	}elseif('enabled' == $enhanced_typesetting) {
-		$enhanced_typesetting = __( 'Enabled', RSWPBS_TEXT_DOMAIN );;
+		$enhanced_typesetting = __( 'Enabled', 'rswpbs' );;
 	}elseif('not_enabled' == $enhanced_typesetting) {
-		$enhanced_typesetting = __( 'Not Enabled', RSWPBS_TEXT_DOMAIN );;
+		$enhanced_typesetting = __( 'Not Enabled', 'rswpbs' );;
 	}
 	return $enhanced_typesetting;
 }
@@ -186,9 +186,9 @@ function rswpbs_get_x_ray($bookId = null){
 	}elseif(class_exists('Rswpbs_Pro') && 'blank' == $x_ray){
 		$x_ray = '';
 	}elseif('enabled' == $x_ray) {
-		$x_ray = __( 'Enabled', RSWPBS_TEXT_DOMAIN );;
+		$x_ray = __( 'Enabled', 'rswpbs' );;
 	}elseif('not_enabled' == $x_ray) {
-		$x_ray = __( 'Not Enabled', RSWPBS_TEXT_DOMAIN );;
+		$x_ray = __( 'Not Enabled', 'rswpbs' );;
 	}
 	return $x_ray;
 }
@@ -203,9 +203,9 @@ function rswpbs_get_word_wise($bookId = null){
 	}elseif(class_exists('Rswpbs_Pro') && 'blank' == $word_wise){
 		$word_wise = '';
 	}elseif('enabled' == $word_wise) {
-		$word_wise = __( 'Enabled', RSWPBS_TEXT_DOMAIN );;
+		$word_wise = __( 'Enabled', 'rswpbs' );;
 	}elseif('not_enabled' == $word_wise) {
-		$word_wise = __( 'Not Enabled', RSWPBS_TEXT_DOMAIN );;
+		$word_wise = __( 'Not Enabled', 'rswpbs' );;
 	}
 	return $word_wise;
 }
@@ -277,12 +277,30 @@ function rswpbs_get_book_original_url($bookId = null){
 	return $originalBookUrl;
 }
 
-function rswpbs_get_book_pages($bookId = null){
-	if ($bookId === null) {
-		$bookId = get_the_ID();
-	}
-	$bookPages = get_post_meta( $bookId, rswpbs_prefix() . 'book_pages', true );
-	return $bookPages;
+function rswpbs_get_book_pages($bookId = null) {
+    if ($bookId === null) {
+        $bookId = get_the_ID();
+    }
+    $bookPages = get_post_meta($bookId, rswpbs_prefix() . 'book_pages', true);
+
+    // If the value is empty, return 0 or null (depending on your preference)
+    if (empty($bookPages)) {
+        return 0; // Or return null if you prefer
+    }
+
+    // Extract only the numeric part
+    // Remove any non-numeric characters except for digits
+    $numericPages = preg_replace('/[^0-9]/', '', $bookPages);
+
+    // Convert to an integer
+    $numericPages = (int) $numericPages;
+
+    // If the result is 0 (e.g., no numbers found), return 0 or null
+    if ($numericPages === 0) {
+        return 0; // Or return null if you prefer
+    }
+
+    return $numericPages;
 }
 
 function rswpbs_get_book_publish_date($bookId = null){
@@ -396,6 +414,24 @@ function rswpbs_get_book_author_id($bookId = null){
 	}
 	return $outline;
 }
+
+function rswpbs_get_book_author_ids($bookId = null) {
+	if ($bookId === null) {
+		$bookId = get_the_ID();
+	}
+
+	$bookAuthors = get_the_terms($bookId, 'book-author');
+	$authorIds = [];
+
+	if (is_array($bookAuthors) && !empty($bookAuthors)) {
+		foreach ($bookAuthors as $author) {
+			$authorIds[] = $author->term_id;
+		}
+	}
+
+	return implode(',', $authorIds);
+}
+
 
 function rswpbs_get_book_categories($bookId = null, $sep = true) {
 	if ($bookId === null) {
@@ -657,8 +693,8 @@ function rswpbs_get_meta_data($meta_field_name){
 }
 
 function rswpbs_navigation() {
-	$next_icon            = __( 'Next', RSWPBS_TEXT_DOMAIN );;
-	$prev_icon            = __( 'Prev', RSWPBS_TEXT_DOMAIN );;
+	$next_icon            = __( 'Next', 'rswpbs' );;
+	$prev_icon            = __( 'Prev', 'rswpbs' );;
 	echo '<div class="rswpbs-pagination text-center">';
 		the_posts_pagination(
 			array(
@@ -733,13 +769,13 @@ function rswpbs_shorting_form_global($queryName, $bookPerPage, $search_form_disp
 		      }
 		      ?>
 		      <select id="rswpbs-sort">
-		          <option value="default"><?php esc_html_e('Default Sorting', RSWPBS_TEXT_DOMAIN);?></option>
-		          <option value="price_asc"<?php echo ($search_fields['sortby'] == 'price_asc' ? 'selected="selected"' : ''); ?>><?php esc_html_e( 'Price (Low to High)', RSWPBS_TEXT_DOMAIN );?></option>
-		          <option value="price_desc"<?php echo ($search_fields['sortby'] == 'price_desc' ? 'selected="selected"' : ''); ?>><?php esc_html_e( 'Price (High to Low)', RSWPBS_TEXT_DOMAIN );?></option>
-		          <option value="title_asc"<?php echo ($search_fields['sortby'] == 'title_asc' ? 'selected="selected"' : ''); ?>><?php esc_html_e( 'Title (A-Z)', RSWPBS_TEXT_DOMAIN );?></option>
-		          <option value="title_desc"<?php echo ($search_fields['sortby'] == 'title_desc' ? 'selected="selected"' : ''); ?>><?php esc_html_e( 'Title (Z-A)', RSWPBS_TEXT_DOMAIN );?></option>
-		          <option value="date_asc"<?php echo ($search_fields['sortby'] == 'date_asc' ? 'selected="selected"' : ''); ?>><?php esc_html_e( 'Date (Oldest to Newest)', RSWPBS_TEXT_DOMAIN );?></option>
-		          <option value="date_desc"<?php echo ($search_fields['sortby'] == 'date_desc' ? 'selected="selected"' : ''); ?>><?php esc_html_e( 'Date (Newest to Oldest)', RSWPBS_TEXT_DOMAIN );?></option>
+		          <option value="default"><?php esc_html_e('Default Sorting', 'rswpbs');?></option>
+		          <option value="price_asc"<?php echo ($search_fields['sortby'] == 'price_asc' ? 'selected="selected"' : ''); ?>><?php esc_html_e( 'Price (Low to High)', 'rswpbs' );?></option>
+		          <option value="price_desc"<?php echo ($search_fields['sortby'] == 'price_desc' ? 'selected="selected"' : ''); ?>><?php esc_html_e( 'Price (High to Low)', 'rswpbs' );?></option>
+		          <option value="title_asc"<?php echo ($search_fields['sortby'] == 'title_asc' ? 'selected="selected"' : ''); ?>><?php esc_html_e( 'Title (A-Z)', 'rswpbs' );?></option>
+		          <option value="title_desc"<?php echo ($search_fields['sortby'] == 'title_desc' ? 'selected="selected"' : ''); ?>><?php esc_html_e( 'Title (Z-A)', 'rswpbs' );?></option>
+		          <option value="date_asc"<?php echo ($search_fields['sortby'] == 'date_asc' ? 'selected="selected"' : ''); ?>><?php esc_html_e( 'Date (Oldest to Newest)', 'rswpbs' );?></option>
+		          <option value="date_desc"<?php echo ($search_fields['sortby'] == 'date_desc' ? 'selected="selected"' : ''); ?>><?php esc_html_e( 'Date (Newest to Oldest)', 'rswpbs' );?></option>
 		      </select>
 		      <?php
 		      if (true == $search_form_displayed) {

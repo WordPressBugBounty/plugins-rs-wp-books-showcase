@@ -89,6 +89,7 @@ function rswpbs_free_import_books_from_url($json_file_url) {
         if (!empty($book_author)) {
             $bookAuthors = array_map('trim', explode(',', $book_author));
             foreach ($bookAuthors as $authorName) {
+                $authorName = strtolower($authorName); // Convert to lowercase
                 $term = term_exists($authorName, 'book-author');
                 if (!$term) {
                     $term = wp_insert_term($authorName, 'book-author');
@@ -103,7 +104,6 @@ function rswpbs_free_import_books_from_url($json_file_url) {
         if (!empty($book['category'])) {
             $category_str = $book['category'];
             $categories = array_map('trim', explode('>', $category_str));
-            // Remove "Books" if present
             if (!empty($categories) && strtolower($categories[0]) === 'books') {
                 array_shift($categories);
             }
@@ -113,6 +113,7 @@ function rswpbs_free_import_books_from_url($json_file_url) {
                 if (empty($cat_name)) {
                     continue;
                 }
+                $cat_name = strtolower($cat_name); // Convert to lowercase
                 $term = term_exists($cat_name, 'book-category', $parent_term_id);
                 if (!$term) {
                     $term = wp_insert_term($cat_name, 'book-category', array('parent' => $parent_term_id));
