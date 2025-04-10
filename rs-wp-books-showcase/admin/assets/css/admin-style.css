@@ -412,11 +412,11 @@ body:not(.rswpbs-pro-active) li#menu-posts-book ul.wp-submenu.wp-submenu-wrap li
     cursor: not-allowed;
 }
 
-.rswpbs-single-page-settings-tab table.form-table.rswpbs-settings-table tbody tr:nth-child(3) td:nth-child(3),
-.rswpbs-single-page-settings-tab table.form-table.rswpbs-settings-table tbody tr:nth-child(3) td:nth-child(4),
-.rswpbs-single-page-settings-tab table.form-table.rswpbs-settings-table tbody tr:nth-child(4) td:nth-child(1),
-.rswpbs-single-page-settings-tab table.form-table.rswpbs-settings-table tbody tr:nth-child(4) td:nth-child(2),
-.rswpbs-single-page-settings-tab table.form-table.rswpbs-settings-table tbody tr:nth-child(4) td:nth-child(3),
+
+.rswpbs-single-page-settings-tab table.form-table.rswpbs-settings-table tbody tr:nth-child(4) td,
+.rswpbs-single-page-settings-tab table.form-table.rswpbs-settings-table tbody tr:nth-child(4) td,
+.rswpbs-single-page-settings-tab table.form-table.rswpbs-settings-table tbody tr:nth-child(4) td,
+.rswpbs-single-page-settings-tab table.form-table.rswpbs-settings-table tbody tr:nth-child(5) td,
 .wrap.rswpbs-advanced-seacrch-form-settings table tr:nth-child(1) td,
 .wrap.rswpbs-advanced-seacrch-form-settings table tr:nth-child(2) td,
 .wrap.rswpbs-advanced-seacrch-form-settings table tr:nth-child(3) td {
@@ -443,6 +443,8 @@ table.form-table.rswpbs-settings-table.rswpbs-pro-active tbody tr td{
 .rswpbs-single-page-settings-tab table.form-table.rswpbs-settings-table tbody tr:nth-child(4) td:nth-child(1) input[type=checkbox]:disabled,
 .rswpbs-single-page-settings-tab table.form-table.rswpbs-settings-table tbody tr:nth-child(4) td:nth-child(2) input[type=checkbox]:disabled,
 .rswpbs-single-page-settings-tab table.form-table.rswpbs-settings-table tbody tr:nth-child(4) td:nth-child(3) input[type=checkbox]:disabled,
+.rswpbs-single-page-settings-tab table.form-table.rswpbs-settings-table tbody tr:nth-child(4) td:nth-child(4) input[type=checkbox]:disabled,
+.rswpbs-single-page-settings-tab table.form-table.rswpbs-settings-table tbody tr:nth-child(5) td:nth-child(1) input[type=checkbox]:disabled,
 .wrap.rswpbs-advanced-seacrch-form-settings table tr:nth-child(1) td input[type=checkbox]:disabled,
 .wrap.rswpbs-advanced-seacrch-form-settings table tr:nth-child(2) td input[type=checkbox]:disabled,
 .wrap.rswpbs-advanced-seacrch-form-settings table tr:nth-child(3) td input[type=checkbox]:disabled {

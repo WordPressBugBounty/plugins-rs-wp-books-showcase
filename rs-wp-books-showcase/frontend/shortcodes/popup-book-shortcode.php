@@ -60,7 +60,7 @@ function rswpbs_popup_book_shortcode($atts){
 				<?php do_action('rswpbs_single_book_before_thumbnail'); ?>
 				<div class="rswpbs-book-image-wrapper-row<?php echo esc_attr($bookImageWrapperRowClass);?>">
 					<?php
-					if (true == $showSampleContent) {
+					if (true == $showSampleContent && function_exists('rswpbs_pro_sample_content')) {
 						rswpbs_pro_sample_content($bookID);
 					}
 					?>

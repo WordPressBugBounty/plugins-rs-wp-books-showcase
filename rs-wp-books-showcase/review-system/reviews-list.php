@@ -10,14 +10,14 @@ function rswpbs_book_reviews(){
 	}else{
 		$showReviewList = true;
 	}
-	if (true === $showReviewList) :
-	$reviewsArgs = array(
-		'post_type'	=> 'book_reviews',
-		'posts_per_page' => 10,
-		'meta_key'	=> '_rswpbs_reviewed_book',
-		'meta_value'	=> get_the_ID(),
-		'post_status'	=> 'publish',
-	);
+	if (true == $showReviewList) :
+		$reviewsArgs = array(
+			'post_type'	=> 'book_reviews',
+			'posts_per_page' => 10,
+			'meta_key'	=> '_rswpbs_reviewed_book',
+			'meta_value'	=> get_the_ID(),
+			'post_status'	=> 'publish',
+		);
 	$reviewesQuery = new WP_Query($reviewsArgs);
 	if ($reviewesQuery->have_posts()) :
 	?>
