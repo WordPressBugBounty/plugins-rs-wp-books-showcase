@@ -50,10 +50,10 @@ function rs_wp_book_showcase_ajax_shortcode($atts) {
     ?>
     <div class="rswpbs-sorting-sections-wrapper">
         <div class="rswpbs-row justify-content-between">
-            <div class="rswpbs-col-md-6 align-self-center">
+            <div class="rswpbs-col-md-6 rswpbs-col-7 align-self-center">
                 <div id="result-count"></div>
             </div>
-            <div class="rswpbs-col-md-6 align-self-center">
+            <div class="rswpbs-col-md-6 rswpbs-col-5 align-self-center">
                 <div class="rswpbs-books-sorting-field" id="rswpbs-books-sorting-field">
                     <select id="rswpbs-sort">
                         <option value="default">

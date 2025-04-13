@@ -753,12 +753,12 @@ function rswpbs_shorting_form_global($queryName, $bookPerPage, $search_form_disp
 	?>
 	<div class="rswpbs-sorting-sections-wrapper">
 		<div class="rswpbs-row justify-content-between">
-		  <div class="rswpbs-col-md-6 align-self-center">
+		  <div class="rswpbs-col-md-6 rswpbs-col-7 align-self-center">
 		    <?php
 		      echo wp_kses_post(rswpbs_total_books_message($queryName, $bookPerPage));
 		    ?>
 		  </div>
-		  <div class="rswpbs-col-md-6 align-self-center">
+		  <div class="rswpbs-col-md-6 rswpbs-col-5 align-self-center">
 		    <div class="rswpbs-books-sorting-field" id="rswpbs-books-sorting-field">
 		      <?php
 		      if (true == $search_form_displayed) {

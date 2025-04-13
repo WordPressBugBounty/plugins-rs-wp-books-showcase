@@ -183,6 +183,8 @@ function rswpbs_book_content_section($bookId = null) {
                             $value = wp_kses_post($value);
                         }
                         // If escape is false, leave as is
+                        $value = strip_tags($value);
+                        if (!empty($value)) :
                         ?>
                         <div class="information-list">
                             <div class="information-label">
@@ -193,8 +195,8 @@ function rswpbs_book_content_section($bookId = null) {
                             </div>
                         </div>
                         <?php
+                        endif;
                     }
-
                     do_action('rswpbs_after_book_information');
                     ?>
                 </div>

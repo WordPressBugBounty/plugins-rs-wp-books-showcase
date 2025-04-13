@@ -983,7 +983,9 @@ span.rswpbs-arrow-down {
 .rswpbs-search-form .search-field {
     margin-bottom: 15px;
 }
-
+@media (max-width: 767px){
+    .rswpbs-search-form.rswpbs-row >div {padding: 5px;padding-left: 5px;}
+}
 .rswpbs-books-sorting-field {
     display: block;
     text-align: right;
@@ -1033,6 +1035,21 @@ body.left-sidebar .rswpbs-advanced-search-form-area .rswpbs-books-showcase-searc
     border: 1px solid #f1f1f1;
     margin-bottom: 30px;
     background: #fff;
+}
+
+@media (max-width: 767px){
+    .rswpbs-sorting-sections-wrapper {
+        padding: 10px;
+    }
+    .rswpbs-books-sorting-field select#rswpbs-sort {
+        width: 140px;
+        height: 40px;
+        padding: 10px;
+        font-size: 14px;
+    }
+    div#result-count {
+        font-size: 14px;
+    }
 }
 
 .rswpbs-books-pagination {
