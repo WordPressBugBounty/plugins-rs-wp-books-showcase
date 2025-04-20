@@ -124,6 +124,20 @@ function rswpbs_sanitize_checkbox( $value ) {
 }
 
 /**
+ * Sanitization callback for roles allowed to manage books.
+ *
+ * @param array $value The submitted roles.
+ * @return array Sanitized array of role slugs.
+ */
+function rswpbs_sanitize_roles_to_manage_books( $value ) {
+    if ( ! is_array( $value ) ) {
+        return array();
+    }
+    $valid_roles = array_keys( wp_roles()->roles );
+    return array_intersect( $value, $valid_roles ); // Only keep valid role slugs
+}
+
+/**
  * Add the General Settings submenu under the Book custom post type.
  */
 add_action( 'admin_menu', 'rswpbs_general_settings_page' );
@@ -154,6 +168,7 @@ function rswp_book_showcase_settings_page() {
         <?php rswpbs_settings_tabs( $active_tab ); ?>
         <form method="post" action="options.php">
             <?php
+            wp_nonce_field( 'rswpbs_settings_nonce', 'rswpbs_settings_nonce_field' );
             settings_fields( 'rswpbs_general_settings_group' );
             do_settings_sections( 'rswpbs_general_settings_page' );
             submit_button();
@@ -169,10 +184,13 @@ function rswp_book_showcase_settings_page() {
 function rswpbs_register_general_settings() {
     // Register settings.
     register_setting( 'rswpbs_general_settings_group', 'rswpbs_price_currency', 'rswpbs_sanitize_price_currency' );
-    // register_setting( 'rswpbs_general_settings_group', 'rswpbs_book_search_page', 'rswpbs_sanitize_book_search_page' );
     register_setting( 'rswpbs_general_settings_group', 'rswpbs_amazon_tracking_id', 'sanitize_text_field' );
     register_setting( 'rswpbs_general_settings_group', 'rswpbs_enable_editor_for_author_description', 'rswpbs_sanitize_checkbox' );
     register_setting( 'rswpbs_general_settings_group', 'rswpbs_enable_woo_features_for_books', 'rswpbs_sanitize_checkbox' );
+    register_setting( 'rswpbs_general_settings_group', 'rswpbs_roles_to_manage_books', array(
+        'sanitize_callback' => 'rswpbs_sanitize_roles_to_manage_books',
+        'default' => array( 'administrator' ),
+    ) );
 
     // Add Settings Section.
     add_settings_section(
@@ -190,14 +208,6 @@ function rswpbs_register_general_settings() {
         'rswpbs_general_settings_page',
         'rswpbs_general_settings_section'
     );
-
-    // add_settings_field(
-    //     'rswpbs_book_search_page',
-    //     esc_html__( 'Search Page', 'rswpbs' ),
-    //     'rswpbs_book_search_page_callback',
-    //     'rswpbs_general_settings_page',
-    //     'rswpbs_general_settings_section'
-    // );
 
     add_settings_field(
         'rswpbs_amazon_tracking_id',
@@ -222,6 +232,14 @@ function rswpbs_register_general_settings() {
         'rswpbs_general_settings_page',
         'rswpbs_general_settings_section'
     );
+
+    add_settings_field(
+        'rswpbs_roles_to_manage_books',
+        esc_html__( 'Roles Allowed to Manage Books', 'rswpbs' ),
+        'rswpbs_roles_to_manage_books_callback',
+        'rswpbs_general_settings_page',
+        'rswpbs_general_settings_section'
+    );
 }
 add_action( 'admin_init', 'rswpbs_register_general_settings' );
 
@@ -238,6 +256,9 @@ function rswpbs_price_currency_callback() {
     echo '</select>';
 }
 
+/**
+ * Callback for Amazon Tracking ID field.
+ */
 function rswpbs_amazon_tracking_id_callback() {
     $is_pro = rswpbs_is_pro_active(); // Check if Pro version is active
     $tracking_id = get_option( 'rswpbs_amazon_tracking_id', 'lft01-20' ); // Default value set
@@ -257,7 +278,6 @@ function rswpbs_amazon_tracking_id_callback() {
             <?php esc_html_e( 'Upgrade to Pro', 'rswpbs' ); ?>
         </a>
         </p>
-
         <?php
     }
 }
@@ -270,7 +290,7 @@ function rswpbs_enable_editor_for_author_description_callback() {
     $checked = get_option( 'rswpbs_enable_editor_for_author_description', 0 );
     if ($is_pro) {
         echo '<input type="checkbox" name="rswpbs_enable_editor_for_author_description" value="1" ' . checked( 1, $checked, false ) . ' />';
-    }else{
+    } else {
         echo '<input type="checkbox" disabled />';
         echo ' <span style="color: red;">' . esc_html__( 'Available in Pro version only.', 'rswpbs' ) . '</span>';
         echo ' <a href="'.esc_url('https://rswpthemes.com/rs-wp-book-showcase-wordpress-plugin/').'" target="_blank">' . esc_html__( 'Upgrade to Pro', 'rswpbs' ) . '</a>';
@@ -290,5 +310,50 @@ function rswpbs_enable_woo_features_for_books_callback() {
         echo '<input type="checkbox" disabled />';
         echo ' <span style="color: red;">' . esc_html__( 'Available in Pro version only.', 'rswpbs' ) . '</span>';
         echo ' <a href="'.esc_url('https://rswpthemes.com/rs-wp-book-showcase-wordpress-plugin/').'" target="_blank">' . esc_html__( 'Upgrade to Pro', 'rswpbs' ) . '</a>';
+    }
+}
+
+/**
+ * Callback for Roles Allowed to Manage Books field.
+ */
+function rswpbs_roles_to_manage_books_callback() {
+    $is_pro = rswpbs_is_pro_active();
+    $roles = wp_roles()->roles;
+    $selected_roles = get_option( 'rswpbs_roles_to_manage_books', array('administrator') );
+    if ( ! is_array( $selected_roles ) ) {
+        $selected_roles = array();
+    }
+
+    if ( $is_pro ) {
+        // Show editable checkboxes for Pro users
+        foreach ( $roles as $role_slug => $role ) {
+            ?>
+            <label>
+                <input type="checkbox" name="rswpbs_roles_to_manage_books[]" value="<?php echo esc_attr( $role_slug ); ?>" <?php checked( in_array( $role_slug, $selected_roles ) ); ?>>
+                <?php echo esc_html( $role['name'] ); ?>
+            </label><br>
+            <?php
+        }
+        ?>
+        <p class="description"><?php esc_html_e( 'Select the user roles that are allowed to manage books via the frontend.', 'rswpbs' ); ?></p>
+        <?php
+    } else {
+        // Show disabled checkboxes for Free users
+        foreach ( $roles as $role_slug => $role ) {
+            ?>
+            <label>
+                <input type="checkbox" disabled <?php checked( in_array( $role_slug, $selected_roles ) ); ?>>
+                <?php echo esc_html( $role['name'] ); ?>
+            </label><br>
+            <?php
+        }
+        ?>
+        <p class="description" style="color: red;">
+            <?php esc_html_e( 'Selecting roles to manage books is available in the Pro version only.', 'rswpbs' ); ?>
+            <a href="<?php echo esc_url( 'https://rswpthemes.com/rs-wp-book-showcase-wordpress-plugin/' ); ?>" target="_blank">
+                <?php esc_html_e( 'Upgrade to Pro', 'rswpbs' ); ?>
+            </a>
+        </p>
+        <?php
     }
 }

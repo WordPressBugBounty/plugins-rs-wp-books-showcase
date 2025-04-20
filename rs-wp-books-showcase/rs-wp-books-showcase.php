@@ -3,7 +3,7 @@
  * Plugin Name:       RS WP Book Showcase
  * Plugin URI:        https://rswpthemes.com/rs-wp-books-showcase-wordpress-plugin/
  * Description:       Premier WordPress book gallery plugin, offering advanced search options and multiple layouts for effortless book showcasing.
- * Version:           6.7.35
+ * Version:           6.7.36
  * Requires at least: 4.9
  * Requires PHP:      7.1
  * Author:            RS WP THEMES
@@ -146,75 +146,203 @@ function rswpbs_set_sttings_default_value(){
     );
     update_option( 'book_layouts_settings', $default_settings );
 }
-function rswpbs_book_author_role() {
-    add_role( 'rswpbs_book_author','Book Author', array('read', true) );
-}
-function rswpbs_set_book_author_role(){
-    $roles = array('rswpbs_book_author', 'administrator');
-    foreach($roles as $the_role){
-        $role = get_role( $the_role );
-        $role->add_cap('read');
-        $role->add_cap('edit_books');
-        $role->add_cap('edit_published_books');
-        $role->add_cap('delete_published_books');
-        if ('rswpbs_book_author' === $the_role) {
-            $role->add_cap('publish_books', false);
-            $role->add_cap('edit_others_books', false);
-            $role->add_cap('read_private_books', false);
-            $role->add_cap('edit_private_books', false);
-            $role->add_cap('delete_private_books', false);
-            $role->add_cap('upload_files');
-            $role->add_cap('delete_others_books', false);
-            $role->add_cap('manage_book_author', false);
-            $role->add_cap('delete_book_author', false);
-            $role->add_cap('manage_book_category', false);
-            $role->add_cap('delete_book_category', false);
-            $role->add_cap('manage_book_series', false);
-            $role->add_cap('delete_book_series', false);
-            $role->add_cap('edit_books');
-            $role->add_cap('edit_published_books');
-        }else{
-            $role->add_cap('publish_books', true);
-            $role->add_cap('delete_books', true);
-            $role->add_cap('delete_book', true);
-            $role->add_cap('edit_others_books', true);
-            $role->add_cap('delete_others_books', true);
-            $role->add_cap('read_private_books', true);
-            $role->add_cap('edit_private_books', true);
-            $role->add_cap('delete_private_books', true);
-            $role->add_cap('manage_book_author', true);
-            $role->add_cap('delete_book_author', true);
-            $role->add_cap('manage_book_category', true);
-            $role->add_cap('delete_book_category', true);
-            $role->add_cap('manage_book_series', true);
-            $role->add_cap('delete_book_series', true);
-        }
-        $role->add_cap('edit_book_author');
-        $role->add_cap('assign_book_author');
-        $role->add_cap('edit_book_category');
-        $role->add_cap('assign_book_category');
-        $role->add_cap('edit_book_series');
-        $role->add_cap('assign_book_series');
+/**
+ * Register the custom book author role on plugin activation.
+ */
+function rswpbs_register_book_author_role() {
+    if ( ! get_role( 'rswpbs_book_author' ) ) {
+        add_role( 'rswpbs_book_author', __( 'Book Author', 'rswpbs' ), array(
+            'read'         => true,
+            'edit_books'   => true,
+            'upload_files' => true,
+        ) );
     }
 }
-/**
- * Saving Settings Page Value
- */
 
-add_action( 'admin_init', 'rswpbs_active' );
-function rswpbs_active() {
-    rswpbs_book_author_role();
+/**
+ * Assign capabilities to selected roles.
+ */
+function rswpbs_set_book_author_role() {
+    $selected_roles = get_option( 'rswpbs_roles_to_manage_books', array( 'administrator' ) );
+
+    // Always include rswpbs_book_author
+    if ( ! in_array( 'rswpbs_book_author', $selected_roles ) ) {
+        $selected_roles[] = 'rswpbs_book_author';
+    }
+
+    foreach ( $selected_roles as $the_role ) {
+        $role = get_role( $the_role );
+        if ( ! $role ) {
+            continue;
+        }
+
+        // Basic capabilities
+        $role->add_cap( 'read' );
+        $role->add_cap( 'edit_books' );
+        $role->add_cap( 'edit_published_books' );
+        $role->add_cap( 'delete_published_books' );
+
+        if ( 'rswpbs_book_author' === $the_role ) {
+            $role->add_cap( 'publish_books', false );
+            $role->add_cap( 'edit_others_books', false );
+            $role->add_cap( 'read_private_books', false );
+            $role->add_cap( 'edit_private_books', false );
+            $role->add_cap( 'delete_private_books', false );
+            $role->add_cap( 'upload_files' );
+            $role->add_cap( 'delete_others_books', false );
+            $role->add_cap( 'manage_book_author', false );
+            $role->add_cap( 'delete_book_author', false );
+            $role->add_cap( 'manage_book_category', false );
+            $role->add_cap( 'delete_book_category', false );
+            $role->add_cap( 'manage_book_series', false );
+            $role->add_cap( 'delete_book_series', false );
+        } else {
+            $role->add_cap( 'publish_books', true );
+            $role->add_cap( 'delete_books', true );
+            $role->add_cap( 'delete_book', true );
+            $role->add_cap( 'edit_others_books', true );
+            $role->add_cap( 'delete_others_books', true );
+            $role->add_cap( 'read_private_books', true );
+            $role->add_cap( 'edit_private_books', true );
+            $role->add_cap( 'delete_private_books', true );
+            $role->add_cap( 'manage_book_author', true );
+            $role->add_cap( 'delete_book_author', true );
+            $role->add_cap( 'manage_book_category', true );
+            $role->add_cap( 'delete_book_category', true );
+            $role->add_cap( 'manage_book_series', true );
+            $role->add_cap( 'delete_book_series', true );
+            $role->add_cap( 'upload_files' );
+        }
+
+        $role->add_cap( 'edit_book_author' );
+        $role->add_cap( 'assign_book_author' );
+        $role->add_cap( 'edit_book_category' );
+        $role->add_cap( 'assign_book_category' );
+        $role->add_cap( 'edit_book_series' );
+        $role->add_cap( 'assign_book_series' );
+    }
+}
+
+/**
+ * Remove capabilities from deselected roles.
+ */
+function rswpbs_remove_unused_book_author_role_caps() {
+    $all_roles = wp_roles()->roles;
+    $selected_roles = get_option( 'rswpbs_roles_to_manage_books', array( 'administrator' ) );
+    $selected_roles[] = 'rswpbs_book_author';
+
+    foreach ( $all_roles as $role_slug => $role ) {
+        if ( in_array( $role_slug, $selected_roles ) ) {
+            continue;
+        }
+
+        $role_obj = get_role( $role_slug );
+        if ( $role_obj ) {
+            $caps = array(
+                'read',
+                'edit_books',
+                'edit_published_books',
+                'delete_published_books',
+                'publish_books',
+                'delete_books',
+                'delete_book',
+                'edit_others_books',
+                'delete_others_books',
+                'read_private_books',
+                'edit_private_books',
+                'delete_private_books',
+                'upload_files',
+                'manage_book_author',
+                'delete_book_author',
+                'edit_book_author',
+                'assign_book_author',
+                'manage_book_category',
+                'delete_book_category',
+                'edit_book_category',
+                'assign_book_category',
+                'manage_book_series',
+                'delete_book_series',
+                'edit_book_series',
+                'assign_book_series',
+            );
+
+            foreach ( $caps as $cap ) {
+                $role_obj->remove_cap( $cap );
+            }
+        }
+    }
+}
+
+/**
+ * Clean up all capabilities and remove custom role on deactivation.
+ */
+function rswpbs_deactivate_book_author_role_caps() {
+    $all_roles = wp_roles()->roles;
+
+    foreach ( $all_roles as $role_slug => $role ) {
+        $role_obj = get_role( $role_slug );
+        if ( $role_obj ) {
+            $caps = array(
+                'read',
+                'edit_books',
+                'edit_published_books',
+                'delete_published_books',
+                'publish_books',
+                'delete_books',
+                'delete_book',
+                'edit_others_books',
+                'delete_others_books',
+                'read_private_books',
+                'edit_private_books',
+                'delete_private_books',
+                'upload_files',
+                'manage_book_author',
+                'delete_book_author',
+                'edit_book_author',
+                'assign_book_author',
+                'manage_book_category',
+                'delete_book_category',
+                'edit_book_category',
+                'assign_book_category',
+                'manage_book_series',
+                'delete_book_series',
+                'edit_book_series',
+                'assign_book_series',
+            );
+
+            foreach ( $caps as $cap ) {
+                $role_obj->remove_cap( $cap );
+            }
+        }
+    }
+
+    if ( get_role( 'rswpbs_book_author' ) ) {
+        remove_role( 'rswpbs_book_author' );
+    }
+}
+
+/**
+ * Activation hook to set up roles and capabilities.
+ */
+function rswpbs_plugin_activation() {
+    rswpbs_register_book_author_role();
     rswpbs_set_book_author_role();
     rswpbs_set_sttings_default_value();
+    set_transient( 'rswpbs_delayed_redirect_transient', true, 10 );
+    flush_rewrite_rules();
 }
+register_activation_hook( __FILE__, 'rswpbs_plugin_activation' );
 
 /**
- * Removed Role When This Plugin is Deactivated
+ * Deactivation hook to clean up.
  */
-register_deactivation_hook( __FILE__,  'rswpbs_remove_book_author_role' );
-function rswpbs_remove_book_author_role(){
-    remove_role( 'rswpbs_book_author' );
-}
+register_deactivation_hook( __FILE__, 'rswpbs_deactivate_book_author_role_caps' );
+
+/**
+ * Update capabilities when roles setting is changed.
+ */
+add_action( 'update_option_rswpbs_roles_to_manage_books', 'rswpbs_remove_unused_book_author_role_caps', 5 );
+add_action( 'update_option_rswpbs_roles_to_manage_books', 'rswpbs_set_book_author_role', 10 );
 
 /**
  * Turn False woocommerce_prevent_admin_access
@@ -252,21 +380,8 @@ function rswpbs_upgrade_to_pro_admin_menu() {
 }
 add_action( 'admin_menu', 'rswpbs_upgrade_to_pro_admin_menu' );
 
-
-/**
- * Plugin Activation Hook
- */
-
-register_activation_hook(__FILE__, 'rswpbs_plugin_activation');
-
-function rswpbs_plugin_activation() {
-    set_transient('rswpbs_delayed_redirect_transient', true, 10);
-    flush_rewrite_rules();
-}
-
 // Hook to handle the delayed redirect
 // add_action('admin_init', 'rswpbs_do_delayed_redirect');
-
 function rswpbs_do_delayed_redirect() {
     $getRswpThemesSlug = get_stylesheet();
     $first_time_activation = get_option('rswpbs_first_time_activation');
