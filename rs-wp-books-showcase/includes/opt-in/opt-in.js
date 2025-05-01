@@ -22,16 +22,16 @@
                                 console.log('Activation time updated successfully.');
                             },
                             error: function(xhr, status, error) {
-                                console.error(error);
+                                console.error('Error updating activation time: ' + error);
                             }
                         });
                         $('.rs-wp-book-showcase-notice-container').remove();
                     } else {
-                        console.error(response.data.error);
+                        console.error('Error collecting email: ' + (response.data.error || 'Unknown error'));
                     }
                 },
                 error: function(xhr, status, error) {
-                    console.error(error);
+                    console.error('AJAX error: ' + error);
                 }
             });
         });

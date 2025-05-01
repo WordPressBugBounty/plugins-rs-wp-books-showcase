@@ -12,8 +12,6 @@ function rswpbs_control_optin_notice() {
     $dismissed_forever = get_user_meta($user_id, 'rswpbs_amz_notice_dismissed_forever', true);
     $dismissed_time = get_user_meta($user_id, 'rswpbs_amz_notice_dismissed_time', true);
 
-
-
     $optin_success = get_option('rswpbs_optin_success');
     $hide_notice_transient = get_transient('hide_notice_for_3_days');
 
@@ -110,7 +108,26 @@ function rswpbs_send_email() {
     $last_name  = get_user_meta($user_id, 'last_name', true);
     $website_url = untrailingslashit( home_url() );
     $api_url     = 'https://rswpthemes.com/wp-json/rswpthemes/v1/collect_email/';
-    $api_key     = get_option('rswpbs_api_key');
+    $api_key     = get_option('rswpthemes_api_key');
+
+    // Get plugin name (hardcode for RS WP Book Showcase, or make dynamic for other plugins)
+    $plugin_name = 'RS WP Book Showcase'; // Adjust if you have multiple plugins.
+
+    // Get active theme
+    $active_theme = wp_get_theme();
+    $theme_name = $active_theme->get('Name');
+    $theme_version = $active_theme->get('Version');
+
+    // Get active plugins
+    $active_plugins = get_option('active_plugins', array());
+    $plugins_list = array();
+    foreach ($active_plugins as $plugin) {
+        $plugin_data = get_plugin_data(WP_PLUGIN_DIR . '/' . $plugin, false, false);
+        $plugins_list[] = array(
+            'name' => $plugin_data['Name'],
+            'version' => $plugin_data['Version'],
+        );
+    }
 
     $response = wp_remote_post($api_url, array(
         'method'    => 'POST',
@@ -118,17 +135,21 @@ function rswpbs_send_email() {
         'blocking'  => true,
         'headers'   => array(
             'Content-Type'         => 'application/json',
-            'X-RSWPTHEMES-API-Key'   => $api_key,
+            'X-RSWPTHEMES-API-Key' => $api_key,
         ),
         'body'      => json_encode(array(
             'email'        => $admin_email,
             'website_name' => get_bloginfo('name'),
             'website_url'  => $website_url,
             'first_name'   => $first_name,
-            'last_name'    => $last_name
+            'last_name'    => $last_name,
+            'plugin_name'  => $plugin_name,
+            'theme'        => array(
+                'name'     => $theme_name,
+                'version'  => $theme_version,
+            ),
+            'plugins'      => $plugins_list,
         )),
-        // Uncomment the following line if testing on a local dev server with SSL issues:
-        // 'sslverify' => false,
     ));
 
     return $response;
