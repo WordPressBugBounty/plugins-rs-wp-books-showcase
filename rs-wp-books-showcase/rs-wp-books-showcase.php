@@ -3,7 +3,7 @@
  * Plugin Name:       RS WP Book Showcase
  * Plugin URI:        https://rswpthemes.com/rs-wp-books-showcase-wordpress-plugin/
  * Description:       Premier WordPress book gallery plugin, offering advanced search options and multiple layouts for effortless book showcasing.
- * Version:           6.7.37
+ * Version:           6.7.38
  * Requires at least: 4.9
  * Requires PHP:      7.1
  * Author:            RS WP THEMES
@@ -274,56 +274,9 @@ function rswpbs_remove_unused_book_author_role_caps() {
 }
 
 /**
- * Clean up all capabilities and remove custom role on deactivation.
- */
-function rswpbs_deactivate_book_author_role_caps() {
-    $all_roles = wp_roles()->roles;
-
-    foreach ( $all_roles as $role_slug => $role ) {
-        $role_obj = get_role( $role_slug );
-        if ( $role_obj ) {
-            $caps = array(
-                'read',
-                'edit_books',
-                'edit_published_books',
-                'delete_published_books',
-                'publish_books',
-                'delete_books',
-                'delete_book',
-                'edit_others_books',
-                'delete_others_books',
-                'read_private_books',
-                'edit_private_books',
-                'delete_private_books',
-                'upload_files',
-                'manage_book_author',
-                'delete_book_author',
-                'edit_book_author',
-                'assign_book_author',
-                'manage_book_category',
-                'delete_book_category',
-                'edit_book_category',
-                'assign_book_category',
-                'manage_book_series',
-                'delete_book_series',
-                'edit_book_series',
-                'assign_book_series',
-            );
-
-            foreach ( $caps as $cap ) {
-                $role_obj->remove_cap( $cap );
-            }
-        }
-    }
-
-    if ( get_role( 'rswpbs_book_author' ) ) {
-        remove_role( 'rswpbs_book_author' );
-    }
-}
-
-/**
  * Activation hook to set up roles and capabilities.
  */
+register_activation_hook( __FILE__, 'rswpbs_plugin_activation' );
 function rswpbs_plugin_activation() {
     rswpbs_register_book_author_role();
     rswpbs_set_book_author_role();
@@ -331,12 +284,6 @@ function rswpbs_plugin_activation() {
     set_transient( 'rswpbs_delayed_redirect_transient', true, 10 );
     flush_rewrite_rules();
 }
-register_activation_hook( __FILE__, 'rswpbs_plugin_activation' );
-
-/**
- * Deactivation hook to clean up.
- */
-register_deactivation_hook( __FILE__, 'rswpbs_deactivate_book_author_role_caps' );
 
 /**
  * Update capabilities when roles setting is changed.

@@ -22,7 +22,6 @@ function rswpbs_collect_deactivation_feedback() {
 
     $reason = isset($_POST['reason']) ? sanitize_text_field($_POST['reason']) : 'Not specified';
 
-    // Collect user data (similar to rswpbs_send_email in opt-in.php)
     $admin_email = get_option('admin_email');
     $user_id = get_current_user_id();
     $first_name = get_user_meta($user_id, 'first_name', true);
@@ -44,8 +43,8 @@ function rswpbs_collect_deactivation_feedback() {
             'version' => $plugin_data['Version'],
         );
     }
+    error_log('Plugins list sent (deactivation): ' . print_r($plugins_list, true)); // Debug log
 
-    // Add deactivation reason to subscriber data
     $subscriber_data = array(
         'email' => $admin_email,
         'website_name' => get_bloginfo('name'),
@@ -58,10 +57,9 @@ function rswpbs_collect_deactivation_feedback() {
             'version' => $theme_version,
         ),
         'plugins' => $plugins_list,
-        'deactivation_reason' => $reason, // Add the reason for deactivation
+        'deactivation_reason' => $reason,
     );
 
-    // Send data to the REST API endpoint
     $api_url = 'https://rswpthemes.com/wp-json/rswpthemes/v1/collect_email/';
     $response = wp_remote_post($api_url, array(
         'method' => 'POST',
