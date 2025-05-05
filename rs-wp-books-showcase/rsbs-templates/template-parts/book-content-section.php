@@ -3,9 +3,9 @@
  * Displays full book overview section with dynamic information fields
  */
 function rswpbs_book_content_section($bookId = null) {
-	if (null == $bookId) {
-		$bookId = get_the_ID();
-	}
+    if (null == $bookId) {
+        $bookId = get_the_ID();
+    }
     $publishersQueryLink = rswpbs_static_search_string(array('publisher' => rswpbs_get_book_publisher_name($bookId)));
     do_action('rswpbs_before_book_overview_section');
 
@@ -151,12 +151,12 @@ function rswpbs_book_content_section($bookId = null) {
                 <div class="rswpbs-book-overview">
                     <?php
                     $post = get_post($bookId);
-					$content = '';
-					if ($post) {
-					    $content = get_the_content(null, false, $post);
-					    echo $content = apply_filters('the_content', $content);
-					}
-					?>
+                    $content = '';
+                    if ($post) {
+                        $content = get_the_content(null, false, $post);
+                        echo $content = apply_filters('the_content', $content);
+                    }
+                    ?>
                 </div>
             </div>
             <div class="rswpbs-col-lg-4 pl-0 pr-0">
@@ -183,7 +183,7 @@ function rswpbs_book_content_section($bookId = null) {
                             $value = wp_kses_post($value);
                         }
                         // If escape is false, leave as is
-                        $value = strip_tags($value);
+
                         if (!empty($value)) :
                         ?>
                         <div class="information-list">

@@ -513,6 +513,7 @@ function rswpbs_get_book_image($bookId = null){
 		$bookId = get_the_ID();
 	}
 	$bookImage = get_the_post_thumbnail($bookId, 'full');
+
 	return $bookImage;
 }
 
