@@ -3,7 +3,7 @@ Contributors: rswpthemes
 Tags: book carousel, book collection, book display, book library, book catalogue
 Requires at least: 5.2
 Tested up to: 6.8
-Stable tag: 6.7.40
+Stable tag: 6.7.41
 Requires PHP: 7.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -680,3 +680,7 @@ Install RS WP Book Showcase as a regular WordPress plugin. Here are different wa
 
 = 6.7.40 - May 6, 2025 ==
 * Disabled gutenberg editor from the book_reviews post type.
+
+= 6.7.41 - May 15, 2025 ==
+* Resolved an issue with Chinese characters in the search filter.
+* Introduced a caching feature to improve performance, with an option to enable or disable it.

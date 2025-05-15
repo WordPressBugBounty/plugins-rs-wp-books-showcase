@@ -120,7 +120,9 @@ function rswpbs_advanced_search($atts) {
                                     <div class="search-field">
                                         <select name="author" id="book-author" class="rswpbs-select-field">
                                             <option value="all"><?php echo rswpbs_static_text_all_authors(); ?></option>
-                                            <?php foreach ($taxonomies['authors'] as $author): ?>
+                                            <?php foreach ($taxonomies['authors'] as $author):
+
+                                                ?>
                                                 <option value="<?php echo esc_attr($author->slug); ?>" <?php selected($author->slug, $search_fields['author']); ?>>
                                                     <?php echo esc_html($author->name); ?>
                                                 </option>
@@ -137,8 +139,10 @@ function rswpbs_advanced_search($atts) {
                                     <div class="search-field">
                                         <select name="category" id="book-category" class="rswpbs-select-field">
                                             <option value="all"><?php echo rswpbs_static_text_all_categories(); ?></option>
-                                            <?php foreach ($taxonomies['categories'] as $category): ?>
-                                                <option value="<?php echo esc_attr($category->slug); ?>" <?php selected($category->slug, $search_fields['category']); ?>>
+                                            <?php foreach ($taxonomies['categories'] as $category):
+                                                $decoded_slug = urldecode($category->slug);
+                                                ?>
+                                                <option value="<?php echo esc_attr($decoded_slug); ?>" <?php selected($category->slug, $search_fields['category']); ?>>
                                                     <?php echo esc_html($category->name); ?>
                                                 </option>
                                             <?php endforeach; ?>

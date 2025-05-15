@@ -56,6 +56,7 @@ function rswpbs_static_search_string($params = array()) {
         'isbn' => (isset($params['isbn']) ? sanitize_text_field($params['isbn']) : ''),
         'isbn_10' => (isset($params['isbn_10']) ? sanitize_text_field($params['isbn_10']) : ''),
     );
+
     $query_string = http_build_query(array(
         'search_type' => 'book',
         'book_name' => strtolower($search_fields['name']),
