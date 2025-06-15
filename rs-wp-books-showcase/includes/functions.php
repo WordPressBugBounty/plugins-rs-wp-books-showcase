@@ -522,11 +522,9 @@ function rswpbs_get_book_price($bookId = null){
 		$bookId = get_the_ID();
 	}
 	$currenySign = '$';
-	if (class_exists('Rswpbs_Pro')) {
-		$currenySign = get_option( 'rswpbs_price_currency', '$' );
-		if (null === $currenySign) {
-			$currenySign = '$';
-		}
+	$currenySign = get_option( 'rswpbs_price_currency', '$' );
+	if (null === $currenySign) {
+		$currenySign = '$';
 	}
 	$bookRegularPrice = str_replace('$', '', get_post_meta( $bookId, rswpbs_prefix() . 'book_price', true ));
 	$bookSalePrice = str_replace('$', '', get_post_meta( $bookId, rswpbs_prefix() . 'book_sale_price', true ));

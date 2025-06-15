@@ -428,12 +428,15 @@ class Rswpbs_Cmb_For_Book
 									<div class="book-field-container">
 										<label for="book-price"><?php esc_html_e( 'Book Price', 'rswpbs' );?></label>
 										<div class="rswpbs-row">
+											<?php
+											$currenySign = get_option( 'rswpbs_price_currency', '$' );
+											?>
 											<div class="rswpbs-col-md-6">
-												<div class="currency-sign">$</div>
+												<div class="currency-sign"><?php echo esc_html($currenySign);?></div>
 												<input type="text" name="book_price" class="w-100 regular-text" id="book-price" value="<?php echo esc_attr($book_price);?>" placeholder="Book Regular Price">
 											</div>
 											<div class="rswpbs-col-md-6">
-												<div class="currency-sign">$</div>
+												<div class="currency-sign"><?php echo esc_html($currenySign);?></div>
 												<input type="text" name="book_sale_price" class="w-100 regular-text" id="book-sale-price" value="<?php echo esc_attr($book_sale_price);?>" placeholder="Book Sale Price">
 											</div>
 										</div>

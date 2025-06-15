@@ -48,7 +48,7 @@ class Rswpbs_Register_Book_Post_Type {
 			'label'                 => __( 'Books Showcase', 'rswpbs' ),
 			'description'           => __( 'Click on any book cover to learn more.', 'rswpbs' ),
 			'labels'                => $labels,
-			'supports'              => array( 'title', 'editor', 'thumbnail', 'revisions', 'author' ),
+			'supports'              => array( 'title', 'editor', 'excerpt', 'thumbnail', 'revisions', 'author' ),
 			'hierarchical'          => true,
 			'public'                => true,
 			'show_ui'               => true,
