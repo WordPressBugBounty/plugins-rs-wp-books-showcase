@@ -7,7 +7,8 @@
     "icon": "book",
     "description": "A Gutenberg block for displaying book posts in a customizable grid.",
     "supports": {
-        "html": false
+        "html": false,
+        "align": ["left", "center", "right", "wide", "full"]
     },
     "attributes": {
         "booksPerPage": {
@@ -125,6 +126,34 @@
         "heightStretch": {
             "type": "boolean",
             "default": true
+        },
+        "align": {
+            "type": "string",
+            "default": "center"
+        },
+        "buttonBackgroundColor": {
+            "type": "string",
+            "default": "#0073aa"
+        },
+        "buttonTextColor": {
+            "type": "string",
+            "default": "#ffffff"
+        },
+        "buttonBorderRadius": {
+            "type": "number",
+            "default": 4
+        },
+        "buttonPadding": {
+            "type": "string",
+            "default": "10px 20px"
+        },
+        "buttonHoverBackgroundColor": {
+            "type": "string",
+            "default": "#005d87"
+        },
+        "buttonHoverTextColor": {
+            "type": "string",
+            "default": "#ffffff"
         }
     },
     "editorScript": "file:./build/index.js"

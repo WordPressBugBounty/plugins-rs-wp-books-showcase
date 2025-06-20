@@ -132,8 +132,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-// Register the block
-
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)('rswpbs/book-block', {
   title: 'RS WP Book Gallery',
   icon: 'book',
@@ -266,34 +264,125 @@ __webpack_require__.r(__webpack_exports__);
     heightStretch: {
       type: 'boolean',
       default: true
+    },
+    align: {
+      type: 'string',
+      default: 'center'
+    },
+    buttonBackgroundColorNormal: {
+      type: 'string',
+      default: '#0073aa'
+    },
+    buttonTextColorNormal: {
+      type: 'string',
+      default: '#ffffff'
+    },
+    buttonBorderRadiusNormal: {
+      type: 'number',
+      default: 4
+    },
+    buttonPaddingNormal: {
+      type: 'string',
+      default: '10px 20px'
+    },
+    buttonBackgroundColorHover: {
+      type: 'string',
+      default: '#005d87'
+    },
+    buttonTextColorHover: {
+      type: 'string',
+      default: '#ffffff'
+    },
+    buttonBorderRadiusHover: {
+      type: 'number',
+      default: 4
+    },
+    buttonPaddingHover: {
+      type: 'string',
+      default: '10px 20px'
     }
   },
   edit: ({
     attributes,
     setAttributes
   }) => {
-    const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)();
+    const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
+      className: `align${attributes.align || 'center'}`
+    });
     const [shortcodeOutput, setShortcodeOutput] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useState)('Loading preview...');
     const [isPremiumUser, setIsPremiumUser] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useState)(false);
-    // const isPremiumUser = false; // Change this based on real user data
     const premiumLink = 'https://rswpthemes.com/rs-wp-book-showcase-wordpress-plugin/';
+    const [colorType, setColorType] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useState)('background'); // Default to background color
 
-    // Fetch Shortcode Preview
     (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useEffect)(() => {
       const params = Object.fromEntries(Object.entries(attributes).map(([key, value]) => [key, typeof value === 'boolean' ? value ? 'true' : 'false' : value]));
       _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_5__({
         path: '/rswpbs/v1/plugin-status/'
       }).then(response => {
         if (response.isActive) {
-          setIsPremiumUser(true); // Unlock feature if plugin is active
+          setIsPremiumUser(true);
         }
       }).catch(() => {
-        setIsPremiumUser(false); // Keep feature locked if API fails
+        setIsPremiumUser(false);
       });
       _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_5__({
         path: `/rswpbs/v1/render-shortcode?${new URLSearchParams(params)}`
       }).then(response => setShortcodeOutput(response)).catch(() => setShortcodeOutput('Error loading preview'));
     }, [attributes]);
+    const buttonTabs = [{
+      name: 'normal',
+      title: 'Normal',
+      className: 'button-normal-tab'
+    }, {
+      name: 'hover',
+      title: 'Hover',
+      className: 'button-hover-tab'
+    }];
+    const renderTabContent = tabName => {
+      const isNormal = tabName === 'normal';
+      const currentBackgroundColor = isNormal ? attributes.buttonBackgroundColorNormal : attributes.buttonBackgroundColorHover;
+      const currentTextColor = isNormal ? attributes.buttonTextColorNormal : attributes.buttonTextColorHover;
+      const defaultBackgroundColor = isNormal ? '#0073aa' : '#005d87';
+      const defaultTextColor = '#ffffff';
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.RadioControl, {
+          label: "Color",
+          selected: colorType,
+          options: [{
+            label: 'Text',
+            value: 'text'
+          }, {
+            label: 'Background',
+            value: 'background'
+          }],
+          onChange: setColorType
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ColorPicker, {
+          label: `Button ${colorType === 'text' ? 'Text' : 'Background'} Color`,
+          color: colorType === 'text' ? currentTextColor : currentBackgroundColor,
+          onChangeComplete: value => {
+            setAttributes({
+              [isNormal ? colorType === 'text' ? 'buttonTextColorNormal' : 'buttonBackgroundColorNormal' : colorType === 'text' ? 'buttonTextColorHover' : 'buttonBackgroundColorHover']: value.hex
+            });
+          },
+          defaultValue: colorType === 'text' ? defaultTextColor : defaultBackgroundColor
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.RangeControl, {
+          label: "Button Border Radius",
+          value: isNormal ? attributes.buttonBorderRadiusNormal : attributes.buttonBorderRadiusHover,
+          onChange: value => setAttributes({
+            [isNormal ? 'buttonBorderRadiusNormal' : 'buttonBorderRadiusHover']: value
+          }),
+          min: 0,
+          max: 50
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
+          label: "Button Padding",
+          value: isNormal ? attributes.buttonPaddingNormal : attributes.buttonPaddingHover,
+          onChange: value => setAttributes({
+            [isNormal ? 'buttonPaddingNormal' : 'buttonPaddingHover']: value
+          }),
+          placeholder: "e.g., 10px 20px"
+        })]
+      });
+    };
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
       ...blockProps,
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, {
@@ -624,6 +713,62 @@ __webpack_require__.r(__webpack_exports__);
             }),
             disabled: !isPremiumUser
           })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+          title: "Button Styling",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TabPanel, {
+            tabs: [{
+              name: 'normal',
+              title: 'Normal',
+              className: 'button-normal-tab'
+            }, {
+              name: 'hover',
+              title: 'Hover',
+              className: 'button-hover-tab'
+            }],
+            initialTabName: "normal",
+            onSelect: tabName => {/* Handle tab switch if needed */},
+            children: tab => {
+              const isNormal = tab.name === 'normal';
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.RadioControl, {
+                  label: "Color",
+                  selected: colorType,
+                  options: [{
+                    label: 'Text',
+                    value: 'text'
+                  }, {
+                    label: 'Background',
+                    value: 'background'
+                  }],
+                  onChange: setColorType
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ColorPicker, {
+                  label: `Button ${colorType === 'text' ? 'Text' : 'Background'} Color`,
+                  color: colorType === 'text' ? isNormal ? attributes.buttonTextColorNormal : attributes.buttonTextColorHover : isNormal ? attributes.buttonBackgroundColorNormal : attributes.buttonBackgroundColorHover,
+                  onChangeComplete: value => {
+                    setAttributes({
+                      [isNormal ? colorType === 'text' ? 'buttonTextColorNormal' : 'buttonBackgroundColorNormal' : colorType === 'text' ? 'buttonTextColorHover' : 'buttonBackgroundColorHover']: value.hex
+                    });
+                  },
+                  defaultValue: colorType === 'text' ? '#ffffff' : isNormal ? '#0073aa' : '#005d87'
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.RangeControl, {
+                  label: "Button Border Radius",
+                  value: isNormal ? attributes.buttonBorderRadiusNormal : attributes.buttonBorderRadiusHover,
+                  onChange: value => setAttributes({
+                    [isNormal ? 'buttonBorderRadiusNormal' : 'buttonBorderRadiusHover']: value
+                  }),
+                  min: 0,
+                  max: 50
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
+                  label: "Button Padding",
+                  value: isNormal ? attributes.buttonPaddingNormal : attributes.buttonPaddingHover,
+                  onChange: value => setAttributes({
+                    [isNormal ? 'buttonPaddingNormal' : 'buttonPaddingHover']: value
+                  }),
+                  placeholder: "e.g., 10px 20px"
+                })]
+              });
+            }
+          })
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
         dangerouslySetInnerHTML: {

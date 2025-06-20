@@ -11,31 +11,30 @@ function rswpbs_paged(){
     return $paged;
 }
 
-function rswpbs_search_fields(){
+function rswpbs_search_fields() {
     $search_fields = array(
-        'name' => (isset($_GET['book_name']) ? sanitize_text_field($_GET['book_name']) : ''),
-        'author' => (isset($_GET['author']) ? sanitize_text_field($_GET['author']) : ''),
-        'category' => (isset($_GET['category']) ? sanitize_text_field($_GET['category']) : ''),
-        'series' => (isset($_GET['series']) ? sanitize_text_field($_GET['series']) : ''),
-        'format' => (isset($_GET['format']) ? sanitize_text_field($_GET['format']) : ''),
-        'publisher' => (isset($_GET['publisher']) ? sanitize_text_field($_GET['publisher']) : ''),
-        'publish_year' => (isset($_GET['publish_year']) ? sanitize_text_field($_GET['publish_year']) : ''),
+        'name' => (isset($_GET['book_name']) ? wp_kses_post(rawurldecode($_GET['book_name'])) : ''),
+        'author' => (isset($_GET['author']) ? wp_kses_post(rawurldecode($_GET['author'])) : ''),
+        'category' => (isset($_GET['category']) ? wp_kses_post(rawurldecode($_GET['category'])) : ''),
+        'series' => (isset($_GET['series']) ? wp_kses_post(rawurldecode($_GET['series'])) : ''),
+        'format' => (isset($_GET['format']) ? wp_kses_post(rawurldecode($_GET['format'])) : ''),
+        'publisher' => (isset($_GET['publisher']) ? wp_kses_post(rawurldecode($_GET['publisher'])) : ''),
+        'publish_year' => (isset($_GET['publish_year']) ? wp_kses_post(rawurldecode($_GET['publish_year'])) : ''),
         'sortby' => (isset($_GET['sortby']) ? sanitize_text_field($_GET['sortby']) : ''),
-        // Add new fields
-        'language' => (isset($_GET['language']) ? sanitize_text_field($_GET['language']) : ''),
-        'isbn' => (isset($_GET['isbn']) ? sanitize_text_field($_GET['isbn']) : ''),
-        'isbn_10' => (isset($_GET['isbn_10']) ? sanitize_text_field($_GET['isbn_10']) : ''),
+        'language' => (isset($_GET['language']) ? wp_kses_post(rawurldecode($_GET['language'])) : ''),
+        'isbn' => (isset($_GET['isbn']) ? wp_kses_post(rawurldecode($_GET['isbn'])) : ''),
+        'isbn_10' => (isset($_GET['isbn_10']) ? wp_kses_post(rawurldecode($_GET['isbn_10'])) : ''),
     );
 
     if (is_tax('book-category')) {
         $taxPageObj = get_queried_object();
         $taxPageSlug = $taxPageObj->slug;
-        $search_fields['category'] = $taxPageSlug;
+        $search_fields['category'] = wp_kses_post(rawurldecode($taxPageSlug));
     }
     if (is_tax('book-series')) {
         $taxPageObj = get_queried_object();
         $taxPageSlug = $taxPageObj->slug;
-        $search_fields['series'] = $taxPageSlug;
+        $search_fields['series'] = wp_kses_post(rawurldecode($taxPageSlug));
     }
 
     return $search_fields;
