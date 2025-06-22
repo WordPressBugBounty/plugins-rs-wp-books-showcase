@@ -182,7 +182,7 @@ function rswpbs_render_shortcode($request) {
 
     // Forms and layout
     $params['show_search_form'] = isset($params['showSearchForm']) ? ($params['showSearchForm'] === 'true' ? 'true' : 'false') : 'true';
-    $params['show_sorting_form'] = isset($params['showSortingForm']) ? ($params['showSortingForm'] === 'true' ? 'true' : 'false') : 'true';
+    $params['show_sorting_form'] = isset($params['showSortingForm']) ? ($params['showSortingForm'] === True ? 'true' : 'false') : 'true';
     $params['show_masonry_layout'] = isset($params['showMasonryLayout']) ? ($params['showMasonryLayout'] === 'true' ? 'true' : 'false') : 'false';
     $params['height_stretch'] = isset($params['heightStretch']) ? ($params['heightStretch'] === 'true' ? 'true' : 'false') : 'true';
 
@@ -222,7 +222,30 @@ add_action('rest_api_init', 'rswpbs_register_rest_routes');
 /**
  * Enqueue dynamic styles for the block.
  */
-function rswpbs_enqueue_dynamic_styles($attributes) {
+function rswpbs_enqueue_dynamic_styles() {
+    global $post;
+
+    if (!$post || !has_block('rswpbs/book-block', $post->post_content)) {
+        return; // Exit if the block is not present in the post content.
+    }
+
+    // Parse the post content to get all instances of the block.
+    $blocks = parse_blocks($post->post_content);
+
+    // Find the first instance of the rswpbs/book-block.
+    $block_attributes = null;
+    foreach ($blocks as $block) {
+        if ($block['blockName'] === 'rswpbs/book-block') {
+            $block_attributes = $block['attrs'];
+            break; // Use the first instance of the block.
+        }
+    }
+
+    if (!$block_attributes) {
+        return; // Exit if no attributes are found.
+    }
+
+    // Generate dynamic CSS based on block attributes.
     $css = sprintf(
         '.wp-block-rswpbs-book-block .book-buy-button, .wp-block-rswpbs-book-block .book-read-more-button, .wp-block-rswpbs-book-block .book-add-to-cart-button {
             background-color: %s;
@@ -239,33 +262,29 @@ function rswpbs_enqueue_dynamic_styles($attributes) {
             border-radius: %dpx;
             padding: %s;
         }',
-        esc_attr($attributes['buttonBackgroundColorNormal']),
-        esc_attr($attributes['buttonTextColorNormal']),
-        absint($attributes['buttonBorderRadiusNormal']),
-        esc_attr($attributes['buttonPaddingNormal']),
-        esc_attr($attributes['buttonBackgroundColorHover']),
-        esc_attr($attributes['buttonTextColorHover']),
-        absint($attributes['buttonBorderRadiusHover']),
-        esc_attr($attributes['buttonPaddingHover'])
+        esc_attr($block_attributes['buttonBackgroundColorNormal'] ?? '#0073aa'),
+        esc_attr($block_attributes['buttonTextColorNormal'] ?? '#ffffff'),
+        absint($block_attributes['buttonBorderRadiusNormal'] ?? 4),
+        esc_attr($block_attributes['buttonPaddingNormal'] ?? '10px 20px'),
+        esc_attr($block_attributes['buttonBackgroundColorHover'] ?? '#005d87'),
+        esc_attr($block_attributes['buttonTextColorHover'] ?? '#ffffff'),
+        absint($block_attributes['buttonBorderRadiusHover'] ?? 4),
+        esc_attr($block_attributes['buttonPaddingHover'] ?? '10px 20px')
     );
+
     wp_add_inline_style('rswpbs-book-block-styles', $css);
 }
-add_action('wp_enqueue_scripts', function() use ($attributes) {
-    global $post;
-    if ($post && has_block('rswpbs/book-block', $post->post_content)) {
-        rswpbs_enqueue_dynamic_styles(get_block_attributes());
-    }
-});
+add_action('wp_enqueue_scripts', 'rswpbs_enqueue_dynamic_styles');
 
-/**
- * Enqueue block assets.
- */
-function rswpbs_enqueue_block_assets() {
-    wp_enqueue_style(
-        'rswpbs-book-block-styles',
-        plugins_url('build/style-index.css', __FILE__),
-        [],
-        filemtime(plugin_dir_path(__FILE__) . 'build/style-index.css')
-    );
-}
-add_action('enqueue_block_assets', 'rswpbs_enqueue_block_assets');
+// /**
+//  * Enqueue block assets.
+//  */
+// function rswpbs_enqueue_block_assets() {
+//     wp_enqueue_style(
+//         'rswpbs-book-block-styles',
+//         plugins_url('build/style-index.css', __FILE__),
+//         [],
+//         filemtime(plugin_dir_path(__FILE__) . 'build/style-index.css')
+//     );
+// }
+// add_action('enqueue_block_assets', 'rswpbs_enqueue_block_assets');
