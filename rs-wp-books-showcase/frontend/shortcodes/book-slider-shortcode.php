@@ -62,9 +62,15 @@ function rswpbs_book_slider_shortcode( $atts ) {
     $booksQargs = array(
 			'post_type'	=> array('book'),
 		);
-	if (!empty($atts['books_per_page'])) {
-		$booksQargs['posts_per_page'] = intval($atts['books_per_page']);
-	}
+
+    // Modified handling for books_per_page
+    if (!empty($atts['books_per_page'])) {
+        if ($atts['books_per_page'] === 'unlimited' || $atts['books_per_page'] === '-1') {
+            $booksQargs['posts_per_page'] = -1; // Fetch all posts
+        } else {
+            $booksQargs['posts_per_page'] = intval($atts['books_per_page']); // Use numeric value
+        }
+    }
 
 	if (!empty($atts['orderby'])) {
 		$booksQargs['orderby'] = $atts['orderby'];

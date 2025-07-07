@@ -45,9 +45,15 @@ function rswpbs_books_showcase_grid_layout( $atts ) {
 
 	$paged = rswpbs_paged();
 	$bookPerPage = 8;
-	if (!empty($atts['books_per_page'])) {
-		$bookPerPage = intval($atts['books_per_page']);
-	}
+
+    // Modified handling for books_per_page
+    if (!empty($atts['books_per_page'])) {
+        if ($atts['books_per_page'] === 'unlimited' || $atts['books_per_page'] === '-1') {
+            $booksQargs['posts_per_page'] = -1; // Fetch all posts
+        } else {
+            $booksQargs['posts_per_page'] = intval($atts['books_per_page']); // Use numeric value
+        }
+    }
 
 	$bookQueryArgs = array(
 		'post_type'	=> 'book',
