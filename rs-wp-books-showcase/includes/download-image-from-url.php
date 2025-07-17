@@ -19,9 +19,15 @@ function rswpbs_set_featured_image_from_url($post_id, $image_url) {
     // Set upload folder
     $upload_dir = wp_upload_dir();
 
-    // Get image data
-    $image_data = file_get_contents($image_url);
+    // Get image data with a custom User-Agent
+    $context = stream_context_create([
+        'http' => [
+            'header' => "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36\r\n"
+        ]
+    ]);
+    $image_data = file_get_contents($image_url, false, $context);
     if ($image_data === false) {
+        error_log("Failed to download image for post ID $post_id from URL: $image_url");
         return new WP_Error('download_failed', 'Failed to download image from URL.');
     }
 
