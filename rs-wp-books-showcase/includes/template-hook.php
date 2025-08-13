@@ -135,8 +135,3 @@ function rswpbs_archive_page_header(){
     <?php
   endif;
 }
-
-function rswpbs_default_book_header() {
-    rswpbs_book_header_section();
-}
-add_action('rswpbs_book_header', 'rswpbs_default_book_header', 10);

@@ -49,9 +49,9 @@ function rswpbs_books_showcase_grid_layout( $atts ) {
     // Modified handling for books_per_page
     if (!empty($atts['books_per_page'])) {
         if ($atts['books_per_page'] === 'unlimited' || $atts['books_per_page'] === '-1') {
-            $booksQargs['posts_per_page'] = -1; // Fetch all posts
+            $bookPerPage = -1; // Fetch all posts
         } else {
-            $booksQargs['posts_per_page'] = intval($atts['books_per_page']); // Use numeric value
+            $bookPerPage = intval($atts['books_per_page']); // Use numeric value
         }
     }
 
@@ -60,6 +60,7 @@ function rswpbs_books_showcase_grid_layout( $atts ) {
 		'posts_per_page' => $bookPerPage,
 		'paged'	=> $paged,
 	);
+
 	if (!empty($atts['orderby'])) {
 		$bookQueryArgs['orderby'] = $atts['orderby'];
 	}
