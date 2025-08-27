@@ -791,3 +791,35 @@ p.amz-notice-sub-heading {
 .notice.notice-info.rswpbs-amz-admin-notice p.amz-notice-sub-heading {
     font-size: 18px;
 }
+
+/* Two-column layout for custom product tabs */
+.wc-custom-tabs-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.wc-custom-tabs-column {
+    flex: 1;
+    min-width: 200px;
+    max-width: calc(50% - 10px); /* Adjust for gap */
+}
+
+.wc-custom-tabs-column .options_group {
+    margin: 0;
+}
+
+/* Ensure textareas and selects take full width */
+.wc-custom-tabs-column textarea,
+.wc-custom-tabs-column select {
+    width: 100%;
+}
+
+/* Responsive adjustment for smaller screens */
+@media screen and (max-width: 782px) {
+    .wc-custom-tabs-column {
+        flex: 100%;
+        max-width: 100%;
+    }
+}

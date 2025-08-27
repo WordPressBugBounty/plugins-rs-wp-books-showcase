@@ -76,7 +76,12 @@ function rswpbs_book_reviews(){
 										if (!empty(get_the_title( get_the_ID() ))):
 										?>
 										<div class="client-feedback">
-											<?php echo rswpbs_short_and_long_content(260); ?>
+											<?php
+											// Display a truncated version of the content.
+											$content = get_the_content();
+											echo '<p>' . wp_trim_words( $content, 25, '...' ) . '<a href="#" class="rswpbs-testimonial-read-more" data-modal-id="review-popup-' . get_the_ID() . '">'
+											    . esc_html__( 'Read More', 'rswpbs' ) . '</a></p>';
+											?>
 										</div>
 										<?php
 										endif; ?>
@@ -98,6 +103,36 @@ function rswpbs_book_reviews(){
 												</div>
 											</div>
 											<?php endif;?>
+										</div>
+									</div>
+								</div>
+								<div id="review-popup-<?php echo get_the_ID(); ?>" class="rswpbs-review-popup">
+									<div class="rswpbs-popup-content-wrapper">
+										<div class="rswpbs-popup-content testimonial__item-inner">
+											<span class="rswpbs-popup-close">&times;</span>
+											<?php if (!empty(get_the_title(get_the_ID()))): ?>
+												<h5 class="review-title"><?php echo esc_html(get_the_title(get_the_ID())); ?></h5>
+											<?php endif; ?>
+											<div class="client-feedback-full">
+												<?php the_content(); ?>
+											</div>
+											<?php if ('true' == $atts['show_reviewer']) : ?>
+											<div class="reviewer-wrapper">
+												<?php if (!empty($reviewerImage)) : ?>
+												<div class="client-image">
+													<?php echo wp_kses_post($reviewerImage); ?>
+												</div>
+												<?php endif; ?>
+												<?php if (!empty($reviewerName)) : ?>
+												<div class="name-and-date">
+													<h4 class="client-name"><?php echo esc_html($reviewerName); ?></h4>
+													<div class="review-time">
+														<?php rswpbs_ctp_pub_time(); ?>
+													</div>
+												</div>
+												<?php endif; ?>
+											</div>
+											<?php endif; ?>
 										</div>
 									</div>
 								</div>

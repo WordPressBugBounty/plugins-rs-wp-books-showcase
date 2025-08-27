@@ -118,6 +118,16 @@ function rswpbs_process_reviews_csv_import() {
             $review_title = sanitize_text_field($row[1]);
             $review_rating = intval($row[2]);
             $review_content = sanitize_textarea_field($row[3]);
+
+            // Wrap line breaks with <p> tags
+            $paragraphs = array_filter(array_map('trim', explode("\n", $review_content)));
+            $formatted_content = '';
+            foreach ($paragraphs as $paragraph) {
+                if (!empty($paragraph)) {
+                    $formatted_content .= '<p>' . $paragraph . '</p>';
+                }
+            }
+
             // $review_media = $row[4]; // Not used
 
             // Validate data
@@ -132,7 +142,7 @@ function rswpbs_process_reviews_csv_import() {
             // Create new book_reviews post
             $post_id = wp_insert_post([
                 'post_title' => $review_title,
-                'post_content' => $review_content,
+                'post_content' => $formatted_content,
                 'post_type' => 'book_reviews',
                 'post_status' => 'publish',
                 'post_author' => get_current_user_id(),
@@ -186,4 +196,3 @@ function rswpbs_process_reviews_csv_import() {
         <?php
     }
 }
-?>

@@ -1,8 +1,9 @@
 (function($) {
+    // This part remains unchanged
     $('.search-field select').select2({
-        searchField: ['text', 'value'], // Allows searching by text and value
-        persist: false, // Prevents saving custom user input
-        create: false, // Disables creating new options
+        searchField: ['text', 'value'],
+        persist: false,
+        create: false,
         allowEmptyOption: true,
         allowClear: true,
         placeholder: "Search or select"
@@ -18,6 +19,7 @@
         history.pushState({}, "", window.location.pathname);
         location.reload();
     });
+
 })(jQuery);
 
 function rswpbsMasonryInit() {
@@ -47,22 +49,40 @@ jQuery(window).on('load', function() {
 jQuery(document).ready(function($) {
     rswpbsMasonryInit();
     rswpbsTestimonialMasonryInit();
-    $('.rswpbs-testimonial-read-more').click(function(e) {
+
+    // --- NEW POPUP MODAL LOGIC ---
+
+    // Use event delegation for the "Read More" link.
+    // This ensures it works reliably, even with sliders or AJAX-loaded content.
+    $(document.body).on('click', '.rswpbs-testimonial-read-more', function(e) {
         e.preventDefault();
-        var reviewDescription = $(this).closest('.review-description');
-        reviewDescription.find('.review-short-content').hide();
-        reviewDescription.find('.read-more').hide();
-        reviewDescription.find('.review-full-content').show();
-        rswpbsTestimonialMasonryInit();
+        var modalId = $(this).data('modal-id');
+        $('#' + modalId).fadeIn(200);
     });
-    $('.rswpbs-testimonial-show-less').click(function(e) {
-        e.preventDefault();
-        var reviewDescription = $(this).closest('.review-description');
-        reviewDescription.find('.review-full-content').hide();
-        reviewDescription.find('.review-short-content').show();
-        reviewDescription.find('.read-more').show();
-        rswpbsTestimonialMasonryInit();
+
+    // Use event delegation for the close button ('x').
+    $(document.body).on('click', '.rswpbs-popup-close', function() {
+        $(this).closest('.rswpbs-review-popup').fadeOut(200);
     });
+
+    // Close the popup when clicking on the dark background overlay.
+    $(document).on('click', function(event) {
+        // The `is` check ensures we're clicking the background itself,
+        // not a child element within the popup content area.
+        if ($(event.target).is('.rswpbs-review-popup')) {
+            $(event.target).fadeOut(200);
+        }
+    });
+
+    // Close the popup when the 'Escape' key is pressed.
+    $(document).on('keydown', function(event) {
+        if (event.key === "Escape") {
+            $('.rswpbs-review-popup').fadeOut(200);
+        }
+    });
+
+    // --- END OF NEW LOGIC ---
+
     if (window.acf) {
         window.acf.addAction('render_block_preview/type=rswp-book-gallery', rswpbsMasonryInit);
     }

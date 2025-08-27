@@ -25,6 +25,10 @@ function rswpbs_books_review_shortcode( $atts ) {
 
 	ob_start();
 
+	// CSS for the new review popup modal
+	?>
+	<?php
+
 	$query_args = array(
 	 	'posts_per_page' => intval($atts['review_per_page']),
 	  	'post_type' => array('book_reviews'),
@@ -47,9 +51,6 @@ function rswpbs_books_review_shortcode( $atts ) {
 	}
 
 	$item_margin = 'testimonial__item-inner';
-	// if ($atts['review_layout'] == 'grid'):
-	// 	$item_margin  = 'item-margin-off';
-	// endif;
 
 	$reviewQuery = new WP_Query($query_args);
 	if ($reviewQuery->have_posts()) :
@@ -96,17 +97,16 @@ function rswpbs_books_review_shortcode( $atts ) {
 					$reviewQuery->the_post();
 					$getRatings = get_post_meta( get_the_ID(), '_rswpbs_rating', true );
 					$reviewerName = get_post_meta( get_the_ID(), '_rswpbs_reviewer_name', true );
+					$reviewerEmail = get_post_meta( get_the_ID(), '_rswpbs_reviewer_email', true);
+					$reviewerImage = get_avatar($reviewerEmail, 70, 'wavatar', $reviewerName );
+					if(has_post_thumbnail() && !empty(get_the_post_thumbnail_url())) {
+						$reviewerImage = get_the_post_thumbnail( get_the_ID() );
+					}
+					$reviewerRating = get_post_meta(get_the_ID(), '_rswpbs_rating', true);
 				?>
 				<div class="<?php echo esc_attr( $item_class ); ?> efe_customer_review_de">
 					<div class="testimonial__item-inner">
 						<?php
-						$reviewerEmail = get_post_meta( get_the_ID(), '_rswpbs_reviewer_email', true);
-						$reviewerName = get_post_meta( get_the_ID(), '_rswpbs_reviewer_name', true);
-						$reviewerImage = get_avatar($reviewerEmail, 70, 'wavatar', $reviewerName );
-						if(has_post_thumbnail() && !empty(get_the_post_thumbnail_url())) {
-							$reviewerImage = get_the_post_thumbnail( get_the_ID() );
-						}
-						$reviewerRating = get_post_meta(get_the_ID(), '_rswpbs_rating', true);
 						if ('default' == $atts['layout_style']) :
 							if (!empty(get_the_title( get_the_ID() ))):
 							?>
@@ -149,10 +149,15 @@ function rswpbs_books_review_shortcode( $atts ) {
 							</div>
 							<?php
 						endif;
-						if (!empty(get_the_title( get_the_ID() ))) :
+						if (!empty(get_the_content())) :
 						?>
 						<div class="client-feedback">
-							<?php rswpbs_short_and_long_content(260); ?>
+							<?php
+							// Display a truncated version of the content.
+							$content = get_the_content();
+							echo '<p>' . wp_trim_words( $content, 25, '...' ) . '<a href="#" class="rswpbs-testimonial-read-more" data-modal-id="review-popup-' . get_the_ID() . '">'
+							    . esc_html__( 'Read More', 'rswpbs' ) . '</a></p>';
+							?>
 						</div>
 						<?php
 						endif;
@@ -180,6 +185,38 @@ function rswpbs_books_review_shortcode( $atts ) {
 						<?php
 						endif;
 						?>
+					</div>
+				</div>
+
+				<!-- Popup Modal for the full review -->
+				<div id="review-popup-<?php echo get_the_ID(); ?>" class="rswpbs-review-popup">
+					<div class="rswpbs-popup-content-wrapper">
+						<div class="rswpbs-popup-content testimonial__item-inner">
+							<span class="rswpbs-popup-close">&times;</span>
+							<?php if (!empty(get_the_title(get_the_ID()))): ?>
+								<h5 class="review-title"><?php echo esc_html(get_the_title(get_the_ID())); ?></h5>
+							<?php endif; ?>
+							<div class="client-feedback-full">
+								<?php the_content(); ?>
+							</div>
+							<?php if ('true' == $atts['show_reviewer']) : ?>
+							<div class="reviewer-wrapper">
+								<?php if (!empty($reviewerImage)) : ?>
+								<div class="client-image">
+									<?php echo wp_kses_post($reviewerImage); ?>
+								</div>
+								<?php endif; ?>
+								<?php if (!empty($reviewerName)) : ?>
+								<div class="name-and-date">
+									<h4 class="client-name"><?php echo esc_html($reviewerName); ?></h4>
+									<div class="review-time">
+										<?php rswpbs_ctp_pub_time(); ?>
+									</div>
+								</div>
+								<?php endif; ?>
+							</div>
+							<?php endif; ?>
+						</div>
 					</div>
 				</div>
 				<?php endwhile;?>
