@@ -2812,3 +2812,8 @@ form.rswpbs-author-search-form button {
         opacity: 1
     }
 }
+
+.featured-book-cover-wrapper img {
+    max-width: 100%;
+    height: auto;
+}

@@ -109,8 +109,10 @@ function rswpbs_assets(){
 	wp_register_script('rswpbs-review-slider-script', RSWPBS_PLUGIN_URL . 'frontend/assets/js/review-slider.js', array('jquery'), '1.0', true);
 	wp_register_style( 'rswpbs-review-slider-style', RSWPBS_PLUGIN_URL . 'frontend/assets/css/review-slider.css' );
 	if( (is_page() || is_single()) && has_shortcode( $post->post_content , 'rswpbs_reviews' ) ){
+		wp_enqueue_style('slick');
+		wp_enqueue_script('slick');
 		wp_enqueue_script('rswpbs-review-slider-script');
-		// wp_enqueue_style('rswpbs-review-slider-style');
+		wp_enqueue_style('rswpbs-review-slider-style');
 	}
 	/**
 	 * Enqueue RSWPBS Review Form JS

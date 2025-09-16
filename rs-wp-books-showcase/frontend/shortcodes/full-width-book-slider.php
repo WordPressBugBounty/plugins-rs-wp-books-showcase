@@ -2,6 +2,9 @@
 /**
  * Full Width Book Slider Shortcode
  */
+
+//[rswpbs_full_width_book_slider show_title="" show_author="true" show_description="true" show_button_one="true" show_button_two="true" show_image="true" read_more_text="See Details"]
+
 add_shortcode('rswpbs_full_width_book_slider', 'rswpbs_full_width_book_slider_shortcode');
 function rswpbs_full_width_book_slider_shortcode($atts) {
     // Define default settings
@@ -12,6 +15,7 @@ function rswpbs_full_width_book_slider_shortcode($atts) {
         'show_button_one'   => 'true',
         'show_button_two'   => 'true',
         'show_image'        => 'true',
+        'read_more_text'    => 'See Details',
         'book_ids'          => '',
         'slider_attr' => '',
     );
@@ -100,7 +104,7 @@ $htmlAttributes = trim($htmlAttributes);
                                         ?>
                                         <?php if ('true' == $settings['show_button_two']) : ?>
                                         <div class="book-details-btn">
-                                            <a href="<?php the_permalink(); ?>"><?php esc_html_e('See Details', 'eafe-text-domain'); ?></a>
+                                            <a href="<?php the_permalink(); ?>"><?php echo esc_html( $atts['read_more_text'] ); ?></a>
                                         </div>
                                         <?php endif; ?>
                                     </div>
@@ -108,7 +112,6 @@ $htmlAttributes = trim($htmlAttributes);
                                 </div>
                             </div>
                         </div>
-
                         <?php if ($settings['show_image']) : ?>
                         <div class="rswpbs-col-lg-4 rswpbs-col-md-6 align-self-center featured-book-column featured-book-cover-column">
                             <div class="featured-book-cover-wrapper">
