@@ -7,7 +7,7 @@ jQuery(document).ready(function($) {
         return ui;
     };
 
-    // Initialize sortable on the table body.
+    // Initialize sortable on the table body for social profiles.
     $('#author_social_profiles tbody').sortable({
         helper: fixHelper,
         update: function(event, ui) {
@@ -20,26 +20,26 @@ jQuery(document).ready(function($) {
         $('#author_social_profiles tbody tr').each(function(index) {
             $(this).find('input').each(function() {
                 var name = $(this).attr('name');
-                var newName = name.replace(/\[\d+\]/, '[' + index + ']');
-                $(this).attr('name', newName);
+                if (name) {
+                    var newName = name.replace(/\[\d+\]/, '[' + index + ']');
+                    $(this).attr('name', newName);
+                }
             });
         });
     }
 
-    // Add a new row when clicking the "Add Row" button.
+    // Add a new row for social profiles.
     $('#add_social_profile_row').on('click', function(e) {
         e.preventDefault();
-        console.log(e.target);
         var $tbody = $('#author_social_profiles tbody');
         var $lastRow = $tbody.find('tr:last');
         var $newRow = $lastRow.clone();
-        // Clear input values in the new row.
         $newRow.find('input').val('');
         $tbody.append($newRow);
         updateRowIndices();
     });
 
-    // Remove a row when clicking the "Remove" button.
+    // Remove a row for social profiles.
     $('#author_social_profiles').on('click', '.remove-row', function(e) {
         e.preventDefault();
         var $tbody = $('#author_social_profiles tbody');
@@ -47,43 +47,52 @@ jQuery(document).ready(function($) {
             $(this).closest('tr').remove();
             updateRowIndices();
         } else {
-            // If it’s the only row, just clear its inputs.
             $(this).closest('tr').find('input').val('');
         }
     });
 
-    // --- Media Uploader for Author Picture ---
+    // --- REUSABLE Media Uploader ---
+    // This is now generic and works for any field with the correct classes.
     var mediaUploader;
-    $('#upload_author_picture_button').on('click', function(e) {
+
+    $('body').on('click', '.upload-picture-button', function(e) {
         e.preventDefault();
-        // If the uploader object has already been created, reopen it.
+        var $button = $(this);
+
         if (mediaUploader) {
             mediaUploader.open();
             return;
         }
-        // Create the media uploader.
+
         mediaUploader = wp.media.frames.file_frame = wp.media({
             title: 'Choose Image',
             button: { text: 'Choose Image' },
             library: { type: 'image' },
             multiple: false
         });
-        // When an image is selected, run a callback.
-        mediaUploader.on('select', function() {
-            var attachment = mediaUploader.state().get('selection').first().toJSON();
-            $('#author_picture').val(attachment.url);
-            $('#author_picture_preview').attr('src', attachment.url).show();
-            $('#remove_author_picture_button').show();
+
+        mediaUploader.on('open', function() {
+            // Re-assign the on-select callback every time the uploader opens.
+            // This ensures we're targeting the fields relative to the clicked button.
+            mediaUploader.off('select').on('select', function() {
+                var attachment = mediaUploader.state().get('selection').first().toJSON();
+                var $fieldWrapper = $button.closest('.form-field, .term-group-wrap');
+
+                $fieldWrapper.find('.picture-url-input').val(attachment.url);
+                $fieldWrapper.find('.picture-preview').attr('src', attachment.url).show();
+                $fieldWrapper.find('.remove-picture-button').show();
+            });
         });
-        // Open the uploader dialog.
+
         mediaUploader.open();
     });
 
-    $('#remove_author_picture_button').on('click', function(e) {
+    $('body').on('click', '.remove-picture-button', function(e) {
         e.preventDefault();
-        $('#author_picture').val('');
-        $('#author_picture_preview').hide();
+        var $fieldWrapper = $(this).closest('.form-field, .term-group-wrap');
+
+        $fieldWrapper.find('.picture-url-input').val('');
+        $fieldWrapper.find('.picture-preview').hide();
         $(this).hide();
     });
-
 });

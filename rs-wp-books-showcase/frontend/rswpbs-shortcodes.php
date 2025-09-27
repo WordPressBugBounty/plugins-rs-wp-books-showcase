@@ -20,3 +20,4 @@ require_once RSWPBS_SHORTCODE_FOLDER_PATH . 'book-category-page.php';
 require_once RSWPBS_SHORTCODE_FOLDER_PATH . 'book-series-page.php';
 require_once RSWPBS_SHORTCODE_FOLDER_PATH . 'book-single-page.php';
 require_once RSWPBS_SHORTCODE_FOLDER_PATH . 'popup-book-shortcode.php';
+require_once RSWPBS_SHORTCODE_FOLDER_PATH . 'series-shortcode.php';

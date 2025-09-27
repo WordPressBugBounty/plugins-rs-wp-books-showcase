@@ -2,6 +2,8 @@
 /**
  * Book Review Shortcode
  */
+//[rswpbs_reviews review_per_page="9" layout_style="default" review_layout="grid"]
+
 add_shortcode( 'rswpbs_reviews', 'rswpbs_books_review_shortcode' );
 function rswpbs_books_review_shortcode( $atts ) {
 	$atts = shortcode_atts( array(
