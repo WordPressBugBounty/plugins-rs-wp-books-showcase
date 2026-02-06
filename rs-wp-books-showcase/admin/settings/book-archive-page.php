@@ -73,23 +73,27 @@ add_action('admin_init', 'rswpbs_book_archive_register_settings');
 
 function rswpbs_book_archive_register_settings() {
     $settings = [
-        'rswpbs_show_book_archive_page_header' => ['label' => __('Show Header', 'rswpbs'), 'default' => '1'],
-        'rswpbs_books_archive_page_title' => ['label' => __('Archive Title', 'rswpbs'), 'default' => __('Books', 'rswpbs')],
-        'rswpbs_books_archive_page_description' => ['label' => __('Archive Description', 'rswpbs'), 'default' => __('Browse all books available in our collection.', 'rswpbs')],
-        'rswpbs_books_per_page' => ['label' => __('Books Per Page', 'rswpbs'), 'default' => '8'],
-        'rswpbs_show_search_section' => ['label' => __('Show Search', 'rswpbs'), 'default' => '1'],
-        'rswpbs_show_sorting_section' => ['label' => __('Show Sorting', 'rswpbs'), 'default' => '1'],
-        'rswpbs_books_per_row' => ['label' => __('Books Per Row', 'rswpbs'), 'default' => '4'],
-        'rswpbs_book_cover_position' => ['label' => __('Cover Position', 'rswpbs'), 'default' => 'left'],
-        'rswpbs_show_book_title' => ['label' => __('Show Title', 'rswpbs'), 'default' => '1'],
-        'rswpbs_show_author_name' => ['label' => __('Show Author', 'rswpbs'), 'default' => '1'],
-        'rswpbs_show_price' => ['label' => __('Show Price', 'rswpbs'), 'default' => '1'],
-        'rswpbs_show_description' => ['label' => __('Show Description', 'rswpbs'), 'default' => '1'],
-        'rswpbs_show_buy_now_button' => ['label' => __('Show Buy Button', 'rswpbs'), 'default' => '1']
+        'rswpbs_show_book_archive_page_header' => ['label' => __('Show Header', 'rswpbs'), 'default' => '1', 'sanitize_callback' => 'absint'],
+        'rswpbs_books_archive_page_title' => ['label' => __('Archive Title', 'rswpbs'), 'default' => __('Books', 'rswpbs'), 'sanitize_callback' => 'sanitize_text_field'],
+        'rswpbs_books_archive_page_description' => ['label' => __('Archive Description', 'rswpbs'), 'default' => __('Browse all books available in our collection.', 'rswpbs'), 'sanitize_callback' => 'wp_kses_post'],
+        'rswpbs_books_per_page' => ['label' => __('Books Per Page', 'rswpbs'), 'default' => '8', 'sanitize_callback' => 'absint'],
+        'rswpbs_show_search_section' => ['label' => __('Show Search', 'rswpbs'), 'default' => '1', 'sanitize_callback' => 'absint'],
+        'rswpbs_show_sorting_section' => ['label' => __('Show Sorting', 'rswpbs'), 'default' => '1', 'sanitize_callback' => 'absint'],
+        'rswpbs_books_per_row' => ['label' => __('Books Per Row', 'rswpbs'), 'default' => '4', 'sanitize_callback' => 'absint'],
+        'rswpbs_book_cover_position' => ['label' => __('Cover Position', 'rswpbs'), 'default' => 'top', 'sanitize_callback' => 'sanitize_text_field'],
+        'rswpbs_show_book_title' => ['label' => __('Show Title', 'rswpbs'), 'default' => '1', 'sanitize_callback' => 'absint'],
+        'rswpbs_show_author_name' => ['label' => __('Show Author', 'rswpbs'), 'default' => '1', 'sanitize_callback' => 'absint'],
+        'rswpbs_show_price' => ['label' => __('Show Price', 'rswpbs'), 'default' => '1', 'sanitize_callback' => 'absint'],
+        'rswpbs_show_description' => ['label' => __('Show Description', 'rswpbs'), 'default' => '1', 'sanitize_callback' => 'absint'],
+        'rswpbs_show_buy_now_button' => ['label' => __('Show Buy Button', 'rswpbs'), 'default' => '1', 'sanitize_callback' => 'absint']
     ];
 
     foreach ($settings as $key => $data) {
-        register_setting('rswpbs_book_archive_settings_group', $key);
+        $args = array();
+        if (isset($data['sanitize_callback'])) {
+            $args['sanitize_callback'] = $data['sanitize_callback'];
+        }
+        register_setting('rswpbs_book_archive_settings_group', $key, $args);
 
         // Set default values if not already set
         if (get_option($key) === false) {
@@ -104,7 +108,7 @@ function rswpbs_render_setting_field($args) {
     $defaults = [
         'rswpbs_books_per_page' => '8',
         'rswpbs_books_per_row' => '4',
-        'rswpbs_book_cover_position' => 'left',
+        'rswpbs_book_cover_position' => 'top',
     ];
 
     $value = get_option($id, $defaults[$id] ?? '');
@@ -147,7 +151,7 @@ function rswpbs_get_option($option_name) {
         'rswpbs_show_search_section' => '1',
         'rswpbs_show_sorting_section' => '1',
         'rswpbs_books_per_row' => '3',
-        'rswpbs_book_cover_position' => 'left',
+        'rswpbs_book_cover_position' => 'top',
         'rswpbs_show_book_title' => '1',
         'rswpbs_show_author_name' => '1',
         'rswpbs_show_price' => '1',

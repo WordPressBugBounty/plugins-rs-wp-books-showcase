@@ -19,6 +19,7 @@ registerBlockType('rswpbs/book-block', {
     icon: 'book',
     category: 'widgets',
     attributes: {
+        // ... (all your attributes remain the same)
         booksPerPage: { type: 'number', default: 8 },
         booksPerRow: { type: 'number', default: 4 },
         categoriesInclude: { type: 'string', default: '' },
@@ -61,14 +62,27 @@ registerBlockType('rswpbs/book-block', {
         buttonBorderRadiusHover: { type: 'number', default: 4 },
         buttonPaddingHover: { type: 'string', default: '10px 20px' }
     },
-    edit: ({ attributes, setAttributes }) => {
+edit: ({ attributes, setAttributes }) => {
         const blockProps = useBlockProps({
             className: `align${attributes.align || 'center'}`
         });
         const [shortcodeOutput, setShortcodeOutput] = useState('Loading preview...');
         const [isPremiumUser, setIsPremiumUser] = useState(false);
         const premiumLink = 'https://rswpthemes.com/rs-wp-book-showcase-wordpress-plugin/';
-        const [colorType, setColorType] = useState('background'); // Default to background color
+
+        // 1. Initial state is now null to hide picker
+        const [colorType, setColorType] = useState(null); // For Button Styling
+
+        // 2. New function to toggle the color picker's visibility
+        const toggleColorPicker = ( newType ) => {
+            if ( colorType === newType ) {
+                // User clicked the same button again, so close the picker
+                setColorType(null);
+            } else {
+                // User clicked a new button, so open/switch the picker
+                setColorType(newType);
+            }
+        };
 
         useEffect(() => {
             const params = Object.fromEntries(
@@ -91,72 +105,14 @@ registerBlockType('rswpbs/book-block', {
                 .catch(() => setShortcodeOutput('Error loading preview'));
         }, [attributes]);
 
-        const buttonTabs = [
-            {
-                name: 'normal',
-                title: 'Normal',
-                className: 'button-normal-tab'
-            },
-            {
-                name: 'hover',
-                title: 'Hover',
-                className: 'button-hover-tab'
-            }
-        ];
-
-        const renderTabContent = (tabName) => {
-            const isNormal = tabName === 'normal';
-            const currentBackgroundColor = isNormal ? attributes.buttonBackgroundColorNormal : attributes.buttonBackgroundColorHover;
-            const currentTextColor = isNormal ? attributes.buttonTextColorNormal : attributes.buttonTextColorHover;
-            const defaultBackgroundColor = isNormal ? '#0073aa' : '#005d87';
-            const defaultTextColor = '#ffffff';
-
-            return (
-                <>
-                    <RadioControl
-                        label="Color"
-                        selected={colorType}
-                        options={[
-                            { label: 'Text', value: 'text' },
-                            { label: 'Background', value: 'background' }
-                        ]}
-                        onChange={setColorType}
-                    />
-                    <ColorPicker
-                        label={`Button ${colorType === 'text' ? 'Text' : 'Background'} Color`}
-                        color={colorType === 'text' ? currentTextColor : currentBackgroundColor}
-                        onChangeComplete={(value) => {
-                            setAttributes({
-                                [isNormal ? (colorType === 'text' ? 'buttonTextColorNormal' : 'buttonBackgroundColorNormal') : (colorType === 'text' ? 'buttonTextColorHover' : 'buttonBackgroundColorHover')]: value.hex
-                            });
-                        }}
-                        defaultValue={colorType === 'text' ? defaultTextColor : defaultBackgroundColor}
-                    />
-                    <RangeControl
-                        label="Button Border Radius"
-                        value={isNormal ? attributes.buttonBorderRadiusNormal : attributes.buttonBorderRadiusHover}
-                        onChange={(value) => setAttributes({
-                            [isNormal ? 'buttonBorderRadiusNormal' : 'buttonBorderRadiusHover']: value
-                        })}
-                        min={0}
-                        max={50}
-                    />
-                    <TextControl
-                        label="Button Padding"
-                        value={isNormal ? attributes.buttonPaddingNormal : attributes.buttonPaddingHover}
-                        onChange={(value) => setAttributes({
-                            [isNormal ? 'buttonPaddingNormal' : 'buttonPaddingHover']: value
-                        })}
-                        placeholder="e.g., 10px 20px"
-                    />
-                </>
-            );
-        };
 
         return (
             <div {...blockProps}>
                 <InspectorControls>
-                    <PanelBody title="Advanced Query">
+
+                    {/* === PANEL 1: QUERY & FILTERING === */}
+                    <PanelBody title="Query & Filtering" initialOpen={true}>
+                        {/* ... All controls from this panel ... */}
                         <RangeControl
                             label="Books Per Page"
                             value={attributes.booksPerPage}
@@ -184,11 +140,8 @@ registerBlockType('rswpbs/book-block', {
                             label={
                                 <>
                                     Order By { !isPremiumUser && (
-                                        <a href={escapeHTML(premiumLink)}
-                                           target="_blank"
-                                           rel="noopener noreferrer"
-                                           style={{ color: 'red', fontWeight: 'bold', marginLeft: '8px', textDecoration: 'none' }}>
-                                            PRO 🔒
+                                        <a href={escapeHTML(premiumLink)} target="_blank" rel="noopener noreferrer" style={{ color: 'red', fontWeight: 'bold', marginLeft: '8px', textDecoration: 'none' }}>
+                                             PRO 🔒
                                         </a>
                                     )}
                                 </>
@@ -230,11 +183,8 @@ registerBlockType('rswpbs/book-block', {
                             label={
                                 <>
                                     Include Series (IDs) { !isPremiumUser && (
-                                        <a href={escapeHTML(premiumLink)}
-                                           target="_blank"
-                                           rel="noopener noreferrer"
-                                           style={{ color: 'red', fontWeight: 'bold', marginLeft: '8px', textDecoration: 'none' }}>
-                                            PRO 🔒
+                                        <a href={escapeHTML(premiumLink)} target="_blank" rel="noopener noreferrer" style={{ color: 'red', fontWeight: 'bold', marginLeft: '8px', textDecoration: 'none' }}>
+                                             PRO 🔒
                                         </a>
                                     )}
                                 </>
@@ -250,11 +200,8 @@ registerBlockType('rswpbs/book-block', {
                             label={
                                 <>
                                     Exclude Series (IDs) { !isPremiumUser && (
-                                        <a href={escapeHTML(premiumLink)}
-                                           target="_blank"
-                                           rel="noopener noreferrer"
-                                           style={{ color: 'red', fontWeight: 'bold', marginLeft: '8px', textDecoration: 'none' }}>
-                                            PRO 🔒
+                                        <a href={escapeHTML(premiumLink)} target="_blank" rel="noopener noreferrer" style={{ color: 'red', fontWeight: 'bold', marginLeft: '8px', textDecoration: 'none' }}>
+                                             PRO 🔒
                                         </a>
                                     )}
                                 </>
@@ -272,51 +219,15 @@ registerBlockType('rswpbs/book-block', {
                             onChange={(value) => setAttributes({ excludeBooks: value })}
                             placeholder="Example: 788, 255"
                         />
+                    </PanelBody>
+
+                    {/* === PANEL 2: LAYOUT & FORMS === */}
+                    <PanelBody title="Layout & Forms" initialOpen={false}>
+                        {/* ... All controls from this panel ... */}
                         <ToggleControl
                             label="Show Pagination"
                             checked={attributes.showPagination}
                             onChange={(value) => setAttributes({ showPagination: value })}
-                        />
-                    </PanelBody>
-
-                    <PanelBody title="Display Settings">
-                        <ToggleControl
-                            label={
-                                <>
-                                    Show Masonry Layout { !isPremiumUser && (
-                                        <a
-                                            href={escapeHTML(premiumLink)}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            style={{ color: 'red', fontWeight: 'bold', marginLeft: '8px', textDecoration: 'none' }}
-                                        >
-                                            PRO 🔒
-                                        </a>
-                                    )}
-                                </>
-                            }
-                            checked={attributes.showMasonryLayout}
-                            onChange={(value) => setAttributes({ showMasonryLayout: value })}
-                            disabled={!isPremiumUser}
-                        />
-                        <ToggleControl
-                            label={
-                                <>
-                                    Height Stretch { !isPremiumUser && (
-                                        <a
-                                            href={escapeHTML(premiumLink)}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            style={{ color: 'red', fontWeight: 'bold', marginLeft: '8px', textDecoration: 'none' }}
-                                        >
-                                            PRO 🔒
-                                        </a>
-                                    )}
-                                </>
-                            }
-                            checked={attributes.heightStretch}
-                            onChange={(value) => setAttributes({ heightStretch: value })}
-                            disabled={!isPremiumUser}
                         />
                         <ToggleControl
                             label="Show Search Form"
@@ -329,10 +240,65 @@ registerBlockType('rswpbs/book-block', {
                             onChange={(value) => setAttributes({ showSortingForm: value })}
                         />
                         <ToggleControl
+                            label={
+                                <>
+                                    Show Masonry Layout { !isPremiumUser && (
+                                        <a href={escapeHTML(premiumLink)} target="_blank" rel="noopener noreferrer" style={{ color: 'red', fontWeight: 'bold', marginLeft: '8px', textDecoration: 'none' }}>
+                                             PRO 🔒
+                                        </a>
+                                    )}
+                                </>
+                            }
+                            checked={attributes.showMasonryLayout}
+                            onChange={(value) => setAttributes({ showMasonryLayout: value })}
+                            disabled={!isPremiumUser}
+                        />
+                        <ToggleControl
+                            label={
+                                <>
+                                    Height Stretch { !isPremiumUser && (
+                                        <a href={escapeHTML(premiumLink)} target="_blank" rel="noopener noreferrer" style={{ color: 'red', fontWeight: 'bold', marginLeft: '8px', textDecoration: 'none' }}>
+                                             PRO 🔒
+                                        </a>
+                                    )}
+                                </>
+                            }
+                            checked={attributes.heightStretch}
+                            onChange={(value) => setAttributes({ heightStretch: value })}
+                            disabled={!isPremiumUser}
+                        />
+                        <SelectControl
+                            label="Content Alignment"
+                            value={attributes.contentAlign}
+                            options={[
+                                { label: 'Left', value: 'left' },
+                                { label: 'Center', value: 'center' },
+                                { label: 'Right', value: 'right' }
+                            ]}
+                            onChange={(value) => setAttributes({ contentAlign: value })}
+                        />
+                    </PanelBody>
+
+                    {/* === PANEL 3: CONTENT DISPLAY === */}
+                    <PanelBody title="Content Display" initialOpen={false}>
+                        {/* ... All controls from this panel ... */}
+                        <ToggleControl
                             label="Show Book Title"
                             checked={attributes.showTitle}
                             onChange={(value) => setAttributes({ showTitle: value })}
                         />
+                        {attributes.showTitle && (
+                            <SelectControl
+                                label="Title Type"
+                                value={attributes.titleType}
+                                options={[
+                                    { label: 'Title', value: 'title' },
+                                ]}
+                                onChange={(value) => setAttributes({ titleType: value })}
+                                help="Select the source for the title."
+                            />
+                        )}
+                        <hr/>
                         <ToggleControl
                             label="Show Book Image"
                             checked={attributes.showImage}
@@ -361,25 +327,40 @@ registerBlockType('rswpbs/book-block', {
                                 />
                             </>
                         )}
+                        <hr/>
                         <ToggleControl
                             label="Show Book Author"
                             checked={attributes.showAuthor}
                             onChange={(value) => setAttributes({ showAuthor: value })}
                         />
+                        <hr/>
                         <ToggleControl
                             label="Show Book Excerpt"
                             checked={attributes.showExcerpt}
                             onChange={(value) => setAttributes({ showExcerpt: value })}
                         />
                         {attributes.showExcerpt && (
-                            <RangeControl
-                                label="Excerpt Limit"
-                                value={attributes.excerptLimit}
-                                onChange={(value) => setAttributes({ excerptLimit: value })}
-                                min={10}
-                                max={100}
-                            />
+                            <>
+                                <RangeControl
+                                    label="Excerpt Limit (words)"
+                                    value={attributes.excerptLimit}
+                                    onChange={(value) => setAttributes({ excerptLimit: value })}
+                                    min={10}
+                                    max={100}
+                                />
+                                <SelectControl
+                                    label="Excerpt Type"
+                                    value={attributes.excerptType}
+                                    options={[
+                                        { label: 'Excerpt', value: 'excerpt' },
+                                        { label: 'Content', value: 'content' },
+                                    ]}
+                                    onChange={(value) => setAttributes({ excerptType: value })}
+                                    help="Source for the excerpt."
+                                />
+                            </>
                         )}
+                        <hr/>
                         <ToggleControl
                             label="Show Book Price"
                             checked={attributes.showPrice}
@@ -394,13 +375,8 @@ registerBlockType('rswpbs/book-block', {
                             label={
                                 <>
                                     Show Add To Cart { !isPremiumUser && (
-                                        <a
-                                            href={escapeHTML(premiumLink)}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            style={{ color: 'red', fontWeight: 'bold', marginLeft: '8px', textDecoration: 'none' }}
-                                        >
-                                            PRO 🔒
+                                        <a href={escapeHTML(premiumLink)} target="_blank" rel="noopener noreferrer" style={{ color: 'red', fontWeight: 'bold', marginLeft: '8px', textDecoration: 'none' }}>
+                                             PRO 🔒
                                         </a>
                                     )}
                                 </>
@@ -413,13 +389,8 @@ registerBlockType('rswpbs/book-block', {
                             label={
                                 <>
                                     Show Read More { !isPremiumUser && (
-                                        <a
-                                            href={escapeHTML(premiumLink)}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            style={{ color: 'red', fontWeight: 'bold', marginLeft: '8px', textDecoration: 'none' }}
-                                        >
-                                            PRO 🔒
+                                        <a href={escapeHTML(premiumLink)} target="_blank" rel="noopener noreferrer" style={{ color: 'red', fontWeight: 'bold', marginLeft: '8px', textDecoration: 'none' }}>
+                                             PRO 🔒
                                         </a>
                                     )}
                                 </>
@@ -428,20 +399,32 @@ registerBlockType('rswpbs/book-block', {
                             onChange={(value) => setAttributes({ showReadMoreButton: value })}
                             disabled={!isPremiumUser}
                         />
+                        <hr/>
+                        <ToggleControl
+                            label="Show MSL (Meta/Share/Like)"
+                            checked={attributes.showMsl}
+                            onChange={(value) => setAttributes({ showMsl: value })}
+                        />
+                        {attributes.showMsl && (
+                            <SelectControl
+                                label="MSL Title Alignment"
+                                value={attributes.mslTitleAlign}
+                                options={[
+                                    { label: 'Left', value: 'left' },
+                                    { label: 'Center', value: 'center' },
+                                    { label: 'Right', value: 'right' }
+                                ]}
+                                onChange={(value) => setAttributes({ mslTitleAlign: value })}
+                            />
+                        )}
                     </PanelBody>
-                    <PanelBody title="Button Styling">
+
+                    {/* === PANEL 4: BUTTON STYLING (MODIFIED) === */}
+                    <PanelBody title="Button Styling" initialOpen={false}>
                         <TabPanel
                             tabs={[
-                                {
-                                    name: 'normal',
-                                    title: 'Normal',
-                                    className: 'button-normal-tab'
-                                },
-                                {
-                                    name: 'hover',
-                                    title: 'Hover',
-                                    className: 'button-hover-tab'
-                                }
+                                { name: 'normal', title: 'Normal', className: 'button-normal-tab' },
+                                { name: 'hover', title: 'Hover', className: 'button-hover-tab' }
                             ]}
                             initialTabName="normal"
                             onSelect={(tabName) => {/* Handle tab switch if needed */}}
@@ -457,18 +440,24 @@ registerBlockType('rswpbs/book-block', {
                                                 { label: 'Text', value: 'text' },
                                                 { label: 'Background', value: 'background' }
                                             ]}
-                                            onChange={setColorType}
+                                            // Use the new toggle function here
+                                            onChange={toggleColorPicker}
                                         />
-                                        <ColorPicker
-                                            label={`Button ${colorType === 'text' ? 'Text' : 'Background'} Color`}
-                                            color={colorType === 'text' ? (isNormal ? attributes.buttonTextColorNormal : attributes.buttonTextColorHover) : (isNormal ? attributes.buttonBackgroundColorNormal : attributes.buttonBackgroundColorHover)}
-                                            onChangeComplete={(value) => {
-                                                setAttributes({
-                                                    [isNormal ? (colorType === 'text' ? 'buttonTextColorNormal' : 'buttonBackgroundColorNormal') : (colorType === 'text' ? 'buttonTextColorHover' : 'buttonBackgroundColorHover')]: value.hex
-                                                });
-                                            }}
-                                            defaultValue={colorType === 'text' ? '#ffffff' : (isNormal ? '#0073aa' : '#005d87')}
-                                        />
+
+                                        {/* 3. Conditionally render the ColorPicker */}
+                                        {colorType && (
+                                            <ColorPicker
+                                                label={`Button ${colorType === 'text' ? 'Text' : 'Background'} Color`}
+                                                color={colorType === 'text' ? (isNormal ? attributes.buttonTextColorNormal : attributes.buttonTextColorHover) : (isNormal ? attributes.buttonBackgroundColorNormal : attributes.buttonBackgroundColorHover)}
+                                                onChangeComplete={(value) => {
+                                                    setAttributes({
+                                                        [isNormal ? (colorType === 'text' ? 'buttonTextColorNormal' : 'buttonBackgroundColorNormal') : (colorType === 'text' ? 'buttonTextColorHover' : 'buttonBackgroundColorHover')]: value.hex
+                                                    });
+                                                }}
+                                                defaultValue={colorType === 'text' ? '#ffffff' : (isNormal ? '#0073aa' : '#005d87')}
+                                            />
+                                        )}
+
                                         <RangeControl
                                             label="Button Border Radius"
                                             value={isNormal ? attributes.buttonBorderRadiusNormal : attributes.buttonBorderRadiusHover}
@@ -491,7 +480,9 @@ registerBlockType('rswpbs/book-block', {
                             }}
                         </TabPanel>
                     </PanelBody>
+
                 </InspectorControls>
+
                 <div dangerouslySetInnerHTML={{ __html: shortcodeOutput }} />
             </div>
         );

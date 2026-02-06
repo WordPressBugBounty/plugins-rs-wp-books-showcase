@@ -202,6 +202,7 @@ body.single-post.both-sidebar .book-grid-layout h2.book-title a {
 .rswpbs-book-loop-image img {
     display: block;
     margin: 0 auto;
+    max-width: 100%;
 }
 
 .rswpbs-book-container.book-list-layout.thumbnail-position-right .rswpbs-book-loop-image img,
@@ -1837,7 +1838,9 @@ body.custom-background .rswpbs-book-reviews-area .section-title-area .section-ti
     display: flex;
     justify-content: center;
 }
-
+.rswpbs-book-loop-image.thumbnail-position-top img {
+    height: auto;
+}
 .thumbnail-position-right .rswpbs-book-loop-image>a {
     display: flex;
     justify-content: end;
@@ -2654,6 +2657,8 @@ span.a-text-bold {
     background: #ddd;
     margin-bottom: 10px;
     padding: 2px 10px;
+    display: inline-block;
+    font-size: 11px;
 }
 
 

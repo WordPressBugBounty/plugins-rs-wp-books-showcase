@@ -82,7 +82,7 @@ function rswpbs_advanced_search($atts) {
         <?php
         if ( is_user_logged_in() && current_user_can( 'manage_options' ) ) :
         ?>
-            <div class="admin-message-for-search-form">
+            <div class="admin-message-for-search-form text-left">
                 <?php
                 $message = sprintf(
                     /* translators: %1$s is the bolded "admins" text, %2$s is the link to the Search Form Settings page */
@@ -225,7 +225,7 @@ function rswpbs_advanced_search($atts) {
                                 <div class="<?php echo esc_attr($columns['field']); ?>">
                                     <div class="search-field">
                                         <select name="language" id="book-language" class="rswpbs-select-field">
-                                            <option value="all"><?php echo esc_html__('All Languages', 'rswpbs'); ?></option>
+                                            <option value="all"><?php echo rswpbs_static_text_all_languages(); ?></option>
                                             <?php foreach ($metadata['languages'] as $language): ?>
                                                 <option value="<?php echo esc_attr($language); ?>" <?php selected($language, $search_fields['language']); ?>>
                                                     <?php echo esc_html($language); ?>

@@ -25,8 +25,8 @@ function rswpbs_author_shortcode_output($atts){
         <!-- Search Form -->
         <div class="rswpbs-author-search">
             <form class="rswpbs-author-search-form">
-                <input type="text" name="author_search" placeholder="Search authors..." class="author-search-input">
-                <button type="submit">Search</button>
+                <input type="text" name="author_search" placeholder="<?php echo esc_html(rswpbs_static_text_search_authors()); ?>" class="author-search-input">
+                <button type="submit"><?php echo esc_html(rswpbs_static_text_search()); ?></button>
             </form>
         </div>
 
@@ -37,7 +37,7 @@ function rswpbs_author_shortcode_output($atts){
 
         <!-- Load More Button -->
         <div class="rswpbs-load-more-wrapper">
-            <button id="rswpbs-load-more" class="rswpbs-load-more-btn">Load More</button>
+            <button id="rswpbs-load-more" class="rswpbs-load-more-btn"><?php echo esc_html(rswpbs_static_text_load_more()); ?></button>
         </div>
     </div>
 
@@ -223,7 +223,7 @@ function rswpbs_get_authors_html($atts, $offset, $search = '') {
             }
 
             $output .= '<div class="view-author-profile-button">';
-            $output .= '<a href="' . esc_url($termLink) . '">' . esc_html__('View Profile', 'rswpbs') . '</a>';
+            $output .= '<a href="' . esc_url($termLink) . '">' . esc_html(rswpbs_static_text_view_profile()) . '</a>';
             $output .= '</div>';
             $output .= '</div>';
             $output .= '</div>';

@@ -137,6 +137,7 @@ __webpack_require__.r(__webpack_exports__);
   icon: 'book',
   category: 'widgets',
   attributes: {
+    // ... (all your attributes remain the same)
     booksPerPage: {
       type: 'number',
       default: 8
@@ -312,8 +313,20 @@ __webpack_require__.r(__webpack_exports__);
     const [shortcodeOutput, setShortcodeOutput] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useState)('Loading preview...');
     const [isPremiumUser, setIsPremiumUser] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useState)(false);
     const premiumLink = 'https://rswpthemes.com/rs-wp-book-showcase-wordpress-plugin/';
-    const [colorType, setColorType] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useState)('background'); // Default to background color
 
+    // 1. Initial state is now null to hide picker
+    const [colorType, setColorType] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useState)(null); // For Button Styling
+
+    // 2. New function to toggle the color picker's visibility
+    const toggleColorPicker = newType => {
+      if (colorType === newType) {
+        // User clicked the same button again, so close the picker
+        setColorType(null);
+      } else {
+        // User clicked a new button, so open/switch the picker
+        setColorType(newType);
+      }
+    };
     (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useEffect)(() => {
       const params = Object.fromEntries(Object.entries(attributes).map(([key, value]) => [key, typeof value === 'boolean' ? value ? 'true' : 'false' : value]));
       _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_5__({
@@ -329,65 +342,12 @@ __webpack_require__.r(__webpack_exports__);
         path: `/rswpbs/v1/render-shortcode?${new URLSearchParams(params)}`
       }).then(response => setShortcodeOutput(response)).catch(() => setShortcodeOutput('Error loading preview'));
     }, [attributes]);
-    const buttonTabs = [{
-      name: 'normal',
-      title: 'Normal',
-      className: 'button-normal-tab'
-    }, {
-      name: 'hover',
-      title: 'Hover',
-      className: 'button-hover-tab'
-    }];
-    const renderTabContent = tabName => {
-      const isNormal = tabName === 'normal';
-      const currentBackgroundColor = isNormal ? attributes.buttonBackgroundColorNormal : attributes.buttonBackgroundColorHover;
-      const currentTextColor = isNormal ? attributes.buttonTextColorNormal : attributes.buttonTextColorHover;
-      const defaultBackgroundColor = isNormal ? '#0073aa' : '#005d87';
-      const defaultTextColor = '#ffffff';
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.RadioControl, {
-          label: "Color",
-          selected: colorType,
-          options: [{
-            label: 'Text',
-            value: 'text'
-          }, {
-            label: 'Background',
-            value: 'background'
-          }],
-          onChange: setColorType
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ColorPicker, {
-          label: `Button ${colorType === 'text' ? 'Text' : 'Background'} Color`,
-          color: colorType === 'text' ? currentTextColor : currentBackgroundColor,
-          onChangeComplete: value => {
-            setAttributes({
-              [isNormal ? colorType === 'text' ? 'buttonTextColorNormal' : 'buttonBackgroundColorNormal' : colorType === 'text' ? 'buttonTextColorHover' : 'buttonBackgroundColorHover']: value.hex
-            });
-          },
-          defaultValue: colorType === 'text' ? defaultTextColor : defaultBackgroundColor
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.RangeControl, {
-          label: "Button Border Radius",
-          value: isNormal ? attributes.buttonBorderRadiusNormal : attributes.buttonBorderRadiusHover,
-          onChange: value => setAttributes({
-            [isNormal ? 'buttonBorderRadiusNormal' : 'buttonBorderRadiusHover']: value
-          }),
-          min: 0,
-          max: 50
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
-          label: "Button Padding",
-          value: isNormal ? attributes.buttonPaddingNormal : attributes.buttonPaddingHover,
-          onChange: value => setAttributes({
-            [isNormal ? 'buttonPaddingNormal' : 'buttonPaddingHover']: value
-          }),
-          placeholder: "e.g., 10px 20px"
-        })]
-      });
-    };
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
       ...blockProps,
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, {
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
-          title: "Advanced Query",
+          title: "Query & Filtering",
+          initialOpen: true,
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.RangeControl, {
             label: "Books Per Page",
             value: attributes.booksPerPage,
@@ -536,16 +496,29 @@ __webpack_require__.r(__webpack_exports__);
               excludeBooks: value
             }),
             placeholder: "Example: 788, 255"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+          title: "Layout & Forms",
+          initialOpen: false,
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
             label: "Show Pagination",
             checked: attributes.showPagination,
             onChange: value => setAttributes({
               showPagination: value
             })
-          })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
-          title: "Display Settings",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+            label: "Show Search Form",
+            checked: attributes.showSearchForm,
+            onChange: value => setAttributes({
+              showSearchForm: value
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+            label: "Show Sorting Form",
+            checked: attributes.showSortingForm,
+            onChange: value => setAttributes({
+              showSortingForm: value
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
             label: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
               children: ["Show Masonry Layout ", !isPremiumUser && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("a", {
                 href: (0,_wordpress_escape_html__WEBPACK_IMPORTED_MODULE_2__.escapeHTML)(premiumLink),
@@ -585,25 +558,44 @@ __webpack_require__.r(__webpack_exports__);
               heightStretch: value
             }),
             disabled: !isPremiumUser
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
-            label: "Show Search Form",
-            checked: attributes.showSearchForm,
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
+            label: "Content Alignment",
+            value: attributes.contentAlign,
+            options: [{
+              label: 'Left',
+              value: 'left'
+            }, {
+              label: 'Center',
+              value: 'center'
+            }, {
+              label: 'Right',
+              value: 'right'
+            }],
             onChange: value => setAttributes({
-              showSearchForm: value
+              contentAlign: value
             })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
-            label: "Show Sorting Form",
-            checked: attributes.showSortingForm,
-            onChange: value => setAttributes({
-              showSortingForm: value
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+          title: "Content Display",
+          initialOpen: false,
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
             label: "Show Book Title",
             checked: attributes.showTitle,
             onChange: value => setAttributes({
               showTitle: value
             })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+          }), attributes.showTitle && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
+            label: "Title Type",
+            value: attributes.titleType,
+            options: [{
+              label: 'Title',
+              value: 'title'
+            }],
+            onChange: value => setAttributes({
+              titleType: value
+            }),
+            help: "Select the source for the title."
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
             label: "Show Book Image",
             checked: attributes.showImage,
             onChange: value => setAttributes({
@@ -640,27 +632,43 @@ __webpack_require__.r(__webpack_exports__);
                 imagePosition: value
               })
             })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
             label: "Show Book Author",
             checked: attributes.showAuthor,
             onChange: value => setAttributes({
               showAuthor: value
             })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
             label: "Show Book Excerpt",
             checked: attributes.showExcerpt,
             onChange: value => setAttributes({
               showExcerpt: value
             })
-          }), attributes.showExcerpt && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.RangeControl, {
-            label: "Excerpt Limit",
-            value: attributes.excerptLimit,
-            onChange: value => setAttributes({
-              excerptLimit: value
-            }),
-            min: 10,
-            max: 100
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+          }), attributes.showExcerpt && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.RangeControl, {
+              label: "Excerpt Limit (words)",
+              value: attributes.excerptLimit,
+              onChange: value => setAttributes({
+                excerptLimit: value
+              }),
+              min: 10,
+              max: 100
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
+              label: "Excerpt Type",
+              value: attributes.excerptType,
+              options: [{
+                label: 'Excerpt',
+                value: 'excerpt'
+              }, {
+                label: 'Content',
+                value: 'content'
+              }],
+              onChange: value => setAttributes({
+                excerptType: value
+              }),
+              help: "Source for the excerpt."
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
             label: "Show Book Price",
             checked: attributes.showPrice,
             onChange: value => setAttributes({
@@ -712,9 +720,32 @@ __webpack_require__.r(__webpack_exports__);
               showReadMoreButton: value
             }),
             disabled: !isPremiumUser
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+            label: "Show MSL (Meta/Share/Like)",
+            checked: attributes.showMsl,
+            onChange: value => setAttributes({
+              showMsl: value
+            })
+          }), attributes.showMsl && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
+            label: "MSL Title Alignment",
+            value: attributes.mslTitleAlign,
+            options: [{
+              label: 'Left',
+              value: 'left'
+            }, {
+              label: 'Center',
+              value: 'center'
+            }, {
+              label: 'Right',
+              value: 'right'
+            }],
+            onChange: value => setAttributes({
+              mslTitleAlign: value
+            })
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
           title: "Button Styling",
+          initialOpen: false,
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TabPanel, {
             tabs: [{
               name: 'normal',
@@ -739,9 +770,11 @@ __webpack_require__.r(__webpack_exports__);
                   }, {
                     label: 'Background',
                     value: 'background'
-                  }],
-                  onChange: setColorType
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ColorPicker, {
+                  }]
+                  // Use the new toggle function here
+                  ,
+                  onChange: toggleColorPicker
+                }), colorType && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ColorPicker, {
                   label: `Button ${colorType === 'text' ? 'Text' : 'Background'} Color`,
                   color: colorType === 'text' ? isNormal ? attributes.buttonTextColorNormal : attributes.buttonTextColorHover : isNormal ? attributes.buttonBackgroundColorNormal : attributes.buttonBackgroundColorHover,
                   onChangeComplete: value => {

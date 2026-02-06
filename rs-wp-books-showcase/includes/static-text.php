@@ -24,9 +24,12 @@ function rswpbs_get_static_text( $option_name, $default ) {
  */
 $static_texts = [
     'rswpbs_text_by' => ['rswpbs_static_text_by', 'By'],
+    'rswpbs_text_showing' => ['rswpbs_static_text_showing', 'Showing'],
+    'rswpbs_text_of' => ['rswpbs_static_text_of', 'Of'],
     'rswpbs_text_books' => ['rswpbs_static_text_books', 'Books'],
     'rswpbs_text_books_by' => ['rswpbs_static_text_books_by', 'Books By'],
     'rswpbs_text_view_book' => ['rswpbs_static_text_read_more', 'View Book'],
+    'rswpbs_text_read_more_review' => ['rswpbs_static_text_read_more_review', 'Read More'],
     'rswpbs_text_load_more' => ['rswpbs_static_text_load_more', 'Load More'],
     'rswpbs_text_add_to_cart' => ['rswpbs_static_text_add_to_cart', 'Add To Cart'],
     'rswpbs_text_price' => ['rswpbs_static_text_price', 'Price:'],
@@ -65,6 +68,7 @@ $static_texts = [
     'rswpbs_text_all_authors' => ['rswpbs_static_text_all_authors', 'All Authors'],
     'rswpbs_text_all_publishers' => ['rswpbs_static_text_all_publishers', 'All Publishers'],
     'rswpbs_text_all_categories' => ['rswpbs_static_text_all_categories', 'All Categories'],
+    'rswpbs_text_all_languages' => ['rswpbs_static_text_all_languages', 'All languages'],
     'rswpbs_text_all_series' => ['rswpbs_static_text_all_series', 'All Series'],
     'rswpbs_text_series' => ['rswpbs_static_text_series', 'Series'],
     'rswpbs_text_all_formats' => ['rswpbs_static_text_all_formats', 'All Formats'],
@@ -80,6 +84,16 @@ $static_texts = [
     'rswpbs_text_review' => ['rswpbs_static_text_review', 'Review:'],
     'rswpbs_text_submit' => ['rswpbs_static_text_submit', 'Submit'],
     'rswpbs_text_readers_feedback' => ['rswpbs_static_text_readers_feedback', 'Readers Feedback'],
+    'rswpbs_text_default_sorting' => ['rswpbs_static_text_default_sorting', 'Default Sorting'],
+    'rswpbs_text_price_low_to_high' => ['rswpbs_static_text_price_low_to_high', 'Price (Low to High)'],
+    'rswpbs_text_price_high_to_low' => ['rswpbs_static_text_price_high_to_low', 'Price (High to Low)'],
+    'rswpbs_text_title_a_to_z' => ['rswpbs_static_text_title_a_to_z', 'Title (A-Z)'],
+    'rswpbs_text_title_z_to_a' => ['rswpbs_static_text_title_z_to_a', 'Title (Z-A)'],
+    'rswpbs_text_date_old_to_new' => ['rswpbs_static_text_date_old_to_new', 'Date (Oldest to Newest)'],
+    'rswpbs_text_date_new_to_old' => ['rswpbs_static_text_date_new_to_old', 'Date (Newest to Oldest)'],
+    'rswpbs_text_view_profile' => ['rswpbs_static_text_view_profile', 'View Profile'],
+    'rswpbs_text_search_authors' => ['rswpbs_static_text_search_authors', 'Search Authors'],
+    'rswpbs_text_authors' => ['rswpbs_static_text_authors', 'Authors'],
 ];
 
 /**

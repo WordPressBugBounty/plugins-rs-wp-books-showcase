@@ -128,7 +128,7 @@ function rswpbs_books_review_shortcode( $atts ) {
 						<div class="client-feedback">
 							<?php
 							$content = get_the_content();
-							echo '<p>' . wp_trim_words($content, 25, '...') . '<a href="#" class="rswpbs-testimonial-read-more" data-modal-id="review-popup-' . get_the_ID() . '">' . esc_html__('Read More', 'rswpbs') . '</a></p>';
+							echo '<p>' . wp_trim_words($content, 25, '...') . '<a href="#" class="rswpbs-testimonial-read-more" data-modal-id="review-popup-' . get_the_ID() . '">' . rswpbs_static_text_read_more_review() . '</a></p>';
 							?>
 						</div>
 						<?php endif; ?>

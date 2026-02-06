@@ -111,6 +111,7 @@ class RSWPBS_Static_Texts {
 
                             echo '<td class="rswpbs-box '.$proclass.'" style="vertical-align: top; padding: 10px;">';
                             $label = ucwords( str_replace( '_', ' ', str_replace( 'rswpbs_', '', $key ) ) );
+                            $value = preg_replace("/\[.*?\]/","", $value );
 
                             // Input field (Pro settings will be disabled if Pro is not active)
                             echo '<label for="' . esc_attr( $key ) . '">Text: "' . esc_html( $default ) . '"</label><br>';
@@ -177,6 +178,8 @@ class RSWPBS_Static_Texts {
 
         $this->settings_free = [
             'rswpbs_text_by' => 'By',
+            'rswpbs_text_showing' => 'Showing',
+            'rswpbs_text_of' => 'of',
             'rswpbs_text_books' => 'Books',
             'rswpbs_text_books_by' => 'Books By',
             'rswpbs_text_view_book' => 'View Book',
@@ -211,6 +214,7 @@ class RSWPBS_Static_Texts {
             'rswpbs_text_all_series' => 'All Series',
             'rswpbs_text_all_authors' => 'All Authors',
             'rswpbs_text_all_publishers' => 'All Publishers',
+            'rswpbs_text_all_languages' => 'All Languages',
             'rswpbs_text_all_categories' => 'All Categories',
             'rswpbs_text_all_formats' => 'All Formats',
             'rswpbs_text_all_years' => 'All Years',
@@ -232,8 +236,19 @@ class RSWPBS_Static_Texts {
             'rswpbs_text_email_address' => 'Email Address:',
             'rswpbs_text_rating' => 'Rating:',
             'rswpbs_text_review' => 'Review:',
+            'rswpbs_text_read_more_review' => 'Read More [ Review ]',
             'rswpbs_text_submit' => 'Submit',
             'rswpbs_text_readers_feedback' => 'Readers Feedback',
+            'rswpbs_text_default_sorting' => 'Default Sorting',
+            'rswpbs_text_price_low_to_high' => 'Price (Low to High)',
+            'rswpbs_text_price_high_to_low' => 'Price (High to Low)',
+            'rswpbs_text_title_a_to_z' => 'Title (A-Z)',
+            'rswpbs_text_title_z_to_a' => 'Title (Z-A)',
+            'rswpbs_text_date_old_to_new' => 'Date (Oldest to Newest)',
+            'rswpbs_text_date_new_to_old' => 'Date (Newest to Oldest)',
+            'rswpbs_text_view_profile' => 'View Profile',
+            'rswpbs_text_search_authors' => 'Search Authors',
+            'rswpbs_text_authors' => 'Authors',
         ];
 
         $this->settings = array_merge($this->settings_free, $this->settings_pro);

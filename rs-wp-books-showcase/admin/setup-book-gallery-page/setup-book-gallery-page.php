@@ -134,9 +134,16 @@ function rswpbs_ajax_setup_book_gallery() {
 
 add_action('wp_ajax_rswpbs_setup_book_gallery_page', 'rswpbs_ajax_setup_book_gallery');
 
+
+// 1. Notice Display Function
 add_action('admin_notices', 'rswpbs_book_archive_not_available_notice');
 function rswpbs_book_archive_not_available_notice() {
     if (!current_user_can('manage_options')) {
+        return;
+    }
+
+    // CHECK: If user already dismissed this notice
+    if (get_user_meta(get_current_user_id(), 'rswpbs_setup_notice_dismissed', true)) {
         return;
     }
 
@@ -154,22 +161,20 @@ function rswpbs_book_archive_not_available_notice() {
         return;
     }
 
-    // Determine the notice message and button text based on conditions
+    // Determine the notice message and button text
     if (!$books_page_exists) {
-        // Case 1: No Books page exists
         $message = sprintf(
             esc_html__('Thank you for activating the %s plugin! 🎉 We’re excited to help you showcase your books. Setting up a stunning book gallery is super easy—just click the Setup Book Gallery button below, and we’ll handle everything for you!', 'rswpbs'),
             '<strong>' . esc_html__('RS WP Book Showcase', 'rswpbs') . '</strong>'
         );
         $button_text = esc_html__('Setup Book Gallery', 'rswpbs');
     } else {
-        // Case 2: Books page exists, but no books are found
         $message = esc_html__('Oh no! Your book gallery page is empty right now—no books to show yet! Let’s fix that by adding a few books to get you started. You can always tweak, add, or remove them later to match your style! Ready to bring your gallery to life?', 'rswpbs');
         $button_text = esc_html__('Yes, Add Books Now', 'rswpbs');
     }
 
     ?>
-    <div id="rswpbs-setup-books-page-notice" class="notice notice-warning">
+    <div id="rswpbs-setup-books-page-notice" class="notice notice-warning is-dismissible" data-nonce="<?php echo wp_create_nonce('rswpbs_dismiss_notice_nonce'); ?>">
         <p><?php echo $message; ?></p>
         <p>
             <button id="rswpbs-create-page" class="button button-primary">
@@ -177,8 +182,36 @@ function rswpbs_book_archive_not_available_notice() {
             </button>
         </p>
     </div>
+    
+    <script type="text/javascript">
+    jQuery(document).ready(function($) {
+        $('#rswpbs-setup-books-page-notice').on('click', '.notice-dismiss', function() {
+            var nonce = $('#rswpbs-setup-books-page-notice').data('nonce');
+            $.ajax({
+                url: ajaxurl,
+                type: 'POST',
+                data: {
+                    action: 'rswpbs_dismiss_setup_notice',
+                    nonce: nonce
+                }
+            });
+        });
+    });
+    </script>
     <?php
 }
+
+// 2. AJAX Handler to save the dismissal state
+add_action('wp_ajax_rswpbs_dismiss_setup_notice', 'rswpbs_dismiss_setup_notice_handler');
+function rswpbs_dismiss_setup_notice_handler() {
+    check_ajax_referer('rswpbs_dismiss_notice_nonce', 'nonce');
+    
+    // Save metadata so the notice doesn't show again for this user
+    update_user_meta(get_current_user_id(), 'rswpbs_setup_notice_dismissed', 'yes');
+    
+    wp_send_json_success();
+}
+
 
 function rswpbs_ajax_import_more_books() {
     check_ajax_referer('rswpbs_nonce', 'nonce');

@@ -80,7 +80,7 @@ function rswpbs_book_reviews(){
 											// Display a truncated version of the content.
 											$content = get_the_content();
 											echo '<p>' . wp_trim_words( $content, 25, '...' ) . '<a href="#" class="rswpbs-testimonial-read-more" data-modal-id="review-popup-' . get_the_ID() . '">'
-											    . esc_html__( 'Read More', 'rswpbs' ) . '</a></p>';
+											    . rswpbs_static_text_read_more_review() . '</a></p>';
 											?>
 										</div>
 										<?php
@@ -112,7 +112,19 @@ function rswpbs_book_reviews(){
 											<span class="rswpbs-popup-close">&times;</span>
 											<?php if (!empty(get_the_title(get_the_ID()))): ?>
 												<h5 class="review-title"><?php echo esc_html(get_the_title(get_the_ID())); ?></h5>
-											<?php endif; ?>
+											<?php endif;
+											if (!empty($reviewerRating)) :
+											?>
+											<div class="client-rating">
+												<?php
+												for ($i=0; $i < $reviewerRating; $i++) {
+													echo wp_kses_post('<span class="fa-regular fa-star fa-solid"></span>');
+												}
+												?>
+											</div>
+											<?php
+											endif;
+											?>
 											<div class="client-feedback-full">
 												<?php the_content(); ?>
 											</div>

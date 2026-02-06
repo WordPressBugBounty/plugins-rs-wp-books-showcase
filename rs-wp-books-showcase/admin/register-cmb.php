@@ -132,7 +132,7 @@ class Rswpbs_Cmb_For_Book
 						<div class="rswpbs-col-lg-4 mb-20">
 							<div class="book-field-container">
 								<label for="publish-date"><?php esc_html_e( 'Publish Date', 'rswpbs' );?></label>
-								<input type="date" name="book_publish_date" class="w-100 regular-text" id="publish-date" value="<?php echo esc_attr($book_publish_date);?>">
+								<input type="text" name="book_publish_date" class="w-100 regular-text" id="publish-date" value="<?php echo esc_attr($book_publish_date);?>">
 								<input type="hidden" name="book_publish_year" class="w-100 regular-text" id="publish-year" value="<?php echo esc_attr($book_publish_year);?>">
 							</div>
 						</div>
@@ -577,12 +577,16 @@ class Rswpbs_Cmb_For_Book
 			return $post_id;
 		}
 
+		if (!current_user_can('edit_post', $post_id)) {
+			return $post_id;
+		}
+
 		$meta_fields = array(
 			'original_book_name' => (isset($_POST['original_book_name']) ? sanitize_text_field($_POST['original_book_name']) : ''),
 			'original_book_url' => (isset($_POST['original_book_url']) ? sanitize_text_field($_POST['original_book_url']) : ''),
 			'book_name' => (isset($_POST['book_name']) ? sanitize_text_field($_POST['book_name']) : ''),
-			'book_price' => (isset($_POST['book_price']) ? str_replace('$', '', sanitize_text_field($_POST['book_price'])) : ''),
-			'book_sale_price' => (isset($_POST['book_sale_price']) ? str_replace('$', '', sanitize_text_field($_POST['book_sale_price'])) : ''),
+			'book_price' => ( isset($_POST['book_price']) ? floatval(str_replace('$', '', sanitize_text_field($_POST['book_price']))) : 0 ),
+			'book_sale_price' => ( isset($_POST['book_sale_price']) ? floatval(str_replace('$', '', sanitize_text_field($_POST['book_sale_price']))) : 0 ),
 			'book_country' => (isset($_POST['book_country']) ? sanitize_text_field($_POST['book_country']) : ''),
 			'book_language' => (isset($_POST['book_language']) ? sanitize_text_field($_POST['book_language']) : ''),
 			'book_publish_date' => (isset($_POST['book_publish_date']) ? sanitize_text_field($_POST['book_publish_date']) : ''),
@@ -625,6 +629,15 @@ class Rswpbs_Cmb_For_Book
 			$meta_fields['book_query_price'] = $meta_fields['book_price'];
 		}else{
 			$meta_fields['book_query_price'] = $meta_fields['book_sale_price'];
+		}
+
+		// Calculate and save the sortable publication date
+		$meta_fields['book_publish_date_sort'] = '';
+		if (!empty($meta_fields['book_publish_date'])) {
+			$timestamp = strtotime($meta_fields['book_publish_date']);
+			if ($timestamp) {
+				$meta_fields['book_publish_date_sort'] = date('Y-m-d', $timestamp);
+			}
 		}
 		foreach($meta_fields as $key => $value):
 			$keyWithPrefix = $this->prefix . $key;

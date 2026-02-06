@@ -124,7 +124,7 @@ function rswpbs_archive_page_header(){
             echo '<h1 class='.$headingClass.'>'. post_type_archive_title('', false) .'</h1>';
           }
           if (!empty($archivePageDesc)) {
-            echo '<p>'. $archivePageDesc .'</p>';
+            echo '<p>'. wp_kses_post($archivePageDesc) .'</p>';
           }else{
             echo get_the_post_type_description();
           }

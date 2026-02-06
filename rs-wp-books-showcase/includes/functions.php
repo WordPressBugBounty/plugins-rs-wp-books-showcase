@@ -571,7 +571,7 @@ function rswpbs_get_book_buy_btn($bookId = null){
 
 	$output = '';
 	if (!empty($buy_btn_text)) :
-		$output = '<a href="'.esc_url($buy_btn_link).'" target="_blank" class="rswpbs-book-buy-now-button">'.$buy_btn_text.'</a>';
+		$output = '<a href="'.esc_url($buy_btn_link).'" target="_blank" class="rswpbs-book-buy-now-button">'.esc_html($buy_btn_text).'</a>';
 	endif;
 	return $output;
 }
@@ -752,7 +752,7 @@ function rswpbs_shorting_form_global($queryName, $bookPerPage, $search_form_disp
 	?>
 	<div class="rswpbs-sorting-sections-wrapper">
 		<div class="rswpbs-row justify-content-between">
-		  <div class="rswpbs-col-md-6 rswpbs-col-7 align-self-center">
+		  <div class="rswpbs-col-md-6 rswpbs-col-7 align-self-center text-left">
 		    <?php
 		      echo wp_kses_post(rswpbs_total_books_message($queryName, $bookPerPage));
 		    ?>
@@ -768,13 +768,25 @@ function rswpbs_shorting_form_global($queryName, $bookPerPage, $search_form_disp
 		      }
 		      ?>
 		      <select id="rswpbs-sort">
-		          <option value="default"><?php esc_html_e('Default Sorting', 'rswpbs');?></option>
-		          <option value="price_asc"<?php echo ($search_fields['sortby'] == 'price_asc' ? 'selected="selected"' : ''); ?>><?php esc_html_e( 'Price (Low to High)', 'rswpbs' );?></option>
-		          <option value="price_desc"<?php echo ($search_fields['sortby'] == 'price_desc' ? 'selected="selected"' : ''); ?>><?php esc_html_e( 'Price (High to Low)', 'rswpbs' );?></option>
-		          <option value="title_asc"<?php echo ($search_fields['sortby'] == 'title_asc' ? 'selected="selected"' : ''); ?>><?php esc_html_e( 'Title (A-Z)', 'rswpbs' );?></option>
-		          <option value="title_desc"<?php echo ($search_fields['sortby'] == 'title_desc' ? 'selected="selected"' : ''); ?>><?php esc_html_e( 'Title (Z-A)', 'rswpbs' );?></option>
-		          <option value="date_asc"<?php echo ($search_fields['sortby'] == 'date_asc' ? 'selected="selected"' : ''); ?>><?php esc_html_e( 'Date (Oldest to Newest)', 'rswpbs' );?></option>
-		          <option value="date_desc"<?php echo ($search_fields['sortby'] == 'date_desc' ? 'selected="selected"' : ''); ?>><?php esc_html_e( 'Date (Newest to Oldest)', 'rswpbs' );?></option>
+		          <option value="default"><?php echo esc_html( rswpbs_static_text_default_sorting() );?></option>
+		          <option value="price_asc"<?php echo ($search_fields['sortby'] == 'price_asc' ? 'selected="selected"' : ''); ?>>
+		          	<?php echo esc_html(rswpbs_static_text_price_low_to_high());?>
+		          </option>
+		          <option value="price_desc"<?php echo ($search_fields['sortby'] == 'price_desc' ? 'selected="selected"' : ''); ?>>
+		          	<?php echo esc_html(rswpbs_static_text_price_high_to_low());?>
+		          </option>
+		          <option value="title_asc"<?php echo ($search_fields['sortby'] == 'title_asc' ? 'selected="selected"' : ''); ?>>
+		          	<?php echo esc_html(rswpbs_static_text_title_a_to_z());?>
+		          </option>
+		          <option value="title_desc"<?php echo ($search_fields['sortby'] == 'title_desc' ? 'selected="selected"' : ''); ?>>
+		          	<?php echo esc_html(rswpbs_static_text_title_z_to_a());?>
+		          </option>
+		          <option value="date_asc"<?php echo ($search_fields['sortby'] == 'date_asc' ? 'selected="selected"' : ''); ?>>
+		          	<?php echo esc_html(rswpbs_static_text_date_old_to_new());?>
+		          </option>
+		          <option value="date_desc"<?php echo ($search_fields['sortby'] == 'date_desc' ? 'selected="selected"' : ''); ?>>
+		          	<?php echo esc_html(rswpbs_static_text_date_new_to_old());?>
+		          </option>
 		      </select>
 		      <?php
 		      if (true == $search_form_displayed) {

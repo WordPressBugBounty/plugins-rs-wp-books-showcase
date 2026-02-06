@@ -241,6 +241,6 @@ function rswpbs_total_books_message($queryName, $bookPerPage){
     if ( $end_index > $total_books ) {
         $end_index = $total_books;
     }
-    $message = 'Showing ' . $start_index . '-' . $end_index . ' of ' . $total_books . ' ' . rswpbs_static_text_books();
+    $message = rswpbs_static_text_showing() . ' ' . $start_index . '-' . $end_index . ' ' .rswpbs_static_text_of(). ' ' . $total_books . ' ' . rswpbs_static_text_books();
     return esc_html($message);
 }

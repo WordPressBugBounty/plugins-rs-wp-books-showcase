@@ -18,23 +18,72 @@ function rswpbs_assets(){
 	$get_blog_top_content = get_theme_mod('blog_top_book_section_type', 'books_carousel');
 
 	$enableSliderAssets = false;
-	if( 'writers-portfolio' == $getRswpThemesSlug && is_page_template( 'author-landing-page.php' ) && in_array('books-slider', $writersPortfolioSections) ) {
-		$enableSliderAssets = true;
-	}elseif ( 'author-portfolio' == $getRswpThemesSlug && is_home() && true == $showSlider ) {
-		$enableSliderAssets = true;
-	}elseif ( 'author-portfolio-pro' == $getRswpThemesSlug && is_home() && 'books_carousel' == $get_blog_top_content && true == $showSlider ) {
-		$enableSliderAssets = true;
-	}elseif ('author-portfolio-pro' == $getRswpThemesSlug && is_page_template( 'author-landing-page.php' ) && in_array('books-slider', $appAlpSections)) {
-		$enableSliderAssets = true;
-	}elseif ('author-portfolio-pro-child' == $getRswpThemesSlug && is_page_template( 'author-landing-page.php' ) && in_array('books-slider', $appAlpSections)) {
-		$enableSliderAssets = true;
-	}elseif( (is_page() || is_single()) && has_shortcode( $post->post_content , 'rswpbs_book_slider' ) ) {
-		$enableSliderAssets = true;
-	}elseif (is_singular('shortcode')) {
-		$enableSliderAssets = true;
-	}elseif (is_singular('book')) {
+
+	// List of themes your special conditions apply to
+	$themeSpecificList = array(
+		'writers-portfolio',
+		'author-portfolio',
+		'author-portfolio-pro',
+		'author-portfolio-pro-child'
+	);
+
+	if ( in_array( $getRswpThemesSlug, $themeSpecificList, true ) ) {
+
+		// Writers Portfolio
+		if ( 'writers-portfolio' === $getRswpThemesSlug
+			&& is_page_template( 'author-landing-page.php' )
+			&& !empty($writersPortfolioSections)
+			&& in_array( 'books-slider', $writersPortfolioSections, true )
+		) {
+			$enableSliderAssets = true;
+		}
+
+		// Author Portfolio (Free)
+		elseif ( 'author-portfolio' === $getRswpThemesSlug
+			&& is_home()
+			&& true === $showSlider
+		) {
+			$enableSliderAssets = true;
+		}
+
+		// Author Portfolio Pro (Homepage Slider)
+		elseif ( 'author-portfolio-pro' === $getRswpThemesSlug
+			&& is_home()
+			&& 'books_carousel' === $get_blog_top_content
+			&& true === $showSlider
+		) {
+			$enableSliderAssets = true;
+		}
+
+		// Author Portfolio Pro / Child (Landing Page Slider)
+		elseif ( ( 'author-portfolio-pro' === $getRswpThemesSlug || 'author-portfolio-pro-child' === $getRswpThemesSlug )
+			&& is_page_template( 'author-landing-page.php' )
+			&& !empty($appAlpSections)
+			&& in_array( 'books-slider', $appAlpSections, true )
+		) {
+			$enableSliderAssets = true;
+		}
+
+		// Shortcode usage
+		elseif ( ( is_page() || is_single() ) && has_shortcode( $post->post_content, 'rswpbs_book_slider' ) ) {
+			$enableSliderAssets = true;
+		}
+
+		// Single shortcode CPT
+		elseif ( is_singular( 'shortcode' ) ) {
+			$enableSliderAssets = true;
+		}
+
+		// Single Book CPT
+		elseif ( is_singular( 'book' ) ) {
+			$enableSliderAssets = true;
+		}
+
+	} else {
+		// ✅ For ALL OTHER THEMES → Always enable slider assets
 		$enableSliderAssets = true;
 	}
+
 
  	/**
  	 * Enqueue Fontawesome CSS
@@ -58,7 +107,7 @@ function rswpbs_assets(){
 	 */
 	wp_register_style( 'slick', RSWPBS_PLUGIN_URL . 'frontend/assets/css/slick.css' );
 
-	if ( true === $enableSliderAssets && !wp_style_is('slick' ) ) {
+	if ( true === $enableSliderAssets ) {
 		wp_enqueue_style('slick');
 	}
 
@@ -79,7 +128,7 @@ function rswpbs_assets(){
 	 */
 	wp_register_script('slick', RSWPBS_PLUGIN_URL . 'frontend/assets/js/slick.js', array('jquery'), '2.3.4', true);
 
-	if ( true === $enableSliderAssets && !wp_script_is( 'slick' ) ) {
+	if ( true === $enableSliderAssets ) {
 		wp_enqueue_script('slick');
 	}
 	if (class_exists('Rswpbs_Pro') && function_exists('rswpthemes_cptwoointegration')) {
@@ -93,7 +142,8 @@ function rswpbs_assets(){
 	 * Enqueue RSWPBS Slider Initiate JS
 	 */
 	wp_register_script('rswpbs-slider', RSWPBS_PLUGIN_URL . 'frontend/assets/js/slider.js', array('jquery'), '1.0', true);
-	if ( true === $enableSliderAssets && !wp_script_is( 'rswpbs-slider' ) ) {
+
+	if ( true === $enableSliderAssets ) {
 		wp_enqueue_script('rswpbs-slider');
 	}
 

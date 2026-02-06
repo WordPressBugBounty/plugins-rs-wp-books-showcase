@@ -55,12 +55,22 @@ function rswpbs_loop_layout($args = array()){
 					<?php echo wp_kses_post(rswpbs_get_book_price(get_the_ID())); ?>
 				</div>
 				<?php endif;
-				if ('true' == $showBookExcerpt && !empty(rswpbs_get_book_desc())) :
-				?>
-				<div class="book-desc d-flex">
-			      <?php echo wp_kses_post(rswpbs_get_book_desc(get_the_ID(), $excerptLimit)); ?>
-			    </div>
-			    <?php
+				if ('true' == $showBookExcerpt) :
+					if ( 'excerpt' == $bookExcerptType ) {
+						if (!empty(rswpbs_get_book_desc())) {
+						?>
+						<div class="book-desc d-flex">
+					      <?php echo wp_kses_post(rswpbs_get_book_desc(get_the_ID(), $excerptLimit)); ?>
+					    </div>
+					    <?php
+						}
+					}elseif( 'content' == $bookExcerptType && !empty(get_the_content()) ){
+						?>
+						<div class="book-desc full-content">
+					      <?php the_content(); ?>
+					    </div>
+					    <?php
+					}
 				endif;
 				?>
 				<div class="rswpbs-book-buttons-wrapper">

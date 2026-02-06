@@ -2,9 +2,9 @@
 Contributors: rswpthemes
 Tags: book carousel, book collection, book display, book library, book catalogue
 Requires at least: 5.2
-Tested up to: 6.8
-Stable tag: 6.7.50
-Requires PHP: 7.1
+Tested up to: 6.9
+Stable tag: 6.7.57
+Requires PHP: 8.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -195,394 +195,159 @@ Install RS WP Book Showcase as a regular WordPress plugin. Here are different wa
 5. Select downloaded rswpbs.zip and click on "Install Now" button
 6. Activate the plugin
 
-
 == Changelog ==
 
-= 4.0.3 =
-* Removed Settings Page From Free Version and Added It On Pro With Stylish UI
-* Created Elementor and Gutenberg Block For Pro
-* Added Shortcode Attributes In Free Version
-* Added More Video Tutorial On Tutorial Page
+= 6.7.57 - Jan 24, 2026 =
+* Added Sort by Published Date Option in Book gallery
+* Added Display Book By Publisher Name in Book Slider
+* Added Translation Option For Authors Shortcode
 
-= 4.0.4 =
-* Added Fields To Show Ebook Informations.
-* Improved Design
-* Added Rating Option
-* Added Availability Option
+= 6.7.56 =
+* Security: Fixed a Stored XSS vulnerability in the Book Archive Page Header description.
+* Security: Enhanced security with improved sanitization and output escaping across settings fields.
+* Security: Added missing capability checks (authorization) when saving book information.
+* Tweak: Ensured 'Top' is the default position for Book Covers in archive settings.
+* Fix: Addressed late escaping issues for the 'Buy Now' button text.
 
-= 4.0.5 - Feb 20, 2023 ==
-* Small Bug Fixes
+= 6.7.55 - Nov 26, 2025 =
+* Improved Security Concern
+* Improved CSV Import System
 
-= 4.0.6 - Feb 21, 2023 ==
-* Solved String With INT conflict.
-* Hide Blank Info
+= 6.7.54 - Nov 6, 2025 =
+* Improved Enqueue asset functions
+* Improved Date Field
 
-= 4.0.7 - Feb 22, 2023 ==
-* Solved Rating Color Issue
+= 6.7.53 - Nov 1, 2025 =
+* Added Sorting options translation feature.
 
-= 4.0.8 - March 08, 2023 ==
-* Added Curreny Icon
-* Added Sample Book Reading feture such as audio, video, image, and pdf
-* Optimized Code Quality
+= 6.7.52 - Oct 21, 2025 =
+* Improved layout style
+* Added More Translation Option
 
-= 4.0.9 - March 08, 2023 ==
-* Small Bug Fixes
+= 6.7.51 - Oct 07, 2025 =
+* Added All Language Translation Field
 
-= 5.0.0 - March 08, 2023 ==
-* Make All Text Translatable
+= 6.7.50 - Sep 27, 2025 =
+* Added Series Shortcode
 
-= 5.0.1 - March 13, 2023 ==
-* Added Reviews and Review Form On//off Options
+= 6.7.49 - Sep 16, 2025 =
+* Solved Modal Issue In Slider Layout
+* Added See Details Button Text Change option in shortcode
 
-= 5.0.3 - April 13, 2023 ==
-* Added All Text Changable Options
+= 6.7.48 - Aug 27, 2025 =
+* Added Modal View for review.
+* Improved review import system.
 
-= 5.0.4 - April 15, 2023 ==
-* Solve Fatal Error of Slider Shortcode
+= 6.7.47 - Aug 13, 2025 =
+* Solved Books Per Page Issue
 
-= 5.0.5 - April 18, 2023 ==
-* Solve Book list Widget Image Error.
-* Solve Double Book Cover Showing Issue.
+= 6.7.46 - July 17, 2025 =
+* Improve CSV Import Feature
 
-= 5.0.7 - Jun 04, 2023 ==
-* Buy Now Button Is Now Pro
+= 6.7.45 - July 07, 2025 =
+* Added Options to Set Books Per Page Unlimited
 
-= 5.0.8 - Jun 22, 2023 ==
-* Added Email Opt-in
+= 6.7.44 - Jun 22, 2025 =
+* Solved Fatal error in block
 
-= 5.0.9 - Jun 23, 2023 ==
-* Added Email Opt-in
+= 6.7.43 - Jun 20, 2025 =
+* Solved search issue with non latin languages
 
-= 6.0.2 - Jun 23, 2023 ==
-* Added Email Opt-in
+= 6.7.42 - Jun 15, 2025 =
+* Fix Currency Change option.
 
-= 6.0.3 - July 05, 2023 ==
-* Solved Slider Not Showing Issue
+= 6.7.41 - May 15, 2025 =
+* Resolved an issue with Chinese characters in the search filter.
+* Introduced a caching feature to improve performance, with an option to enable or disable it.
 
-= 6.0.5 - July 13, 2023 ==
-* Solved Book Category Single Page Error
+= 6.7.40 - May 6, 2025 =
+* Disabled gutenberg editor from the book_reviews post type.
 
-= 6.0.7 - July 13, 2023 ==
-* Solved Book Sorting Issue
+= 6.7.39 - May 5, 2025 =
+* Solved Category Link Issue.
 
-= 6.0.8 - Aug 15, 2023 ==
-* Solved Checkout Page Column
+= 6.7.38 - May 2, 2025 =
+* Solved role deleting issue.
 
-= 6.0.9 - Aug 16, 2023 ==
-* Solved Checkout Page Minor Issues
+= 6.7.37 - May 1, 2025 =
+* Added Deactivation Feedback Popup
 
-= 6.1.1 - Sep 03, 2023 ==
-* Checked Compatiblity with Themes and Latest WP
+= 6.7.36 - April 20, 2025 =
+* Added role settings to manage books
+* Added Settings Easily Upload Book From Frontend
+* Added Compatibility with Ultimate Member Plugin. (Now, user can add books from their own profile.)
 
-= 6.1.2 - Sep 08, 2023 ==
-* Solved Fatal Error
+= 6.7.35 - April 14, 2025 =
+* Improved Ajax Shortcode Functionality For Pro Version
+* Added Responsive Layout Control Feature In AJAX shortcode
 
-= 6.1.3 - Sep 18, 2023 ==
-* Solved Broken Layout issues
+= 6.7.34 - April 10, 2025 =
+* Temporary removed more books by author section
+* Solved Reviews Not Showing Issues
 
-= 6.1.4 - Oct 05, 2023 ==
-* Solved Bootstrap Grid Layout issue
+= 6.7.33 - March 23, 2025 =
+* Improved SEO functionality while importing books
+* Improved the dashboard for only book authors role
+* Update Book Collection
 
-= 6.1.5 - Oct 19, 2023 ==
-* Added One Features For Pro Version
+= 6.7.32 - March 18, 2025 =
+* Improved Book Gallery Setup Process Through Admin Notice
 
-= 6.1.6 - Nov 18, 2023 ==
-* Solved Elementor Slider Issue
+= 6.7.31 - March 18, 2025 =
+* Solved Not updating issue
 
-= 6.1.7 - Nov 26, 2023 ==
-* Improved Shortcode.
-* Solved Slider Shortcode Issues
+= 6.7.30 - March 18, 2025 =
+* Improved 404 Not found issue solving.
+* Improved Book Gallery Setup functions.
+* Added amz affiliate tag detector.
 
-= 6.1.9 - Nov 30, 2023 ==
-* Optimized Codes For Fast Loading Speed
-* Solved Slider Js Issue
-* Solved 404 and Archive Pages Errors
+= 6.7.29 - March 16, 2025 =
+* Added Search Fields Sorting System
 
-= 6.2.0 - Dec 15, 2023 ==
-* Improved Design Quality
-* Added Many Shortcode Atts
+= 6.7.28 - March 15, 2025 =
+* Improved Ajax Book Showcase
+* Improved Search functionality of Ajax book showcase.
+* Added Instant book view feature in ajax book showcase.
+* Added full content and excerpt selection for book single page.
+* All link is clickable for search from ajax book showcase.
+* Added three more fields for Advanced Search form.
+* Unlocked all search fields.
 
-= 6.2.1 - Dec 17, 2023 ==
-* Solved Slider Problem For Author Portfolio Pro and Writers Portfolio Theme
+= 6.7.27 - March 13, 2025 =
+* Improved Notice Display
 
-= 6.2.2 - Dec 27, 2023 ==
-* Solved Design Issues.
-* Added Layout Atts To Shortcodes
-* Added archive page enable disable option for book cpt
+= 6.7.26 - March 12, 2025 =
+* Added Reading Date Field
+* Improved Styles
 
-= 6.2.3 - Dec 29, 2023 ==
-* Improved Tutorial Page
+= 6.7.25 - March 10, 2025 =
+* Improved Book Carousel Code and make it compatible with elementor shortcode and author website templates.
+
+= 6.7.24 - March 09, 2025 =
+* Added dismiss forver link for amazon import notice.
+
+= 6.7.23 - March 06, 2025 =
+* Improved List Layout With Right & Left Sidebar
+
+= 6.7.22 - March 05, 2025 =
+* Solved Carousel conflict with others css
+
+= 6.7.21 - March 04, 2025 =
+* NO Major Update Just Improved Readme file
+
+= 6.7.20 - March 03, 2025 =
+* Added Searchable Dropdown in Advanced Search Form.
+* Improved Readme.txt file
+
+= 6.7.19 - March 01, 2025 =
 * Improved Admin Notice
 
-= 6.2.4 - Jan 04, 2024 ==
-* Make It Compatible With Newsy Theme Box Layout
-
-= 6.2.5 - Jan 11, 2024 ==
-* Added Original Book URl Option
-* Solved Blank and NaN output
-* Escape Placeholder Text
-* Autometically User Email and Name in Review Form
-
-= 6.2.6 - Jan 13, 2024 ==
-* Make Review Form Text Translatable
-
-= 6.2.7 - Jan 15, 2024 ==
-* Improved Modified and Published Times for Testimonial
-* Created Option to translate Readers Feedback Text
-* Improved Sample Content Layout. brings it from bottom to book image left
-* Added Popup Audio Player
-* Added Popup Video Player
-* Added Popup Image
-* Added Book Format Image
-
-= 6.2.8 - Jan 16, 2024 ==
-* Improved Books Archive Pages
-* Delete Default Loop Modify File Instead Used Custom loop for archive pages and advanced Search and Sorting
-* Solved conflict with Others Plugins Issues
-* Improved Book Author page and Category Page Design
-* Improved Book Author, Category, And Archive Page Coding Structure
-
-= 6.2.9 - Jan 17, 2024 ==
-* Solved Archive Pages Wrapper Width Issues
-
-= 6.2.10 - Jan 17, 2024 ==
-* Solved Acf Fatal Errors
-
-= 6.3.0 - Jan 17, 2024 ==
-* Added Book Author Shortcode
-
-= 6.3.1 - Jan 18, 2024 ==
-* Added Series Option: Now author can easily add serise of books
-* Added Publishers Link: Now user can easily find publishers books from a dedicated page.
-* Added Series To Advanced Search Form
-
-= 6.3.3 - Jan 27, 2024 ==
-* Solved Sample Content Mobile device layout issue
-
-= 6.3.4 - Jan 29, 2024 ==
-* Solved Book Archive Page Pagination Issue
-
-= 6.3.5 - Feb 04, 2024 ==
-* Solved Archive Page Title Error
-
-= 6.3.6 - Feb 05, 2024 ==
-* Created Dedicated Series Page.
-
-= 6.3.7 - Feb 13, 2024 ==
-* Added Testimonial Slider And Grid Shortcode Also Elementor Addon
-* Single Book Shortcode. Now, you can show single book in your book review page.
-* Remove All Advertising from dashboard
-
-= 6.3.8 - Feb 14, 2024 ==
-* Solved Pagination Issue
-* Solved Exerpt Limit Issue
-
-= 6.3.9 - Feb 14, 2024 ==
-* Revert CPT Code
-
-= 6.4.0 - Feb 26, 2024 ==
-* Solved WP kses post depricated error
-
-= 6.4.1 - Feb 26, 2024 ==
-* Updated tags, Long, And Short Description
-
-= 6.4.2 - Feb 28, 2024 ==
-* RS WP Book Showcase is now compatible with most of the themes.
-* Added Mockup Features for single book page.
-* Used Custom Grid System Instead of Bootstrap
-
-= 6.4.3 - March 01, 2024 ==
-* Improved Grid CSS
-* Improved List Layout
-
-= 6.4.4 - March 01, 2024 ==
-* Improved Archive Page Container
-* Make "By" translatable
-
-= 6.4.5 - March 02, 2024 ==
-* Added Book Count On//Of Options for Authors List
-* Maked "Books By" translatable for individual author page.
-* Solved thumbnail Width issue for book slider elementor widget
-
-= 6.4.6 - March 03, 2024 ==
-* Improved Testimonial Long and Short content feature
-* Improved Testimonial Style maked it compatbile with rswpthemes
-
-= 6.4.7 - March 03, 2024 ==
-* Smple content section improved
-
-= 6.4.9 - March 05, 2024 ==
-* Added Read More Button For Book
-
-= 6.4.10 - March 11, 2024 ==
-* Added Tinymce editor for Author Description taxonomy
-* Solved 404 Permalink error
-
-= 6.5.0 - March 11, 2024 ==
-* Solved Advanced Search Form Issue
-
-= 6.5.1 - March 11, 2024 ==
-* Removed Console
-
-= 6.5.2 - March 13, 2024 ==
-* Solved Grid Issue In Some Pages
-* Improved Search Functions
-* Improved Compatibility With Themes
-* Added custom archive page slug changing option
-* Partialize Settings Options
-* Added Options to Control Individual Book Page
-* Added More Shortcode Attributes All Shortcodes are available in Tutorial Page
-
-= 6.5.3 - March 13, 2024 ==
-* Improved Single Page Multiple Purcahse Links
-
-= 6.5.4 - March 14, 2024 ==
-* Solved Warnings
-* Improved Book Gallery list layout Design
-
-= 6.5.5 - March 20, 2024 ==
-* Solved Name Search Issue
-
-= 6.5.6 - March 25, 2024 ==
-* Improved Performance
-
-= 6.5.7 - March 27, 2024 ==
-* Improved Responsive Design On Individual Book Page.
-
-= 6.5.8 - March 27, 2024 ==
-* Solved image overlaping issue in few themes.
-
-= 6.5.9 - April 01, 2024 ==
-* Added Reviewer Image Option
-
-= 6.5.10 - April 11, 2024 ==
-* Solved Broken Meta Fields
-
-= 6.5.11 - May 11, 2024 ==
-* Added Read Age Fields
-
-= 6.5.12 - May 15, 2024 ==
-* Added option to turn on/off search form fields.
-
-= 6.5.13 - May 20, 2024 ==
-* Added Books Translation option
-
-= 6.5.14 - May 31, 2024 ==
-* Maked it compatible with Author Blog Theme.
-
-= 6.5.15 - Jun 06, 2024 ==
-* Solved Advanced Search Form Issue
-
-= 6.5.16 - july 06, 2024 ==
-* Checked Compatibility With Latest Faith Blog Themes
-
-= 6.5.17 - july 12, 2024 ==
-* Compatibility check with One Elementor theme
-
-= 6.5.18 - Aug 13, 2024 ==
-* Compatibility check with Tech Blogging theme
-
-= 6.5.19 - Aug 18, 2024 ==
-* Compatibility check with Fitness Blog theme
-
-= 6.5.20 - Aug 18, 2024 ==
-* RS WP BOOK SHOWCASE [Premium Version] is Now compatible with block theme
-
-= 6.6.0 - Aug 28, 2024 ==
-* RS WP BOOK SHOWCASE Free is Now compatible with block theme
-
-= 6.6.1 - Aug 28, 2024 ==
-* Solved File Not Loading Issue
-
-= 6.6.2 - Aug 30, 2024 ==
-* Solved Book Single Page Shortcode
-* Solved Review Featured Image Issue
-* Added Book Overview Section On//off Option
-* Added Review Section Title On//off Option
-
-= 6.6.3 - Aug 30, 2024 ==
-* Solved Book Rating Issue
-* Added sort filter for all search fields
-
-= 6.6.4 - Sep 04, 2024 ==
-* Solved Book Image issue in List Layout
-* Compatibility check with latest Electronic Theme
-
-= 6.6.5 - Sep 06, 2024 ==
-* Improved Book List Layout
-* Checked Compatibility with Book Author Template
-
-= 6.6.6 - Sep 07, 2024 ==
-* Remove Block Editor Support Book Editor Page
-
-= 6.6.7 - Sep 08, 2024 ==
-* Remove OceanWP Page Header From RS WP BOOK SHOWCASE PAGES
-
-= 6.6.8 - Sep 13, 2024 ==
-* Make it compatible with Book Review Blog Theme
-* Improved Design Layout
-* Added Search Col Attributes in shortcode
-* Added Stretch hight in grid layout.
-
-= 6.6.9 - Sep 22, 2024 ==
-* Improved Book List Widget
-* Improved Book Featured Widget
-
-= 6.6.10 - Nov 04, 2024 ==
-* Improved Book List Widget Style for book author template footer layout.
-
-= 6.7.2 - Nov 18, 2024 ==
-* Added Latest Book Gallery Adding Video.
-* Added Page Background, Container, Book Info colors changing options
-* Added Series Include and Exclude Shortcode Options
-* Solved Capital text issue in book search form
-
-= 6.7.3 - Nov 20, 2024 ==
-* Improved Image CSS Selector for Books Page
-
-= 6.7.4 - Nov 25, 2024 ==
-* Added TyniMCE feature for book short description.
-
-= 6.7.5 - Nov 28, 2024 ==
-* Added Add To Cart Icon (Now this plugin is completely ready to sell downloadable ebook and also book)
-
-= 6.7.6 - Dec 2, 2024 ==
-* Added Ajax Search Filter To The Book Gallery
-
-= 6.7.7 - Dec 6, 2024 ==
-* Improved WooCommerce Functions
-
-= 6.7.8 - Dec 6, 2024 ==
-* Make Static Text Is Translatable
-
-= 6.7.9 - Dec 6, 2024 ==
-* Improved Book List Widget
-
-= 6.7.10 - Dec 9, 2024 ==
-* Added Add To Cart Button To The Book Slider
-
-= 6.7.11 - Jan 13, 2025 ==
-* Checked Compatibility With All Recommended Themes
-
-= 6.7.12 - Feb 9, 2025 ==
-* Improved OPT-IN
-* Added Full Width Book Slider Shortcode
-
-= 6.7.13 - Feb 10, 2025 ==
-* Improved OPT IN Code Quality
-* Improved Search Form Field Functionality.
-
-= 6.7.14 - Feb 10, 2025 ==
-* Improved opt in code quality
-* Showing admin notice if book single page is throwing 404 not found error and not accessible.
-
-= 6.7.15 - Feb 11, 2025 ==
-* Solved Fatal Error rswpthemes_register_api_key_on_server function
-
-= 6.7.16 - Feb 11, 2025 ==
-* Solved Fatal Error for rswpthemes send email
-
-= 6.7.17 - Feb 27, 2025 ==
+= 6.7.18 - March 01, 2025 =
+* Added Import Amazon Books Into WordPress Video Tutorial.
+* Added Amazon Tracking ID field.
+* Added Admin Notice For import books from amazon.
+
+= 6.7.17 - Feb 27, 2025 =
 * Added Settings Page In Free Version.
 * Unlocked all Pro Meta Fields for free
 * Added Import Books From Json Feature.
@@ -594,122 +359,386 @@ Install RS WP Book Showcase as a regular WordPress plugin. Here are different wa
 * Added Option to setup book Gallery page from admin notice
 * Added 404 Not Found Detector and Asked to save permalinks
 
-= 6.7.18 - March 01, 2025 ==
-* Added Import Amazon Books Into WordPress Video Tutorial.
-* Added Amazon Tracking ID field.
-* Added Admin Notice For import books from amazon.
+= 6.7.16 - Feb 11, 2025 =
+* Solved Fatal Error for rswpthemes send email
 
-= 6.7.19 - March 01, 2025 ==
+= 6.7.15 - Feb 11, 2025 =
+* Solved Fatal Error rswpthemes_register_api_key_on_server function
+
+= 6.7.14 - Feb 10, 2025 =
+* Improved opt in code quality
+* Showing admin notice if book single page is throwing 404 not found error and not accessible.
+
+= 6.7.13 - Feb 10, 2025 =
+* Improved OPT IN Code Quality
+* Improved Search Form Field Functionality.
+
+= 6.7.12 - Feb 9, 2025 =
+* Improved OPT-IN
+* Added Full Width Book Slider Shortcode
+
+= 6.7.11 - Jan 13, 2025 =
+* Checked Compatibility With All Recommended Themes
+
+= 6.7.10 - Dec 9, 2024 =
+* Added Add To Cart Button To The Book Slider
+
+= 6.7.9 - Dec 6, 2024 =
+* Improved Book List Widget
+
+= 6.7.8 - Dec 6, 2024 =
+* Make Static Text Is Translatable
+
+= 6.7.7 - Dec 6, 2024 =
+* Improved WooCommerce Functions
+
+= 6.7.6 - Dec 2, 2024 =
+* Added Ajax Search Filter To The Book Gallery
+
+= 6.7.5 - Nov 28, 2024 =
+* Added Add To Cart Icon (Now this plugin is completely ready to sell downloadable ebook and also book)
+
+= 6.7.4 - Nov 25, 2024 =
+* Added TyniMCE feature for book short description.
+
+= 6.7.3 - Nov 20, 2024 =
+* Improved Image CSS Selector for Books Page
+
+= 6.7.2 - Nov 18, 2024 =
+* Added Latest Book Gallery Adding Video.
+* Added Page Background, Container, Book Info colors changing options
+* Added Series Include and Exclude Shortcode Options
+* Solved Capital text issue in book search form
+
+= 6.6.10 - Nov 04, 2024 =
+* Improved Book List Widget Style for book author template footer layout.
+
+= 6.6.9 - Sep 22, 2024 =
+* Improved Book List Widget
+* Improved Book Featured Widget
+
+= 6.6.8 - Sep 13, 2024 =
+* Make it compatible with Book Review Blog Theme
+* Improved Design Layout
+* Added Search Col Attributes in shortcode
+* Added Stretch hight in grid layout.
+
+= 6.6.7 - Sep 08, 2024 =
+* Remove OceanWP Page Header From RS WP BOOK SHOWCASE PAGES
+
+= 6.6.6 - Sep 07, 2024 =
+* Remove Block Editor Support Book Editor Page
+
+= 6.6.5 - Sep 06, 2024 =
+* Improved Book List Layout
+* Checked Compatibility with Book Author Template
+
+= 6.6.4 - Sep 04, 2024 =
+* Solved Book Image issue in List Layout
+* Compatibility check with latest Electronic Theme
+
+= 6.6.3 - Aug 30, 2024 =
+* Solved Book Rating Issue
+* Added sort filter for all search fields
+
+= 6.6.2 - Aug 30, 2024 =
+* Solved Book Single Page Shortcode
+* Solved Review Featured Image Issue
+* Added Book Overview Section On//off Option
+* Added Review Section Title On//off Option
+
+= 6.6.1 - Aug 28, 2024 =
+* Solved File Not Loading Issue
+
+= 6.6.0 - Aug 28, 2024 =
+* RS WP BOOK SHOWCASE Free is Now compatible with block theme
+
+= 6.5.20 - Aug 18, 2024 =
+* RS WP BOOK SHOWCASE [Premium Version] is Now compatible with block theme
+
+= 6.5.19 - Aug 18, 2024 =
+* Compatibility check with Fitness Blog theme
+
+= 6.5.18 - Aug 13, 2024 =
+* Compatibility check with Tech Blogging theme
+
+= 6.5.17 - July 12, 2024 =
+* Compatibility check with One Elementor theme
+
+= 6.5.16 - July 06, 2024 =
+* Checked Compatibility With Latest Faith Blog Themes
+
+= 6.5.15 - Jun 06, 2024 =
+* Solved Advanced Search Form Issue
+
+= 6.5.14 - May 31, 2024 =
+* Maked it compatible with Author Blog Theme.
+
+= 6.5.13 - May 20, 2024 =
+* Added Books Translation option
+
+= 6.5.12 - May 15, 2024 =
+* Added Read Age Fields
+
+= 6.5.11 - May 11, 2024 =
+* Solved Broken Meta Fields
+
+= 6.5.10 - April 11, 2024 =
+* Solved Broken Meta Fields
+
+= 6.5.9 - April 01, 2024 =
+* Added Reviewer Image Option
+
+= 6.5.8 - March 27, 2024 =
+* Solved image overlaping issue in few themes.
+
+= 6.5.7 - March 27, 2024 =
+* Improved Responsive Design On Individual Book Page.
+
+= 6.5.6 - March 25, 2024 =
+* Improved Performance
+
+= 6.5.5 - March 20, 2024 =
+* Solved Name Search Issue
+
+= 6.5.4 - March 14, 2024 =
+* Solved Warnings
+* Improved Book Gallery list layout Design
+
+= 6.5.3 - March 13, 2024 =
+* Improved Single Page Multiple Purcahse Links
+
+= 6.5.2 - March 13, 2024 =
+* Solved Grid Issue In Some Pages
+* Improved Search Functions
+* Improved Compatibility With Themes
+* Added custom archive page slug changing option
+* Partialize Settings Options
+* Added Options to Control Individual Book Page
+* Added More Shortcode Attributes All Shortcodes are available in Tutorial Page
+
+= 6.5.1 - March 11, 2024 =
+* Removed Console
+
+= 6.5.0 - March 11, 2024 =
+* Solved Advanced Search Form Issue
+
+= 6.4.10 - March 11, 2024 =
+* Added Tinymce editor for Author Description taxonomy
+* Solved 404 Permalink error
+
+= 6.4.9 - March 05, 2024 =
+* Added Read More Button For Book
+
+= 6.4.7 - March 03, 2024 =
+* Sample content section improved
+
+= 6.4.6 - March 03, 2024 =
+* Improved Testimonial Long and Short content feature
+* Improved Testimonial Style maked it compatbile with rswpthemes
+
+= 6.4.5 - March 02, 2024 =
+* Added Book Count On//Of Options for Authors List
+* Maked "Books By" translatable for individual author page.
+* Solved thumbnail Width issue for book slider elementor widget
+
+= 6.4.4 - March 01, 2024 =
+* Improved Archive Page Container
+* Make "By" translatable
+
+= 6.4.3 - March 01, 2024 =
+* Improved Grid CSS
+* Improved List Layout
+
+= 6.4.2 - Feb 28, 2024 =
+* RS WP Book Showcase is now compatible with most of the themes.
+* Added Mockup Features for single book page.
+* Used Custom Grid System Instead of Bootstrap
+
+= 6.4.1 - Feb 26, 2024 =
+* Updated tags, Long, And Short Description
+
+= 6.4.0 - Feb 26, 2024 =
+* Solved WP kses post depricated error
+
+= 6.3.9 - Feb 14, 2024 =
+* Revert CPT Code
+
+= 6.3.8 - Feb 14, 2024 =
+* Solved Pagination Issue
+* Solved Exerpt Limit Issue
+
+= 6.3.7 - Feb 13, 2024 =
+* Added Testimonial Slider And Grid Shortcode Also Elementor Addon
+* Single Book Shortcode. Now, you can show single book in your book review page.
+* Remove All Advertising from dashboard
+
+= 6.3.6 - Feb 05, 2024 =
+* Created Dedicated Series Page.
+
+= 6.3.5 - Feb 04, 2024 =
+* Solved Archive Page Title Error
+
+= 6.3.4 - Jan 29, 2024 =
+* Solved Book Archive Page Pagination Issue
+
+= 6.3.3 - Jan 27, 2024 =
+* Solved Sample Content Mobile device layout issue
+
+= 6.3.1 - Jan 18, 2024 =
+* Added Series Option: Now author can easily add series of books
+* Added Publishers Link: Now user can easily find publishers books from a dedicated page.
+* Added Series To Advanced Search Form
+
+= 6.3.0 - Jan 17, 2024 =
+* Added Book Author Shortcode
+
+= 6.2.10 - Jan 17, 2024 =
+* Solved Acf Fatal Errors
+
+= 6.2.9 - Jan 17, 2024 =
+* Solved Archive Pages Wrapper Width Issues
+
+= 6.2.8 - Jan 16, 2024 =
+* Improved Books Archive Pages
+* Delete Default Loop Modify File Instead Used Custom loop for archive pages and advanced Search and Sorting
+* Solved conflict with Others Plugins Issues
+* Improved Book Author page and Category Page Design
+* Improved Book Author, Category, And Archive Page Coding Structure
+
+= 6.2.7 - Jan 15, 2024 =
+* Improved Modified and Published Times for Testimonial
+* Created Option to translate Readers Feedback Text
+* Improved Sample Content Layout. brings it from bottom to book image left
+* Added Popup Audio Player
+* Added Popup Video Player
+* Added Popup Image
+* Added Book Format Image
+
+= 6.2.6 - Jan 13, 2024 =
+* Make Review Form Text Translatable
+
+= 6.2.5 - Jan 11, 2024 =
+* Added Original Book URl Option
+* Solved Blank and NaN output
+* Escape Placeholder Text
+* Autometically User Email and Name in Review Form
+
+= 6.2.4 - Jan 04, 2024 =
+* Make It Compatible With Newsy Theme Box Layout
+
+= 6.2.3 - Dec 29, 2023 =
+* Improved Tutorial Page
 * Improved Admin Notice
 
-= 6.7.20 - March 03, 2025 ==
-* Added Searchable Dropdown in Advanced Search Form.
-* Improved Readme.txt file
+= 6.2.2 - Dec 27, 2023 =
+* Solved Design Issues.
+* Added Layout Atts To Shortcodes
+* Added archive page enable disable option for book cpt
 
-= 6.7.21 - March 04, 2025 ==
-* NO Major Update Just Improved Readme file
+= 6.2.1 - Dec 17, 2023 =
+* Solved Slider Problem For Author Portfolio Pro and Writers Portfolio Theme
 
-= 6.7.22 - March 05, 2025 ==
-* Solved Carousel conflict with others css
+= 6.2.0 - Dec 15, 2023 =
+* Improved Design Quality
+* Added Many Shortcode Atts
 
-= 6.7.23 - March 06, 2025 ==
-* Improved List Layout With Right & Left Sidebar
+= 6.1.9 - Nov 30, 2023 =
+* Optimized Codes For Fast Loading Speed
+* Solved Slider Js Issue
+* Solved 404 and Archive Pages Errors
 
-= 6.7.24 - March 09, 2025 ==
-* Added dismiss forver link for amazon import notice.
+= 6.1.7 - Nov 26, 2023 =
+* Improved Shortcode.
+* Solved Slider Shortcode Issues
 
-= 6.7.25 - March 10, 2025 ==
-* Improved Book Carousel Code. and make it compatible with elementor shortcode and author website templates.
+= 6.1.6 - Nov 18, 2023 =
+* Solved Elementor Slider Issue
 
-= 6.7.26 - March 12, 2025 ==
-* Added Reading Date Field
-* Improved Styles
+= 6.1.5 - Oct 19, 2023 =
+* Added One Features For Pro Version
 
-= 6.7.27 - March 13, 2025 ==
-* Improved Notice Display
+= 6.1.4 - Oct 05, 2023 =
+* Solved Bootstrap Grid Layout issue
 
-= 6.7.28 - March 15, 2025 ==
-* Improved Ajax Book Showcase
-* Improved Search functionality of Ajax book showcase.
-* Added Instant book view feature in ajax book showcase.
-* Added full content and excerpt selection for book single page.
-* All link is clickable for search from ajax book showcase.
-* Added three more fields for Advanced Search form.
-* Unlocked all search fields.
+= 6.1.3 - Sep 18, 2023 =
+* Solved Broken Layout issues
 
-= 6.7.29 - March 16, 2025 ==
-* Added Search Fields Sorting System
+= 6.1.2 - Sep 08, 2023 =
+* Solved Fatal Error
 
-= 6.7.30 - March 18, 2025 ==
-* Improved 404 Not found issue solving.
-* Improved Book Gallery Setup functions.
-* Added amz affiliate tag detector.
+= 6.1.1 - Sep 03, 2023 =
+* Checked Compatibility with Themes and Latest WP
 
-= 6.7.31 - March 18, 2025 ==
-* Solved Not updating issue
+= 6.0.9 - Aug 16, 2023 =
+* Solved Checkout Page Minor Issues
 
-= 6.7.32 - March 18, 2025 ==
-* Improved Book Gallery Setup Process Through Admin Notice
+= 6.0.8 - Aug 15, 2023 =
+* Solved Checkout Page Column
 
-= 6.7.33 - March 23, 2025 ==
-* Improved SEO functionality while importing books
-* Improved the dashboard for only book authors role
-* Update Book Collection
+= 6.0.7 - July 13, 2023 =
+* Solved Book Sorting Issue
 
-= 6.7.34 - April 10, 2025 ==
-* Temporary removed more books by author section
-* Solved Reviews Not Showing Issues
+= 6.0.5 - July 13, 2023 =
+* Solved Book Category Single Page Error
 
-= 6.7.35 - April 14, 2025 ==
-* Improved Ajax Shortcode Functionality For Pro Version
-* Added Responsive Layout Control Feature In AJAX shortcode
+= 6.0.3 - July 05, 2023 =
+* Solved Slider Not Showing Issue
 
-= 6.7.36 - April 20, 2025 ==
-* Added role settings to manage books
-* Added Settings Easily Upload Book From Frontend
-* Added Compatibility with Ultimate Member Plugin. (Now, user can add books from their own profile.)
+= 6.0.2 - Jun 23, 2023 =
+* Added Email Opt-in
 
-= 6.7.37 - May 1, 2025 ==
-* Added Deactivation Feedback Popup
+= 5.0.9 - Jun 23, 2023 =
+* Added Email Opt-in
 
-= 6.7.38 - May 2, 2025 ==
-* Solved role deleting issue.
+= 5.0.8 - Jun 22, 2023 =
+* Added Email Opt-in
 
-= 6.7.39 - May 5, 2025 ==
-* Solved Category Link Issue.
+= 5.0.7 - Jun 04, 2023 =
+* Buy Now Button Is Now Pro
 
-= 6.7.40 - May 6, 2025 ==
-* Disabled gutenberg editor from the book_reviews post type.
+= 5.0.5 - April 18, 2023 =
+* Solve Book list Widget Image Error.
+* Solve Double Book Cover Showing Issue.
 
-= 6.7.41 - May 15, 2025 ==
-* Resolved an issue with Chinese characters in the search filter.
-* Introduced a caching feature to improve performance, with an option to enable or disable it.
+= 5.0.4 - April 15, 2023 =
+* Solve Fatal Error of Slider Shortcode
 
-= 6.7.42 - Jun 15, 2025 ==
-* Fix Currency Change option.
+= 5.0.3 - April 13, 2023 =
+* Added All Text Changable Options
 
-= 6.7.43 - Jun 20, 2025 ==
-* Solved search issuse with non latin languages
+= 5.0.1 - March 13, 2023 =
+* Added Reviews and Review Form On//off Options
 
-= 6.7.44 - Jun 22, 2025 ==
-* Solved Fatal error in block
+= 5.0.0 - March 08, 2023 =
+* Make All Text Translatable
 
-= 6.7.45 - July 07, 2025 ==
-* Added Options to Set Books Per Page Unlimited
+= 4.0.9 - March 08, 2023 =
+* Small Bug Fixes
 
-= 6.7.46 - July 17, 2025 ==
-* Improve CSV Import Feature
+= 4.0.8 - March 08, 2023 =
+* Added Currency Icon
+* Added Sample Book Reading feature such as audio, video, image, and pdf
+* Optimized Code Quality
 
-= 6.7.47 - Aug 13, 2025 ==
-* Solved Books Per Page Issue
+= 4.0.7 - Feb 22, 2023 =
+* Solved Rating Color Issue
 
-= 6.7.48 - Aug 27, 2025 ==
-* Added Modal View for review.
-* Improved review import system.
+= 4.0.6 - Feb 21, 2023 =
+* Solved String With INT conflict.
+* Hide Blank Info
 
-= 6.7.49 - Sep 16, 2025 ==
-* Solved Modal Issue In Slider Layout
-* Added See Details Button Text Change option in shortcode
+= 4.0.5 - Feb 20, 2023 =
+* Small Bug Fixes
 
-= 6.7.50 - Sep 27, 2025 ==
-* Added Series Shortcode
+= 4.0.4 =
+* Added Fields To Show Ebook Informations.
+* Improved Design
+* Added Rating Option
+* Added Availability Option
+
+= 4.0.3 =
+* Removed Settings Page From Free Version and Added It On Pro With Stylish UI
+* Created Elementor and Gutenberg Block For Pro
+* Added Shortcode Attributes In Free Version
+* Added More Video Tutorial On Tutorial Page

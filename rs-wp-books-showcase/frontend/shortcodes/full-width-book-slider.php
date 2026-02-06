@@ -15,7 +15,7 @@ function rswpbs_full_width_book_slider_shortcode($atts) {
         'show_button_one'   => 'true',
         'show_button_two'   => 'true',
         'show_image'        => 'true',
-        'read_more_text'    => 'See Details',
+        'read_more_text'    => 'View Details',
         'book_ids'          => '',
         'slider_attr' => '',
     );
@@ -102,9 +102,14 @@ $htmlAttributes = trim($htmlAttributes);
                                         </div>
                                         <?php endif;
                                         ?>
-                                        <?php if ('true' == $settings['show_button_two']) : ?>
+                                        <?php if ('true' == $settings['show_button_two']) :
+                                            $readMoreText = $atts['read_more_text'];
+                                            if (empty($readMoreText)) {
+                                                $readMoreText = esc_html__('View Details', 'rswpbs');
+                                            }
+                                            ?>
                                         <div class="book-details-btn">
-                                            <a href="<?php the_permalink(); ?>"><?php echo esc_html( $atts['read_more_text'] ); ?></a>
+                                            <a href="<?php the_permalink(); ?>"><?php echo esc_html( $readMoreText ); ?></a>
                                         </div>
                                         <?php endif; ?>
                                     </div>
