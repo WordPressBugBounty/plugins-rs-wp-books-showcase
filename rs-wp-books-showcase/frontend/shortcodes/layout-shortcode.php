@@ -75,23 +75,10 @@ function rswpbs_loop_layout($args = array()){
 				?>
 				<div class="rswpbs-book-buttons-wrapper">
 				<?php
-			    if (function_exists('rswpthemes_cptwoointegration') && 'true' == $showAddToCartBtn) :
-			    	$product_id = get_the_ID();
-			    	?>
-			    	<div class="book-add-to-cart-btn">
-			    		<div class="cptwoointegration-cart-btn-wrapper">
-					        <form class="cart" method="post">
-					            <input type="hidden" name="product_id" value="<?php echo esc_attr($product_id); ?>">
-					            <button type="submit" name="add-to-cart" value="<?php echo esc_attr($product_id); ?>" class="loop_add_to_cart_button button alt">
-					                <?php esc_html_e('Add to Cart', 'text-domain'); ?>
-					            </button>
-					        </form>
-					    </div>
-			    	</div>
-			    	<?php
+			    if ('true' == $showAddToCartBtn) :
+			    	echo shortcode_exists('rswpbs_book_loop_btn') ? do_shortcode( "[rswpbs_book_loop_btn/]" ) : '' ;
 				endif;
 				if ('true' == $showBookBuyBtn) :
-					$product_id = get_the_ID();
 			    ?>
 			    <div class="book-buy-btn d-flex">
 			      <?php

@@ -3,7 +3,7 @@
  * Plugin Name:       RS WP Book Showcase
  * Plugin URI:        https://rswpthemes.com/rs-wp-books-showcase-wordpress-plugin/
  * Description:       Premier WordPress book gallery plugin, offering advanced search options and multiple layouts for effortless book showcasing.
- * Version:           6.7.57
+ * Version:           6.7.58
  * Requires at least: 4.9
  * Requires PHP:      8.0
  * Author:            RS WP THEMES
@@ -29,14 +29,11 @@ if (!defined('RSWPBS_TEXT_DOMAIN')) {
 
 class Rswpbs{
     public function __construct(){
-        /**
-         * Removed Opt In for a while
-         * require_once RSWPBS_PLUGIN_PATH . '/includes/opt-in/opt-in.php';
-         * require_once RSWPBS_PLUGIN_PATH . '/includes/opt-in/deactivation-feedback.php';
-        */
+
         require_once RSWPBS_PLUGIN_PATH . '/admin/init.php';
         require_once RSWPBS_PLUGIN_PATH . '/admin/register-cpt.php';
         require_once RSWPBS_PLUGIN_PATH . '/admin/settings-dummy-menu.php';
+        
         /**
          * Custom Metabox
          */

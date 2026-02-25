@@ -129,13 +129,11 @@ function rswpbs_single_book_shortcode($atts){
 					?>
 					<div class="book-single-page-buttons-wrapper">
 						<?php
-						if ( function_exists('rswpthemes_cptwoointegration') && true == $atts['show_add_to_cart_btn']) :
-							echo shortcode_exists('cptwoointegration_cart_button') ? do_shortcode( "[cptwoointegration_cart_button/]" ) : '' ;
-						endif;
+						echo shortcode_exists('rswpbs_book_cart') ? do_shortcode( "[rswpbs_book_cart/]" ) : '' ;
 						if ('true' == $atts['show_buy_button']) :
 							if (!empty(rswpbs_get_book_buy_btn($bookID)) && empty(rswpbs_get_book_buy_btn_shortcode($bookID))) :
 							?>
-							<div class="rswpbs-buy-now-button-wrapper d-flex justify-content-start">
+							<div class="rswpbs-buy-now-button-wrapper align-self-start d-flex justify-content-start">
 								<?php echo rswpbs_get_book_buy_btn($bookID); ?>
 							</div>
 							<?php
@@ -154,6 +152,7 @@ function rswpbs_single_book_shortcode($atts){
 					if ('true' == $atts['show_msl'] && class_exists('Rswpbs_Pro')) {
 						echo rswpbs_pro_book_also_available_web_list($bookID, $atts['msl_title_align']);
 					}
+
 					do_action('rswpbs_after_single_book_main_details');
 					?>
 				</div>

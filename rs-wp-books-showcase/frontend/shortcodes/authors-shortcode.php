@@ -201,7 +201,7 @@ function rswpbs_get_authors_html($atts, $offset, $search = '') {
 
             if ('true' == $atts['show_book_count']) {
                 $post_count = get_term($author->term_id, 'book-author')->count;
-                $bookText = 'Book';
+                $bookText = rswpbs_static_text_books();
                 if ($post_count > 1) {
                     $bookText .= 's';
                 }

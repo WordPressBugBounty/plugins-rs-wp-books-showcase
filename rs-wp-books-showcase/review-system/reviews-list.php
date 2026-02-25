@@ -128,7 +128,6 @@ function rswpbs_book_reviews(){
 											<div class="client-feedback-full">
 												<?php the_content(); ?>
 											</div>
-											<?php if ('true' == $atts['show_reviewer']) : ?>
 											<div class="reviewer-wrapper">
 												<?php if (!empty($reviewerImage)) : ?>
 												<div class="client-image">
@@ -144,7 +143,6 @@ function rswpbs_book_reviews(){
 												</div>
 												<?php endif; ?>
 											</div>
-											<?php endif; ?>
 										</div>
 									</div>
 								</div>

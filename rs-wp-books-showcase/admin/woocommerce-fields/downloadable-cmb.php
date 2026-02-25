@@ -3,7 +3,7 @@
  * Removed Default WooCommerce Product Metabox From Book Post Type
  */
 function rswpbs_remove_woocommerce_meta_box_for_books() {
-    remove_meta_box('woocommerce-product-data', 'book', 'normal');
+    // remove_meta_box('woocommerce-product-data', 'book', 'normal');
 }
 add_action('add_meta_boxes', 'rswpbs_remove_woocommerce_meta_box_for_books', 40);
 

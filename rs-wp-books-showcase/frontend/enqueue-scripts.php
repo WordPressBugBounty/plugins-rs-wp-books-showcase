@@ -100,7 +100,9 @@ function rswpbs_assets(){
 	 */
 	if (true === $enable_grid) {
 		wp_enqueue_style( 'rswpbs-grid', RSWPBS_PLUGIN_URL . 'includes/assets/css/rswpbs-grid.css' );
+		wp_enqueue_style( 'rswpbs-spacing', RSWPBS_PLUGIN_URL . 'includes/assets/css/spacing.css' );
 	}
+
 
 	/**
 	 * Enqueue Slick Slider CSS
