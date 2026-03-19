@@ -64,6 +64,7 @@ $static_texts = [
     'rswpbs_text_word_wise' => ['rswpbs_static_text_word_wise', 'Word Wise'],
     'rswpbs_text_sticky_notes' => ['rswpbs_static_text_sticky_notes', 'Sticky Notes'],
     'rswpbs_text_print_length' => ['rswpbs_static_text_print_length', 'Print Length'],
+    'rswpbs_text_book' => ['rswpbs_static_text_book', 'Book'],
     'rswpbs_text_book_name' => ['rswpbs_static_text_book_name', 'Book Name'],
     'rswpbs_text_all_authors' => ['rswpbs_static_text_all_authors', 'All Authors'],
     'rswpbs_text_all_publishers' => ['rswpbs_static_text_all_publishers', 'All Publishers'],

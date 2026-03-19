@@ -111,10 +111,16 @@ class RSWPBS_Static_Texts {
 
                             echo '<td class="rswpbs-box '.$proclass.'" style="vertical-align: top; padding: 10px;">';
                             $label = ucwords( str_replace( '_', ' ', str_replace( 'rswpbs_', '', $key ) ) );
+                            if ($key === 'rswpbs_text_book') {
+                                $label = 'Book (Singular)';
+                            } elseif ($key === 'rswpbs_text_books') {
+                                $label = 'Books (Plural)';
+                            }
                             $value = preg_replace("/\[.*?\]/","", $value );
 
                             // Input field (Pro settings will be disabled if Pro is not active)
-                            echo '<label for="' . esc_attr( $key ) . '">Text: "' . esc_html( $default ) . '"</label><br>';
+                            echo '<strong>' . esc_html( $label ) . '</strong><br>';
+                            echo '<label for="' . esc_attr( $key ) . '" style="color: #666; font-size: 11px;">Default: "' . esc_html( $default ) . '"</label><br>';
                             echo '<input type="text" id="' . esc_attr( $key ) . '" name="' . esc_attr( $key ) . '" value="' . esc_attr( $value ) . '" class="regular-text" ' . $disabled_attr . ' />';
 
                             // Show upgrade notice **only for Pro settings**
@@ -181,6 +187,7 @@ class RSWPBS_Static_Texts {
             'rswpbs_text_showing' => 'Showing',
             'rswpbs_text_of' => 'of',
             'rswpbs_text_books' => 'Books',
+            'rswpbs_text_book' => 'Book',
             'rswpbs_text_books_by' => 'Books By',
             'rswpbs_text_view_book' => 'View Book',
             'rswpbs_text_load_more' => 'Load More',
@@ -261,6 +268,7 @@ class RSWPBS_Static_Texts {
         $this->acf_fields = [
             'text_by'                       => 'rswpbs_text_by',
             'text_books'                    => 'rswpbs_text_books',
+            'text_book'                     => 'rswpbs_text_book',
             'text_books_by'                 => 'rswpbs_text_books_by',
             'text_view_book'                => 'rswpbs_text_view_book',
             'text_load_more'                => 'rswpbs_text_load_more',

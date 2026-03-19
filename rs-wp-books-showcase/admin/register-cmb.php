@@ -634,9 +634,11 @@ class Rswpbs_Cmb_For_Book
 		// Calculate and save the sortable publication date
 		$meta_fields['book_publish_date_sort'] = '';
 		if (!empty($meta_fields['book_publish_date'])) {
-			$timestamp = strtotime($meta_fields['book_publish_date']);
+			$safe_date_string = str_replace('/', '-', $meta_fields['book_publish_date']);
+			$timestamp = strtotime($safe_date_string);
 			if ($timestamp) {
 				$meta_fields['book_publish_date_sort'] = date('Y-m-d', $timestamp);
+				$meta_fields['book_publish_year'] = date('Y', $timestamp);
 			}
 		}
 		foreach($meta_fields as $key => $value):
