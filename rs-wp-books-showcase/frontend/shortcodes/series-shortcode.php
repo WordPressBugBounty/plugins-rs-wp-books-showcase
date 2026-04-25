@@ -1,7 +1,3 @@
-/* ==========================================
-File: frontend\shortcodes\series-shortcode.php
-========================================== */
-
 <?php
 /**
  * Author Shortcode
