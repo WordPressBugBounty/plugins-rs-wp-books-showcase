@@ -88,6 +88,19 @@ class Rswpbs_Cmb_For_Book
 		$book_reading_age = get_post_meta( $post->ID, $this->prefix . 'book_reading_age', true ) ?: '';
 		$book_grade_level = get_post_meta( $post->ID, $this->prefix . 'book_grade_level', true ) ?: '';
 		$book_lexile_measure = get_post_meta( $post->ID, $this->prefix . 'book_lexile_measure', true ) ?: '';
+		$book_contributors = get_post_meta( $post->ID, $this->prefix . 'book_contributors', true ) ?: '';
+		$series_link = get_post_meta( $post->ID, $this->prefix . 'series_link', true ) ?: '';
+		$series_book_number = get_post_meta( $post->ID, $this->prefix . 'series_book_number', true ) ?: '';
+		$series_total_books = get_post_meta( $post->ID, $this->prefix . 'series_total_books', true ) ?: '';
+		$series_order_text = get_post_meta( $post->ID, $this->prefix . 'series_order_text', true ) ?: '';
+		$book_mockup_image = get_post_meta( $post->ID, $this->prefix . 'book_mockup_image', true ) ?: '';
+		$others_formats = get_post_meta( $post->ID, $this->prefix . 'others_formats', true ) ?: '';
+
+		$audio_listening_length = get_post_meta( $post->ID, $this->prefix . 'audio_listening_length', true ) ?: '';
+		$audio_narrator = get_post_meta( $post->ID, $this->prefix . 'audio_narrator', true ) ?: '';
+		$audio_version = get_post_meta( $post->ID, $this->prefix . 'audio_version', true ) ?: '';
+		$audio_program_type = get_post_meta( $post->ID, $this->prefix . 'audio_program_type', true ) ?: '';
+		$audio_release_date = get_post_meta( $post->ID, $this->prefix . 'audio_release_date', true ) ?: '';
 		if (class_exists('Rswpbs_Pro')) {
 			$buy_btn_shortcode = get_post_meta( $post->ID, $this->prefix . 'buy_btn_shortcode', true ) ?: '';
 		}
@@ -130,6 +143,12 @@ class Rswpbs_Cmb_For_Book
 						</div>
 						<div class="rswpbs-col-lg-4 mb-20">
 							<div class="book-field-container">
+								<label for="book-contributors"><?php esc_html_e( 'Book Contributors', 'rswpbs' );?></label>
+								<input type="text" name="book_contributors" class="w-100 regular-text" id="book-contributors" value="<?php echo esc_attr($book_contributors);?>" placeholder="Book Contributors">
+							</div>
+						</div>
+						<div class="rswpbs-col-lg-4 mb-20">
+							<div class="book-field-container">
 								<label for="publish-date"><?php esc_html_e( 'Publish Date', 'rswpbs' );?></label>
 								<input type="text" name="book_publish_date" class="w-100 regular-text" id="publish-date" value="<?php echo esc_attr($book_publish_date);?>">
 								<input type="hidden" name="book_publish_year" class="w-100 regular-text" id="publish-year" value="<?php echo esc_attr($book_publish_year);?>">
@@ -156,6 +175,30 @@ class Rswpbs_Cmb_For_Book
 						</div>
 						<div class="rswpbs-col-lg-4 mb-20">
 							<div class="book-field-container">
+								<label for="series-link"><?php esc_html_e( 'Series Link', 'rswpbs' );?></label>
+								<input type="text" name="series_link" class="w-100 regular-text" id="series-link" value="<?php echo esc_attr($series_link);?>" placeholder="Series URL">
+							</div>
+						</div>
+						<div class="rswpbs-col-lg-4 mb-20">
+							<div class="book-field-container">
+								<label for="series-book-number"><?php esc_html_e( 'Series Book Number', 'rswpbs' );?></label>
+								<input type="text" name="series_book_number" class="w-100 regular-text" id="series-book-number" value="<?php echo esc_attr($series_book_number);?>" placeholder="Book Number">
+							</div>
+						</div>
+						<div class="rswpbs-col-lg-4 mb-20">
+							<div class="book-field-container">
+								<label for="series-total-books"><?php esc_html_e( 'Series Total Books', 'rswpbs' );?></label>
+								<input type="text" name="series_total_books" class="w-100 regular-text" id="series-total-books" value="<?php echo esc_attr($series_total_books);?>" placeholder="Total Books">
+							</div>
+						</div>
+						<div class="rswpbs-col-lg-4 mb-20">
+							<div class="book-field-container">
+								<label for="series-order-text"><?php esc_html_e( 'Series Order Text', 'rswpbs' );?></label>
+								<input type="text" name="series_order_text" class="w-100 regular-text" id="series-order-text" value="<?php echo esc_attr($series_order_text);?>" placeholder="Example: Part of">
+							</div>
+						</div>
+						<div class="rswpbs-col-lg-4 mb-20">
+							<div class="book-field-container">
 								<label for="publish-country"><?php esc_html_e( 'Country', 'rswpbs' );?></label>
 								<input type="text" name="book_country" class="w-100 regular-text" id="book-country" value="<?php echo esc_attr($book_country); ?>" placeholder="Country">
 							</div>
@@ -166,6 +209,7 @@ class Rswpbs_Cmb_For_Book
 								<textarea type="text" rows="5" class="w-100 regular-text" name="short_description" id="short-description" value="<?php echo esc_attr($short_description); ?>" placeholder="Short Description"><?php echo wp_kses_post($short_description); ?></textarea>
 							</div>
 						</div>
+
 						<div class="rswpbs-col-lg-4 mb-20">
 							<div class="book-field-container">
 								<label for="publish-language"><?php esc_html_e( 'Book language', 'rswpbs' );?></label>
@@ -218,6 +262,18 @@ class Rswpbs_Cmb_For_Book
 							<div class="book-field-container">
 								<label for="book-weight"><?php esc_html_e( 'Weight', 'rswpbs' );?></label>
 								<input type="text" name="book_weight" class="w-100 regular-text" id="book-weight" value="<?php echo esc_attr($book_weight); ?>" placeholder="Book Weight">
+							</div>
+						</div>
+						<div class="rswpbs-col-lg-4 mb-20">
+							<div class="book-field-container">
+								<label for="book-mockup-image"><?php esc_html_e( 'Book Mockup Image', 'rswpbs' );?></label>
+								<input type="text" name="book_mockup_image" class="w-100 regular-text" id="book-mockup-image" value="<?php echo esc_attr($book_mockup_image); ?>" placeholder="Image URL">
+							</div>
+						</div>
+						<div class="rswpbs-col-lg-4 mb-20">
+							<div class="book-field-container">
+								<label for="others-formats"><?php esc_html_e( 'Others Formats', 'rswpbs' );?></label>
+								<input type="text" name="others_formats" class="w-100 regular-text" id="others-formats" value="<?php echo esc_attr($others_formats); ?>" placeholder="Other formats info">
 							</div>
 						</div>
 						<div class="rswpbs-col-lg-4 mb-20">
@@ -340,6 +396,36 @@ class Rswpbs_Cmb_For_Book
 							<div class="book-field-container">
 								<label for="book-reading-date"><?php esc_html_e( 'Reading Date', 'rswpbs' );?></label>
 								<input type="text" name="book_reading_date" class="w-100 regular-text" id="book-reading-date" value="<?php echo esc_attr($book_reading_date); ?>">
+							</div>
+						</div>
+						<div class="rswpbs-col-lg-4 mb-20">
+							<div class="book-field-container">
+								<label for="audio-listening-length"><?php esc_html_e( 'Audio Listening Length', 'rswpbs' );?></label>
+								<input type="text" name="audio_listening_length" class="w-100 regular-text" id="audio-listening-length" value="<?php echo esc_attr($audio_listening_length); ?>" placeholder="Example: 8 hours and 29 minutes">
+							</div>
+						</div>
+						<div class="rswpbs-col-lg-4 mb-20">
+							<div class="book-field-container">
+								<label for="audio-narrator"><?php esc_html_e( 'Audio Narrator', 'rswpbs' );?></label>
+								<input type="text" name="audio_narrator" class="w-100 regular-text" id="audio-narrator" value="<?php echo esc_attr($audio_narrator); ?>" placeholder="Narrator Name">
+							</div>
+						</div>
+						<div class="rswpbs-col-lg-4 mb-20">
+							<div class="book-field-container">
+								<label for="audio-version"><?php esc_html_e( 'Audio Version', 'rswpbs' );?></label>
+								<input type="text" name="audio_version" class="w-100 regular-text" id="audio-version" value="<?php echo esc_attr($audio_version); ?>" placeholder="Example: Unabridged">
+							</div>
+						</div>
+						<div class="rswpbs-col-lg-4 mb-20">
+							<div class="book-field-container">
+								<label for="audio-program-type"><?php esc_html_e( 'Audio Program Type', 'rswpbs' );?></label>
+								<input type="text" name="audio_program_type" class="w-100 regular-text" id="audio-program-type" value="<?php echo esc_attr($audio_program_type); ?>" placeholder="Example: Audiobook">
+							</div>
+						</div>
+						<div class="rswpbs-col-lg-4 mb-20">
+							<div class="book-field-container">
+								<label for="audio-release-date"><?php esc_html_e( 'Audio Release Date', 'rswpbs' );?></label>
+								<input type="text" name="audio_release_date" class="w-100 regular-text" id="audio-release-date" value="<?php echo esc_attr($audio_release_date); ?>" placeholder="Release Date">
 							</div>
 						</div>
 					</div>
@@ -616,6 +702,19 @@ class Rswpbs_Cmb_For_Book
 			'buy_btn_text' => (isset($_POST['buy_btn_text']) ? sanitize_text_field($_POST['buy_btn_text']) : ''),
 			'buy_btn_link' => (isset($_POST['buy_btn_link']) ? sanitize_text_field($_POST['buy_btn_link']) : ''),
 			'buy_btn_shortcode' => (isset($_POST['buy_btn_shortcode']) ? sanitize_text_field($_POST['buy_btn_shortcode']) : ''),
+			'book_contributors' => (isset($_POST['book_contributors']) ? sanitize_text_field($_POST['book_contributors']) : ''),
+			'series_link' => (isset($_POST['series_link']) ? sanitize_text_field($_POST['series_link']) : ''),
+			'series_book_number' => (isset($_POST['series_book_number']) ? sanitize_text_field($_POST['series_book_number']) : ''),
+			'series_total_books' => (isset($_POST['series_total_books']) ? sanitize_text_field($_POST['series_total_books']) : ''),
+			'series_order_text' => (isset($_POST['series_order_text']) ? sanitize_text_field($_POST['series_order_text']) : ''),
+			'book_mockup_image' => (isset($_POST['book_mockup_image']) ? sanitize_text_field($_POST['book_mockup_image']) : ''),
+			'others_formats' => (isset($_POST['others_formats']) ? sanitize_text_field($_POST['others_formats']) : ''),
+
+			'audio_listening_length' => (isset($_POST['audio_listening_length']) ? sanitize_text_field($_POST['audio_listening_length']) : ''),
+			'audio_narrator' => (isset($_POST['audio_narrator']) ? sanitize_text_field($_POST['audio_narrator']) : ''),
+			'audio_version' => (isset($_POST['audio_version']) ? sanitize_text_field($_POST['audio_version']) : ''),
+			'audio_program_type' => (isset($_POST['audio_program_type']) ? sanitize_text_field($_POST['audio_program_type']) : ''),
+			'audio_release_date' => (isset($_POST['audio_release_date']) ? sanitize_text_field($_POST['audio_release_date']) : ''),
 		);
 
 		if (empty($meta_fields['book_sale_price'])) {

@@ -3,7 +3,7 @@ Contributors: rswpthemes
 Tags: book carousel, book collection, book display, book library, book catalogue
 Requires at least: 5.2
 Tested up to: 6.9
-Stable tag: 6.7.62
+Stable tag: 6.7.63
 Requires PHP: 8.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -197,6 +197,12 @@ Install RS WP Book Showcase as a regular WordPress plugin. Here are different wa
 
 == Changelog ==
 
+
+= 6.7.63 - May 10, 2026 =
+* Improved: Fixed the Book Information display issue by adding missing metadata fields to the main display function (RSWPBooKContentInfoSection).
+* Fixed: Critical UI bug where the 'Avg. Rate' was being displayed as a raw meta value without proper escaping or formatting.
+* Improved: Enhanced the book_content_section() function to proactively register all custom fields from the field array, ensuring they are always accessible.
+* Improved: CSV Import Feature for More accurate performance
 
 = 6.7.62 - May 09, 2026 =
 * Added: Converted the "Book Publisher" field from a post meta field to a fully functional hierarchical Custom Taxonomy.

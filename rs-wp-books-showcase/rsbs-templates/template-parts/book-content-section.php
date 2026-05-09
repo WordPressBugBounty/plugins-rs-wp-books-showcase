@@ -2,7 +2,8 @@
 /**
  * Displays full book overview section with dynamic information fields
  */
-function rswpbs_book_content_section($bookId = null) {
+function rswpbs_book_content_section($bookId = null)
+{
     if (null == $bookId) {
         $bookId = get_the_ID();
     }
@@ -16,12 +17,14 @@ function rswpbs_book_content_section($bookId = null) {
         'availability' => [
             'value' => rswpbs_get_book_availability_status($bookId),
             'label' => rswpbs_static_text_availability(),
-            'condition' => function($value) { return !empty($value) && $value !== 'blank'; }
+            'condition' => function ($value) {
+                return !empty($value) && $value !== 'blank';
+            }
         ],
         'original_title' => [
             'value' => rswpbs_get_book_original_name($bookId),
             'label' => rswpbs_static_text_original_title(),
-            'wrapper' => function($value) {
+            'wrapper' => function ($value) {
                 $url = rswpbs_get_book_original_url();
                 return $url ? "<a href='" . esc_url($url) . "'>" . esc_html($value) . "</a>" : esc_html($value);
             }
@@ -43,12 +46,30 @@ function rswpbs_book_content_section($bookId = null) {
         'publish_year' => [
             'value' => rswpbs_get_book_publish_year($bookId),
             'label' => rswpbs_static_text_published_year(),
-            'condition' => function() { return !empty(rswpbs_get_book_publish_date()); }
+            'condition' => function () {
+                return !empty(rswpbs_get_book_publish_date());
+            }
         ],
         'publisher' => [
             'value' => $publisher_display,
             'label' => rswpbs_static_text_publisher_name(),
             'escape' => false
+        ],
+        'contributors' => [
+            'value' => get_post_meta($bookId, '_rsbs_book_contributors', true),
+            'label' => __('Contributors', 'rswpbs')
+        ],
+        'reading_age' => [
+            'value' => get_post_meta($bookId, '_rsbs_book_reading_age', true),
+            'label' => __('Reading Age', 'rswpbs')
+        ],
+        'grade_level' => [
+            'value' => get_post_meta($bookId, '_rsbs_book_grade_level', true),
+            'label' => __('Grade Level', 'rswpbs')
+        ],
+        'lexile_measure' => [
+            'value' => get_post_meta($bookId, '_rsbs_book_lexile_measure', true),
+            'label' => __('Lexile Measure', 'rswpbs')
         ],
         'pages' => [
             'value' => rswpbs_get_book_pages($bookId),
@@ -134,14 +155,38 @@ function rswpbs_book_content_section($bookId = null) {
             'value' => rswpbs_get_print_length($bookId),
             'label' => rswpbs_static_text_print_length()
         ],
-        'avg_rate' => [
-            'value' => rswpbs_get_avg_rate($bookId),
-            'label' => rswpbs_static_text_avarage_ratings(),
-            'escape' => 'wp_kses_post'
-        ],
         'reading_date' => [
             'value' => rswpbs_get_book_reading_date($bookId),
             'label' => rswpbs_static_text_reading_date(),
+            'escape' => 'wp_kses_post'
+        ],
+        'audio_listening_length' => [
+            'value' => get_post_meta($bookId, '_rsbs_audio_listening_length', true),
+            'label' => __('Listening Length', 'rswpbs')
+        ],
+        'audio_narrator' => [
+            'value' => get_post_meta($bookId, '_rsbs_audio_narrator', true),
+            'label' => __('Narrator', 'rswpbs')
+        ],
+        'audio_version' => [
+            'value' => get_post_meta($bookId, '_rsbs_audio_version', true),
+            'label' => __('Audio Version', 'rswpbs')
+        ],
+        'audio_program_type' => [
+            'value' => get_post_meta($bookId, '_rsbs_audio_program_type', true),
+            'label' => __('Program Type', 'rswpbs')
+        ],
+        'audio_release_date' => [
+            'value' => get_post_meta($bookId, '_rsbs_audio_release_date', true),
+            'label' => __('Audio Release Date', 'rswpbs')
+        ],
+        'total_ratings' => [
+            'value' => get_post_meta($bookId, '_rsbs_total_book_ratings', true),
+            'label' => __('Total Ratings', 'rswpbs')
+        ],
+        'avg_rate' => [
+            'value' => rswpbs_get_avg_rate($bookId),
+            'label' => rswpbs_static_text_avarage_ratings(),
             'escape' => 'wp_kses_post'
         ]
     ];
@@ -170,8 +215,10 @@ function rswpbs_book_content_section($bookId = null) {
                         $value = $field['value'];
 
                         // Check conditions
-                        if (empty($value)) continue;
-                        if (isset($field['condition']) && !$field['condition']($value)) continue;
+                        if (empty($value))
+                            continue;
+                        if (isset($field['condition']) && !$field['condition']($value))
+                            continue;
 
                         // Apply wrapper if exists
                         if (isset($field['wrapper'])) {
@@ -180,23 +227,22 @@ function rswpbs_book_content_section($bookId = null) {
                         // Escape value unless specified otherwise
                         else if (!isset($field['escape']) || $field['escape'] === 'esc_html') {
                             $value = esc_html($value);
-                        }
-                        else if ($field['escape'] === 'wp_kses_post') {
+                        } else if ($field['escape'] === 'wp_kses_post') {
                             $value = wp_kses_post($value);
                         }
                         // If escape is false, leave as is
-
-                        if (!empty($value)) :
-                        ?>
-                        <div class="information-list">
-                            <div class="information-label">
-                                <h4><?php echo esc_html($field['label']); ?></h4>
+                
+                        if (!empty($value)):
+                            ?>
+                            <div class="information-list">
+                                <div class="information-label">
+                                    <h4><?php echo esc_html($field['label']); ?></h4>
+                                </div>
+                                <div class="information-content">
+                                    <h4><?php echo $value; ?></h4>
+                                </div>
                             </div>
-                            <div class="information-content">
-                                <h4><?php echo $value; ?></h4>
-                            </div>
-                        </div>
-                        <?php
+                            <?php
                         endif;
                     }
                     do_action('rswpbs_after_book_information');
