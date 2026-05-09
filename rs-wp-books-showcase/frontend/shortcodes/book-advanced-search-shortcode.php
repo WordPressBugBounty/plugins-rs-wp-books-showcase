@@ -23,9 +23,9 @@ function rswpbs_advanced_search($atts) {
         $metadata['formats'][] = strtolower(rswpbs_get_book_format($book->ID));
         $metadata['publishers'][] = strtolower(rswpbs_get_book_publisher_name($book->ID));
         $metadata['years'][] = strtolower(rswpbs_get_book_publish_year($book->ID));
-        $metadata['languages'][] = strtolower(get_post_meta($book->ID, '_rsbs_book_language', true));
-        $metadata['isbns'][] = strtolower(get_post_meta($book->ID, '_rsbs_book_isbn', true));
-        $metadata['isbn_10s'][] = strtolower(get_post_meta($book->ID, '_rsbs_book_isbn_10', true));
+        $metadata['languages'][] = strtolower(get_post_meta($book->ID, '_rsbs_book_language', true) ?: '');
+        $metadata['isbns'][] = strtolower(get_post_meta($book->ID, '_rsbs_book_isbn', true) ?: '');
+        $metadata['isbn_10s'][] = strtolower(get_post_meta($book->ID, '_rsbs_book_isbn_10', true) ?: '');
     }
     foreach ($metadata as &$data) {
         $data = array_filter(array_unique($data));
@@ -36,7 +36,8 @@ function rswpbs_advanced_search($atts) {
     $taxonomies = [
         'authors' => get_terms(['taxonomy' => 'book-author', 'hide_empty' => true]),
         'series' => get_terms(['taxonomy' => 'book-series', 'hide_empty' => true]),
-        'categories' => get_terms(['taxonomy' => 'book-category', 'hide_empty' => true])
+        'categories' => get_terms(['taxonomy' => 'book-category', 'hide_empty' => true]),
+        'publishers' => get_terms(['taxonomy' => 'book-publisher', 'hide_empty' => true])
     ];
     foreach ($taxonomies as &$terms) {
         usort($terms, fn($a, $b) => strcmp($a->name, $b->name));
@@ -190,13 +191,27 @@ function rswpbs_advanced_search($atts) {
                             if ($visibility['publisher'] ?? false): ?>
                                 <div class="<?php echo esc_attr($columns['field']); ?>">
                                     <div class="search-field">
-                                        <select name="publisher" id="book-publisher" class="rswpbs-select-field">
+                                        <select name="publisher_name" id="book-publisher" class="rswpbs-select-field">
                                             <option value="all"><?php echo rswpbs_static_text_all_publishers(); ?></option>
-                                            <?php foreach ($metadata['publishers'] as $publisher): ?>
-                                                <option value="<?php echo esc_attr($publisher); ?>" <?php selected($publisher, $search_fields['publisher']); ?>>
-                                                    <?php echo esc_html($publisher); ?>
-                                                </option>
-                                            <?php endforeach; ?>
+                                            <?php 
+                                            if (get_option('rswpbs_publisher_db_version') === '1.0') {
+                                                foreach ($taxonomies['publishers'] as $publisher) {
+                                                    ?>
+                                                    <option value="<?php echo esc_attr($publisher->slug); ?>" <?php selected($publisher->slug, $search_fields['publisher']); ?>>
+                                                        <?php echo esc_html($publisher->name); ?>
+                                                    </option>
+                                                    <?php
+                                                }
+                                            } else {
+                                                foreach ($metadata['publishers'] as $publisher) {
+                                                    ?>
+                                                    <option value="<?php echo esc_attr($publisher); ?>" <?php selected(strtolower($publisher), strtolower($search_fields['publisher'])); ?>>
+                                                        <?php echo esc_html($publisher); ?>
+                                                    </option>
+                                                    <?php
+                                                }
+                                            }
+                                            ?>
                                         </select>
                                     </div>
                                 </div>

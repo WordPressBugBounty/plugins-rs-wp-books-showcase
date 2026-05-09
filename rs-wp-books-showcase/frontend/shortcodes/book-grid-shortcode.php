@@ -12,8 +12,9 @@ function rswpbs_books_showcase_grid_layout( $atts ) {
 	        'categories_exclude' => '',
 	        'authors_include' => '',
 	        'authors_exclude' => '',
-	        'series_include' => '',
 	        'series_exclude' => '',
+	        'publishers_include' => '',
+	        'publishers_exclude' => '',
 	        'exclude_books' => '',
 	        'book_offset' => '',
 	        'order' => '',
@@ -105,14 +106,31 @@ function rswpbs_books_showcase_grid_layout( $atts ) {
 		$includeSeries = true;
 	}
 	if (true === $includeSeries) {
-		$includeBookSeries = array_map('intval', explode(',' , $atts['series_include']));
+		$includeBookSeries = array_map('intval', explode(',', $atts['series_include']));
 		$bookQueryArgs['tax_query'] = array(
-	        array(
-	            'taxonomy' => 'book-series',
-	            'field'    => 'term_id',
-	            'terms'    => $includeBookSeries,
-	        ),
-	    );
+			array(
+				'taxonomy' => 'book-series',
+				'field'    => 'term_id',
+				'terms'    => $includeBookSeries,
+			),
+		);
+	}
+	$includePublishers = false;
+	if (!empty($atts['publishers_include']) && $atts['publishers_include'] !== 'false' && $atts['publishers_include'] !== 'true') {
+		$includePublishers = true;
+	}
+	if (true === $includePublishers) {
+		$includeBookPublishers = is_numeric(str_replace(',', '', $atts['publishers_include'])) ? array_map('intval', explode(',', $atts['publishers_include'])) : array_map('trim', explode(',', $atts['publishers_include']));
+		$field = is_numeric(str_replace(',', '', $atts['publishers_include'])) ? 'term_id' : 'name';
+		
+		if (!isset($bookQueryArgs['tax_query'])) {
+			$bookQueryArgs['tax_query'] = array();
+		}
+		$bookQueryArgs['tax_query'][] = array(
+			'taxonomy' => 'book-publisher',
+			'field'    => $field,
+			'terms'    => $includeBookPublishers,
+		);
 	}
 	if (true === $includeCategory && true === $includeAuthors && true === $includeSeries) {
 		$bookQueryArgs['tax_query'] = array(
@@ -146,10 +164,29 @@ function rswpbs_books_showcase_grid_layout( $atts ) {
 	if (!empty($atts['series_exclude']) && $atts['series_exclude'] !== 'false' && $atts['series_exclude'] !== 'true') {
 		$excludeSeries = true;
 	}
-	if (true === $excludeCategories || true === $excludeAuthors || true === $excludeSeries) {
+	$excludePublishers = false;
+	if (!empty($atts['publishers_exclude']) && $atts['publishers_exclude'] !== 'false' && $atts['publishers_exclude'] !== 'true') {
+		$excludePublishers = true;
+	}
+	if (true === $excludePublishers) {
+		$excludeBookPublishers = is_numeric(str_replace(',', '', $atts['publishers_exclude'])) ? array_map('intval', explode(',', $atts['publishers_exclude'])) : array_map('trim', explode(',', $atts['publishers_exclude']));
+		$field = is_numeric(str_replace(',', '', $atts['publishers_exclude'])) ? 'term_id' : 'name';
+		
+		if (!isset($bookQueryArgs['tax_query'])) {
+			$bookQueryArgs['tax_query'] = array();
+		}
+		$bookQueryArgs['tax_query'][] = array(
+			'taxonomy' => 'book-publisher',
+			'field'    => $field,
+			'terms'    => $excludeBookPublishers,
+			'operator' => 'NOT IN',
+		);
+	}
+	if (true === $excludeCategories || true === $excludeAuthors || true === $excludeSeries || true === $excludePublishers) {
 		$excludeBookCategories = array_map('intval', explode(',' , $atts['categories_exclude']));
 		$excludeBookAuthors = array_map('intval', explode(',' , $atts['authors_exclude']));
 		$excludeBookSeries = array_map('intval', explode(',' , $atts['series_exclude']));
+		$excludeBookPublishers = is_numeric(str_replace(',', '', $atts['publishers_exclude'])) ? array_map('intval', explode(',', $atts['publishers_exclude'])) : array_map('trim', explode(',', $atts['publishers_exclude']));
  		$exclude_tax_query = array();
  		if (true === $excludeAuthors) {
 	        $exclude_tax_query[] = array(

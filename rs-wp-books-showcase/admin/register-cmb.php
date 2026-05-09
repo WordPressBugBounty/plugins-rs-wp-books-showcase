@@ -49,48 +49,47 @@ class Rswpbs_Cmb_For_Book
 	public function book_information_fields_render($post)
 	{
 		wp_nonce_field( 'Book_Information_Data', 'Book_Information_Nonce' );
-		$original_book_name = get_post_meta( $post->ID, $this->prefix . 'original_book_name', true );
-		$original_book_url = get_post_meta( $post->ID, $this->prefix . 'original_book_url', true );
-		$book_name = get_post_meta( $post->ID, $this->prefix . 'book_name', true );
-		$book_price = str_replace('$', '', get_post_meta( $post->ID, $this->prefix . 'book_price', true ));
-		$book_sale_price = str_replace('$', '', get_post_meta( $post->ID, $this->prefix . 'book_sale_price', true ));
-		$book_isbn = get_post_meta( $post->ID, $this->prefix . 'book_isbn', true );
-		$book_asin = get_post_meta( $post->ID, $this->prefix . 'book_asin', true );
-		$book_isbn_10 = get_post_meta( $post->ID, $this->prefix . 'book_isbn_10', true );
-		$book_isbn_13 = get_post_meta( $post->ID, $this->prefix . 'book_isbn_13', true );
-		$book_translator = get_post_meta( $post->ID, $this->prefix . 'book_translator', true );
-		$book_file_size = get_post_meta( $post->ID, $this->prefix . 'book_file_size', true );
-		$simultaneous_device_usage = get_post_meta( $post->ID, $this->prefix . 'simultaneous_device_usage', true );
-		$book_file_format = get_post_meta( $post->ID, $this->prefix . 'book_file_format', true );
-		$book_text_to_speech = get_post_meta( $post->ID, $this->prefix . 'book_text_to_speech', true );
-		$screen_reader = get_post_meta( $post->ID, $this->prefix . 'screen_reader', true );
-		$enhanced_typesetting = get_post_meta( $post->ID, $this->prefix . 'enhanced_typesetting', true );
-		$x_ray = get_post_meta( $post->ID, $this->prefix . 'x_ray', true );
-		$word_wise = get_post_meta( $post->ID, $this->prefix . 'word_wise', true );
-		$sticky_notes = get_post_meta( $post->ID, $this->prefix . 'sticky_notes', true );
-		$print_length = get_post_meta( $post->ID, $this->prefix . 'print_length', true );
-		$book_dimension = get_post_meta( $post->ID, $this->prefix . 'book_dimension', true );
-		$book_weight = get_post_meta( $post->ID, $this->prefix . 'book_weight', true );
-		$book_publish_date = get_post_meta( $post->ID, $this->prefix . 'book_publish_date', true );
-		$book_publish_year = get_post_meta( $post->ID, $this->prefix . 'book_publish_year', true );
-		$book_publisher_name = get_post_meta( $post->ID, $this->prefix . 'book_publisher_name', true );
-		$book_country = get_post_meta( $post->ID, $this->prefix . 'book_country', true );
-		$book_language = get_post_meta( $post->ID, $this->prefix . 'book_language', true );
-		$book_format = get_post_meta( $post->ID, $this->prefix . 'book_format', true );
-		$book_pages = get_post_meta( $post->ID, $this->prefix . 'book_pages', true );
-		$short_description = get_post_meta( $post->ID, $this->prefix . 'short_description', true );
-		$average_book_rating = get_post_meta( $post->ID, $this->prefix . 'average_book_rating', true );
-		$book_availability_status = get_post_meta( $post->ID, $this->prefix . 'book_availability_status', true );
-		$total_book_ratings = get_post_meta( $post->ID, $this->prefix . 'total_book_ratings', true );
-		$book_rating_links = get_post_meta( $post->ID, $this->prefix . 'book_rating_links', true );
-		$book_reading_date = get_post_meta( $post->ID, $this->prefix . 'book_reading_date', true );
-		$buy_btn_text = get_post_meta( $post->ID, $this->prefix . 'buy_btn_text', true );
-		$buy_btn_link = get_post_meta( $post->ID, $this->prefix . 'buy_btn_link', true );
-		$book_reading_age = get_post_meta( $post->ID, $this->prefix . 'book_reading_age', true );
-		$book_grade_level = get_post_meta( $post->ID, $this->prefix . 'book_grade_level', true );
-		$book_lexile_measure = get_post_meta( $post->ID, $this->prefix . 'book_lexile_measure', true );
+		$original_book_name = get_post_meta( $post->ID, $this->prefix . 'original_book_name', true ) ?: '';
+		$original_book_url = get_post_meta( $post->ID, $this->prefix . 'original_book_url', true ) ?: '';
+		$book_name = get_post_meta( $post->ID, $this->prefix . 'book_name', true ) ?: '';
+		$book_price = str_replace('$', '', get_post_meta( $post->ID, $this->prefix . 'book_price', true ) ?: '');
+		$book_sale_price = str_replace('$', '', get_post_meta( $post->ID, $this->prefix . 'book_sale_price', true ) ?: '');
+		$book_isbn = get_post_meta( $post->ID, $this->prefix . 'book_isbn', true ) ?: '';
+		$book_asin = get_post_meta( $post->ID, $this->prefix . 'book_asin', true ) ?: '';
+		$book_isbn_10 = get_post_meta( $post->ID, $this->prefix . 'book_isbn_10', true ) ?: '';
+		$book_isbn_13 = get_post_meta( $post->ID, $this->prefix . 'book_isbn_13', true ) ?: '';
+		$book_translator = get_post_meta( $post->ID, $this->prefix . 'book_translator', true ) ?: '';
+		$book_file_size = get_post_meta( $post->ID, $this->prefix . 'book_file_size', true ) ?: '';
+		$simultaneous_device_usage = get_post_meta( $post->ID, $this->prefix . 'simultaneous_device_usage', true ) ?: '';
+		$book_file_format = get_post_meta( $post->ID, $this->prefix . 'book_file_format', true ) ?: '';
+		$book_text_to_speech = get_post_meta( $post->ID, $this->prefix . 'book_text_to_speech', true ) ?: '';
+		$screen_reader = get_post_meta( $post->ID, $this->prefix . 'screen_reader', true ) ?: '';
+		$enhanced_typesetting = get_post_meta( $post->ID, $this->prefix . 'enhanced_typesetting', true ) ?: '';
+		$x_ray = get_post_meta( $post->ID, $this->prefix . 'x_ray', true ) ?: '';
+		$word_wise = get_post_meta( $post->ID, $this->prefix . 'word_wise', true ) ?: '';
+		$sticky_notes = get_post_meta( $post->ID, $this->prefix . 'sticky_notes', true ) ?: '';
+		$print_length = get_post_meta( $post->ID, $this->prefix . 'print_length', true ) ?: '';
+		$book_dimension = get_post_meta( $post->ID, $this->prefix . 'book_dimension', true ) ?: '';
+		$book_weight = get_post_meta( $post->ID, $this->prefix . 'book_weight', true ) ?: '';
+		$book_publish_date = get_post_meta( $post->ID, $this->prefix . 'book_publish_date', true ) ?: '';
+		$book_publish_year = get_post_meta( $post->ID, $this->prefix . 'book_publish_year', true ) ?: '';
+		$book_country = get_post_meta( $post->ID, $this->prefix . 'book_country', true ) ?: '';
+		$book_language = get_post_meta( $post->ID, $this->prefix . 'book_language', true ) ?: '';
+		$book_format = get_post_meta( $post->ID, $this->prefix . 'book_format', true ) ?: '';
+		$book_pages = get_post_meta( $post->ID, $this->prefix . 'book_pages', true ) ?: '';
+		$short_description = get_post_meta( $post->ID, $this->prefix . 'short_description', true ) ?: '';
+		$average_book_rating = get_post_meta( $post->ID, $this->prefix . 'average_book_rating', true ) ?: '';
+		$book_availability_status = get_post_meta( $post->ID, $this->prefix . 'book_availability_status', true ) ?: '';
+		$total_book_ratings = get_post_meta( $post->ID, $this->prefix . 'total_book_ratings', true ) ?: '';
+		$book_rating_links = get_post_meta( $post->ID, $this->prefix . 'book_rating_links', true ) ?: '';
+		$book_reading_date = get_post_meta( $post->ID, $this->prefix . 'book_reading_date', true ) ?: '';
+		$buy_btn_text = get_post_meta( $post->ID, $this->prefix . 'buy_btn_text', true ) ?: '';
+		$buy_btn_link = get_post_meta( $post->ID, $this->prefix . 'buy_btn_link', true ) ?: '';
+		$book_reading_age = get_post_meta( $post->ID, $this->prefix . 'book_reading_age', true ) ?: '';
+		$book_grade_level = get_post_meta( $post->ID, $this->prefix . 'book_grade_level', true ) ?: '';
+		$book_lexile_measure = get_post_meta( $post->ID, $this->prefix . 'book_lexile_measure', true ) ?: '';
 		if (class_exists('Rswpbs_Pro')) {
-			$buy_btn_shortcode = get_post_meta( $post->ID, $this->prefix . 'buy_btn_shortcode', true );
+			$buy_btn_shortcode = get_post_meta( $post->ID, $this->prefix . 'buy_btn_shortcode', true ) ?: '';
 		}
 
 		$bookCategories = get_terms(
@@ -136,12 +135,7 @@ class Rswpbs_Cmb_For_Book
 								<input type="hidden" name="book_publish_year" class="w-100 regular-text" id="publish-year" value="<?php echo esc_attr($book_publish_year);?>">
 							</div>
 						</div>
-						<div class="rswpbs-col-lg-4 mb-20">
-							<div class="book-field-container">
-								<label for="publisher-name"><?php esc_html_e( 'Publisher Name', 'rswpbs' );?></label>
-								<input type="text" name="book_publisher_name" class="w-100 regular-text" id="publisher-name" value="<?php echo esc_attr($book_publisher_name);?>" placeholder="Publisher Name">
-							</div>
-						</div>
+
 						<div class="rswpbs-col-lg-4 mb-20">
 							<div class="book-field-container">
 								<label for="reading-age"><?php esc_html_e( 'Reading Age', 'rswpbs' );?></label>
@@ -591,7 +585,6 @@ class Rswpbs_Cmb_For_Book
 			'book_language' => (isset($_POST['book_language']) ? sanitize_text_field($_POST['book_language']) : ''),
 			'book_publish_date' => (isset($_POST['book_publish_date']) ? sanitize_text_field($_POST['book_publish_date']) : ''),
 			'book_publish_year' => (isset($_POST['book_publish_year']) ? sanitize_text_field($_POST['book_publish_year']) : ''),
-			'book_publisher_name' => (isset($_POST['book_publisher_name']) ? sanitize_text_field($_POST['book_publisher_name']) : ''),
 			'book_reading_age' => (isset($_POST['book_reading_age']) ? sanitize_text_field($_POST['book_reading_age']) : ''),
 			'book_grade_level' => (isset($_POST['book_grade_level']) ? sanitize_text_field($_POST['book_grade_level']) : ''),
 			'book_lexile_measure' => (isset($_POST['book_lexile_measure']) ? sanitize_text_field($_POST['book_lexile_measure']) : ''),

@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 function rswpbs_get_static_text( $option_name, $default ) {
     // Get the stored option or return the default value.
-    $text = get_option( $option_name, $default );
+    $text = (string) get_option( $option_name, $default );
 
     // Apply WordPress localization function.
     return __( $text, 'rswpbs' );
@@ -28,6 +28,7 @@ $static_texts = [
     'rswpbs_text_of' => ['rswpbs_static_text_of', 'Of'],
     'rswpbs_text_books' => ['rswpbs_static_text_books', 'Books'],
     'rswpbs_text_books_by' => ['rswpbs_static_text_books_by', 'Books By'],
+    'rswpbs_text_books_published_by' => ['rswpbs_static_text_books_published_by', 'Books Published By'],
     'rswpbs_text_view_book' => ['rswpbs_static_text_read_more', 'View Book'],
     'rswpbs_text_read_more_review' => ['rswpbs_static_text_read_more_review', 'Read More'],
     'rswpbs_text_load_more' => ['rswpbs_static_text_load_more', 'Load More'],

@@ -13,7 +13,7 @@ function rswpbs_get_book_desc($bookId = null, $word_count = 30) {
     if (is_singular('book')) {
         $word_count = 100;
     }
-    $short_description = get_post_meta($bookId, rswpbs_prefix() . 'short_description', true);
+    $short_description = get_post_meta($bookId, rswpbs_prefix() . 'short_description', true) ?: '';
 
     // If not on the single book page, strip HTML tags
     if (!is_singular('book')) {
@@ -50,13 +50,13 @@ function rswpbs_get_single_book_excerpt($bookId = null) {
     // Process the description based on excerpt type
     if ($excerpt_type === 'excerpt') {
         // Get the short description for excerpt type
-        $short_description = get_post_meta($bookId, rswpbs_prefix() . 'short_description', true);
+        $short_description = get_post_meta($bookId, rswpbs_prefix() . 'short_description', true) ?: '';
         if (empty($short_description)) {
             return ''; // Return empty if no description exists
         }
 
         // Trim to character limit
-        $trimmed_description = substr($short_description, 0, $excerpt_limit);
+        $trimmed_description = substr($short_description, 0, (int)$excerpt_limit);
         // Ensure we don't cut off in the middle of a word
         if (strlen($short_description) > $excerpt_limit) {
             $last_space = strrpos($trimmed_description, ' ');
@@ -83,7 +83,7 @@ function rswpbs_get_book_weight($bookId = null){
 	if ($bookId === null) {
 		$bookId = get_the_ID();
 	}
-	$book_weight = get_post_meta( $bookId, rswpbs_prefix() . 'book_weight', true );
+	$book_weight = get_post_meta( $bookId, rswpbs_prefix() . 'book_weight', true ) ?: '';
 	return $book_weight;
 }
 
@@ -91,7 +91,7 @@ function rswpbs_get_book_dimension($bookId = null){
 	if ($bookId === null) {
 		$bookId = get_the_ID();
 	}
-	$book_dimension = get_post_meta( $bookId, rswpbs_prefix() . 'book_dimension', true );
+	$book_dimension = get_post_meta( $bookId, rswpbs_prefix() . 'book_dimension', true ) ?: '';
 	return $book_dimension;
 }
 
@@ -99,7 +99,7 @@ function rswpbs_get_book_file_size($bookId = null){
 	if ($bookId === null) {
 		$bookId = get_the_ID();
 	}
-	$book_file_size = get_post_meta( $bookId, rswpbs_prefix() . 'book_file_size', true );
+	$book_file_size = get_post_meta( $bookId, rswpbs_prefix() . 'book_file_size', true ) ?: '';
 	return $book_file_size;
 }
 
@@ -107,7 +107,7 @@ function rswpbs_get_book_file_format($bookId = null){
 	if ($bookId === null) {
 		$bookId = get_the_ID();
 	}
-	$book_file_format = get_post_meta($bookId, rswpbs_prefix() . 'book_file_format', true);
+	$book_file_format = get_post_meta($bookId, rswpbs_prefix() . 'book_file_format', true) ?: '';
 	if (!class_exists('Rswpbs_Pro')) {
 		$book_file_format = '';
 	}
@@ -118,7 +118,7 @@ function rswpbs_get_simultaneous_device_usage($bookId = null){
 	if ($bookId === null) {
 		$bookId = get_the_ID();
 	}
-	$simultaneous_device_usage = get_post_meta($bookId, rswpbs_prefix() . 'simultaneous_device_usage', true);
+	$simultaneous_device_usage = get_post_meta($bookId, rswpbs_prefix() . 'simultaneous_device_usage', true) ?: '';
 	if (!class_exists('Rswpbs_Pro')) {
 		$simultaneous_device_usage = '';
 	}
@@ -129,7 +129,7 @@ function rswpbs_get_book_text_to_speech($bookId = null){
 	if ($bookId === null) {
 		$bookId = get_the_ID();
 	}
-	$book_text_to_speech = get_post_meta($bookId, rswpbs_prefix() . 'book_text_to_speech', true);
+	$book_text_to_speech = get_post_meta($bookId, rswpbs_prefix() . 'book_text_to_speech', true) ?: '';
 	if (!class_exists('Rswpbs_Pro')) {
 		$book_text_to_speech = '';
 	}elseif(class_exists('Rswpbs_Pro') && 'blank' == $book_text_to_speech){
@@ -146,7 +146,7 @@ function rswpbs_get_screen_reader($bookId = null){
 	if ($bookId === null) {
 		$bookId = get_the_ID();
 	}
-	$screen_reader = get_post_meta($bookId, rswpbs_prefix() . 'screen_reader', true);
+	$screen_reader = get_post_meta($bookId, rswpbs_prefix() . 'screen_reader', true) ?: '';
 	if (!class_exists('Rswpbs_Pro')) {
 		$screen_reader = '';
 	}elseif(class_exists('Rswpbs_Pro') && 'blank' == $screen_reader){
@@ -163,7 +163,7 @@ function rswpbs_get_enhanced_typesetting($bookId = null){
 	if ($bookId === null) {
 		$bookId = get_the_ID();
 	}
-	$enhanced_typesetting = get_post_meta($bookId, rswpbs_prefix() . 'enhanced_typesetting', true);
+	$enhanced_typesetting = get_post_meta($bookId, rswpbs_prefix() . 'enhanced_typesetting', true) ?: '';
 	if (!class_exists('Rswpbs_Pro')) {
 		$enhanced_typesetting = '';
 	}elseif(class_exists('Rswpbs_Pro') && 'blank' == $enhanced_typesetting){
@@ -180,7 +180,7 @@ function rswpbs_get_x_ray($bookId = null){
 	if ($bookId === null) {
 		$bookId = get_the_ID();
 	}
-	$x_ray = get_post_meta($bookId, rswpbs_prefix() . 'x_ray', true);
+	$x_ray = get_post_meta($bookId, rswpbs_prefix() . 'x_ray', true) ?: '';
 	if (!class_exists('Rswpbs_Pro')) {
 		$x_ray = '';
 	}elseif(class_exists('Rswpbs_Pro') && 'blank' == $x_ray){
@@ -197,7 +197,7 @@ function rswpbs_get_word_wise($bookId = null){
 	if ($bookId === null) {
 		$bookId = get_the_ID();
 	}
-	$word_wise = get_post_meta($bookId, rswpbs_prefix() . 'word_wise', true);
+	$word_wise = get_post_meta($bookId, rswpbs_prefix() . 'word_wise', true) ?: '';
 	if (!class_exists('Rswpbs_Pro')) {
 		$word_wise = '';
 	}elseif(class_exists('Rswpbs_Pro') && 'blank' == $word_wise){
@@ -214,7 +214,7 @@ function rswpbs_get_sticky_notes($bookId = null){
 	if ($bookId === null) {
 		$bookId = get_the_ID();
 	}
-	$sticky_notes = get_post_meta($bookId, rswpbs_prefix() . 'sticky_notes', true);
+	$sticky_notes = get_post_meta($bookId, rswpbs_prefix() . 'sticky_notes', true) ?: '';
 	if (!class_exists('Rswpbs_Pro')) {
 		$sticky_notes = '';
 	}
@@ -225,7 +225,7 @@ function rswpbs_get_print_length($bookId = null){
 	if ($bookId === null) {
 		$bookId = get_the_ID();
 	}
-	$print_length = get_post_meta($bookId, rswpbs_prefix() . 'print_length', true);
+	$print_length = get_post_meta($bookId, rswpbs_prefix() . 'print_length', true) ?: '';
 	if (!class_exists('Rswpbs_Pro')) {
 		$print_length = '';
 	}
@@ -236,7 +236,7 @@ function rswpbs_get_book_translator($bookId = null){
 	if ($bookId === null) {
 		$bookId = get_the_ID();
 	}
-	$book_translator = get_post_meta( $bookId, rswpbs_prefix() . 'book_translator', true );
+	$book_translator = get_post_meta( $bookId, rswpbs_prefix() . 'book_translator', true ) ?: '';
 	return $book_translator;
 }
 
@@ -244,7 +244,7 @@ function rswpbs_get_book_format($bookId = null){
 	if ($bookId === null) {
 		$bookId = get_the_ID();
 	}
-	$book_format = get_post_meta( $bookId, rswpbs_prefix() . 'book_format', true );
+	$book_format = get_post_meta( $bookId, rswpbs_prefix() . 'book_format', true ) ?: '';
 	return $book_format;
 }
 
@@ -252,7 +252,7 @@ function rswpbs_get_book_name($bookId = null){
 	if ($bookId === null) {
 		$bookId = get_the_ID();
 	}
-	$bookName = get_post_meta( $bookId, rswpbs_prefix() . 'book_name', true );
+	$bookName = get_post_meta( $bookId, rswpbs_prefix() . 'book_name', true ) ?: '';
 	return $bookName;
 }
 
@@ -260,7 +260,7 @@ function rswpbs_get_book_original_name($bookId = null){
 	if ($bookId === null) {
 		$bookId = get_the_ID();
 	}
-	$originalBookName = get_post_meta( $bookId, rswpbs_prefix() . 'original_book_name', true );
+	$originalBookName = get_post_meta( $bookId, rswpbs_prefix() . 'original_book_name', true ) ?: '';
 	if (!class_exists('Rswpbs_Pro')) {
 		$originalBookName = '';
 	}
@@ -270,7 +270,7 @@ function rswpbs_get_book_original_url($bookId = null){
 	if ($bookId === null) {
 		$bookId = get_the_ID();
 	}
-	$originalBookUrl = get_post_meta( $bookId, rswpbs_prefix() . 'original_book_url', true );
+	$originalBookUrl = get_post_meta( $bookId, rswpbs_prefix() . 'original_book_url', true ) ?: '';
 	if (!class_exists('Rswpbs_Pro')) {
 		$originalBookUrl = '';
 	}
@@ -281,7 +281,7 @@ function rswpbs_get_book_pages($bookId = null) {
     if ($bookId === null) {
         $bookId = get_the_ID();
     }
-    $bookPages = get_post_meta($bookId, rswpbs_prefix() . 'book_pages', true);
+    $bookPages = get_post_meta($bookId, rswpbs_prefix() . 'book_pages', true) ?: '';
 
     // If the value is empty, return 0 or null (depending on your preference)
     if (empty($bookPages)) {
@@ -307,7 +307,7 @@ function rswpbs_get_book_publish_date($bookId = null){
 	if ($bookId === null) {
 		$bookId = get_the_ID();
 	}
-	$bookPublishDate = get_post_meta( $bookId, rswpbs_prefix() . 'book_publish_date', true );
+	$bookPublishDate = get_post_meta( $bookId, rswpbs_prefix() . 'book_publish_date', true ) ?: '';
 	return $bookPublishDate;
 }
 
@@ -315,23 +315,44 @@ function rswpbs_get_book_publish_year($bookId = null){
 	if ($bookId === null) {
 		$bookId = get_the_ID();
 	}
-	$bookPublishYear = get_post_meta( $bookId, rswpbs_prefix() . 'book_publish_year', true );
+	$bookPublishYear = get_post_meta( $bookId, rswpbs_prefix() . 'book_publish_year', true ) ?: '';
 	return $bookPublishYear;
 }
 
 function rswpbs_get_book_publisher_name($bookId = null){
-	if ($bookId === null) {
-		$bookId = get_the_ID();
+	return rswpbs_get_book_publisher($bookId);
+}
+
+/**
+ * Get book publisher with backward compatibility.
+ * Checks the new book-publisher taxonomy first, then falls back to old meta.
+ */
+function rswpbs_get_book_publisher($post_id = null) {
+	if ($post_id === null) {
+		$post_id = get_the_ID();
 	}
-	$bookPublisherName = get_post_meta( $bookId, rswpbs_prefix() . 'book_publisher_name', true );
-	return $bookPublisherName;
+
+	// 1. Try to get the term from the taxonomy
+	$terms = get_the_terms($post_id, 'book-publisher');
+	if (!empty($terms) && !is_wp_error($terms)) {
+		$term = reset($terms);
+		return $term->name;
+	}
+
+	// 2. Fallback to the old post meta
+	$publisher_name = get_post_meta($post_id, rswpbs_prefix() . 'book_publisher_name', true) ?: '';
+	if (!empty($publisher_name)) {
+		return $publisher_name;
+	}
+
+	return '';
 }
 
 function rswpbs_get_book_country($bookId = null){
 	if ($bookId === null) {
 		$bookId = get_the_ID();
 	}
-	$bookcountry = get_post_meta( $bookId, rswpbs_prefix() . 'book_country', true );
+	$bookcountry = get_post_meta( $bookId, rswpbs_prefix() . 'book_country', true ) ?: '';
 	return $bookcountry;
 }
 
@@ -339,7 +360,7 @@ function rswpbs_get_book_language($bookId = null){
 	if ($bookId === null) {
 		$bookId = get_the_ID();
 	}
-	$bookLanguage = get_post_meta( $bookId, rswpbs_prefix() . 'book_language', true );
+	$bookLanguage = get_post_meta( $bookId, rswpbs_prefix() . 'book_language', true ) ?: '';
 	return $bookLanguage;
 }
 
@@ -347,7 +368,7 @@ function rswpbs_get_book_isbn($bookId = null){
 	if ($bookId === null) {
 		$bookId = get_the_ID();
 	}
-	$bookIsbn = get_post_meta( $bookId, rswpbs_prefix() . 'book_isbn', true );
+	$bookIsbn = get_post_meta( $bookId, rswpbs_prefix() . 'book_isbn', true ) ?: '';
 	return $bookIsbn;
 }
 
@@ -355,7 +376,7 @@ function rswpbs_get_book_isbn_10($bookId = null){
 	if ($bookId === null) {
 		$bookId = get_the_ID();
 	}
-	$bookIsbn_10 = get_post_meta( $bookId, rswpbs_prefix() . 'book_isbn_10', true );
+	$bookIsbn_10 = get_post_meta( $bookId, rswpbs_prefix() . 'book_isbn_10', true ) ?: '';
 	return $bookIsbn_10;
 }
 
@@ -363,7 +384,7 @@ function rswpbs_get_book_isbn_13($bookId = null){
 	if ($bookId === null) {
 		$bookId = get_the_ID();
 	}
-	$bookIsbn_13 = get_post_meta( $bookId, rswpbs_prefix() . 'book_isbn_13', true );
+	$bookIsbn_13 = get_post_meta( $bookId, rswpbs_prefix() . 'book_isbn_13', true ) ?: '';
 	return $bookIsbn_13;
 }
 
@@ -371,7 +392,7 @@ function rswpbs_get_book_asin($bookId = null){
 	if ($bookId === null) {
 		$bookId = get_the_ID();
 	}
-	$bookAsin = get_post_meta( $bookId, rswpbs_prefix() . 'book_asin', true );
+	$bookAsin = get_post_meta( $bookId, rswpbs_prefix() . 'book_asin', true ) ?: '';
 	return $bookAsin;
 }
 
@@ -388,7 +409,9 @@ function rswpbs_get_book_author($bookId = null){
 	if (!empty($getBookAuthors)) :
 		foreach($getBookAuthors as $author){
 			$aIndex++;
-			$bookauthor .= '<a href="'.esc_url(get_term_link($author->term_id)).'">'.esc_html($author->name).'</a>';
+			$term_link = get_term_link($author->term_id);
+			$term_link = is_wp_error($term_link) ? '' : $term_link;
+			$bookauthor .= '<a href="'.esc_url($term_link).'">'.esc_html($author->name).'</a>';
 			if ($aIndex !== $countAuthors) {
 				$bookauthor .= ', ';
 			}
@@ -448,7 +471,9 @@ function rswpbs_get_book_categories($bookId = null, $sep = true) {
 
 		foreach ($bookCategories as $category) {
 			$cIndex++;
-			$outline .= '<a href="'.esc_url(get_term_link($category->term_id)).'">'.esc_html($category->name).'</a>';
+			$term_link = get_term_link($category->term_id);
+			$term_link = is_wp_error($term_link) ? '' : $term_link;
+			$outline .= '<a href="'.esc_url($term_link).'">'.esc_html($category->name).'</a>';
 
 			if ($sep && $cIndex !== $countCats) {
 				$outline .= ', '; // Added a comma separator except for the last item
@@ -502,7 +527,9 @@ function rswpbs_get_book_series($bookId = null, $sep = true) {
 
 	if ($bookSeries && is_array($bookSeries)) { // Check if $bookSeries is not empty and is an array
 		foreach ($bookSeries as $series) {
-			$outline .= '<a href="'.esc_url(get_term_link($series->term_id)).'">'.esc_html($series->name).'</a>';
+			$term_link = get_term_link($series->term_id);
+			$term_link = is_wp_error($term_link) ? '' : $term_link;
+			$outline .= '<a href="'.esc_url($term_link).'">'.esc_html($series->name).'</a>';
 		}
 	}
 	return $outline;
@@ -526,16 +553,16 @@ function rswpbs_get_book_price($bookId = null){
 	if (null === $currenySign) {
 		$currenySign = '$';
 	}
-	$bookRegularPrice = str_replace('$', '', get_post_meta( $bookId, rswpbs_prefix() . 'book_price', true ));
-	$bookSalePrice = str_replace('$', '', get_post_meta( $bookId, rswpbs_prefix() . 'book_sale_price', true ));
+	$bookRegularPrice = str_replace('$', '', get_post_meta( $bookId, rswpbs_prefix() . 'book_price', true ) ?: '');
+	$bookSalePrice = str_replace('$', '', get_post_meta( $bookId, rswpbs_prefix() . 'book_sale_price', true ) ?: '');
 	$bookPrice = '';
 	if (!empty($bookRegularPrice)) {
 		$bookPrice .= '<div class="regular-price'.(!empty($bookSalePrice) ? ' previous-price' : '').'">
-						<strong>'.$currenySign.''.esc_html($bookRegularPrice).'</strong>
+						<strong>'.esc_html($currenySign ?? '').''.esc_html($bookRegularPrice).'</strong>
 					</div>';
 	}
 	if (!empty($bookSalePrice)) {
-		$bookPrice .= '<div class="sale-price"><strong>'.$currenySign.''.esc_html($bookSalePrice).'</strong></div>';
+		$bookPrice .= '<div class="sale-price"><strong>'.esc_html($currenySign ?? '').''.esc_html($bookSalePrice).'</strong></div>';
 	}
 
 	return $bookPrice;
@@ -546,10 +573,10 @@ function rswpbs_get_book_price_except_markup($bookId = null){
 	}
 	$currenySign = '$';
 	if (class_exists('Rswpbs_Pro')) {
-		$currenySign = get_option( 'rswpbs_price_currency', '$' );
+		$currenySign = get_option( 'rswpbs_price_currency', '$' ) ?: '$';
 	}
-	$bookRegularPrice = str_replace('$', '', get_post_meta( $bookId, rswpbs_prefix() . 'book_price', true ));
-	$bookSalePrice = str_replace('$', '', get_post_meta( $bookId, rswpbs_prefix() . 'book_sale_price', true ));
+	$bookRegularPrice = str_replace('$', '', get_post_meta( $bookId, rswpbs_prefix() . 'book_price', true ) ?: '');
+	$bookSalePrice = str_replace('$', '', get_post_meta( $bookId, rswpbs_prefix() . 'book_sale_price', true ) ?: '');
 	if (empty($bookSalePrice)) {
 		$bookPrice = $bookRegularPrice;
 	}else{
@@ -562,8 +589,8 @@ function rswpbs_get_book_buy_btn($bookId = null){
 	if ($bookId === null) {
 		$bookId = get_the_ID();
 	}
-	$buy_btn_text = get_post_meta( $bookId, rswpbs_prefix() . 'buy_btn_text', true );
-	$buy_btn_link = get_post_meta( $bookId, rswpbs_prefix() . 'buy_btn_link', true );
+	$buy_btn_text = get_post_meta( $bookId, rswpbs_prefix() . 'buy_btn_text', true ) ?: '';
+	$buy_btn_link = get_post_meta( $bookId, rswpbs_prefix() . 'buy_btn_link', true ) ?: '';
 
 	$amazonTrackingID = get_option( 'rswpbs_amazon_tracking_id', 'lft01-20' );
 
@@ -580,7 +607,7 @@ function rswpbs_get_book_buy_btn_shortcode($bookId = null){
 	if ($bookId === null) {
 		$bookId = get_the_ID();
 	}
-	$buy_btn_shortcode = get_post_meta( $bookId, rswpbs_prefix() . 'buy_btn_shortcode', true );
+	$buy_btn_shortcode = get_post_meta( $bookId, rswpbs_prefix() . 'buy_btn_shortcode', true ) ?: '';
 	$output = '';
 	if (!empty($buy_btn_shortcode)) :
 		$output = do_shortcode($buy_btn_shortcode);
@@ -592,7 +619,7 @@ function rswpbs_get_book_availability_status($bookId = null){
 	if ($bookId === null) {
 		$bookId = get_the_ID();
 	}
-	$book_availability_status = get_post_meta( $bookId, rswpbs_prefix() . 'book_availability_status', true );
+	$book_availability_status = get_post_meta( $bookId, rswpbs_prefix() . 'book_availability_status', true ) ?: '';
 	return $book_availability_status;
 }
 
@@ -600,7 +627,7 @@ function rswpbs_get_book_reading_date($bookId = null){
 	if ($bookId === null) {
 		$bookId = get_the_ID();
 	}
-	$book_reading_date = get_post_meta( $bookId, rswpbs_prefix() . 'book_reading_date', true );
+	$book_reading_date = get_post_meta( $bookId, rswpbs_prefix() . 'book_reading_date', true ) ?: '';
 	return $book_reading_date;
 }
 
@@ -608,12 +635,12 @@ function rswpbs_get_avg_rate($bookId = null) {
     if ($bookId === null) {
         $bookId = get_the_ID();
     }
-    $average_book_rating = get_post_meta($bookId, rswpbs_prefix() . 'average_book_rating', true);
+    $average_book_rating = get_post_meta($bookId, rswpbs_prefix() . 'average_book_rating', true) ?: '0';
     $html_output = '';
 
     if ('nan' !== $average_book_rating) {
-        $totalRatings = get_post_meta($bookId, rswpbs_prefix() . 'total_book_ratings', true);
-        $ratingLink = get_post_meta($bookId, rswpbs_prefix() . 'book_rating_links', true);
+        $totalRatings = get_post_meta($bookId, rswpbs_prefix() . 'total_book_ratings', true) ?: '';
+        $ratingLink = get_post_meta($bookId, rswpbs_prefix() . 'book_rating_links', true) ?: '';
 
         // Use floatval to preserve decimal values
         $rounded_rating = round(floatval($average_book_rating) * 2) / 2;
@@ -647,7 +674,7 @@ function rswpbs_ext_website_list($bookId = null, $extclass = 'website-list-conta
 	if ($bookId === null) {
 		$bookId = get_the_ID();
 	}
-	$external_website_lists = get_post_meta( $bookId, rswpbs_prefix() . 'external_website_lists', true );
+	$external_website_lists = get_post_meta( $bookId, rswpbs_prefix() . 'external_website_lists', true ) ?: array();
 	$outline = '<ul class="'.$extclass.'">';
 	if($external_website_lists){
 		foreach($external_website_lists as $external_website){
@@ -668,9 +695,13 @@ function rswpbs_author_profile_picture($bookId = null){
 		$get_author_id = get_queried_object_id();
 	}
 	$get_author = get_term($get_author_id);
-	$authorImageId = get_term_meta($get_author->term_id, 'author_profile_picture', true );
+	if (is_wp_error($get_author) || !$get_author) {
+		return '';
+	}
 
-	$outline = wp_get_attachment_image_url( $authorImageId, 'full' );
+	$authorImageId = get_term_meta($get_author->term_id, 'author_profile_picture', true ) ?: '';
+
+	$outline = wp_get_attachment_image_url( $authorImageId, 'full' ) ?: '';
 	return $outline;
 }
 
@@ -682,7 +713,7 @@ function rswpbs_get_meta_data($meta_field_name){
 	);
 	$booksQuery = get_posts( $args );
 	foreach($booksQuery as $query) :
-		$get_fields_data = get_post_meta($query->ID, rswpbs_prefix() . $meta_field_name, true );
+		$get_fields_data = get_post_meta($query->ID, rswpbs_prefix() . $meta_field_name, true ) ?: '';
 		if (!in_array($get_fields_data, $metafielddata) && '' != $get_fields_data) {
 			$metafielddata[] = strtolower($get_fields_data);
 		}
@@ -908,14 +939,17 @@ function rswpbs_book_filtering_menu_category(){
 	) );
 	if (!empty($allCategories)) {
 		foreach ($allCategories as $category) {
+			$term_link = get_term_link($category->term_id);
+			$term_link = is_wp_error($term_link) ? '' : $term_link;
 			?>
-			<a class="catItem" href="<?php echo esc_url(get_term_link($category->term_id));?>"><?php echo esc_html( $category->name );?></a>
+			<a class="catItem" href="<?php echo esc_url($term_link);?>"><?php echo esc_html( $category->name );?></a>
 			<?php
 		}
 	}
 }
 
 function rswpbs_get_excerpt($limit, $content) {
+    $content = (string)$content;
     // Check if content length is less than the limit
     if (strlen($content) <= $limit) {
         return $content; // Return full content
@@ -956,7 +990,7 @@ function rswpbs_book_mockup_image($bookId = null){
 	if ($bookId === null) {
         $bookId = get_the_ID();
     }
-	$bookMockup = get_field('mockup_image', $bookId);
+	$bookMockup = get_field('mockup_image', $bookId) ?: '';
 	?>
 	<img src="<?php echo esc_url($bookMockup);?>" alt="<?php echo esc_attr(get_the_title());?>">
 	<?php

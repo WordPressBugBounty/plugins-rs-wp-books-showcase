@@ -25,14 +25,14 @@ function add_book_review_status_column_content($column, $post_id) {
       echo '<strong>Approved</strong>';
     }
   }elseif ($column == 'reviewed_book') {
-    $review_book_id = get_post_meta( $post_id, '_rswpbs_reviewed_book', true );
+    $review_book_id = get_post_meta( $post_id, '_rswpbs_reviewed_book', true ) ?: '';
     if (!empty($review_book_id)) :
       ?>
         <a href="<?php echo get_the_permalink($review_book_id);?>"><?php echo get_the_title( $review_book_id );?></a>
       <?php
     endif;
   }elseif( $column == 'rating' ){
-    $book_rating = get_post_meta($post_id, '_rswpbs_rating', true);
+    $book_rating = get_post_meta($post_id, '_rswpbs_rating', true) ?: 0;
     for ($i = 1; $i <= $book_rating; $i++) {
       echo '<span class="dashicons dashicons-star-filled"></span>';
     }

@@ -293,7 +293,7 @@ add_action('admin_enqueue_scripts', function($hook) {
         'rswpbs-json-file-uploader',
         RSWPBS_PLUGIN_URL . 'includes/import-books-from-json/import-books-from-json.js',
         array('jquery'),
-        null,
+        '1.0',
         true
     );
 });

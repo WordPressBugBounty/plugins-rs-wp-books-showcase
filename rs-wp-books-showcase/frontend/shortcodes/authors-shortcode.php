@@ -162,9 +162,10 @@ function rswpbs_get_authors_html($atts, $offset, $search = '') {
     if (!is_wp_error($bookAuthorsTerms) && !empty($bookAuthorsTerms)) {
         foreach($bookAuthorsTerms as $author) {
             $termLink = get_term_link($author->term_id, 'book-author');
+            $termLink = is_wp_error($termLink) ? '' : $termLink;
             $authorID = 'book-author_'.$author->term_id;
             $isRswpbsPro = class_exists('Rswpbs_Pro');
-            $authorImage = $isRswpbsPro ? get_term_meta($author->term_id, 'rswpbs_book_author_picture', true) : '';
+            $authorImage = $isRswpbsPro ? get_term_meta($author->term_id, 'rswpbs_book_author_picture', true) ?: '' : '';
 
             $output .= '<div class="' . esc_attr($authorColumnClases) . ' rswpbs-author-col">';
             $output .= '<div class="rswpbs-single-author-wrapper">';
@@ -173,7 +174,7 @@ function rswpbs_get_authors_html($atts, $offset, $search = '') {
                 $output .= '<div class="rswpbs-author-profile-picture-wrapper">';
                 $output .= '<div class="author-profile-picture-container">';
                 $output .= '<a href="' . esc_url($termLink) . '">';
-                $output .= '<img src="' . $authorImage . '" alt="' . esc_attr($author->name) . '">';
+                $output .= '<img src="' . esc_url($authorImage ?? '') . '" alt="' . esc_attr($author->name ?? '') . '">';
                 $output .= '</a>';
                 $output .= '</div>';
 

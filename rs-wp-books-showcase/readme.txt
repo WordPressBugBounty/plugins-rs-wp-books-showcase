@@ -3,7 +3,7 @@ Contributors: rswpthemes
 Tags: book carousel, book collection, book display, book library, book catalogue
 Requires at least: 5.2
 Tested up to: 6.9
-Stable tag: 6.7.61
+Stable tag: 6.7.62
 Requires PHP: 8.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -197,6 +197,17 @@ Install RS WP Book Showcase as a regular WordPress plugin. Here are different wa
 
 == Changelog ==
 
+
+= 6.7.62 - May 09, 2026 =
+* Added: Converted the "Book Publisher" field from a post meta field to a fully functional hierarchical Custom Taxonomy.
+* Added: Safe database migration tool (Guided AJAX) to upgrade existing Publisher meta data to the new taxonomy without data loss.
+* Added: Dedicated archive template for Book Publishers (taxonomy-book-publisher.php).
+* Improved: Advanced Search form now fully supports the new Publisher taxonomy, including dropdown state retention (auto-selection).
+* Improved: AJAX search result count logic accurately updates the number of found books and properly handles zero-result queries.
+* Improved: Frontend display logic now includes a fallback helper function to ensure 100% backward compatibility for unmigrated Publisher data.
+* Fixed: Critical bug in the AJAX Book Showcase where meta field filters (Publish Year, Format, Language, ISBN) were being ignored during search.
+* Fixed: PHP 8.1+ deprecation warnings (strpos() and str_replace() passing null) related to WordPress core URL and path functions.
+* Fixed: Removed a duplicate function declaration (rswpbs_json_import_redirect_error) that could cause fatal errors.
 
 = 6.7.61 - April 25, 2026 =
 * Solved the Series Shortcode comment issue.

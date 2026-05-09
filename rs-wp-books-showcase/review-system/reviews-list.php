@@ -51,8 +51,8 @@ function rswpbs_book_reviews(){
 								<div class="rswpbs-col-12 rswpbs-col-md-6 rswpbs-col-lg-4 testimonial-item-col">
 									<div class="testimonial__item-inner">
 										<?php
-										$reviewerEmail = get_post_meta( get_the_ID(), '_rswpbs_reviewer_email', true);
-										$reviewerName = get_post_meta( get_the_ID(), '_rswpbs_reviewer_name', true);
+										$reviewerEmail = get_post_meta( get_the_ID(), '_rswpbs_reviewer_email', true) ?: '';
+										$reviewerName = get_post_meta( get_the_ID(), '_rswpbs_reviewer_name', true) ?: '';
 										$reviewerImage = get_the_post_thumbnail( get_the_ID(), 'full' );
 										if (!empty($reviewerEmail)) {
 											$reviewerImage = get_avatar($reviewerEmail, 70, 'wavatar', $reviewerName );
@@ -61,7 +61,7 @@ function rswpbs_book_reviews(){
 										?>
 										<h5 class="review-title"><?php echo esc_html( get_the_title(get_the_ID()) );?></h5>
 										<?php endif;
-										$reviewerRating = get_post_meta(get_the_ID(), '_rswpbs_rating', true);
+										$reviewerRating = get_post_meta(get_the_ID(), '_rswpbs_rating', true) ?: '';
 										if (!empty($reviewerRating)) :
 										?>
 										<div class="client-rating">

@@ -91,5 +91,5 @@ add_action('admin_enqueue_scripts', function($hook) {
         return;
     }
     wp_enqueue_media(); // Load the media uploader script
-    wp_enqueue_script('rswpbs-csv-file-uploader', RSWPBS_PLUGIN_URL . 'includes/import-books-from-csv/rswpbs-media-uploader.js', ['jquery'], null, true);
+    wp_enqueue_script('rswpbs-csv-file-uploader', RSWPBS_PLUGIN_URL . 'includes/import-books-from-csv/rswpbs-media-uploader.js', ['jquery'], '1.0', true);
 });

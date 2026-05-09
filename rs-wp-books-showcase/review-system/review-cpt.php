@@ -52,10 +52,10 @@ function rswpbs_register_book_reviews_custom_fields() {
 
 function rswpbs_get_book_reviews_custom_fields($object) {
     return [
-        'reviewer_name'  => get_post_meta($object['id'], '_rswpbs_reviewer_name', true),
-        'reviewer_email' => get_post_meta($object['id'], '_rswpbs_reviewer_email', true),
-        'rating'         => get_post_meta($object['id'], '_rswpbs_rating', true),
-        'reviewed_book'  => get_post_meta($object['id'], '_rswpbs_reviewed_book', true),
+        'reviewer_name'  => get_post_meta($object['id'], '_rswpbs_reviewer_name', true) ?: '',
+        'reviewer_email' => get_post_meta($object['id'], '_rswpbs_reviewer_email', true) ?: '',
+        'rating'         => get_post_meta($object['id'], '_rswpbs_rating', true) ?: '',
+        'reviewed_book'  => get_post_meta($object['id'], '_rswpbs_reviewed_book', true) ?: '',
     ];
 }
 

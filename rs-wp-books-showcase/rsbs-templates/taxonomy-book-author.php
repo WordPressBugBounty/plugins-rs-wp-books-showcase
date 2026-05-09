@@ -18,7 +18,7 @@ $showBookDescription = rswpbs_show_archive_page_book_description();
 $showBuyNowBtn = rswpbs_show_archive_page_book_buy_button();
 
 $currentAuthorObj = get_term($currentArchivePageId);
-$authorName = $currentAuthorObj->name;
+$authorName = (!is_wp_error($currentAuthorObj) && $currentAuthorObj) ? $currentAuthorObj->name : '';
 ?>
 <div class="rswpbs-archive-pages-wrapper">
 	<div class="rswpbs-container">

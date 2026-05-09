@@ -18,10 +18,10 @@ function rswpbs_book_review_meta_box_cb($post) {
 	wp_nonce_field('rswpbs_save_book_review_meta_box', 'rswpbs_book_review_meta_nonce_field');
 
 	// get the current values of the custom fields
-	$reviewer_name = get_post_meta($post->ID, '_rswpbs_reviewer_name', true);
-	$reviewer_email = get_post_meta($post->ID, '_rswpbs_reviewer_email', true);
-	$rating = get_post_meta($post->ID, '_rswpbs_rating', true);
-	$reviewed_book = get_post_meta($post->ID, '_rswpbs_reviewed_book', true);
+	$reviewer_name = get_post_meta($post->ID, '_rswpbs_reviewer_name', true) ?: '';
+	$reviewer_email = get_post_meta($post->ID, '_rswpbs_reviewer_email', true) ?: '';
+	$rating = get_post_meta($post->ID, '_rswpbs_rating', true) ?: '';
+	$reviewed_book = get_post_meta($post->ID, '_rswpbs_reviewed_book', true) ?: '';
 	$bookQueryArgs = array(
 			'post_type'	=> 'book',
 			'posts_per_page' => -1,

@@ -18,7 +18,7 @@ function rswpbs_search_fields() {
         'category' => (isset($_GET['category']) ? wp_kses_post(rawurldecode($_GET['category'])) : ''),
         'series' => (isset($_GET['series']) ? wp_kses_post(rawurldecode($_GET['series'])) : ''),
         'format' => (isset($_GET['format']) ? wp_kses_post(rawurldecode($_GET['format'])) : ''),
-        'publisher' => (isset($_GET['publisher']) ? wp_kses_post(rawurldecode($_GET['publisher'])) : ''),
+        'publisher' => (isset($_GET['publisher_name']) ? wp_kses_post(rawurldecode($_GET['publisher_name'])) : ''),
         'publish_year' => (isset($_GET['publish_year']) ? wp_kses_post(rawurldecode($_GET['publish_year'])) : ''),
         'sortby' => (isset($_GET['sortby']) ? sanitize_text_field($_GET['sortby']) : ''),
         'language' => (isset($_GET['language']) ? wp_kses_post(rawurldecode($_GET['language'])) : ''),
@@ -28,13 +28,23 @@ function rswpbs_search_fields() {
 
     if (is_tax('book-category')) {
         $taxPageObj = get_queried_object();
-        $taxPageSlug = $taxPageObj->slug;
+        $taxPageSlug = ($taxPageObj instanceof WP_Term) ? $taxPageObj->slug : '';
         $search_fields['category'] = wp_kses_post(rawurldecode($taxPageSlug));
     }
     if (is_tax('book-series')) {
         $taxPageObj = get_queried_object();
-        $taxPageSlug = $taxPageObj->slug;
+        $taxPageSlug = ($taxPageObj instanceof WP_Term) ? $taxPageObj->slug : '';
         $search_fields['series'] = wp_kses_post(rawurldecode($taxPageSlug));
+    }
+    if (is_tax('book-publisher')) {
+        $taxPageObj = get_queried_object();
+        $taxPageSlug = ($taxPageObj instanceof WP_Term) ? $taxPageObj->slug : '';
+        $search_fields['publisher'] = wp_kses_post(rawurldecode($taxPageSlug));
+    }
+    if (is_tax('book-author')) {
+        $taxPageObj = get_queried_object();
+        $taxPageSlug = ($taxPageObj instanceof WP_Term) ? $taxPageObj->slug : '';
+        $search_fields['author'] = wp_kses_post(rawurldecode($taxPageSlug));
     }
 
     return $search_fields;
@@ -48,7 +58,7 @@ function rswpbs_static_search_string($params = array()) {
         'category' => (isset($params['category']) ? sanitize_text_field($params['category']) : 'all'),
         'series' => (isset($params['series']) ? sanitize_text_field($params['series']) : 'all'),
         'format' => (isset($params['format']) ? sanitize_text_field($params['format']) : 'all'),
-        'publisher' => (isset($params['publisher']) ? sanitize_text_field($params['publisher']) : 'all'),
+        'publisher' => (isset($params['publisher_name']) ? sanitize_text_field($params['publisher_name']) : 'all'),
         'publish_year' => (isset($params['publish_year']) ? sanitize_text_field($params['publish_year']) : 'all'),
         // Add new fields
         'language' => (isset($params['language']) ? sanitize_text_field($params['language']) : 'all'),
@@ -63,7 +73,7 @@ function rswpbs_static_search_string($params = array()) {
         'category' => strtolower($search_fields['category']),
         'series' => strtolower($search_fields['series']),
         'format' => strtolower($search_fields['format']),
-        'publisher' => strtolower($search_fields['publisher']),
+        'publisher_name' => strtolower($search_fields['publisher']),
         'publish_year' => strtolower($search_fields['publish_year']),
         'language' => strtolower($search_fields['language']),
         'isbn' => strtolower($search_fields['isbn']),
@@ -134,11 +144,19 @@ function rswpbs_search_query_args(){
     endif;
     if (true == $showPublishersField) :
         if ($search_fields['publisher'] != 'all') {
-            $meta_query[] = array(
-                'key'     => '_rsbs_book_publisher_name',
-                'value'   => $search_fields['publisher'],
-                'compare' => 'LIKE',
-            );
+            if (get_option('rswpbs_publisher_db_version') === '1.0') {
+                $tax_query[] = array(
+                    'taxonomy' => 'book-publisher',
+                    'field'    => 'slug',
+                    'terms'    => $search_fields['publisher'],
+                );
+            } else {
+                $meta_query[] = array(
+                    'key'     => '_rsbs_book_publisher_name',
+                    'value'   => $search_fields['publisher'],
+                    'compare' => 'LIKE',
+                );
+            }
         }
     endif;
     if (true == $showYearsField) :
@@ -233,14 +251,10 @@ function rswpbs_sorting_form_args(){
 }
 
 function rswpbs_total_books_message($queryName, $bookPerPage){
-    $total_books = $queryName->found_posts;
+    $total_posts = $queryName->found_posts;
     $paged = rswpbs_paged();
-    $current_page = $paged; // Replace with the current page number
-    $start_index = ( $current_page - 1 ) * $bookPerPage + 1;
-    $end_index = $start_index + $bookPerPage - 1;
-    if ( $end_index > $total_books ) {
-        $end_index = $total_books;
-    }
-    $message = rswpbs_static_text_showing() . ' ' . $start_index . '-' . $end_index . ' ' .rswpbs_static_text_of(). ' ' . $total_books . ' ' . rswpbs_static_text_books();
-    return esc_html($message);
+    $start_index = $total_posts > 0 ? ( $paged - 1 ) * $bookPerPage + 1 : 0;
+    $end_index = $total_posts > 0 ? min($start_index + $bookPerPage - 1, $total_posts) : 0;
+    $message = rswpbs_static_text_showing() . ' ' . $start_index . '-' . $end_index . ' ' .rswpbs_static_text_of(). ' ' . $total_posts . ' ' . rswpbs_static_text_books();
+    return wp_kses_post($message);
 }

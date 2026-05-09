@@ -1095,6 +1095,7 @@ body.left-sidebar .rswpbs-advanced-search-form-area .rswpbs-books-showcase-searc
 .rswpbs-books-pagination span.current {
     background: #ffffff;
     box-shadow: 0 0 6px -2px rgb(0 0 0 / 50%);
+    color: #000;
 }
 
 .rswpbs-select-field .selectize-input>div.item {
@@ -1496,6 +1497,7 @@ body.theme-book-author-template section.footer-content.footer-top-area .footer-s
     text-transform: capitalize;
     font-size: 16px;
     cursor: pointer;
+    padding: 7px 15px;
 }
 
 .rswpbs-review-form-field .stars {

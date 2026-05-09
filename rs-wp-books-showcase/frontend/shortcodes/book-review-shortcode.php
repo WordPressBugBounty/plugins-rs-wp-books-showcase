@@ -82,14 +82,14 @@ function rswpbs_books_review_shortcode( $atts ) {
 				<?php
 				while ($reviewQuery->have_posts()) :
 					$reviewQuery->the_post();
-					$getRatings = get_post_meta(get_the_ID(), '_rswpbs_rating', true);
-					$reviewerName = get_post_meta(get_the_ID(), '_rswpbs_reviewer_name', true);
-					$reviewerEmail = get_post_meta(get_the_ID(), '_rswpbs_reviewer_email', true);
+					$getRatings = get_post_meta(get_the_ID(), '_rswpbs_rating', true) ?: '';
+					$reviewerName = get_post_meta(get_the_ID(), '_rswpbs_reviewer_name', true) ?: '';
+					$reviewerEmail = get_post_meta(get_the_ID(), '_rswpbs_reviewer_email', true) ?: '';
 					$reviewerImage = get_avatar($reviewerEmail, 70, 'wavatar', $reviewerName);
 					if (has_post_thumbnail() && !empty(get_the_post_thumbnail_url())) {
 						$reviewerImage = get_the_post_thumbnail(get_the_ID());
 					}
-					$reviewerRating = get_post_meta(get_the_ID(), '_rswpbs_rating', true);
+					$reviewerRating = get_post_meta(get_the_ID(), '_rswpbs_rating', true) ?: '';
 				?>
 				<div class="<?php echo esc_attr($item_class); ?> efe_customer_review_de">
 					<div class="testimonial__item-inner">

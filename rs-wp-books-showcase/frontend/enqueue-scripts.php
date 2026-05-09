@@ -134,7 +134,7 @@ function rswpbs_assets(){
 		wp_enqueue_script('slick');
 	}
 	if (class_exists('Rswpbs_Pro') && function_exists('rswpthemes_cptwoointegration')) {
-		wp_enqueue_script('rswpbs-ajax-add-to-cart', RSWPBS_PLUGIN_URL . 'frontend/assets/js/ajax-add-to-cart.js', array('jquery'), null, true);
+		wp_enqueue_script('rswpbs-ajax-add-to-cart', RSWPBS_PLUGIN_URL . 'frontend/assets/js/ajax-add-to-cart.js', array('jquery'), '1.0', true);
 	}
 	/**
 	 * Enqueue Selectize JS

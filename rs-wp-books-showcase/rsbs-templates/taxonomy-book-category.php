@@ -30,7 +30,7 @@ $showBuyNowBtn = rswpbs_show_archive_page_book_buy_button();
 			if (class_exists('Rswpbs_Pro')) {
 				$showBookArchivePageHeader = get_option('rswpbs_show_book_archive_page_header', 1);
 			}
-			$descriptions = $currentCatObj->description;
+			$descriptions = (!is_wp_error($currentCatObj) && $currentCatObj) ? $currentCatObj->description : '';
 			if (true == $showBookArchivePageHeader) :
 				$headingClass = '';
 				if (empty($descriptions)) {
@@ -40,9 +40,9 @@ $showBuyNowBtn = rswpbs_show_archive_page_book_buy_button();
 			<div class="rswpbs-row">
 				<div class="rswpbs-col-md-12">
 					<div class="rswpbs-book-showcase-page-title">
-						<h1 class="rswpbs-book-category-name<?php echo esc_attr($headingClass);?>"><?php echo esc_html($currentCatObj->name); ?></h1>
+						<h1 class="rswpbs-book-category-name<?php echo esc_attr($headingClass ?? '');?>"><?php echo esc_html($currentCatObj->name ?? ''); ?></h1>
 						<div class="cateogry-details">
-							<p><?php echo wp_kses_post($currentCatObj->description); ?></p>
+							<p><?php echo wp_kses_post($currentCatObj->description ?? ''); ?></p>
 						</div>
 					</div>
 				</div>

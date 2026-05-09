@@ -174,29 +174,57 @@ function rswpbs_book_slider_shortcode( $atts ) {
 	}
 
     // Publisher Filtering
-    $publisher_meta_query = array();
-    if (!empty($atts['publishers_include'])) {
-        $includePublishers = array_map('trim', explode(',', $atts['publishers_include']));
-        $publisher_meta_query[] = array(
-            'key'     => '_rsbs_book_publisher_name',
-            'value'   => $includePublishers,
-            'compare' => 'IN',
-        );
-    }
-    if (!empty($atts['publishers_exclude'])) {
-        $excludePublishers = array_map('trim', explode(',', $atts['publishers_exclude']));
-        $publisher_meta_query[] = array(
-            'key'     => '_rsbs_book_publisher_name',
-            'value'   => $excludePublishers,
-            'compare' => 'NOT IN',
-        );
-    }
-
-    if (!empty($publisher_meta_query)) {
-        if (!isset($booksQargs['meta_query'])) {
-            $booksQargs['meta_query'] = array('relation' => 'AND');
+    if (get_option('rswpbs_publisher_db_version') === '1.0') {
+        $publisher_tax_query = array();
+        if (!empty($atts['publishers_include'])) {
+            $includePublishers = array_map('trim', explode(',', $atts['publishers_include']));
+            $publisher_tax_query[] = array(
+                'taxonomy' => 'book-publisher',
+                'field'    => 'name',
+                'terms'    => $includePublishers,
+                'operator' => 'IN',
+            );
         }
-        $booksQargs['meta_query'] = array_merge($booksQargs['meta_query'], $publisher_meta_query);
+        if (!empty($atts['publishers_exclude'])) {
+            $excludePublishers = array_map('trim', explode(',', $atts['publishers_exclude']));
+            $publisher_tax_query[] = array(
+                'taxonomy' => 'book-publisher',
+                'field'    => 'name',
+                'terms'    => $excludePublishers,
+                'operator' => 'NOT IN',
+            );
+        }
+        if (!empty($publisher_tax_query)) {
+            if (!isset($booksQargs['tax_query'])) {
+                $booksQargs['tax_query'] = array('relation' => 'AND');
+            }
+            $booksQargs['tax_query'] = array_merge($booksQargs['tax_query'], $publisher_tax_query);
+        }
+    } else {
+        $publisher_meta_query = array();
+        if (!empty($atts['publishers_include'])) {
+            $includePublishers = array_map('trim', explode(',', $atts['publishers_include']));
+            $publisher_meta_query[] = array(
+                'key'     => '_rsbs_book_publisher_name',
+                'value'   => $includePublishers,
+                'compare' => 'IN',
+            );
+        }
+        if (!empty($atts['publishers_exclude'])) {
+            $excludePublishers = array_map('trim', explode(',', $atts['publishers_exclude']));
+            $publisher_meta_query[] = array(
+                'key'     => '_rsbs_book_publisher_name',
+                'value'   => $excludePublishers,
+                'compare' => 'NOT IN',
+            );
+        }
+
+        if (!empty($publisher_meta_query)) {
+            if (!isset($booksQargs['meta_query'])) {
+                $booksQargs['meta_query'] = array('relation' => 'AND');
+            }
+            $booksQargs['meta_query'] = array_merge($booksQargs['meta_query'], $publisher_meta_query);
+        }
     }
 
 	if (!empty($atts['book_offset'])) {

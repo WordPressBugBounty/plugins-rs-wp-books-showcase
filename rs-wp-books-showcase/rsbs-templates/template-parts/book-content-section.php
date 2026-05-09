@@ -6,7 +6,9 @@ function rswpbs_book_content_section($bookId = null) {
     if (null == $bookId) {
         $bookId = get_the_ID();
     }
-    $publishersQueryLink = rswpbs_static_search_string(array('publisher' => rswpbs_get_book_publisher_name($bookId)));
+    $publisher_name = rswpbs_get_book_publisher($bookId);
+    $publisher_terms = get_the_term_list($bookId, 'book-publisher', '', ', ', '');
+    $publisher_display = ($publisher_terms && !is_wp_error($publisher_terms)) ? $publisher_terms : esc_html($publisher_name);
     do_action('rswpbs_before_book_overview_section');
 
     // Define all book information fields with their properties
@@ -44,7 +46,7 @@ function rswpbs_book_content_section($bookId = null) {
             'condition' => function() { return !empty(rswpbs_get_book_publish_date()); }
         ],
         'publisher' => [
-            'value' => "<a href='" . esc_url($publishersQueryLink) . "'>" . esc_html(rswpbs_get_book_publisher_name($bookId)) . "</a>",
+            'value' => $publisher_display,
             'label' => rswpbs_static_text_publisher_name(),
             'escape' => false
         ],

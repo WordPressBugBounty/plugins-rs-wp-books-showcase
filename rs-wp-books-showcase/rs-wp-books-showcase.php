@@ -3,7 +3,7 @@
  * Plugin Name:       RS WP Book Showcase
  * Plugin URI:        https://rswpthemes.com/rs-wp-books-showcase-wordpress-plugin/
  * Description:       Premier WordPress book gallery plugin, offering advanced search options and multiple layouts for effortless book showcasing.
- * Version:           6.7.61
+ * Version:           6.7.62
  * Requires at least: 4.9
  * Requires PHP:      8.0
  * Author:            RS WP THEMES
@@ -35,8 +35,9 @@ class Rswpbs
 
         require_once RSWPBS_PLUGIN_PATH . '/admin/init.php';
         require_once RSWPBS_PLUGIN_PATH . '/admin/register-cpt.php';
+        require_once RSWPBS_PLUGIN_PATH . '/admin/class-rswpbs-publisher-migration.php';
         require_once RSWPBS_PLUGIN_PATH . '/admin/settings-dummy-menu.php';
-
+        require_once RSWPBS_PLUGIN_PATH . '/admin/class-rswpbs-gallery-setup.php';
         /**
          * Custom Metabox
          */
@@ -205,6 +206,8 @@ function rswpbs_set_book_author_role()
             $role->add_cap('delete_book_category', false);
             $role->add_cap('manage_book_series', false);
             $role->add_cap('delete_book_series', false);
+            $role->add_cap('manage_book_publisher', false);
+            $role->add_cap('delete_book_publisher', false);
         } else {
             $role->add_cap('publish_books', true);
             $role->add_cap('delete_books', true);
@@ -220,6 +223,8 @@ function rswpbs_set_book_author_role()
             $role->add_cap('delete_book_category', true);
             $role->add_cap('manage_book_series', true);
             $role->add_cap('delete_book_series', true);
+            $role->add_cap('manage_book_publisher', true);
+            $role->add_cap('delete_book_publisher', true);
             $role->add_cap('upload_files');
         }
 
@@ -229,6 +234,8 @@ function rswpbs_set_book_author_role()
         $role->add_cap('assign_book_category');
         $role->add_cap('edit_book_series');
         $role->add_cap('assign_book_series');
+        $role->add_cap('edit_book_publisher');
+        $role->add_cap('assign_book_publisher');
     }
 }
 /**
@@ -273,6 +280,10 @@ function rswpbs_remove_unused_book_author_role_caps()
                 'delete_book_series',
                 'edit_book_series',
                 'assign_book_series',
+                'manage_book_publisher',
+                'delete_book_publisher',
+                'edit_book_publisher',
+                'assign_book_publisher',
             );
 
             foreach ($caps as $cap) {
