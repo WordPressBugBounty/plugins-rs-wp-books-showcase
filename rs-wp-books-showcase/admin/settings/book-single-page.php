@@ -62,6 +62,7 @@ function rswpbs_book_single_page() {
                             'type'    => 'select',
                             'options' => array(
                                 'excerpt'      => esc_html__( 'Excerpt', 'rswpbs' ),
+                                'full_excerpt' => esc_html__( 'Full Excerpt', 'rswpbs' ),
                                 'full_content' => esc_html__( 'Full Content', 'rswpbs' ),
                             ),
                         ),
@@ -415,6 +416,7 @@ function rswpbs_single_page_excerpt_type_callback() {
     }
     $options  = array(
         'excerpt'      => esc_html__( 'Excerpt', 'rswpbs' ),
+        'full_excerpt' => esc_html__( 'Full Excerpt', 'rswpbs' ),
         'full_content' => esc_html__( 'Full Content', 'rswpbs' ),
     );
     $selected = get_option( 'rswpbs_single_page_excerpt_type', 'excerpt' );
@@ -452,7 +454,7 @@ function rswpbs_sanitize_single_image_type( $input ) {
 }
 
 function rswpbs_sanitize_excerpt_type( $input ) {
-    $valid = array( 'excerpt', 'full_content' );
+    $valid = array( 'excerpt', 'full_content', 'full_excerpt' );
     return in_array( $input, $valid, true ) ? $input : 'excerpt';
 }
 

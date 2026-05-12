@@ -65,7 +65,13 @@ function rswpbs_get_single_book_excerpt($bookId = null) {
             }
             $trimmed_description .= '...'; // Add ellipsis if trimmed
         }
-    } else {
+    }elseif($excerpt_type === 'full_excerpt'){
+	    $trimmed_description = get_post_meta($bookId, rswpbs_prefix() . 'short_description', true) ?: '';
+
+	    if (empty($trimmed_description)) {
+	        return '';
+	    }
+    }else {
         // Full content using get_the_content()
         $trimmed_description = get_the_content(null, false, $bookId);
         if (empty($trimmed_description)) {
