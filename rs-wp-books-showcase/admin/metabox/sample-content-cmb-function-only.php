@@ -215,7 +215,6 @@ function render_book_sample_content_box( $post ) {
             });
             mediaFrame.open();
         });
-
     });
     </script>
     <?php
