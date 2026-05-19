@@ -70,17 +70,13 @@ function rswpbs_single_book_shortcode($atts){
 								if ('book_cover' == $atts['image_type']) {
 							 		echo wp_kses_post(rswpbs_get_book_image($bookID));
 								}else{
-									if (class_exists('Rswpbs_Pro')) {
-										rswpbs_book_mockup_image($bookID);
-									}
+									rswpbs_book_mockup_image($bookID);
 								}
 							}else{
 								if ('book_cover' == $atts['image_type']) {
 							 		echo '<a href="'.get_the_permalink($bookID).'">'.wp_kses_post(rswpbs_get_book_image($bookID)).'</a>';
 								}else{
-									if (class_exists('Rswpbs_Pro')) {
-										echo '<a href="'.get_the_permalink($bookID).'">'.wp_kses_post(rswpbs_book_mockup_image($bookID)).'</a>';
-									}
+									echo '<a href="'.get_the_permalink($bookID).'">'.wp_kses_post(rswpbs_book_mockup_image($bookID)).'</a>';
 								}
 							}
 							?>

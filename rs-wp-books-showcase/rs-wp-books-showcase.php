@@ -3,7 +3,7 @@
  * Plugin Name:       RS WP Book Showcase
  * Plugin URI:        https://rswpthemes.com/rs-wp-books-showcase-wordpress-plugin/
  * Description:       Premier WordPress book gallery plugin, offering advanced search options and multiple layouts for effortless book showcasing.
- * Version:           6.7.65
+ * Version:           6.7.66
  * Requires at least: 4.9
  * Requires PHP:      8.0
  * Author:            RS WP THEMES
@@ -67,6 +67,7 @@ class Rswpbs
         require_once RSWPBS_PLUGIN_PATH . '/frontend/enqueue-scripts.php';
         require_once RSWPBS_PLUGIN_PATH . '/frontend/rswpbs-shortcodes.php';
         require_once RSWPBS_PLUGIN_PATH . '/includes/template-hook.php';
+        require_once RSWPBS_PLUGIN_PATH . '/includes/block-template-hook.php';
         require_once RSWPBS_PLUGIN_PATH . '/includes/widgets/featured-book.php';
         require_once RSWPBS_PLUGIN_PATH . '/includes/widgets/books-list.php';
         require_once RSWPBS_PLUGIN_PATH . '/includes/register-rest-api-for-plugin-status.php';
@@ -349,6 +350,18 @@ function rswpbs_upgrade_to_pro_admin_menu()
             ''
         );
     endif;
+    // Parent slug for the custom post type menu
+    $parent_slug = 'edit.php?post_type=book';
+
+    // Replace 'submenu-slug-here' with the actual slug of the menu you want to hide
+    remove_submenu_page( $parent_slug, 'rswpbs-settings-book-single' );
+    remove_submenu_page( $parent_slug, 'rswpbs-settings-book-archive' );
+    remove_submenu_page( $parent_slug, 'rswpbs-settings-static-text' );
+    remove_submenu_page( $parent_slug, 'rswpbs-settings-colors' );
+    remove_submenu_page( $parent_slug, 'rswpbs-settings-search-form' );
+    remove_submenu_page( $parent_slug, 'import-books-from-csv' );
+    remove_submenu_page( $parent_slug, 'import-books-from-json' );
+
 }
 add_action('admin_menu', 'rswpbs_upgrade_to_pro_admin_menu');
 

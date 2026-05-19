@@ -17,7 +17,7 @@ if ( ! function_exists( 'is_plugin_active' ) ) {
 // Plugin Folder and Main File Name
 $target_plugin_file = 'rs-arc-manager/rs-arc-manager.php';
 
-// if plugin is not active
+// If the target plugin is already active, stop execution
 if ( is_plugin_active( $target_plugin_file ) ) {
     return;
 }
@@ -33,26 +33,73 @@ if ( ! class_exists( 'RS_Arc_Manager_Promoter' ) ) {
         private $menu_slug    = 'rs-promote-plugin';
 
         public function __construct() {
-            add_action( 'admin_menu', array( $this, 'add_promotional_menu' ) );
+            add_action( 'admin_menu', array( $this, 'add_promotional_menu' ), 9999 );
+            add_action( 'admin_init', array( $this, 'handle_ad_dismissal' ) );
             add_action( 'admin_enqueue_scripts', array( $this, 'highlight_menu_item' ) );
             add_action( 'wp_ajax_rs_install_activate_plugin', array( $this, 'ajax_install_and_activate' ) );
         }
 
         /**
-         * Crating Admin Menu
+         * Creating Admin Menu
          */
         public function add_promotional_menu() {
-            $page_hook = add_menu_page(
-                sprintf( esc_html__( 'Install %s', 'rs-arc-manager' ), $this->plugin_name ),
-                esc_html( $this->plugin_name ),
-                'install_plugins',
-                $this->menu_slug,
-                array( $this, 'render_promotional_page' ),
-                'dashicons-star-filled',
-                99
-            );
+            $is_dismissed = get_option( 'rs_arc_manager_ad_dismissed' );
+            $page_hook    = '';
 
-            add_action( 'admin_head-' . $page_hook, array( $this, 'hide_all_admin_notices' ) );
+            if ( $is_dismissed ) {
+                // যদি রিমুভ করা হয় এবং 'book' পোস্ট টাইপ קיים থাকে, তবে সাব-মেনুতে যুক্ত হবে
+                if ( post_type_exists( 'book' ) ) {
+                    $page_hook = add_submenu_page(
+                        'edit.php?post_type=book', // Parent Slug
+                        sprintf( esc_html__( 'Install %s', 'rs-arc-manager' ), $this->plugin_name ),
+                        esc_html( $this->plugin_name ),
+                        'install_plugins',
+                        $this->menu_slug,
+                        array( $this, 'render_promotional_page' ),
+                        999
+                    );
+                }
+            } else {
+                // রিমুভ না করা থাকলে মেইন মেনুতে শো করবে
+                $page_hook = add_menu_page(
+                    sprintf( esc_html__( 'Install %s', 'rs-arc-manager' ), $this->plugin_name ),
+                    esc_html( $this->plugin_name ),
+                    'install_plugins',
+                    $this->menu_slug,
+                    array( $this, 'render_promotional_page' ),
+                    'dashicons-star-filled',
+                    9999
+                );
+            }
+
+            // পেজ হুক তৈরি হলে নোটিশ হাইড করার হুক কল করবে
+            if ( ! empty( $page_hook ) ) {
+                add_action( 'admin_head-' . $page_hook, array( $this, 'hide_all_admin_notices' ) );
+            }
+        }
+
+        /**
+         * Handle Ad Dismissal and Redirect
+         */
+        public function handle_ad_dismissal() {
+            // Check if the dismiss action is triggered and verify the nonce for security
+            if ( isset( $_GET['rs_dismiss_ad'] ) && $_GET['rs_dismiss_ad'] == '1' && isset( $_GET['page'] ) && $_GET['page'] === $this->menu_slug ) {
+
+                if ( isset( $_GET['_wpnonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ) ), 'rs_dismiss_ad_nonce' ) ) {
+
+                    // Update database option to hide this ad permanently
+                    update_option( 'rs_arc_manager_ad_dismissed', true );
+
+                    // Check if the 'book' post type exists (i.e., if the menu exists)
+                    if ( post_type_exists( 'book' ) ) {
+                        wp_safe_redirect( admin_url( 'edit.php?post_type=book' ) );
+                    } else {
+                        // Fallback redirect to the main admin dashboard
+                        wp_safe_redirect( admin_url() );
+                    }
+                    exit;
+                }
+            }
         }
 
         /**
@@ -80,7 +127,7 @@ if ( ! class_exists( 'RS_Arc_Manager_Promoter' ) ) {
         }
 
         /**
-         * Removed All Admin Notification From This Page
+         * Remove All Admin Notifications From This Page
          */
         public function hide_all_admin_notices() {
             remove_all_actions( 'admin_notices' );
@@ -99,9 +146,11 @@ if ( ! class_exists( 'RS_Arc_Manager_Promoter' ) ) {
         }
 
         /**
-         * Promption Page Layout
+         * Promotion Page Layout
          */
         public function render_promotional_page() {
+            // Generate the secure dismissal URL with a nonce
+            $dismiss_url = wp_nonce_url( admin_url( 'admin.php?page=' . $this->menu_slug . '&rs_dismiss_ad=1' ), 'rs_dismiss_ad_nonce' );
             ?>
             <div class="wrap" style="max-width: 800px; margin: 40px auto; background: #fff; padding: 40px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center;">
 
@@ -160,6 +209,14 @@ if ( ! class_exists( 'RS_Arc_Manager_Promoter' ) ) {
 
                 </div>
 
+                <?php if ( ! get_option( 'rs_arc_manager_ad_dismissed' ) ) : ?>
+                    <div style="margin-top: 30px;">
+                        <a href="<?php echo esc_url( $dismiss_url ); ?>" style="color: #a7aaad; text-decoration: underline; font-size: 14px; transition: color 0.3s ease;" onmouseover="this.style.color='#d63638'" onmouseout="this.style.color='#a7aaad'">
+                            <?php esc_html_e( 'Remove this ad', 'rs-arc-manager' ); ?>
+                        </a>
+                    </div>
+                <?php endif; ?>
+
                 <p id="rs-install-status" style="margin-top: 20px; font-weight: bold; display: none; color: #2271b1;"></p>
             </div>
 
@@ -202,8 +259,9 @@ if ( ! class_exists( 'RS_Arc_Manager_Promoter' ) ) {
             </script>
             <?php
         }
+
         /**
-         * Background Plugin Installetion
+         * Background Plugin Installation
          */
         public function ajax_install_and_activate() {
             check_ajax_referer( 'rs_promote_nonce' );

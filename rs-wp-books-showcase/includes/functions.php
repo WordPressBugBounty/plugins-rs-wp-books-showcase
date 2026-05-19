@@ -993,11 +993,14 @@ function rswpbs_short_and_long_content($charactersCount = 250) {
 }
 
 function rswpbs_book_mockup_image($bookId = null){
-	if ($bookId === null) {
+    if ($bookId === null) {
         $bookId = get_the_ID();
     }
-	$bookMockup = get_field('mockup_image', $bookId) ?: '';
-	?>
-	<img src="<?php echo esc_url($bookMockup);?>" alt="<?php echo esc_attr(get_the_title());?>">
-	<?php
+    $bookMockupId = get_post_meta( $bookId, '_rswpbs_mockup_image', true );
+
+    if ( $bookMockupId ) {
+        ?>
+        <img src="<?php echo esc_url($bookMockupId); ?>" alt="<?php echo esc_attr(get_the_title($bookId)); ?>">
+        <?php
+    }
 }

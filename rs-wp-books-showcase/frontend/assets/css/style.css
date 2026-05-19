@@ -1,4 +1,8 @@
 /* Theme Supports */
+
+.rswpbs-container{
+    color: #000;
+}
 .rs-wp-books-showcase-single-page #content .ast-container,
 .rs-wp-books-showcase-archive-page #content .ast-container,
 .rs-wp-books-showcase-author-tax-page #content .ast-container,
@@ -420,6 +424,7 @@ body.single-post.both-sidebar .book-grid-layout h2.book-title a {
     padding: 15px 30px;
     background: #fff;
     border: 1px solid #f1f1f1;
+    color: #000000;
 }
 
 .rs-wp-books-showcase-single-page {
@@ -438,6 +443,7 @@ body.custom-background .rswpbs-book-showcase-page-title {
     padding-bottom: .2em;
     line-height: normal;
     margin-top: 0;
+    color: #000;
 }
 
 .rswpbs-book-showcase-page-title p:last-child {
@@ -509,6 +515,7 @@ body.custom-background .rswpbs-book-showcase-page-title {
     font-weight: 400;
     margin-bottom: 15px;
     margin-top: 0;
+    color: #000;
 }
 
 .rswpbs-book-single-header-content-container h4.book-author br {
@@ -743,6 +750,7 @@ a.rswpbs-book-buy-now-button:hover {
     margin-top: 0;
     margin-bottom: 0;
     text-transform: inherit;
+    color: #000;
 }
 
 .rswpbs-book-information-container .information-list .information-label h4 {
@@ -919,6 +927,10 @@ span.rswpbs-arrow-down {
     background: #fff;
 }
 
+.rswpbs-search-form .search-field input::placeholder {
+    color: #000
+}
+
 .rswpbs-search-form .select2-container .select2-selection--single .select2-selection__arrow b {
     border-color: #444 transparent transparent transparent;
     border-style: solid;
@@ -1035,6 +1047,8 @@ body.left-sidebar .rswpbs-advanced-search-form-area .rswpbs-books-showcase-searc
     height: 50px;
     padding: 10px;
     border: 1px solid #f1f1f1;
+    background: #f1f1f1;
+    color: #000;
 }
 
 .rswpbs-sorting-sections-wrapper {
@@ -1473,6 +1487,8 @@ body.theme-book-author-template section.footer-content.footer-top-area .footer-s
 .rswpbs-review-form-field .form-control {
     width: 100%;
     border: 1px solid #f1f1f1;
+    background: #ffffff;
+    color: #000000;
 }
 
 .rswpbs-review-form-field br {

@@ -198,7 +198,7 @@ a.rswpbs-pal-link-ugtp {
     font-weight: 700;
     color: #ff0000;
 }
-
+/*
 body li#menu-posts-book ul.wp-submenu.wp-submenu-wrap li:nth-child(9),
 body li#menu-posts-book ul.wp-submenu.wp-submenu-wrap li:nth-child(10),
 body li#menu-posts-book ul.wp-submenu.wp-submenu-wrap li:nth-child(11),
@@ -222,9 +222,10 @@ body li#menu-posts-book ul.wp-submenu.wp-submenu-wrap li:nth-child(16) a {
     padding-top: 2px;
     padding-bottom: 2px;
 }
-
-body:not(.rswpbs-pro-active) li#menu-posts-book ul.wp-submenu.wp-submenu-wrap li:last-child a {
-    color: #ff0000;
+*/
+body:not(.rswpbs-pro-active) li#menu-posts-book ul.wp-submenu.wp-submenu-wrap li:nth-child(10) a,
+body:not(.rswpbs-pro-active) li#menu-posts-book ul.wp-submenu.wp-submenu-wrap li:nth-child(11) a {
+    color: #ffd814 !important;
     font-weight: 700;
 }
 

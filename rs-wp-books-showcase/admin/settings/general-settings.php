@@ -145,7 +145,7 @@ function rswpbs_general_settings_page() {
     add_submenu_page(
         'edit.php?post_type=book', // Custom post type slug.
         esc_html__( 'RS WP Book Showcase Settings', 'rswpbs' ),
-        esc_html__( 'Book Showcase Settings', 'rswpbs' ),
+        esc_html__( 'All Settings', 'rswpbs' ),
         'manage_options',
         'rswpbs-settings',
         'rswp_book_showcase_settings_page'

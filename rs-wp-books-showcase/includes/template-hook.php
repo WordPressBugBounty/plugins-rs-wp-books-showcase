@@ -3,6 +3,32 @@ if (wp_is_block_theme()) {
   return;
 }
 
+/**
+ * Helper Function: চেক করবে Site Editor-এ নির্দিষ্ট ব্লক টেমপ্লেট আছে কিনা
+ */
+function rswpbs_has_custom_block_template( $template_slug ) {
+    if ( ! function_exists( 'get_block_templates' ) ) {
+        return false;
+    }
+
+    // slug অনুযায়ী টেমপ্লেট খুঁজবে
+    $templates = get_block_templates( array(
+        'slug__in' => array( $template_slug )
+    ) );
+
+    if ( ! empty( $templates ) ) {
+        foreach ( $templates as $block_template ) {
+            // 'custom' মানে ইউজার Site Editor থেকে বানিয়েছে (DB তে সেভ আছে)
+            // 'theme' মানে থিম ডেভেলপার নিজে থেকে html ফাইল দিয়ে রেখেছে
+            if ( $block_template->source === 'custom' || $block_template->source === 'theme' ) {
+                return true; // হ্যাঁ, টেমপ্লেট আছে!
+            }
+        }
+    }
+
+    return false; // টেমপ্লেট নেই!
+}
+
 add_filter('template_include', 'rswpbs_archive_template');
 
 function rswpbs_archive_template($template)
@@ -27,6 +53,9 @@ function rswpbs_archive_template($template)
     }
   }
   if (is_tax('book-category')) {
+    if ( wp_is_block_theme() && rswpbs_has_custom_block_template('taxonomy-book-category') ) {
+        return $template;
+    }
     $theme_files = array('taxonomy-book-category.php', 'rsbs-templates/taxonomy-book-category.php');
     $exists_in_theme = locate_template($theme_files, false);
     if ($exists_in_theme != '') {
@@ -60,6 +89,9 @@ function rswpbs_load_book_template($template)
 {
   global $post;
   if ('book' === $post->post_type) {
+    if ( wp_is_block_theme() && rswpbs_has_custom_block_template('single-book') ) {
+        return $template;
+    }
     $theme_files = array('single-book.php', 'rsbs-templates/single-book.php');
     $exists_in_theme = locate_template($theme_files, false);
     if ($exists_in_theme != '') {

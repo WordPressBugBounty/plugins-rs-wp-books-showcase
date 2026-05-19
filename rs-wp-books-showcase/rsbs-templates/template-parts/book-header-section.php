@@ -20,7 +20,9 @@ function rswpbs_book_header_section(){
 	$showBuyBtn =  ($showBuyBtn === NULL || $showBuyBtn == true) ? 'true' : 'false';
 	$showAuthor = get_option('rswpbs_show_author_on_single_page', 1);
 	$showAuthor = ($showAuthor === NULL || $showAuthor == true) ? 'true' : 'false';
-
+	if ('book_mockup' == $getBookImageType) {
+		$bookImageType = 'book_mockup';
+	}
 	if (class_exists('Rswpbs_Pro')) {
 		$showSampleContent = get_option('rswpbs_show_sample_content_on_single_page', 0);
 		$showSampleContent =  ($showSampleContent === NULL || $showSampleContent == true) ? 'true' : 'false';
@@ -28,9 +30,6 @@ function rswpbs_book_header_section(){
 		$showAddToCart =  ($showAddToCart === NULL || $showAddToCart == true) ? 'true' : 'false';
 		$showMsl = get_option('rswpbs_show_msl_on_single_page', 0);
 		$showMsl =  ($showMsl === NULL || $showMsl == true) ? 'true' : 'false';
-		if ('book_mockup' == $getBookImageType) {
-			$bookImageType = 'book_mockup';
-		}
 	}
 
 	echo do_shortcode("[rswpbs_single_book show_sample_content=\"$showSampleContent\" show_title=\"true\" image_type=\"$bookImageType\" show_ratings=\"$showRatings\" show_author=\"$showAuthor\" show_buy_button=\"$showBuyBtn\" show_add_to_cart_btn=\"$showAddToCart\" show_description=\"$showExcerpt\" show_price=\"$showPrice\" show_msl=\"$showMsl\" msl_title_align=\"center\"]");
