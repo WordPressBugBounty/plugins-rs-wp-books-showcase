@@ -1,125 +1,4 @@
 <?php
-/**
- * Admin Notice For Amazon Affiliate Marketer
- */
-function rswpbs_amz_admin_notice() {
-    // Check if the current user has the required capabilities (admin privileges)
-    if (!current_user_can('install_plugins') || !current_user_can('manage_options')) {
-        return; // Exit if the user doesn't have the necessary permissions
-    }
-
-    // First check if there are any books
-    $book_count = wp_count_posts('book');
-    $published_books = $book_count->publish;
-
-    // Check if a books page exists (assuming it might be identified by a specific slug or template)
-    $books_page_exists = false;
-    $books_page = get_page_by_path('books'); // Adjust 'books' slug as needed
-    if ($books_page || get_option('rswpbs_books_page_id')) { // You might need to adjust this condition
-        $books_page_exists = true;
-    }
-
-    // Only proceed if there are books and a books page exists
-    if ($published_books == 0 || !$books_page_exists) {
-        return; // Exit if no books or no books page
-    }
-
-    $active_theme = wp_get_theme();
-    $showNotice = true;
-    if ($active_theme->get('Name') === 'Book Author Template') {
-        $showNotice = false;
-        if (false !== get_option('book_author_template_notice_dismissed_forever') || false !== get_option('book_author_template_notice_remind_time')) {
-            $showNotice = true;
-        }
-    } elseif ($active_theme->get('Name') === 'Author Portfolio') {
-        $showNotice = false;
-        if (false !== get_option('author_portfolio_notice_dismissed_forever') || false !== get_option('author_portfolio_notice_remind_time')) {
-            $showNotice = true;
-        }
-    } elseif ($active_theme->get('Name') === 'Author Personal Blog') {
-        $showNotice = false;
-        if (false !== get_option('author_personal_blog_notice_dismissed_forever') || false !== get_option('author_personal_blog_notice_remind_time')) {
-            $showNotice = true;
-        }
-    } elseif ($active_theme->get('Name') === 'Book Author Blog') {
-        $showNotice = false;
-        if (false !== get_option('author_personal_blog_notice_dismissed_forever') || false !== get_option('author_personal_blog_notice_remind_time')) {
-            $showNotice = true;
-        }
-    }
-
-    $user_id = get_current_user_id();
-    $dismissed_forever = get_user_meta($user_id, 'rswpbs_amz_notice_dismissed_forever', true);
-    $dismissed_time = get_user_meta($user_id, 'rswpbs_amz_notice_dismissed_time', true);
-
-    if ($showNotice) :
-        // Check if not dismissed forever and either never dismissed or 3 days have passed
-        if (!$dismissed_forever && (!$dismissed_time || (time() - $dismissed_time) > (3 * 86400))) :
-            ?>
-            <!-- Rest of your notice HTML and JavaScript remains the same -->
-            <div class="notice notice-info rswpbs-amz-admin-notice">
-                <p class="amz-notice-sub-heading">
-                    <?php echo esc_html__('Ready to monetize your site with ease? Import over 1,000 books from Amazon in just 10 minutes—no manual effort required! Or, effortlessly upload your own collection from a CSV file to build a stunning book showcase tailored to your audience.', 'rswpbs'); ?>
-                </p>
-                <p><strong><?php echo esc_html__('Get Started in Just a Few Clicks!', 'rswpbs'); ?></strong></p>
-                <div class="rswpbs-amz-admin-notice-btn-wrapper">
-                    <a href="<?php echo esc_url(admin_url('edit.php?post_type=book&page=import-books-from-csv')); ?>" class="button button-primary">
-                        <?php esc_html_e('Import Books From CSV', 'rswpbs'); ?>
-                    </a>
-                    <a href="<?php echo esc_url(admin_url('edit.php?post_type=book&page=import-books-from-json')); ?>" class="import-books-from-amazon-btn button button-secondary"><span class="dashicons dashicons-amazon"></span>
-                        <?php esc_html_e('Import Books from Amazon', 'rswpbs'); ?>
-                    </a>
-                </div>
-                <br>
-                <div class="rswpbs-notice-dismiss-links">
-                    <a href="#" class="rswpbs-dismiss-forever" data-nonce="<?php echo wp_create_nonce('rswpbs_amz_dismiss_forever'); ?>">Dismiss Forever</a> |
-                    <a href="#" class="rswpbs-remind-later" data-nonce="<?php echo wp_create_nonce('rswpbs_amz_remind_later'); ?>">Remind Me Later</a>
-                </div>
-            </div>
-            <script type="text/javascript">
-                jQuery(document).ready(function($) {
-                    $('.rswpbs-dismiss-forever').on('click', function(e) {
-                        e.preventDefault();
-                        $.post(ajaxurl, {
-                            action: 'rswpbs_amz_dismiss_forever',
-                            security: $(this).data('nonce')
-                        }, function() {
-                            $('.rswpbs-amz-admin-notice').slideUp();
-                        });
-                    });
-
-                    $('.rswpbs-remind-later').on('click', function(e) {
-                        e.preventDefault();
-                        $.post(ajaxurl, {
-                            action: 'rswpbs_amz_remind_later',
-                            security: $(this).data('nonce')
-                        }, function() {
-                            $('.rswpbs-amz-admin-notice').slideUp();
-                        });
-                    });
-                });
-            </script>
-            <?php
-        endif;
-    endif;
-}
-add_action('admin_notices', 'rswpbs_amz_admin_notice');
-// Handle dismiss forever
-function rswpbs_amz_dismiss_forever() {
-    check_ajax_referer('rswpbs_amz_dismiss_forever', 'security');
-    update_user_meta(get_current_user_id(), 'rswpbs_amz_notice_dismissed_forever', true);
-    wp_die();
-}
-add_action('wp_ajax_rswpbs_amz_dismiss_forever', 'rswpbs_amz_dismiss_forever');
-
-// Handle remind me later
-function rswpbs_amz_remind_later() {
-    check_ajax_referer('rswpbs_amz_remind_later', 'security');
-    update_user_meta(get_current_user_id(), 'rswpbs_amz_notice_dismissed_time', time());
-    wp_die();
-}
-add_action('wp_ajax_rswpbs_amz_remind_later', 'rswpbs_amz_remind_later');
-
 // 1. Register the submenu page under "Books"
 add_action( 'admin_menu', 'rswpbs_json_import_submenu' );
 function rswpbs_json_import_submenu() {
@@ -288,7 +167,7 @@ add_action('admin_enqueue_scripts', function($hook) {
     // Enqueue WordPress media scripts
     wp_enqueue_media();
 
-    // Enqueue your custom JS that opens the media library, etc.
+    // Enqueue your custom JS7 that opens the media library, etc.
     wp_enqueue_script(
         'rswpbs-json-file-uploader',
         RSWPBS_PLUGIN_URL . 'includes/import-books-from-json/import-books-from-json.js',
@@ -297,3 +176,69 @@ add_action('admin_enqueue_scripts', function($hook) {
         true
     );
 });
+
+
+add_action( 'admin_head-edit.php', 'add_custom_styled_buttons_to_books_cpt' );
+
+function add_custom_styled_buttons_to_books_cpt() {
+    global $current_screen;
+
+    // চেক করা হচ্ছে যে এটি সঠিক পোস্ট টাইপ কি না (যেমন: 'book')
+    if ( 'book' === $current_screen->post_type ) {
+        ?>
+        <style type="text/css">
+            /* 'CSV Import' বাটন (গাঢ় নীল) */
+            .custom-csv-import-btn {
+                background-color: #0073aa !important; /* ওয়ার্ডপ্রেস প্রাইমারি নীল রং */
+                border-color: #0073aa !important;
+                color: #ffffff !important;
+                margin-left: 10px !important;
+                vertical-align: middle;
+                border-radius: 3px !important;
+                text-decoration: none !important;
+                font-weight: 700;
+            }
+            .custom-csv-import-btn:hover,
+            .custom-csv-import-btn:focus {
+                background-color: #006799 !important;
+                border-color: #006799 !important;
+                color: #ffffff !important;
+            }
+
+            /* 'Import From Amazon' বাটন (হলুদ) */
+            .custom-amazon-import-btn {
+                background-color: #ffd814 !important; /* অ্যামাজন হলুদ রং */
+                border-color: #ffd814 !important;
+                color: #111111 !important;
+                margin-left: 10px !important;
+                vertical-align: middle;
+                border-radius: 3px !important;
+                text-decoration: none !important;
+                position: relative;
+                font-weight: 700;
+            }
+
+            a.page-title-action.custom-amazon-import-btn > span {margin-top: 5px;}
+            .custom-amazon-import-btn:hover,
+            .custom-amazon-import-btn:focus {
+                background-color: #ffd814 !important;
+                border-color: #ffd814 !important;
+                color: #111111 !important;
+            }
+        </style>
+        <script type="text/javascript">
+            jQuery(document).ready( function($) {
+
+                // আপনার প্রথম কাস্টম বাটন (CSV Import)
+                var customBtn1 = '<a href="edit.php?post_type=book&page=import-books-from-csv" class="page-title-action custom-csv-import-btn">CSV Import</a>';
+
+                // আপনার দ্বিতীয় কাস্টম বাটন (Import From Amazon)
+                var customBtn2 = '<a href="edit.php?post_type=book&page=import-books-from-json" class="page-title-action custom-amazon-import-btn"><span class="dashicons dashicons-amazon"></span> Import From Amazon</a>';
+
+                // বাটনগুলোকে 'Add New Book' বাটনের ঠিক পরে যুক্ত করা হচ্ছে
+                $(customBtn1 + customBtn2).insertAfter('.page-title-action:first');
+            });
+        </script>
+        <?php
+    }
+}

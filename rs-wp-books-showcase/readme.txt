@@ -3,8 +3,8 @@ Contributors: rswpthemes
 Tags: book carousel, book collection, book display, book library, book catalogue
 Requires at least: 5.2
 Tested up to: 6.9
-Stable tag: 6.7.66
-Requires PHP: 8.0
+Stable tag: 6.7.67
+Requires PHP: 8.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -196,6 +196,9 @@ Install RS WP Book Showcase as a regular WordPress plugin. Here are different wa
 6. Activate the plugin
 
 == Changelog ==
+
+= 6.7.67 - May 21, 2026 =
+* Improved Block Theme Compatibility
 
 = 6.7.66 - May 19, 2026 =
 * Make it fully compatible with any kind of gutenberg themes.
