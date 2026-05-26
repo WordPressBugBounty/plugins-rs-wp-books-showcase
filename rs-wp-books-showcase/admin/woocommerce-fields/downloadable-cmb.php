@@ -20,6 +20,9 @@ add_action('add_meta_boxes', 'rswpbs_remove_woocommerce_meta_box_for_books', 40)
 // }
 
 function rswpbs_product_downloadable_meta_box_output($post) {
+    if( class_exists('Rswpbs_Pro') && !function_exists('rswpthemes_cptwoointegration') ){
+        return;
+    }
     // Retrieve existing values
     $is_downloadable = get_post_meta($post->ID, '_downloadable', true);
     $download_files = get_post_meta($post->ID, '_downloadable_files', true);
